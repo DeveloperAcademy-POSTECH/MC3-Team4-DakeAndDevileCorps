@@ -25,7 +25,12 @@ jobs:
       uses: mshick/add-pr-comment@v1
       with:
         message: |
-         # All File Checked ✅
+         ## All File Checked ✅
+	<br/>
+
+	LGTM!	
+ 
+	<br/>	
 
          | ✅ 	| Auto Pull Request SwiftLint Success!!!! 	|
          |---	|----------------------------------------------	|
