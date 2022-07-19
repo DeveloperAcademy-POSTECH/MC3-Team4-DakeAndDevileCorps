@@ -25,8 +25,8 @@ jobs:
       uses: mshick/add-pr-comment@v1
       with:
         message: |
-         ## All File Checked ✅
-	 *LGTM!*	
+         ## All File Checked ✅ 
+	*LGTM!*	
          | ✅ 	| Auto Pull Request SwiftLint Success!!!! 	|
          |---	|----------------------------------------------	|
         repo-token: ${{ secrets.ACCESS_TOKEN }}
