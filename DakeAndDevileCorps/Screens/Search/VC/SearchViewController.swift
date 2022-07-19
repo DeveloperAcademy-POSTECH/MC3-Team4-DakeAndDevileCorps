@@ -12,6 +12,7 @@ class SearchViewController: UIViewController {
     @IBOutlet weak var recentSearchedTableView: UITableView!
     
     var recentSearchedItemList: [String] = []
+    var numberOfRows: Int = 10
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,7 +22,7 @@ class SearchViewController: UIViewController {
 
     func initRecentSearchedItem() {
         recentSearchedItemList.append(contentsOf: [
-            "샴푸", "리필스테이션", "세탁세제"
+            "샴푸", "리필스테이션", "세탁세제","샴푸", "리필스테이션", "세탁세제","샴푸", "리필스테이션", "세탁세제","샴푸", "리필스테이션", "세탁세제",
         ])
     }
 
@@ -29,7 +30,7 @@ class SearchViewController: UIViewController {
 
 extension SearchViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return recentSearchedItemList.count
+        return numberOfRows
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
