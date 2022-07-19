@@ -22,6 +22,9 @@
 		7937A02628859BFF0016D1A8 /* StoreDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7937A02528859BFF0016D1A8 /* StoreDetail.storyboard */; };
 		7976990C28859E1100DB53F8 /* ImageLiteral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7976990B28859E1100DB53F8 /* ImageLiteral.swift */; };
 		797CAC542886CFCB0041C3F7 /* RecentSearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797CAC532886CFCB0041C3F7 /* RecentSearchTableViewCell.swift */; };
+		79D7BA652886EAF000F65ECD /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D7BA642886EAF000F65ECD /* ResultViewController.swift */; };
+		79D7BA682886EBE100F65ECD /* StoreModel_N.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D7BA672886EBE100F65ECD /* StoreModel_N.swift */; };
+		79E2DCA82886E3C800355E30 /* ResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E2DCA72886E3C800355E30 /* ResultTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +45,9 @@
 		7937A02528859BFF0016D1A8 /* StoreDetail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = StoreDetail.storyboard; sourceTree = "<group>"; };
 		7976990B28859E1100DB53F8 /* ImageLiteral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLiteral.swift; sourceTree = "<group>"; };
 		797CAC532886CFCB0041C3F7 /* RecentSearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentSearchTableViewCell.swift; sourceTree = "<group>"; };
+		79D7BA642886EAF000F65ECD /* ResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
+		79D7BA672886EBE100F65ECD /* StoreModel_N.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreModel_N.swift; sourceTree = "<group>"; };
+		79E2DCA72886E3C800355E30 /* ResultTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +91,7 @@
 		79379FFA288589B60016D1A8 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				79D7BA662886EBD300F65ECD /* Model */,
 				79379FEC288588EC0016D1A8 /* DakeAndDevileCorps.xcdatamodeld */,
 			);
 			path = Network;
@@ -193,7 +200,9 @@
 			isa = PBXGroup;
 			children = (
 				7937A01D28859B490016D1A8 /* SearchViewController.swift */,
+				79D7BA642886EAF000F65ECD /* ResultViewController.swift */,
 				797CAC532886CFCB0041C3F7 /* RecentSearchTableViewCell.swift */,
+				79E2DCA72886E3C800355E30 /* ResultTableViewCell.swift */,
 			);
 			path = VC;
 			sourceTree = "<group>";
@@ -212,6 +221,14 @@
 				7937A02128859B990016D1A8 /* StoreDetailViewController.swift */,
 			);
 			path = VC;
+			sourceTree = "<group>";
+		};
+		79D7BA662886EBD300F65ECD /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				79D7BA672886EBE100F65ECD /* StoreModel_N.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -287,16 +304,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				79E2DCA82886E3C800355E30 /* ResultTableViewCell.swift in Sources */,
 				79379FE8288588EC0016D1A8 /* MapHomeViewController.swift in Sources */,
 				79379FE4288588EC0016D1A8 /* AppDelegate.swift in Sources */,
 				7937A01E28859B490016D1A8 /* SearchViewController.swift in Sources */,
 				79379FE6288588EC0016D1A8 /* SceneDelegate.swift in Sources */,
+				79D7BA682886EBE100F65ECD /* StoreModel_N.swift in Sources */,
 				7976990C28859E1100DB53F8 /* ImageLiteral.swift in Sources */,
 				7937A02228859B990016D1A8 /* StoreDetailViewController.swift in Sources */,
 				797CAC542886CFCB0041C3F7 /* RecentSearchTableViewCell.swift in Sources */,
 				79379FEE288588EC0016D1A8 /* DakeAndDevileCorps.xcdatamodeld in Sources */,
 				7937A01A28859A830016D1A8 /* BaseViewController.swift in Sources */,
 				7937A016288597A60016D1A8 /* UIColor+Extension.swift in Sources */,
+				79D7BA652886EAF000F65ECD /* ResultViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
