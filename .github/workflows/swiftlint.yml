@@ -19,12 +19,13 @@ jobs:
     
     - name: Run auto PR Swiftlint
       run: swiftlint --config .swiftlint.yml
-      
+     
     - name: Add PR Comment
       if: ${{ success() }}
       uses: mshick/add-pr-comment@v1
-      message: |
-        auto PR swiftLint Success!!!👻
-      repo-token: ${{ secrets.ACCESS_TOKEN }}
-      repo-token-user-login: 'github-actions[bot]' # The user.login for temporary GitHub tokens
-      allow-repeats: false # This is the default
+      with:
+        message: |
+          auto PR swiftLint Success!!!👻
+        repo-token: ${{ secrets.ACCESS_TOKEN }}
+        repo-token-user-login: 'github-actions[bot]' # The user.login for temporary GitHub tokens
+        allow-repeats: false # This is the default 
