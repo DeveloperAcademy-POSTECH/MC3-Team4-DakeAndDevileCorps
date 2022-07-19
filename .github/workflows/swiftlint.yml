@@ -10,22 +10,20 @@ on:
       - '**/*.swift'
       
 jobs:
-  SwiftLint:
+  build:
+  
     runs-on: macos-latest
+    
     steps:
-      	- uses: actions/checkout@v1
-
-      	- name: Run auto PR Swiftlint
-        run: swiftlint --config .swiftlint.yml
-
-	- name: Auto Comment
-  	uses: bubkoo/auto-comment@v1
-  	with:
-    	GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-    	pullRequestOpened: >
-      	👋 @{{ author }}
+    - uses: actions/checkout@v1
+    
+    - name: Run auto PR Swiftlint
+      run: swiftlint --config .swiftlint.yml
       
-		```
-      		Auto PR SwiftLint is Success!! 🫶🏻
-       		```
-      
+    - name: On Success Comment
+      if: ${{ success() }}
+      uses: wow-actions/auto-comment@v1
+      with:
+          GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+          pullRequestOpened: |
+            👋 @{{ author }} auto PR swiftLint Success!!!👻
