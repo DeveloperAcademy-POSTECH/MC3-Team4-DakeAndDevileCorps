@@ -1,0 +1,19 @@
+name: auto PR swiftLint
+
+
+on:
+  pull_request:
+    branches: [ develop ]
+    paths:
+      - '.github/workflows/swiftlint.yml'
+      - 'DakeAndDevileCorps/.swiftlint.yml'
+      - 'DakeAndDevileCorps/**/*.swift'
+      
+jobs:
+  SwiftLint:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: Run auto PR Swiftlint
+        run: swiftlint --config DakeAndDevileCorps/.swiftlint.yml
