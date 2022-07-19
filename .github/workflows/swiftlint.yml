@@ -6,8 +6,8 @@ on:
     branches: [ develop ]
     paths:
       - '.github/workflows/swiftlint.yml'
-      - 'DakeAndDevileCorps/.swiftlint.yml'
-      - 'DakeAndDevileCorps/**/*.swift'
+      - '.swiftlint.yml'
+      - '**/*.swift'
       
 jobs:
   SwiftLint:
