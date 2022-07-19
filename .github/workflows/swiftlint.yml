@@ -26,9 +26,7 @@ jobs:
       with:
         message: |
          ## All File Checked ✅
-	<br/>
-	LGTM!	
-	<br/>	
+	 *LGTM!*	
          | ✅ 	| Auto Pull Request SwiftLint Success!!!! 	|
          |---	|----------------------------------------------	|
         repo-token: ${{ secrets.ACCESS_TOKEN }}
