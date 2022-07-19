@@ -16,4 +16,4 @@ jobs:
       - uses: actions/checkout@v1
 
       - name: Run auto PR Swiftlint
-        run: swiftlint --config DakeAndDevileCorps/.swiftlint.yml
+        run: swiftlint --config .swiftlint.yml
