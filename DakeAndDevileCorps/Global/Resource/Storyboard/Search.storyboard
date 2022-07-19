@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="q8A-zs-hAI">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y6W-OH-hqX">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -18,8 +19,25 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacingType="standard" baselineRelativeArrangement="YES" translatesAutoresizingMaskIntoConstraints="NO" id="awt-pR-krr">
+                                <rect key="frame" x="24" y="136" width="366" height="24.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="최근검색" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jhv-uf-mPk">
+                                        <rect key="frame" x="0.0" y="3.5" width="52" height="18"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <color key="textColor" systemColor="secondaryLabelColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nCK-ty-jvN">
+                                        <rect key="frame" x="301" y="0.0" width="65" height="24.5"/>
+                                        <color key="tintColor" systemColor="secondaryLabelColor"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="전체 삭제" buttonSize="small"/>
+                                    </button>
+                                </subviews>
+                            </stackView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="7OW-E5-zZL">
-                                <rect key="frame" x="0.0" y="144" width="414" height="718"/>
+                                <rect key="frame" x="0.0" y="168.5" width="414" height="693.5"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="RecentSearchTableViewCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="RecentSearchTableViewCell" id="dbG-Rw-USI" customClass="RecentSearchTableViewCell" customModule="DakeAndDevileCorps" customModuleProvider="target">
@@ -70,8 +88,11 @@
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="awt-pR-krr" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="24" id="Ica-o9-LzA"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="awt-pR-krr" secondAttribute="trailing" constant="24" id="Trl-1q-5a1"/>
+                            <constraint firstItem="7OW-E5-zZL" firstAttribute="top" secondItem="awt-pR-krr" secondAttribute="bottom" constant="8" id="UBW-Zf-eth"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="7OW-E5-zZL" secondAttribute="trailing" id="eUp-po-QWE"/>
-                            <constraint firstItem="7OW-E5-zZL" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="100" id="fj3-Pr-avj"/>
+                            <constraint firstItem="awt-pR-krr" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="92" id="i1M-1r-PeZ"/>
                             <constraint firstItem="7OW-E5-zZL" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="jlt-j3-IH4"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="7OW-E5-zZL" secondAttribute="bottom" id="o93-R3-ckq"/>
                         </constraints>
