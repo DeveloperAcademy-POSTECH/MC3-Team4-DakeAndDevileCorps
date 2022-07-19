@@ -22,7 +22,7 @@ class SearchViewController: UIViewController {
 
     func initRecentSearchedItem() {
         recentSearchedItemList.append(contentsOf: [
-            "샴푸", "리필스테이션", "세탁세제","샴푸", "리필스테이션", "세탁세제","샴푸", "리필스테이션", "세탁세제","샴푸", "리필스테이션", "세탁세제",
+            "샴푸", "리필스테이션", "세탁세제", "샴푸", "리필스테이션", "세탁세제", "샴푸", "리필스테이션", "세탁세제", "샴푸", "리필스테이션", "세탁세제",
         ])
     }
 
