@@ -9,13 +9,110 @@ import UIKit
 
 class SearchBarView: UIView {
 
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
+    var leftItemMode: LeftItemMode = .imageMode {
+        didSet {
+            switch leftItemMode {
+            case .imageMode:
+                symbolImageView.isHidden = false
+                leftButton.isHidden = true
+            case .buttonMode:
+                symbolImageView.isHidden = true
+                leftButton.isHidden = false
+            }
+        }
     }
-    */
+    var image: UIImage? = UIImage(systemName: "magnifyingglass") {
+        didSet {
+            symbolImageView.image = image
+            leftButton.setImage(image, for: .normal)
+        }
+    }
+    
+    private lazy var symbolImageView: UIImageView = {
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.image = image
+        $0.contentMode = .scaleAspectFit
+        if leftItemMode == .imageMode {
+            $0.isHidden = false
+        } else { $0.isHidden = true }
+        $0.tintColor = .black
+        return $0
+    }(UIImageView())
+    
+    private lazy var leftButton: UIButton = {
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.setBackgroundImage(image, for: .normal)
+        $0.sizeToFit()
+        if leftItemMode == .buttonMode {
+            $0.isHidden = false
+        } else { $0.isHidden = true }
+        $0.tintColor = .black
+        return $0
+    }(UIButton())
+    
+    private lazy var textField: UITextField = {
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.placeholder = "가게 이름, 상품 검색"
+        return $0
+    }(UITextField())
+
+    init() {
+        super.init(frame: .zero)
+        configureLayout()
+    }
+
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
+
+    override func draw(_ rect: CGRect) {
+        super.draw(rect)
+    }
+
+    // MARK: - layout
+    func configureLayout() {
+        layer.cornerRadius = 10
+        layer.borderWidth = 0.5
+        layer.borderColor = UIColor.lightGray.cgColor
+
+        heightAnchor.constraint(equalToConstant: 48).isActive = true
+        
+        addSubview(textField)
+        NSLayoutConstraint.activate([
+            textField.topAnchor.constraint(equalTo: topAnchor),
+            textField.bottomAnchor.constraint(equalTo: bottomAnchor),
+            
+            textField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8),
+        ])
+        
+        // TODO: symbolImageView, leftButton의 오토레이아웃 다시 맞추기
+        addSubview(symbolImageView)
+        NSLayoutConstraint.activate([
+            symbolImageView.topAnchor.constraint(equalTo: topAnchor, constant: 7),
+            symbolImageView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -7),
+            
+            symbolImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+            symbolImageView.trailingAnchor.constraint(equalTo: textField.leadingAnchor, constant: -8),
+            
+            symbolImageView.widthAnchor.constraint(equalToConstant: 16)
+            
+        ])
+        
+        addSubview(leftButton)
+        NSLayoutConstraint.activate([
+            leftButton.topAnchor.constraint(equalTo: topAnchor, constant: 7),
+            leftButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -7),
+            
+            leftButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+            symbolImageView.trailingAnchor.constraint(equalTo: textField.leadingAnchor, constant: -11),
+        ])
+
+    }
+    
+    enum LeftItemMode {
+        case imageMode
+        case buttonMode
+    }
 
 }
 
