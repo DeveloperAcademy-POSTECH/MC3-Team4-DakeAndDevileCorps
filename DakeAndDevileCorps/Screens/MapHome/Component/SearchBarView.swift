@@ -10,7 +10,7 @@ import UIKit
 @objc protocol SearchBarDelegate {
     @objc optional func didReturnKeyInput()
     @objc optional func didBeginEditing()
-    @objc optional func didButtonClicked()
+    @objc optional func touchUpInsideLeftButton()
 }
 
 class SearchBarView: UIView {
@@ -66,6 +66,7 @@ class SearchBarView: UIView {
     init() {
         super.init(frame: .zero)
         textField.delegate = self
+        setLeftButton()
         configureLayout()
     }
 
@@ -117,6 +118,16 @@ class SearchBarView: UIView {
 
     }
     
+    //MARK: - leftButton setting
+    private func setLeftButton() {
+        leftButton.addTarget(self, action: #selector(touchUpInsideLeftButton), for: .touchUpInside)
+    }
+    
+    @objc
+    func touchUpInsideLeftButton() {
+        delegate?.touchUpInsideLeftButton?()
+    }
+    
     enum LeftItemMode {
         case imageMode
         case buttonMode
@@ -124,6 +135,7 @@ class SearchBarView: UIView {
 
 }
 
+// MARK: - UITextFieldDelegate
 extension SearchBarView: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         delegate?.didBeginEditing?()
