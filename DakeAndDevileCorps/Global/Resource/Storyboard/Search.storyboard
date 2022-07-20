@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y6W-OH-hqX">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y6W-OH-hqX">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -83,6 +84,19 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OK4-rP-aV0">
+                                <rect key="frame" x="355.5" y="64" width="48.5" height="31"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="검색"/>
+                                <connections>
+                                    <action selector="searchData:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="Og3-ii-w7M"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="beo-WN-37o">
+                                <rect key="frame" x="10" y="64" width="335.5" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -94,10 +108,16 @@
                             <constraint firstItem="awt-pR-krr" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="92" id="i1M-1r-PeZ"/>
                             <constraint firstItem="7OW-E5-zZL" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="jlt-j3-IH4"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="7OW-E5-zZL" secondAttribute="bottom" id="o93-R3-ckq"/>
+                            <constraint firstItem="beo-WN-37o" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="20" id="rWR-VK-G4g"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="OK4-rP-aV0" secondAttribute="trailing" constant="10" id="tf0-Sv-gtZ"/>
+                            <constraint firstItem="beo-WN-37o" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="10" id="thO-ct-UQl"/>
+                            <constraint firstItem="OK4-rP-aV0" firstAttribute="leading" secondItem="beo-WN-37o" secondAttribute="trailing" constant="10" id="vMT-Yw-OO6"/>
+                            <constraint firstItem="OK4-rP-aV0" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="20" id="zbL-qe-YdY"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="recentSearchedTableView" destination="7OW-E5-zZL" id="vb1-Fe-tlt"/>
+                        <outlet property="textField" destination="beo-WN-37o" id="Ock-Tf-hMm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

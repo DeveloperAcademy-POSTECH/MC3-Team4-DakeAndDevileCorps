@@ -10,6 +10,7 @@ import UIKit
 class SearchViewController: UIViewController {
 
     @IBOutlet weak var recentSearchedTableView: UITableView!
+    @IBOutlet weak var textField: UITextField!
     
     var recentSearchedItemList: [String] = []
     var numberOfRows: Int = 10
@@ -25,7 +26,10 @@ class SearchViewController: UIViewController {
             "샴푸", "리필스테이션", "세탁세제", "샴푸", "리필스테이션", "세탁세제", "샴푸", "리필스테이션", "세탁세제", "샴푸", "리필스테이션", "세탁세제",
         ])
     }
-
+    @IBAction func searchData(_ sender: Any) {
+        
+    }
+    
 }
 
 extension SearchViewController: UITableViewDataSource {

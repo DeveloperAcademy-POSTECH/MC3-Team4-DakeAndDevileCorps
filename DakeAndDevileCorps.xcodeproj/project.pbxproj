@@ -25,6 +25,7 @@
 		79D7BA652886EAF000F65ECD /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D7BA642886EAF000F65ECD /* ResultViewController.swift */; };
 		79D7BA682886EBE100F65ECD /* StoreModel_N.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D7BA672886EBE100F65ECD /* StoreModel_N.swift */; };
 		79E2DCA82886E3C800355E30 /* ResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E2DCA72886E3C800355E30 /* ResultTableViewCell.swift */; };
+		79FB4D7C28881DB000597224 /* SearchCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79FB4D7B28881DB000597224 /* SearchCellModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +49,7 @@
 		79D7BA642886EAF000F65ECD /* ResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
 		79D7BA672886EBE100F65ECD /* StoreModel_N.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreModel_N.swift; sourceTree = "<group>"; };
 		79E2DCA72886E3C800355E30 /* ResultTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultTableViewCell.swift; sourceTree = "<group>"; };
+		79FB4D7B28881DB000597224 /* SearchCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCellModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -193,6 +195,7 @@
 				797CAC532886CFCB0041C3F7 /* RecentSearchTableViewCell.swift */,
 				79E2DCA72886E3C800355E30 /* ResultTableViewCell.swift */,
 				79D7BA672886EBE100F65ECD /* StoreModel_N.swift */,
+				79FB4D7B28881DB000597224 /* SearchCellModel.swift */,
 			);
 			path = VC;
 			sourceTree = "<group>";
@@ -309,6 +312,7 @@
 				7937A01A28859A830016D1A8 /* BaseViewController.swift in Sources */,
 				7937A016288597A60016D1A8 /* UIColor+Extension.swift in Sources */,
 				79D7BA652886EAF000F65ECD /* ResultViewController.swift in Sources */,
+				79FB4D7C28881DB000597224 /* SearchCellModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
