@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4AB368E32886CEFC0075E03A /* OperationTimeAndProductTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB368E22886CEFC0075E03A /* OperationTimeAndProductTableViewCell.swift */; };
+		4AB368E52886D95E0075E03A /* StoreInformationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB368E42886D95E0075E03A /* StoreInformationTableViewCell.swift */; };
+		4AB368E72886DBD20075E03A /* ItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB368E62886DBD20075E03A /* ItemTableViewCell.swift */; };
+		4AB368EA2886E5850075E03A /* StoreDetailModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB368E92886E5850075E03A /* StoreDetailModels.swift */; };
+		4AB368EC2886F4870075E03A /* ProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB368EB2886F4870075E03A /* ProductCell.swift */; };
 		79379FE4288588EC0016D1A8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79379FE3288588EC0016D1A8 /* AppDelegate.swift */; };
 		79379FE6288588EC0016D1A8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79379FE5288588EC0016D1A8 /* SceneDelegate.swift */; };
 		79379FE8288588EC0016D1A8 /* MapHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79379FE7288588EC0016D1A8 /* MapHomeViewController.swift */; };
@@ -24,6 +29,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4AB368E22886CEFC0075E03A /* OperationTimeAndProductTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationTimeAndProductTableViewCell.swift; sourceTree = "<group>"; };
+		4AB368E42886D95E0075E03A /* StoreInformationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreInformationTableViewCell.swift; sourceTree = "<group>"; };
+		4AB368E62886DBD20075E03A /* ItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemTableViewCell.swift; sourceTree = "<group>"; };
+		4AB368E92886E5850075E03A /* StoreDetailModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreDetailModels.swift; sourceTree = "<group>"; };
+		4AB368EB2886F4870075E03A /* ProductCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCell.swift; sourceTree = "<group>"; };
 		79379FE0288588EC0016D1A8 /* DakeAndDevileCorps.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DakeAndDevileCorps.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		79379FE3288588EC0016D1A8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		79379FE5288588EC0016D1A8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -31,7 +41,7 @@
 		79379FED288588EC0016D1A8 /* DakeAndDevileCorps.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DakeAndDevileCorps.xcdatamodel; sourceTree = "<group>"; };
 		79379FEF288588ED0016D1A8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		79379FF2288588ED0016D1A8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		79379FF4288588ED0016D1A8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = Info.plist/Info.plist; sourceTree = "<group>"; };
+		79379FF4288588ED0016D1A8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7937A01328858CB40016D1A8 /* MapHome.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MapHome.storyboard; sourceTree = "<group>"; };
 		7937A015288597A60016D1A8 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		7937A01928859A830016D1A8 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
@@ -53,6 +63,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4AB368E82886E5790075E03A /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				4AB368E92886E5850075E03A /* StoreDetailModels.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		79379FD7288588EB0016D1A8 = {
 			isa = PBXGroup;
 			children = (
@@ -72,6 +90,7 @@
 		79379FE2288588EC0016D1A8 /* DakeAndDevileCorps */ = {
 			isa = PBXGroup;
 			children = (
+				79379FF4288588ED0016D1A8 /* Info.plist */,
 				79379FFA288589B60016D1A8 /* Network */,
 				79379FFB288589EE0016D1A8 /* Global */,
 				7937A00B28858B950016D1A8 /* Screens */,
@@ -82,6 +101,7 @@
 		79379FFA288589B60016D1A8 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				4AB368E82886E5790075E03A /* Models */,
 				79379FEC288588EC0016D1A8 /* DakeAndDevileCorps.xcdatamodeld */,
 			);
 			path = Network;
@@ -118,7 +138,6 @@
 		7937A00228858A680016D1A8 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				79379FF4288588ED0016D1A8 /* Info.plist */,
 				79379FE3288588EC0016D1A8 /* AppDelegate.swift */,
 				79379FE5288588EC0016D1A8 /* SceneDelegate.swift */,
 			);
@@ -207,6 +226,10 @@
 			isa = PBXGroup;
 			children = (
 				7937A02128859B990016D1A8 /* StoreDetailViewController.swift */,
+				4AB368E22886CEFC0075E03A /* OperationTimeAndProductTableViewCell.swift */,
+				4AB368E42886D95E0075E03A /* StoreInformationTableViewCell.swift */,
+				4AB368E62886DBD20075E03A /* ItemTableViewCell.swift */,
+				4AB368EB2886F4870075E03A /* ProductCell.swift */,
 			);
 			path = VC;
 			sourceTree = "<group>";
@@ -286,11 +309,16 @@
 			files = (
 				79379FE8288588EC0016D1A8 /* MapHomeViewController.swift in Sources */,
 				79379FE4288588EC0016D1A8 /* AppDelegate.swift in Sources */,
+				4AB368E32886CEFC0075E03A /* OperationTimeAndProductTableViewCell.swift in Sources */,
 				7937A01E28859B490016D1A8 /* SearchViewController.swift in Sources */,
+				4AB368E72886DBD20075E03A /* ItemTableViewCell.swift in Sources */,
+				4AB368EC2886F4870075E03A /* ProductCell.swift in Sources */,
 				79379FE6288588EC0016D1A8 /* SceneDelegate.swift in Sources */,
+				4AB368EA2886E5850075E03A /* StoreDetailModels.swift in Sources */,
 				7976990C28859E1100DB53F8 /* ImageLiteral.swift in Sources */,
 				7937A02228859B990016D1A8 /* StoreDetailViewController.swift in Sources */,
 				79379FEE288588EC0016D1A8 /* DakeAndDevileCorps.xcdatamodeld in Sources */,
+				4AB368E52886D95E0075E03A /* StoreInformationTableViewCell.swift in Sources */,
 				7937A01A28859A830016D1A8 /* BaseViewController.swift in Sources */,
 				7937A016288597A60016D1A8 /* UIColor+Extension.swift in Sources */,
 			);
@@ -432,15 +460,16 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = U5D4UR6AFR;
+				DEVELOPMENT_TEAM = JP5BCXZWJP;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DakeAndDevileCorps/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIMainStoryboardFile = StoreDetail;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -462,15 +491,16 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = U5D4UR6AFR;
+				DEVELOPMENT_TEAM = JP5BCXZWJP;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DakeAndDevileCorps/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIMainStoryboardFile = StoreDetail;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
