@@ -80,7 +80,6 @@
 		79379FE2288588EC0016D1A8 /* DakeAndDevileCorps */ = {
 			isa = PBXGroup;
 			children = (
-				79379FF4288588ED0016D1A8 /* Info.plist */,
 				79379FFA288589B60016D1A8 /* Network */,
 				79379FFB288589EE0016D1A8 /* Global */,
 				7937A00B28858B950016D1A8 /* Screens */,
@@ -91,7 +90,6 @@
 		79379FFA288589B60016D1A8 /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				79D7BA662886EBD300F65ECD /* Model */,
 				79379FEC288588EC0016D1A8 /* DakeAndDevileCorps.xcdatamodeld */,
 			);
 			path = Network;
@@ -128,6 +126,7 @@
 		7937A00228858A680016D1A8 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				79379FF4288588ED0016D1A8 /* Info.plist */,
 				79379FE3288588EC0016D1A8 /* AppDelegate.swift */,
 				79379FE5288588EC0016D1A8 /* SceneDelegate.swift */,
 			);
@@ -203,6 +202,7 @@
 				79D7BA642886EAF000F65ECD /* ResultViewController.swift */,
 				797CAC532886CFCB0041C3F7 /* RecentSearchTableViewCell.swift */,
 				79E2DCA72886E3C800355E30 /* ResultTableViewCell.swift */,
+				79D7BA672886EBE100F65ECD /* StoreModel_N.swift */,
 			);
 			path = VC;
 			sourceTree = "<group>";
@@ -221,14 +221,6 @@
 				7937A02128859B990016D1A8 /* StoreDetailViewController.swift */,
 			);
 			path = VC;
-			sourceTree = "<group>";
-		};
-		79D7BA662886EBD300F65ECD /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				79D7BA672886EBE100F65ECD /* StoreModel_N.swift */,
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
