@@ -178,8 +178,8 @@
                     <connections>
                         <outlet property="NothingMessage" destination="ZYP-Uf-3eb" id="smV-zd-jvj"/>
                         <outlet property="deleteAllButton" destination="nCK-ty-jvN" id="FEH-GI-cIx"/>
-                        <outlet property="recentSearchedTableView" destination="7OW-E5-zZL" id="vb1-Fe-tlt"/>
-                        <outlet property="recentlyNothingView" destination="ZAB-Qv-W44" id="Ojh-wX-D3f"/>
+                        <outlet property="nothingView" destination="ZAB-Qv-W44" id="Ojh-wX-D3f"/>
+                        <outlet property="searchTableView" destination="7OW-E5-zZL" id="vb1-Fe-tlt"/>
                         <outlet property="tableTitle" destination="awt-pR-krr" id="FMW-1b-ZuM"/>
                         <outlet property="tableTitleText" destination="Jhv-uf-mPk" id="Hds-Tl-6gp"/>
                         <outlet property="textField" destination="beo-WN-37o" id="Ock-Tf-hMm"/>

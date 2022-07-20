@@ -9,12 +9,12 @@ import UIKit
 
 class SearchViewController: UIViewController {
 
-    @IBOutlet weak var recentSearchedTableView: UITableView!
+    @IBOutlet weak var searchTableView: UITableView!
     @IBOutlet weak var textField: UITextField!
-    @IBOutlet weak var recentlyNothingView: UIStackView!
     @IBOutlet weak var deleteAllButton: UIButton!
     @IBOutlet weak var tableTitle: UIStackView!
     @IBOutlet weak var tableTitleText: UILabel!
+    @IBOutlet weak var nothingView: UIStackView!
     @IBOutlet weak var nothingMessage: UILabel!
     
     var recentSearchedItemList: [String] = []
@@ -23,7 +23,7 @@ class SearchViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        recentSearchedTableView.dataSource = self
+        searchTableView.dataSource = self
         textField.delegate = self
         initRecentSearchedItem()
         initResultData()
@@ -50,20 +50,20 @@ class SearchViewController: UIViewController {
             tableTitleText.text = "'\(textField.text ?? "")'와 관련 있는 검색 결과"
             deleteAllButton.isHidden = true
             if resultList.count == 0 {
-                recentlyNothingView.isHidden = false
+                nothingView.isHidden = false
                 nothingMessage.text = "검색 기록이 없습니다."
             } else {
-                recentlyNothingView.isHidden = true
+                nothingView.isHidden = true
             }
         } else {
             tableTitleText.text = "최근 검색"
             deleteAllButton.isHidden = false
             if recentSearchedItemList.count == 0 {
-                recentlyNothingView.isHidden = false
+                nothingView.isHidden = false
                 deleteAllButton.isHidden = true
                 nothingMessage.text = "최근 검색한 기록이 없습니다."
             } else {
-                recentlyNothingView.isHidden = true
+                nothingView.isHidden = true
             }
         }
     }
@@ -106,14 +106,14 @@ extension SearchViewController: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         isShowingResult = false
         showResultTitle()
-        recentSearchedTableView.reloadData()
+        searchTableView.reloadData()
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         isShowingResult = true
         textField.endEditing(true)
         showResultTitle()
-        recentSearchedTableView.reloadData()
+        searchTableView.reloadData()
 
         return true
     }
