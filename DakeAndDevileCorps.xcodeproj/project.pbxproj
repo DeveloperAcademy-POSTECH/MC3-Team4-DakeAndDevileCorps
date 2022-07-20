@@ -98,9 +98,9 @@
 		79379FFB288589EE0016D1A8 /* Global */ = {
 			isa = PBXGroup;
 			children = (
+				B5F3E7A828863F6C000C3129 /* Supports */,
 				79379FFC28858A000016D1A8 /* Literal */,
 				7937A00128858A620016D1A8 /* Base */,
-				7937A00228858A680016D1A8 /* Supporting Files */,
 				7937A00528858A7F0016D1A8 /* Extension */,
 				7937A00728858A8B0016D1A8 /* Resource */,
 			);
@@ -121,16 +121,6 @@
 				7937A01928859A830016D1A8 /* BaseViewController.swift */,
 			);
 			path = Base;
-			sourceTree = "<group>";
-		};
-		7937A00228858A680016D1A8 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				79379FF4288588ED0016D1A8 /* Info.plist */,
-				79379FE3288588EC0016D1A8 /* AppDelegate.swift */,
-				79379FE5288588EC0016D1A8 /* SceneDelegate.swift */,
-			);
-			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		7937A00528858A7F0016D1A8 /* Extension */ = {
@@ -221,6 +211,16 @@
 				7937A02128859B990016D1A8 /* StoreDetailViewController.swift */,
 			);
 			path = VC;
+			sourceTree = "<group>";
+		};
+		B5F3E7A828863F6C000C3129 /* Supports */ = {
+			isa = PBXGroup;
+			children = (
+				79379FE3288588EC0016D1A8 /* AppDelegate.swift */,
+				79379FE5288588EC0016D1A8 /* SceneDelegate.swift */,
+				79379FF4288588ED0016D1A8 /* Info.plist */,
+			);
+			path = Supports;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -450,10 +450,10 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = U5D4UR6AFR;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = DakeAndDevileCorps/Info.plist;
+				INFOPLIST_FILE = DakeAndDevileCorps/Global/Supports/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Search;
+				INFOPLIST_KEY_UIMainStoryboardFile = MapHome;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -480,10 +480,10 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = U5D4UR6AFR;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = DakeAndDevileCorps/Info.plist;
+				INFOPLIST_FILE = DakeAndDevileCorps/Global/Supports/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Search;
+				INFOPLIST_KEY_UIMainStoryboardFile = MapHome;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
