@@ -7,8 +7,15 @@
 
 import UIKit
 
-class SearchBarView: UIView {
+@objc protocol SearchBarDelegate {
+    @objc optional func didReturnKeyInput()
+    @objc optional func didBeginEditing()
+    @objc optional func didButtonClicked()
+}
 
+class SearchBarView: UIView {
+    
+    weak var delegate: SearchBarDelegate?
     var leftItemMode: LeftItemMode = .imageMode {
         didSet {
             switch leftItemMode {
@@ -58,6 +65,7 @@ class SearchBarView: UIView {
 
     init() {
         super.init(frame: .zero)
+        textField.delegate = self
         configureLayout()
     }
 
@@ -114,6 +122,17 @@ class SearchBarView: UIView {
         case buttonMode
     }
 
+}
+
+extension SearchBarView: UITextFieldDelegate {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        delegate?.didBeginEditing?()
+    }
+
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        delegate?.didReturnKeyInput?()
+        return true
+    }
 }
 
 // MARK: - use Canvas
