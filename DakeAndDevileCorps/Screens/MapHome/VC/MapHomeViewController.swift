@@ -18,7 +18,12 @@ class MapHomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setSearchBarView()
         configureLayout()
+    }
+    
+    func setSearchBarView() {
+        searchBarView.delegate = self
     }
 
     func configureLayout() {
@@ -33,5 +38,17 @@ class MapHomeViewController: UIViewController {
         ])
     }
 
+}
+
+extension MapHomeViewController: SearchBarDelegate {
+    @objc func didBeginEditing() {
+        view.endEditing(true)
+        
+        let nextViewController = UIViewController()
+        nextViewController.view.backgroundColor = .yellow
+        nextViewController.modalTransitionStyle = .crossDissolve
+        nextViewController.modalPresentationStyle = .fullScreen
+        present(nextViewController, animated: true)
+    }
 }
 
