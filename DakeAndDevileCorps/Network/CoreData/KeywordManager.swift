@@ -34,13 +34,13 @@ final class KeywordManager {
         }
     }
     
-    func saveRecentSearch(term: String) {
+    func saveRecentSearch(keyword: String) {
         guard let context = self.context,
               let entity = NSEntityDescription.entity(forEntityName: "Keywords", in: context),
               let recentTerms = NSManagedObject(entity: entity, insertInto: context) as? Keywords
         else { return }
         
-        recentTerms.term = term
+        recentTerms.term = keyword
 
         do {
             try context.save()
@@ -50,8 +50,8 @@ final class KeywordManager {
     }
     
     @discardableResult
-    func delete<T: NSManagedObject>(at term: String, request: NSFetchRequest<T>) -> Bool {
-        request.predicate = NSPredicate(format: "keyword = %@", NSString(string: term))
+    func delete<T: NSManagedObject>(at keyword: String, request: NSFetchRequest<T>) -> Bool {
+        request.predicate = NSPredicate(format: "keyword = %@", NSString(string: keyword))
 
         do {
             if let recentTerms = try context?.fetch(request) {
