@@ -29,5 +29,6 @@ class RecentSearchTableViewCell: UITableViewCell {
     }
     
     @IBAction func deleteData(_ sender: Any) {
+        
     }
 }
