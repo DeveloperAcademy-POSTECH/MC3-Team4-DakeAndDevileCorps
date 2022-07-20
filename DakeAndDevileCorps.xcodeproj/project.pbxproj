@@ -21,6 +21,7 @@
 		7937A02428859BF20016D1A8 /* Search.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7937A02328859BF20016D1A8 /* Search.storyboard */; };
 		7937A02628859BFF0016D1A8 /* StoreDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7937A02528859BFF0016D1A8 /* StoreDetail.storyboard */; };
 		7976990C28859E1100DB53F8 /* ImageLiteral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7976990B28859E1100DB53F8 /* ImageLiteral.swift */; };
+		B5F1F24B2888313F0021B026 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F1F24A2888313F0021B026 /* UIView+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		7937A02328859BF20016D1A8 /* Search.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Search.storyboard; sourceTree = "<group>"; };
 		7937A02528859BFF0016D1A8 /* StoreDetail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = StoreDetail.storyboard; sourceTree = "<group>"; };
 		7976990B28859E1100DB53F8 /* ImageLiteral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLiteral.swift; sourceTree = "<group>"; };
+		B5F1F24A2888313F0021B026 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +121,7 @@
 			isa = PBXGroup;
 			children = (
 				7937A015288597A60016D1A8 /* UIColor+Extension.swift */,
+				B5F1F24A2888313F0021B026 /* UIView+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -292,6 +295,7 @@
 				7937A02228859B990016D1A8 /* StoreDetailViewController.swift in Sources */,
 				79379FEE288588EC0016D1A8 /* DakeAndDevileCorps.xcdatamodeld in Sources */,
 				7937A01A28859A830016D1A8 /* BaseViewController.swift in Sources */,
+				B5F1F24B2888313F0021B026 /* UIView+Extension.swift in Sources */,
 				7937A016288597A60016D1A8 /* UIColor+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
