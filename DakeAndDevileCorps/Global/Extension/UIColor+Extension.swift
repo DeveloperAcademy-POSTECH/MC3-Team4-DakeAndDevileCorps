@@ -10,7 +10,7 @@ import UIKit
 extension UIColor {
 
     static var exampleGray: UIColor {
-        return UIColor(hex: "#242425")
+        return UIColor(hex: "#242424")
     }
 }
 
