@@ -22,8 +22,8 @@
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacingType="standard" baselineRelativeArrangement="YES" translatesAutoresizingMaskIntoConstraints="NO" id="awt-pR-krr">
                                 <rect key="frame" x="24" y="136" width="366" height="24.5"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="최근검색" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jhv-uf-mPk">
-                                        <rect key="frame" x="0.0" y="3.5" width="52" height="18"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jhv-uf-mPk">
+                                        <rect key="frame" x="0.0" y="3.5" width="40" height="18"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                         <color key="textColor" systemColor="secondaryLabelColor"/>
                                         <nil key="highlightedColor"/>
@@ -165,29 +165,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9l7-jo-UwF">
-                                <rect key="frame" x="24" y="139" width="181.5" height="18"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="'" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7r5-a2-BSa">
-                                        <rect key="frame" x="0.0" y="0.0" width="5" height="18"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                        <color key="textColor" systemColor="secondaryLabelColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PNU-oj-O09">
-                                        <rect key="frame" x="5" y="0.0" width="40" height="18"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                        <color key="textColor" systemColor="secondaryLabelColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="'와 관련 있는 검색 결과" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7pE-oI-pBs">
-                                        <rect key="frame" x="45" y="0.0" width="136.5" height="18"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                        <color key="textColor" systemColor="secondaryLabelColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -201,22 +178,20 @@
                             <constraint firstItem="awt-pR-krr" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="92" id="i1M-1r-PeZ"/>
                             <constraint firstItem="7OW-E5-zZL" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="jlt-j3-IH4"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="7OW-E5-zZL" secondAttribute="bottom" id="o93-R3-ckq"/>
-                            <constraint firstItem="9l7-jo-UwF" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="95" id="qsB-LZ-kGE"/>
                             <constraint firstItem="beo-WN-37o" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="20" id="rWR-VK-G4g"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="OK4-rP-aV0" secondAttribute="trailing" constant="10" id="tf0-Sv-gtZ"/>
                             <constraint firstItem="beo-WN-37o" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="10" id="thO-ct-UQl"/>
                             <constraint firstItem="OK4-rP-aV0" firstAttribute="leading" secondItem="beo-WN-37o" secondAttribute="trailing" constant="10" id="vMT-Yw-OO6"/>
-                            <constraint firstItem="9l7-jo-UwF" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="24" id="xD6-B1-Lbr"/>
                             <constraint firstItem="OK4-rP-aV0" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="20" id="zbL-qe-YdY"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="NothingMessage" destination="ZYP-Uf-3eb" id="smV-zd-jvj"/>
                         <outlet property="deleteAllButton" destination="nCK-ty-jvN" id="FEH-GI-cIx"/>
-                        <outlet property="recentSearchedTableTitle" destination="awt-pR-krr" id="gz0-FB-X17"/>
                         <outlet property="recentSearchedTableView" destination="7OW-E5-zZL" id="vb1-Fe-tlt"/>
                         <outlet property="recentlyNothingView" destination="ZAB-Qv-W44" id="Ojh-wX-D3f"/>
-                        <outlet property="resultTableTitle" destination="9l7-jo-UwF" id="woB-WF-k3Z"/>
+                        <outlet property="tableTitle" destination="awt-pR-krr" id="FMW-1b-ZuM"/>
+                        <outlet property="tableTitleText" destination="Jhv-uf-mPk" id="Hds-Tl-6gp"/>
                         <outlet property="textField" destination="beo-WN-37o" id="Ock-Tf-hMm"/>
                     </connections>
                 </viewController>

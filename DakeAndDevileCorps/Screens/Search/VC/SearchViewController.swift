@@ -13,18 +13,13 @@ class SearchViewController: UIViewController {
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var recentlyNothingView: UIStackView!
     @IBOutlet weak var deleteAllButton: UIButton!
-    @IBOutlet weak var recentSearchedTableTitle: UIStackView!
-    @IBOutlet weak var resultTableTitle: UIStackView!
+    @IBOutlet weak var tableTitle: UIStackView!
+    @IBOutlet weak var tableTitleText: UILabel!
     @IBOutlet weak var nothingMessage: UILabel!
     
     var recentSearchedItemList: [String] = []
     var resultList: [StoreModel] = []
-//    var numberOfRows: Int = 10
-    var isShowingResult: Bool = true {
-        didSet{
-            showResultTitle()
-        }
-    }
+    var isShowingResult: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,8 +46,8 @@ class SearchViewController: UIViewController {
     
     func showResultTitle() {
         if isShowingResult {
-            recentSearchedTableTitle.isHidden = true
-            resultTableTitle.isHidden = false
+            tableTitleText.text = "'\(textField.text ?? "")'와 관련 있는 검색 결과"
+            deleteAllButton.isHidden = true
             if resultList.count == 0 {
                 recentlyNothingView.isHidden = false
                 nothingMessage.text = "검색 기록이 없습니다."
@@ -60,8 +55,8 @@ class SearchViewController: UIViewController {
                 recentlyNothingView.isHidden = true
             }
         } else {
-            recentSearchedTableTitle.isHidden = false
-            resultTableTitle.isHidden = true
+            tableTitleText.text = "최근 검색"
+            deleteAllButton.isHidden = false
             if recentSearchedItemList.count == 0 {
                 recentlyNothingView.isHidden = false
                 deleteAllButton.isHidden = true
@@ -73,8 +68,12 @@ class SearchViewController: UIViewController {
     }
     
     @IBAction func searchData(_ sender: Any) {
-        isShowingResult.toggle()
-        recentSearchedTableView.reloadData()
+        if textField.text != "" {
+            isShowingResult.toggle()
+            showResultTitle()
+            textField.endEditing(true)
+            recentSearchedTableView.reloadData()
+        }
     }
     
     @IBAction func deleteAllSearchedData(_ sender: Any) {
