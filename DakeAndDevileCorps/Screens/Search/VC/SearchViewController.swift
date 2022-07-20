@@ -24,6 +24,7 @@ class SearchViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         recentSearchedTableView.dataSource = self
+        textField.delegate = self
         initRecentSearchedItem()
         initResultData()
         showResultTitle()
@@ -67,14 +68,6 @@ class SearchViewController: UIViewController {
         }
     }
     
-    @IBAction func searchData(_ sender: Any) {
-        if textField.text != "" {
-            isShowingResult.toggle()
-            showResultTitle()
-            textField.endEditing(true)
-            recentSearchedTableView.reloadData()
-        }
-    }
     
     @IBAction func deleteAllSearchedData(_ sender: Any) {
         
@@ -107,4 +100,21 @@ extension SearchViewController: UITableViewDataSource {
 
 extension SearchViewController: UITableViewDelegate {
     
+}
+
+extension SearchViewController: UITextFieldDelegate {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        isShowingResult = false
+        showResultTitle()
+        recentSearchedTableView.reloadData()
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        isShowingResult = true
+        textField.endEditing(true)
+        showResultTitle()
+        recentSearchedTableView.reloadData()
+
+        return true
+    }
 }
