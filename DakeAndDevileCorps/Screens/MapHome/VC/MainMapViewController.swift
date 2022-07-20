@@ -7,13 +7,12 @@
 
 import UIKit
 
-class MapHomeViewController: UIViewController {
+class MainMapViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-    }
 
+    }
 
 }
 
