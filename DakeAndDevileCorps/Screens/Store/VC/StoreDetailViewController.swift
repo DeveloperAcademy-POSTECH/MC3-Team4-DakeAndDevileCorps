@@ -6,19 +6,31 @@
 //
 
 import UIKit
+import CloudKit
+
+enum CellModel {
+    case product(productName: String)
+    case item(itemName: String, itemPrice: String)
+}
 
 class StoreDetailViewController: UIViewController {
     
     @IBOutlet weak var storeDetailTableView: UITableView!
     var storeInformations: [StoreInformation] = []
-    var items: [Item] = []
-    var products: [String] = ["주방세제"]
+    var items: [String : [Item]] = [:]
+    var products: [String] = ["주방세제", " 세탁세제", "섬유유연제", "기타세제", "헤어", "스킨", "바디", "생활", "문구", "애견", "기타"]
+    var productCount: [Int] = []
+    var totalElements: Int = 0
+    var section2DataSource = [CellModel]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         storeDetailTableView.dataSource = self
         storeDetailTableView.delegate = self
         storeDetailTableView.separatorStyle = UITableViewCell.SeparatorStyle.none
-        storeDetailTableView.rowHeight = 60
+        storeDetailTableView.rowHeight = UITableView.automaticDimension
+        storeDetailTableView.estimatedRowHeight = 100
+//        storeDetailTableView.rowHeight = 200
         initStoreInformationData()
     }
     
@@ -28,44 +40,90 @@ class StoreDetailViewController: UIViewController {
             StoreInformation(imageName: "phone", content: "010-2229-1027")
         ])
         
-        items.append(contentsOf: [
+        items["kitchen detergent"] = [
         Item(itemName: "인블리스 세탁세제", itemPrice: "1g = 4원"),
         Item(itemName: "에코띠크 중성 세탁세제", itemPrice: "1g = 7원"),
         Item(itemName: "에코라운드 중성 세탁세제", itemPrice: "1g = 7원"),
         Item(itemName: "강청 무첨가EM세탁물비누", itemPrice: "1g = 10원"),
         Item(itemName: "브라운리브스 세탁세제 (웜코튼향)", itemPrice: "1g = 10원")
-        ])
+        ]
+        
+        section2DataSource = [
+            .product(productName: "주방세제"),
+            .item(itemName: "인블리스 세탁세제", itemPrice: "1g = 4원"),
+            .product(productName: "세탁세제"),
+            .item(itemName: "인블리스 세탁세제", itemPrice: "1g = 4원"),
+            .product(productName: "주방세제"),
+            .item(itemName: "인블리스 세탁세제", itemPrice: "1g = 4원"),
+            .product(productName: "세탁세제"),
+            .item(itemName: "인블리스 세탁세제", itemPrice: "1g = 4원"),
+            .product(productName: "주방세제"),
+            .item(itemName: "인블리스 세탁세제", itemPrice: "1g = 4원"),
+            .product(productName: "세탁세제"),
+            .item(itemName: "인블리스 세탁세제", itemPrice: "1g = 4원"),
+            .product(productName: "주방세제"),
+            .item(itemName: "인블리스 세탁세제", itemPrice: "1g = 4원"),
+            .product(productName: "세탁세제"),
+            .item(itemName: "인블리스 세탁세제", itemPrice: "1g = 4원")
+        ]
+        
+        for key in items.keys {
+            productCount.append(items[key]?.count ?? 0)
+        }
+        totalElements = productCount.reduce(0, +)
     }
     
 }
 
 extension StoreDetailViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if section == 0 {
+            return "알맹 상점" // custom 필요
+        } else {
+            return "호롤로"
+        }
+        
+    }
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 4
+        return 2
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 0 {
+        
+        switch section {
+        case 0:
             return 1
-        } else if section == 1 {
-            return storeInformations.count
-        } else if section == 2 {
-            return 1
-        } else {
-            return items.count
+        case 1:
+            return section2DataSource.count
+        default:
+            return 0
         }
+//        switch section {
+//        case 0:
+//            return 1
+//        case 1:
+//            return products.count + totalElements
+//        default:
+//            return 0
+//        }
+//        if section == 0 {
+//            return 1
+//        } else {
+//            var totalElements: Int = 0
+//            for key in items.keys {
+//                totalElements += items[key]?.count ?? 0
+//            }
+//            return products.count + totalElements
+//        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let operationTimeAndProductCell = tableView.dequeueReusableCell(
-                withIdentifier: OperationTimeAndProductTableViewCell.identifier, for: indexPath
-              ) as? OperationTimeAndProductTableViewCell,
-              let storeInformationCell = tableView.dequeueReusableCell(
+        guard let storeInformationCell = tableView.dequeueReusableCell(
                 withIdentifier: StoreInformationTableViewCell.identifier, for: indexPath
               ) as? StoreInformationTableViewCell,
               let productCell = tableView.dequeueReusableCell(
-                withIdentifier: ProductCell.identifier, for: indexPath
-              ) as? ProductCell,
+                withIdentifier: ProductTableViewCell.identifier, for: indexPath
+              ) as? ProductTableViewCell,
               let itemCell = tableView.dequeueReusableCell(
                 withIdentifier: ItemTableViewCell.identifier, for: indexPath
               ) as? ItemTableViewCell
@@ -73,21 +131,43 @@ extension StoreDetailViewController: UITableViewDataSource {
 //        operationTimeAndProductCell.setUpOperationTimeAndProductCell()
         
         if indexPath.section == 0 {
-            operationTimeAndProductCell.setUpOperationTimeAndProductCell()
-            return operationTimeAndProductCell
-        } else if indexPath.section == 1 {
-            storeInformationCell.setData(imageName: storeInformations[indexPath.row].imageName, content: storeInformations[indexPath.row].content)
+            storeInformationCell.setUpperData(isOperation: true)
+            storeInformationCell.setBottomData(address: "ddd", phoneNumber: "01040404040", operationTime: "1902939")
             return storeInformationCell
-        } else if indexPath.section == 2 {
-            productCell.setData(productName: products[indexPath.row])
-            return productCell
         } else {
-            itemCell.setData(itemName: items[indexPath.row].itemName, itemPrice: items[indexPath.row].itemPrice)
-            return itemCell
+            switch self.section2DataSource[indexPath.row] {
+            case let .product(productName):
+                productCell.setData(productName: productName)
+                return productCell
+            case let .item(itemName, itemPrice):
+                itemCell.setData(itemName: itemName, itemPrice: itemPrice)
+                return itemCell
+            default:
+                return UITableViewCell()
+            }
         }
+        
+                        
+//
+//            storeInformationCell.setData(imageName: storeInformations[indexPath.row].imageName, content: storeInformations[indexPath.row].content)
+//            return storeInformationCell
+//        }
     }
 }
 
 extension StoreDetailViewController: UITableViewDelegate {
-  
+//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        return dimension
+////        switch indexPath.section {
+////        case 0:
+////            return 200
+////        case 1:
+////            return 50
+////        default:
+////            return 0
+////        }
+//    }
+//    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+//        return uitableviewau
+//    }
 }

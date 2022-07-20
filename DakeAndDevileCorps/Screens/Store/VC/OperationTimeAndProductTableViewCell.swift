@@ -23,11 +23,5 @@ class OperationTimeAndProductTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func setUpOperationTimeAndProductCell() {
-        isOperation.text = "영업중"
-        isOperation.textColor = .systemGreen
-        todayOperationTime.text = " · 10:00 ~ 18:00"
-        products.text = "샴푸류, 청소용품, 화장품, 식품"
-        products.textColor = .secondaryLabel
-    }
+
 }

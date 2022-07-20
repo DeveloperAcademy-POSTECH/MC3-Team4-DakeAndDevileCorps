@@ -8,7 +8,7 @@
 import UIKit
 
 class ProductTableViewCell: UITableViewCell {
-    static let identifier = "ProductCell"
+    static let identifier = "ProductTableViewCell"
     @IBOutlet weak var productName: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -22,5 +22,6 @@ class ProductTableViewCell: UITableViewCell {
     }
     func setData(productName: String) {
         self.productName.text = productName
+        self.productName.font = UIFont.boldSystemFont(ofSize: 17)
     }
 }

@@ -10,20 +10,34 @@ import UIKit
 class StoreInformationTableViewCell: UITableViewCell {
     static let identifier = "StoreInformationTableViewCell"
     
-    @IBOutlet weak var informationImage: UIImageView!
-    @IBOutlet weak var informationContent: UILabel!
+    @IBOutlet weak var operationStatus: UILabel!
+    @IBOutlet weak var todayOperationTime: UILabel!
+    @IBOutlet weak var productCategories: UILabel!
+    @IBOutlet weak var address: UILabel!
+    @IBOutlet weak var phoneNumber: UILabel!
+    @IBOutlet weak var operationTime: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
         // Configure the view for the selected state
     }
-    func setData(imageName: String, content: String) {
-        informationImage.image = UIImage(systemName: imageName)
-        informationContent.text = content
+    func setUpperData(isOperation: Bool) {
+        operationStatus.text = isOperation ? "영업중" : "영업 종료"
+        operationStatus.textColor = isOperation ? .systemGreen : .systemRed
+        todayOperationTime.text = "10:00 ~ 18:00"
+        productCategories.text = "샴푸류, 청소용품, 화장품, 식품"
+        productCategories.textColor = .secondaryLabel
+    }
+    
+    func setBottomData(address: String, phoneNumber: String, operationTime: String) {
+        self.address.text = address
+        self.phoneNumber.text = phoneNumber
+        self.operationTime.text = operationTime
     }
 }
