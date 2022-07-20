@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ProductCell: UITableViewCell {
+class ProductTableViewCell: UITableViewCell {
     static let identifier = "ProductCell"
     @IBOutlet weak var productName: UILabel!
     override func awakeFromNib() {
