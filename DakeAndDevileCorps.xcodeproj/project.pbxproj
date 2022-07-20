@@ -10,7 +10,7 @@
 		79379FE4288588EC0016D1A8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79379FE3288588EC0016D1A8 /* AppDelegate.swift */; };
 		79379FE6288588EC0016D1A8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79379FE5288588EC0016D1A8 /* SceneDelegate.swift */; };
 		79379FE8288588EC0016D1A8 /* MapHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79379FE7288588EC0016D1A8 /* MapHomeViewController.swift */; };
-		79379FEE288588EC0016D1A8 /* DakeAndDevileCorps.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 79379FEC288588EC0016D1A8 /* DakeAndDevileCorps.xcdatamodeld */; };
+		79379FEE288588EC0016D1A8 /* Keywords.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 79379FEC288588EC0016D1A8 /* Keywords.xcdatamodeld */; };
 		79379FF0288588ED0016D1A8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79379FEF288588ED0016D1A8 /* Assets.xcassets */; };
 		79379FF3288588ED0016D1A8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 79379FF1288588ED0016D1A8 /* LaunchScreen.storyboard */; };
 		7937A01428858CB40016D1A8 /* MapHome.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7937A01328858CB40016D1A8 /* MapHome.storyboard */; };
@@ -21,6 +21,8 @@
 		7937A02428859BF20016D1A8 /* Search.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7937A02328859BF20016D1A8 /* Search.storyboard */; };
 		7937A02628859BFF0016D1A8 /* StoreDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7937A02528859BFF0016D1A8 /* StoreDetail.storyboard */; };
 		7976990C28859E1100DB53F8 /* ImageLiteral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7976990B28859E1100DB53F8 /* ImageLiteral.swift */; };
+		B5F3E7DE2887DB90000C3129 /* Keywords+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F3E7DD2887DB90000C3129 /* Keywords+CoreDataClass.swift */; };
+		B5F3E7E02887DBA2000C3129 /* Keywords+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F3E7DF2887DBA2000C3129 /* Keywords+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +42,8 @@
 		7937A02328859BF20016D1A8 /* Search.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Search.storyboard; sourceTree = "<group>"; };
 		7937A02528859BFF0016D1A8 /* StoreDetail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = StoreDetail.storyboard; sourceTree = "<group>"; };
 		7976990B28859E1100DB53F8 /* ImageLiteral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLiteral.swift; sourceTree = "<group>"; };
+		B5F3E7DD2887DB90000C3129 /* Keywords+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Keywords+CoreDataClass.swift"; sourceTree = "<group>"; };
+		B5F3E7DF2887DBA2000C3129 /* Keywords+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Keywords+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,7 +86,9 @@
 		79379FFA288589B60016D1A8 /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				79379FEC288588EC0016D1A8 /* DakeAndDevileCorps.xcdatamodeld */,
+				79379FEC288588EC0016D1A8 /* Keywords.xcdatamodeld */,
+				B5F3E7DD2887DB90000C3129 /* Keywords+CoreDataClass.swift */,
+				B5F3E7DF2887DBA2000C3129 /* Keywords+CoreDataProperties.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -287,10 +293,12 @@
 				79379FE8288588EC0016D1A8 /* MapHomeViewController.swift in Sources */,
 				79379FE4288588EC0016D1A8 /* AppDelegate.swift in Sources */,
 				7937A01E28859B490016D1A8 /* SearchViewController.swift in Sources */,
+				B5F3E7E02887DBA2000C3129 /* Keywords+CoreDataProperties.swift in Sources */,
+				B5F3E7DE2887DB90000C3129 /* Keywords+CoreDataClass.swift in Sources */,
 				79379FE6288588EC0016D1A8 /* SceneDelegate.swift in Sources */,
 				7976990C28859E1100DB53F8 /* ImageLiteral.swift in Sources */,
 				7937A02228859B990016D1A8 /* StoreDetailViewController.swift in Sources */,
-				79379FEE288588EC0016D1A8 /* DakeAndDevileCorps.xcdatamodeld in Sources */,
+				79379FEE288588EC0016D1A8 /* Keywords.xcdatamodeld in Sources */,
 				7937A01A28859A830016D1A8 /* BaseViewController.swift in Sources */,
 				7937A016288597A60016D1A8 /* UIColor+Extension.swift in Sources */,
 			);
@@ -509,13 +517,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		79379FEC288588EC0016D1A8 /* DakeAndDevileCorps.xcdatamodeld */ = {
+		79379FEC288588EC0016D1A8 /* Keywords.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
 				79379FED288588EC0016D1A8 /* DakeAndDevileCorps.xcdatamodel */,
 			);
 			currentVersion = 79379FED288588EC0016D1A8 /* DakeAndDevileCorps.xcdatamodel */;
-			path = DakeAndDevileCorps.xcdatamodeld;
+			path = Keywords.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
