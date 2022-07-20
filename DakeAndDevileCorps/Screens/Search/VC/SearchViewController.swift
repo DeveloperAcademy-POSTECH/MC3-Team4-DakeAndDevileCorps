@@ -88,7 +88,7 @@ extension SearchViewController: UITableViewDataSource {
         if isShowingResult {
             return resultList.count
         } else {
-            return recentSearchedItemList.count
+            return recentSearchedItemList.count > 10 ? 10 : recentSearchedItemList.count
         }
         
     }
