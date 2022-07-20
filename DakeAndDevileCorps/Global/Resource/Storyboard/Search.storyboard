@@ -33,6 +33,9 @@
                                         <color key="tintColor" systemColor="secondaryLabelColor"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="전체 삭제" buttonSize="small"/>
+                                        <connections>
+                                            <action selector="deleteAllSearchedData:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="kJd-rk-Up5"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -84,6 +87,25 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="ZAB-Qv-W44">
+                                <rect key="frame" x="121.5" y="360.5" width="171.5" height="74"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="exclamationmark.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="UBD-Yg-aS6">
+                                        <rect key="frame" x="65.5" y="0.5" width="40" height="39"/>
+                                        <color key="tintColor" systemColor="systemGray5Color"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="4oY-ot-r0i"/>
+                                            <constraint firstAttribute="width" constant="40" id="kPh-oa-enC"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="최근 검색한 기록이 없습니다." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZYP-Uf-3eb">
+                                        <rect key="frame" x="0.0" y="56" width="171.5" height="18"/>
+                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
+                                        <color key="textColor" systemColor="secondaryLabelColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OK4-rP-aV0">
                                 <rect key="frame" x="355.5" y="64" width="48.5" height="31"/>
                                 <state key="normal" title="Button"/>
@@ -101,6 +123,8 @@
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="ZAB-Qv-W44" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="2sc-jU-0Q2"/>
+                            <constraint firstItem="ZAB-Qv-W44" firstAttribute="top" secondItem="awt-pR-krr" secondAttribute="bottom" constant="200" id="7zH-Br-iZL"/>
                             <constraint firstItem="awt-pR-krr" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="24" id="Ica-o9-LzA"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="awt-pR-krr" secondAttribute="trailing" constant="24" id="Trl-1q-5a1"/>
                             <constraint firstItem="7OW-E5-zZL" firstAttribute="top" secondItem="awt-pR-krr" secondAttribute="bottom" constant="8" id="UBW-Zf-eth"/>
@@ -116,7 +140,9 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="deleteAllButton" destination="nCK-ty-jvN" id="FEH-GI-cIx"/>
                         <outlet property="recentSearchedTableView" destination="7OW-E5-zZL" id="vb1-Fe-tlt"/>
+                        <outlet property="recentlyNothingView" destination="ZAB-Qv-W44" id="Ojh-wX-D3f"/>
                         <outlet property="textField" destination="beo-WN-37o" id="Ock-Tf-hMm"/>
                     </connections>
                 </viewController>

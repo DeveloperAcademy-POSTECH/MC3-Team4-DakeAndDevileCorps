@@ -11,6 +11,8 @@ class SearchViewController: UIViewController {
 
     @IBOutlet weak var recentSearchedTableView: UITableView!
     @IBOutlet weak var textField: UITextField!
+    @IBOutlet weak var recentlyNothingView: UIStackView!
+    @IBOutlet weak var deleteAllButton: UIButton!
     
     var recentSearchedItemList: [String] = []
     var numberOfRows: Int = 10
@@ -19,6 +21,7 @@ class SearchViewController: UIViewController {
         super.viewDidLoad()
         recentSearchedTableView.dataSource = self
         initRecentSearchedItem()
+        showRecentlyNothing()
     }
 
     func initRecentSearchedItem() {
@@ -26,7 +29,21 @@ class SearchViewController: UIViewController {
             "샴푸", "리필스테이션", "세탁세제", "샴푸", "리필스테이션", "세탁세제", "샴푸", "리필스테이션", "세탁세제", "샴푸", "리필스테이션", "세탁세제",
         ])
     }
+    
+    func showRecentlyNothing() {
+        if recentSearchedItemList.count == 0 {
+            recentlyNothingView.isHidden = false
+            deleteAllButton.isHidden = true
+        } else {
+            recentlyNothingView.isHidden = true
+        }
+    }
+    
     @IBAction func searchData(_ sender: Any) {
+        
+    }
+    
+    @IBAction func deleteAllSearchedData(_ sender: Any) {
         
     }
     
