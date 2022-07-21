@@ -52,9 +52,7 @@ class SearchBarView: UIView {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.image = leftItemImage
         imageView.contentMode = .scaleAspectFit
-        if leftItemMode == .imageMode {
-            imageView.isHidden = false
-        } else { imageView.isHidden = true }
+        imageView.isHidden = leftItemMode.imageHidden
         imageView.tintColor = .black
         return imageView
     }()
@@ -64,9 +62,7 @@ class SearchBarView: UIView {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setBackgroundImage(leftItemImage, for: .normal)
         button.sizeToFit()
-        if leftItemMode == .buttonMode {
-            button.isHidden = false
-        } else { button.isHidden = true }
+        button.isHidden = leftItemMode.buttonHidden
         button.tintColor = .black
         return button
     }()
