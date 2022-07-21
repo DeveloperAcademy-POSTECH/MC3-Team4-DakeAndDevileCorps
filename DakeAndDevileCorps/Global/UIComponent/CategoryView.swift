@@ -16,6 +16,7 @@ final class CategoryView: UIView {
         layout.scrollDirection = .horizontal
         layout.minimumInteritemSpacing = 10
         layout.sectionInset = UIEdgeInsets(top: 12, left: 20, bottom: 12, right: 20)
+        layout.itemSize = CGSize(width: 100, height: 36)
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.backgroundColor = .clear

@@ -18,7 +18,6 @@ class MapHomeViewController: UIViewController {
                                 leading: view.leadingAnchor,
                                 trailing: view.trailingAnchor,
                                 padding: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0))
-        categoryView.backgroundColor = .black
     }
 }
 
