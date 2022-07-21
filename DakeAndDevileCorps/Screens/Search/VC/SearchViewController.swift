@@ -65,9 +65,9 @@ class SearchViewController: UIViewController {
         var hasResult: Bool
         switch searchType {
         case .recentSearch:
-            hasResult = (recentSearchedItemList.count != 0)
+            hasResult = !recentSearchedItemList.isEmpty
         case .result(_):
-            hasResult = (resultList.count != 0)
+            hasResult = !resultList.isEmpty
         }
     
         nothingView.isHidden = hasResult
