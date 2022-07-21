@@ -9,16 +9,30 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Map Home View Controller-->
+        <!--Main Map View Controller-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
-                <viewController storyboardIdentifier="MapHomeViewController" id="Y6W-OH-hqX" customClass="MapHomeViewController" customModule="DakeAndDevileCorps" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MapHomeViewController" id="Y6W-OH-hqX" customClass="MainMapViewController" customModule="DakeAndDevileCorps" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="oTP-D4-ma4">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                            </mapView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="oTP-D4-ma4" secondAttribute="trailing" id="2Yz-1X-eRs"/>
+                            <constraint firstItem="oTP-D4-ma4" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="A7a-mm-2U2"/>
+                            <constraint firstItem="oTP-D4-ma4" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="FCV-SX-cxn"/>
+                            <constraint firstAttribute="bottom" secondItem="oTP-D4-ma4" secondAttribute="bottom" id="nk3-S3-z5Y"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="mapView" destination="oTP-D4-ma4" id="huG-Jy-HpM"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
