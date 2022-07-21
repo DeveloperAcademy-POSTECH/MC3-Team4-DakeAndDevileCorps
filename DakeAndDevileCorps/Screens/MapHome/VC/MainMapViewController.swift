@@ -5,9 +5,10 @@
 //  Created by Seungyun Kim on 2022/07/18.
 //
 
+import MapKit
 import UIKit
 
-class MapHomeViewController: UIViewController {
+class MainMapViewController: UIViewController {
 
     // TODO: - 서치바 그림자 그리기
     private let searchBarView: SearchBarView = {
@@ -39,7 +40,7 @@ class MapHomeViewController: UIViewController {
 
 }
 
-extension MapHomeViewController: SearchBarDelegate {
+extension MainMapViewController: SearchBarDelegate {
     @objc func didBeginEditing() {
         view.endEditing(true)
         
