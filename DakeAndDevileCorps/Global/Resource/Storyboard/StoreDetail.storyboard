@@ -17,8 +17,31 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="ln9-co-2hu">
-                                <rect key="frame" x="0.0" y="78" width="414" height="818"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hFF-RJ-RvP">
+                                <rect key="frame" x="24" y="77" width="366" height="28"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uMR-b0-EF0">
+                                        <rect key="frame" x="0.0" y="0.0" width="339" height="28"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G9w-5R-WDJ">
+                                        <rect key="frame" x="339" y="0.0" width="27" height="28"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="27" id="5HP-uQ-Efl"/>
+                                            <constraint firstAttribute="height" constant="28" id="lse-Nc-YtN"/>
+                                        </constraints>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" image="xmark.circle.fill" catalog="system"/>
+                                        <buttonConfiguration key="configuration" style="plain">
+                                            <backgroundConfiguration key="background" image="xmark.circle.fill" catalog="system" imageContentMode="scaleAspectFit"/>
+                                        </buttonConfiguration>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="ln9-co-2hu">
+                                <rect key="frame" x="0.0" y="109" width="414" height="753"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="StoreInformationTableViewCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="StoreInformationTableViewCell" rowHeight="240" id="U1M-eS-LhP" customClass="StoreInformationTableViewCell" customModule="DakeAndDevileCorps" customModuleProvider="target">
@@ -106,20 +129,30 @@
                                                         </label>
                                                     </subviews>
                                                 </stackView>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ppv-AH-85B">
+                                                    <rect key="frame" x="0.0" y="232" width="414" height="8"/>
+                                                    <color key="backgroundColor" systemColor="systemGray6Color"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="8" id="zJw-01-Z72"/>
+                                                    </constraints>
+                                                </view>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="Oxj-R0-AMJ" firstAttribute="leading" secondItem="4PD-jE-8HH" secondAttribute="leading" constant="24" id="66b-M2-jDE"/>
                                                 <constraint firstItem="QPV-LS-doQ" firstAttribute="top" secondItem="Oxj-R0-AMJ" secondAttribute="bottom" constant="8" id="Dif-au-9OG"/>
                                                 <constraint firstItem="yZM-kq-3wp" firstAttribute="top" secondItem="4PD-jE-8HH" secondAttribute="top" constant="4" id="FfE-m7-sTO"/>
                                                 <constraint firstItem="rK1-1w-czv" firstAttribute="top" secondItem="QPV-LS-doQ" secondAttribute="bottom" constant="36" id="K95-7b-vAI"/>
+                                                <constraint firstAttribute="bottom" secondItem="Ppv-AH-85B" secondAttribute="bottom" id="LY2-lQ-yzL"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="ZFe-Dw-Czq" secondAttribute="bottom" constant="4" id="Lrg-3f-7Kz"/>
                                                 <constraint firstItem="ZFe-Dw-Czq" firstAttribute="leading" secondItem="rK1-1w-czv" secondAttribute="leading" id="Nmf-2B-Hge"/>
                                                 <constraint firstItem="Oxj-R0-AMJ" firstAttribute="top" secondItem="4PD-jE-8HH" secondAttribute="top" constant="4" id="VmI-4E-YQ9"/>
+                                                <constraint firstItem="Ppv-AH-85B" firstAttribute="leading" secondItem="4PD-jE-8HH" secondAttribute="leading" id="YfF-dE-u7y"/>
                                                 <constraint firstItem="3rm-Ka-aDi" firstAttribute="leading" secondItem="Oxj-R0-AMJ" secondAttribute="trailing" constant="2" id="ZnZ-y8-A2l"/>
                                                 <constraint firstItem="yZM-kq-3wp" firstAttribute="leading" secondItem="3rm-Ka-aDi" secondAttribute="trailing" constant="2" id="aUQ-VS-AgS"/>
                                                 <constraint firstItem="ZFe-Dw-Czq" firstAttribute="top" secondItem="Pb2-Df-CG6" secondAttribute="bottom" constant="4" id="ak1-kx-HZt"/>
                                                 <constraint firstItem="rK1-1w-czv" firstAttribute="leading" secondItem="4PD-jE-8HH" secondAttribute="leading" constant="24" id="cxe-Ls-ilo"/>
                                                 <constraint firstItem="3rm-Ka-aDi" firstAttribute="top" secondItem="4PD-jE-8HH" secondAttribute="top" constant="4" id="fYs-hG-eVt"/>
+                                                <constraint firstAttribute="trailing" secondItem="Ppv-AH-85B" secondAttribute="trailing" id="l6a-uJ-96l"/>
                                                 <constraint firstItem="QPV-LS-doQ" firstAttribute="leading" secondItem="4PD-jE-8HH" secondAttribute="leading" constant="24" id="lGH-1H-W6S"/>
                                                 <constraint firstItem="Pb2-Df-CG6" firstAttribute="leading" secondItem="rK1-1w-czv" secondAttribute="leading" id="oKc-2d-8R5"/>
                                                 <constraint firstItem="Pb2-Df-CG6" firstAttribute="top" secondItem="rK1-1w-czv" secondAttribute="bottom" constant="4" id="xVb-2N-tsI"/>
@@ -193,8 +226,8 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="itemName" destination="E7n-Rb-i9l" id="4AA-G9-gAm"/>
-                                            <outlet property="itemPrice" destination="LCT-kF-iBJ" id="QVz-Xs-NIR"/>
+                                            <outlet property="itemName" destination="LCT-kF-iBJ" id="CGg-qQ-Q9S"/>
+                                            <outlet property="itemPrice" destination="E7n-Rb-i9l" id="nRc-DW-Ved"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -206,11 +239,15 @@
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="ln9-co-2hu" secondAttribute="bottom" id="3mV-21-cdR"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="ln9-co-2hu" secondAttribute="trailing" id="5UU-YW-ijX"/>
                             <constraint firstItem="ln9-co-2hu" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="GCF-WH-zsj"/>
-                            <constraint firstItem="ln9-co-2hu" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="V9r-VK-KWt"/>
+                            <constraint firstItem="hFF-RJ-RvP" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="24" id="OCV-Yc-bSt"/>
+                            <constraint firstItem="ln9-co-2hu" firstAttribute="top" secondItem="hFF-RJ-RvP" secondAttribute="bottom" constant="4" id="V9r-VK-KWt"/>
+                            <constraint firstItem="hFF-RJ-RvP" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="33" id="hGE-ab-sje"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="hFF-RJ-RvP" secondAttribute="trailing" constant="24" id="wBY-oc-liP"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="storeDetailTableView" destination="ln9-co-2hu" id="9oE-dL-Zfw"/>
+                        <outlet property="storeName" destination="uMR-b0-EF0" id="ecz-mF-nAj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -222,8 +259,12 @@
         <image name="clock" catalog="system" width="128" height="121"/>
         <image name="gamecontroller" catalog="system" width="128" height="80"/>
         <image name="phone" catalog="system" width="128" height="115"/>
+        <image name="xmark.circle.fill" catalog="system" width="128" height="121"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray6Color">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

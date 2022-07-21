@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import CloudKit
 
 enum ProductTableViewCellModel {
     case product(productName: String)
@@ -15,6 +14,7 @@ enum ProductTableViewCellModel {
 
 class StoreDetailViewController: UIViewController {
     
+    @IBOutlet weak var storeName: UILabel!
     @IBOutlet weak var storeDetailTableView: UITableView!
     var storeInformations: [StoreInformation] = []
     var items: [String : [Item]] = [:]
@@ -31,6 +31,9 @@ class StoreDetailViewController: UIViewController {
         storeDetailTableView.separatorStyle = UITableViewCell.SeparatorStyle.none
         storeDetailTableView.rowHeight = UITableView.automaticDimension
         storeDetailTableView.estimatedRowHeight = 100
+        
+        storeName.text = "알맹상점"
+        storeName.font = UIFont.boldSystemFont(ofSize: 22)
         initStoreInformationData()
     }
     
@@ -50,6 +53,9 @@ class StoreDetailViewController: UIViewController {
         
         section2DataSource = [
             .product(productName: "주방세제"),
+            .item(itemName: "인블리스 세탁세제", itemPrice: "1g = 4원"),
+            .item(itemName: "인블리스 세탁세제", itemPrice: "1g = 4원"),
+            .item(itemName: "인블리스 세탁세제", itemPrice: "1g = 4원"),
             .item(itemName: "인블리스 세탁세제", itemPrice: "1g = 4원"),
             .product(productName: "세탁세제"),
             .item(itemName: "인블리스 세탁세제", itemPrice: "1g = 4원"),
