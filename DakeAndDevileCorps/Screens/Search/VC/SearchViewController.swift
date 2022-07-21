@@ -21,12 +21,64 @@ class SearchViewController: UIViewController {
     private var resultList: [StoreModel] = []
     private var isShowingResult: Bool = false
     
+    private enum SearchType {
+        case recentSearch
+        case result(titleString: String)
+        
+        var title: String {
+            switch self {
+                case .recentSearch:
+                    return "최근 검색"
+                case .result(let titleString):
+                    return "'\(titleString)'와 관련 있는 검색 결과"
+            }
+        }
+        
+        var message: String {
+            switch self {
+            case .recentSearch:
+                return "최근 검색한 기록이 없습니다."
+            case .result:
+                return "검색 기록이 없습니다."
+            }
+        }
+    }
+    
+    private var searchType: SearchType = .recentSearch
+    
+    private func setTableResult(searchtype: SearchType) {
+        setResultTitle(searchType: searchtype)
+        setNothingView(searchType: searchtype)
+    }
+    
+    private func setResultTitle(searchType: SearchType) {
+        tableTitleText.text = searchType.title
+        switch searchType {
+        case .result(textField.text):
+            deleteAllButton.isHidden = true
+        default:
+            deleteAllButton.isHidden = false
+        }
+    }
+
+    private func setNothingView(searchType: SearchType) {
+        var hasResult: Bool
+        switch searchType {
+        case .recentSearch:
+            hasResult = (recentSearchedItemList.count != 0)
+        case .result(_):
+            hasResult = (resultList.count != 0)
+        }
+    
+        nothingView.isHidden = hasResult
+        nothingMessage.text = searchType.message
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         initDelegate()
-        initRecentSearchedItem()
-        initResultData()
-        showResultTitle()
+        initData()
+        setTableResult(searchtype: searchType)
     }
     
     private func initDelegate() {
@@ -34,13 +86,10 @@ class SearchViewController: UIViewController {
         textField.delegate = self
     }
 
-    private func initRecentSearchedItem() {
+    private func initData() {
         recentSearchedItemList.append(contentsOf: [
             "샴푸", "리필스테이션", "세탁세제", "샴푸", "리필스테이션", "세탁세제", "샴푸", "리필스테이션", "세탁세제", "샴푸", "리필스테이션", "세탁세제",
         ])
-    }
-    
-    private func initResultData() {
         resultList.append(contentsOf: [
             StoreModel(storeName: "알맹 상점", storeAddress: "서울 마포구 월드컵로25길 47 3층", distanceToStore: "1.7km"),
             StoreModel(storeName: "더 피커", storeAddress: "서울 마포구 월드컵로25길 47 3층", distanceToStore: "16.2km"),
@@ -48,30 +97,6 @@ class SearchViewController: UIViewController {
             StoreModel(storeName: "더 피커", storeAddress: "서울 마포구 월드컵로25길 47 3층", distanceToStore: "16.2km"),
         ])
     }
-    
-    private func showResultTitle() {
-        if isShowingResult {
-            tableTitleText.text = "'\(textField.text ?? "")'와 관련 있는 검색 결과"
-            deleteAllButton.isHidden = true
-            if resultList.count == 0 {
-                nothingView.isHidden = false
-                nothingMessage.text = "검색 기록이 없습니다."
-            } else {
-                nothingView.isHidden = true
-            }
-        } else {
-            tableTitleText.text = "최근 검색"
-            deleteAllButton.isHidden = false
-            if recentSearchedItemList.count == 0 {
-                nothingView.isHidden = false
-                deleteAllButton.isHidden = true
-                nothingMessage.text = "최근 검색한 기록이 없습니다."
-            } else {
-                nothingView.isHidden = true
-            }
-        }
-    }
-    
     
     @IBAction func touchUpToDeleteAllSearchedData(_ sender: Any) {
         
@@ -108,15 +133,17 @@ extension SearchViewController: UITableViewDelegate {
 
 extension SearchViewController: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
+        searchType = .recentSearch
         isShowingResult = false
-        showResultTitle()
+        setTableResult(searchtype: searchType)
         searchTableView.reloadData()
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        searchType = .result(titleString: textField.text ?? "")
         isShowingResult = true
         textField.endEditing(true)
-        showResultTitle()
+        setTableResult(searchtype: searchType)
         searchTableView.reloadData()
 
         return true
