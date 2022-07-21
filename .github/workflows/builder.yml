@@ -1,0 +1,22 @@
+name: Devil Swift-Builder
+
+on:
+  push:
+    branches: [ develop, main ]
+  pull_request:
+    branches: [ develop ]
+
+jobs:
+  build:
+
+    runs-on: macos-latest
+    
+    steps:
+    - name: 👻Checkout Source Code👻
+      uses: actions/checkout@v2
+          
+    - name: 😈 Devil Build Tests 😈
+      run: |
+        xcodebuild test -project ./DakeAndDevileCorps.xcodeproj -scheme DakeAndDevileCorpsTests -destination "platform=iOS Simulator,name=iPhone 12,OS=latest"
+
+ 
