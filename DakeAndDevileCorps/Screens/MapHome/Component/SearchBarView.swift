@@ -91,7 +91,7 @@ class SearchBarView: UIView {
             textField.topAnchor.constraint(equalTo: topAnchor),
             textField.bottomAnchor.constraint(equalTo: bottomAnchor),
             
-            textField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8),
+            textField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8)
         ])
         
         // TODO: symbolImageView, leftButton의 오토레이아웃 다시 맞추기
@@ -113,12 +113,12 @@ class SearchBarView: UIView {
             leftButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -7),
             
             leftButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-            symbolImageView.trailingAnchor.constraint(equalTo: textField.leadingAnchor, constant: -11),
+            symbolImageView.trailingAnchor.constraint(equalTo: textField.leadingAnchor, constant: -11)
         ])
 
     }
     
-    //MARK: - leftButton setting
+    // MARK: - leftButton setting
     private func setLeftButton() {
         leftButton.addTarget(self, action: #selector(touchUpInsideLeftButton), for: .touchUpInside)
     }

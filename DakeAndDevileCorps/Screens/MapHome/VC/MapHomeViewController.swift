@@ -15,7 +15,6 @@ class MapHomeViewController: UIViewController {
         return $0
     }(SearchBarView())
 
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -34,8 +33,7 @@ class MapHomeViewController: UIViewController {
         NSLayoutConstraint.activate([
             searchBarView.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: 8),
             searchBarView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 16),
-            searchBarView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -16),
-            
+            searchBarView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -16)
         ])
     }
 
@@ -52,4 +50,3 @@ extension MapHomeViewController: SearchBarDelegate {
         present(nextViewController, animated: true)
     }
 }
-
