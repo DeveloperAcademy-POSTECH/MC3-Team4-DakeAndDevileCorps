@@ -12,13 +12,14 @@ on:
 jobs:
   build:
   
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
     
     steps:
     - uses: actions/checkout@v1
-    
-    - name: Run auto PR Swiftlint
-      run: swiftlint --config .swiftlint.yml
+    - name: GitHub Action for SwiftLint
+      uses: norio-nomura/action-swiftlint@master
+      env:
+        DIFF_BASE: ${{ github.base_ref }}
      
     - name: Add PR Comment
       if: ${{ success() }}

@@ -61,10 +61,10 @@ extension UIView {
                     leading: NSLayoutXAxisAnchor? = nil,
                     bottom: NSLayoutYAxisAnchor? = nil,
                     trailing: NSLayoutXAxisAnchor? = nil,
-                    padding: UIEdgeInsets = .zero) -> [ConstraintType : NSLayoutConstraint] {
+                    padding: UIEdgeInsets = .zero) -> [ConstraintType: NSLayoutConstraint] {
         self.translatesAutoresizingMaskIntoConstraints = false
         
-        var constraints: [ConstraintType : NSLayoutConstraint] = [:]
+        var constraints: [ConstraintType: NSLayoutConstraint] = [:]
         
         if let top = top {
             constraints[.top] = topAnchor.constraint(equalTo: top, constant: padding.top)
@@ -82,7 +82,7 @@ extension UIView {
             constraints[.trailing] = trailingAnchor.constraint(equalTo: trailing, constant: -padding.right)
         }
         
-        let constraintsArray = Array<NSLayoutConstraint>(constraints.values)
+        let constraintsArray: [NSLayoutConstraint] = Array(constraints.values)
         NSLayoutConstraint.activate(constraintsArray)
         return constraints
     }

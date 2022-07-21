@@ -5,10 +5,13 @@
 //  Created by Seungyun Kim on 2022/07/18.
 //
 
+import MapKit
 import UIKit
 
-class MapHomeViewController: UIViewController {
+class MainMapViewController: UIViewController {
 
+    @IBOutlet weak var mapView: MKMapView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         let categoryView = CategoryView()
@@ -20,4 +23,3 @@ class MapHomeViewController: UIViewController {
                                 padding: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0))
     }
 }
-
