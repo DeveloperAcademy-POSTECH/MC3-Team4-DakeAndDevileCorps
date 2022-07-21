@@ -11,7 +11,7 @@ class StoreDetailViewController: UIViewController {
     
     enum ProductTableViewCellModel {
         case product(productName: String, isSeperated: Bool)
-        case item(itemNameLabel: String, itemPriceLabel: String)
+        case item(itemName: String, itemPrice: String)
     }
     
     @IBOutlet weak var storeName: UILabel!
@@ -44,30 +44,30 @@ class StoreDetailViewController: UIViewController {
     func initStoreInformationData() {
         productList = [
             .product(productName: "주방세제", isSeperated: true),
-            .item(itemNameLabel: "인블리스 세탁세제", itemPriceLabel: "1g = 4원"),
-            .item(itemNameLabel: "인블리스 세탁세제", itemPriceLabel: "1g = 4원"),
-            .item(itemNameLabel: "인블리스 세탁세제", itemPriceLabel: "1g = 4원"),
-            .item(itemNameLabel: "인블리스 세탁세제", itemPriceLabel: "1g = 4원"),
+            .item(itemName: "인블리스 세탁세제", itemPrice: "1g = 4원"),
+            .item(itemName: "인블리스 세탁세제", itemPrice: "1g = 4원"),
+            .item(itemName: "인블리스 세탁세제", itemPrice: "1g = 4원"),
+            .item(itemName: "인블리스 세탁세제", itemPrice: "1g = 4원"),
             .product(productName: "세탁세제", isSeperated: false),
-            .item(itemNameLabel: "인블리스 세탁세제", itemPriceLabel: "1g = 4원"),
+            .item(itemName: "인블리스 세탁세제", itemPrice: "1g = 4원"),
             .product(productName: "섬유유연제", isSeperated: false),
-            .item(itemNameLabel: "인블리스 세탁세제", itemPriceLabel: "1g = 4원"),
+            .item(itemName: "인블리스 세탁세제", itemPrice: "1g = 4원"),
             .product(productName: "기타세제", isSeperated: false),
-            .item(itemNameLabel: "인블리스 세탁세제", itemPriceLabel: "1g = 4원"),
+            .item(itemName: "인블리스 세탁세제", itemPrice: "1g = 4원"),
             .product(productName: "헤어", isSeperated: false),
-            .item(itemNameLabel: "인블리스 세탁세제", itemPriceLabel: "1g = 4원"),
+            .item(itemName: "인블리스 세탁세제", itemPrice: "1g = 4원"),
             .product(productName: "스킨", isSeperated: false),
-            .item(itemNameLabel: "인블리스 세탁세제", itemPriceLabel: "1g = 4원"),
+            .item(itemName: "인블리스 세탁세제", itemPrice: "1g = 4원"),
             .product(productName: "바디", isSeperated: false),
-            .item(itemNameLabel: "인블리스 세탁세제", itemPriceLabel: "1g = 4원"),
+            .item(itemName: "인블리스 세탁세제", itemPrice: "1g = 4원"),
             .product(productName: "생활", isSeperated: false),
-            .item(itemNameLabel: "인블리스 세탁세제", itemPriceLabel: "1g = 4원"),
+            .item(itemName: "인블리스 세탁세제", itemPrice: "1g = 4원"),
             .product(productName: "문구", isSeperated: false),
-            .item(itemNameLabel: "인블리스 세탁세제", itemPriceLabel: "1g = 4원"),
+            .item(itemName: "인블리스 세탁세제", itemPrice: "1g = 4원"),
             .product(productName: "애견", isSeperated: false),
-            .item(itemNameLabel: "인블리스 세탁세제", itemPriceLabel: "1g = 4원"),
+            .item(itemName: "인블리스 세탁세제", itemPrice: "1g = 4원"),
             .product(productName: "기타", isSeperated: false),
-            .item(itemNameLabel: "인블리스 세탁세제", itemPriceLabel: "1g = 4원")
+            .item(itemName: "인블리스 세탁세제", itemPrice: "1g = 4원")
         ]
     }
 }
@@ -129,8 +129,8 @@ extension StoreDetailViewController: UITableViewDataSource {
             case let .product(productName, isSeperated):
                 productCell.setData(productName: productName, isSeperated: isSeperated)
                 return productCell
-            case let .item(itemNameLabel, itemPriceLabel):
-                itemCell.setData(itemNameLabel: itemNameLabel, itemPriceLabel: itemPriceLabel)
+            case let .item(itemName, itemPrice):
+                itemCell.setData(itemName: itemName, itemPrice: itemPrice)
                 return itemCell
             }
         default:

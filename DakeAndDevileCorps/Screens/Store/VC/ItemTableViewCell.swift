@@ -22,9 +22,9 @@ class ItemTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
-    func setData(itemNameLabel: String, itemPriceLabel: String) {
-        self.itemNameLabel.text = itemNameLabel
-        self.itemPriceLabel.text = itemPriceLabel
+    func setData(itemName: String, itemPrice: String) {
+        self.itemNameLabel.text = itemName
+        self.itemPriceLabel.text = itemPrice
         self.itemPriceLabel.textColor = .secondaryLabel
     }
 }

@@ -181,8 +181,8 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BLa-RD-c9u">
-                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="0.5"/>
+                                                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BLa-RD-c9u">
+                                                    <rect key="frame" x="0.0" y="1" width="414" height="4"/>
                                                     <color key="backgroundColor" systemColor="systemGray4Color"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="0.5" id="2Pl-Qa-5lE"/>
@@ -199,8 +199,8 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="productName" destination="M1i-Z3-Lta" id="jSV-K0-LPA"/>
-                                            <outlet property="seperateLine" destination="BLa-RD-c9u" id="ASu-e2-FWg"/>
+                                            <outlet property="productNameLabel" destination="M1i-Z3-Lta" id="Tqh-9H-jfG"/>
+                                            <outlet property="seperateLineView" destination="SDQ-Jq-lHp" id="Qd6-g8-ju4"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="ItemTableViewCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ItemTableViewCell" rowHeight="78" id="g6g-xO-54i" customClass="ItemTableViewCell" customModule="DakeAndDevileCorps" customModuleProvider="target">
