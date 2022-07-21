@@ -35,7 +35,7 @@ final class CategoryCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         render()
-        config()
+        configUI()
     }
     
     required init?(coder: NSCoder) {
@@ -63,7 +63,7 @@ final class CategoryCollectionViewCell: UICollectionViewCell {
         ])
     }
     
-    private func config() {
+    private func configUI() {
         layer.masksToBounds = false
         makeShadow(color: .black,
                    opacity: 0.3,
