@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol CategoryCollectionViewDelegate: AnyObject {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
+}
+
 enum CategoryEntryPoint {
     case map
     case detail
@@ -34,6 +38,7 @@ final class CategoryView: UIView {
         return collectionView
     }()
     
+    var delegate: CategoryCollectionViewDelegate?
     private var entryPoint: CategoryEntryPoint
     private let categoryList: [String] = ["주방세제", "세탁세제", "섬유유연제", "기타세제", "헤어", "스킨", "바디", "식품", "생활", "문구", "애견", "기타"]
     
@@ -73,5 +78,11 @@ extension CategoryView: UICollectionViewDataSource {
         cell.setItemLabel(with: categoryList[indexPath.item])
         cell.setEntryPointView(entryPoint: entryPoint)
         return cell
+    }
+}
+
+extension CategoryView: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        delegate?.collectionView(collectionView, didSelectItemAt: indexPath)
     }
 }
