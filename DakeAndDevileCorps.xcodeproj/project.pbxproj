@@ -26,7 +26,18 @@
 		7937A02428859BF20016D1A8 /* Search.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7937A02328859BF20016D1A8 /* Search.storyboard */; };
 		7937A02628859BFF0016D1A8 /* StoreDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7937A02528859BFF0016D1A8 /* StoreDetail.storyboard */; };
 		7976990C28859E1100DB53F8 /* ImageLiteral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7976990B28859E1100DB53F8 /* ImageLiteral.swift */; };
+		B5F3E7D728876C94000C3129 /* DakeAndDevileCorpsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F3E7D628876C94000C3129 /* DakeAndDevileCorpsTests.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		B5F3E7D828876C94000C3129 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 79379FD8288588EB0016D1A8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 79379FDF288588EC0016D1A8;
+			remoteInfo = DakeAndDevileCorps;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		4A496E6D2887BA0F00ED51D2 /* UpperInformationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpperInformationView.swift; sourceTree = "<group>"; };
@@ -50,10 +61,19 @@
 		7937A02328859BF20016D1A8 /* Search.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Search.storyboard; sourceTree = "<group>"; };
 		7937A02528859BFF0016D1A8 /* StoreDetail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = StoreDetail.storyboard; sourceTree = "<group>"; };
 		7976990B28859E1100DB53F8 /* ImageLiteral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLiteral.swift; sourceTree = "<group>"; };
+		B5F3E7D428876C94000C3129 /* DakeAndDevileCorpsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DakeAndDevileCorpsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B5F3E7D628876C94000C3129 /* DakeAndDevileCorpsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DakeAndDevileCorpsTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		79379FDD288588EC0016D1A8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B5F3E7D128876C94000C3129 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -83,6 +103,7 @@
 			isa = PBXGroup;
 			children = (
 				79379FE2288588EC0016D1A8 /* DakeAndDevileCorps */,
+				B5F3E7D528876C94000C3129 /* DakeAndDevileCorpsTests */,
 				79379FE1288588EC0016D1A8 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -91,6 +112,7 @@
 			isa = PBXGroup;
 			children = (
 				79379FE0288588EC0016D1A8 /* DakeAndDevileCorps.app */,
+				B5F3E7D428876C94000C3129 /* DakeAndDevileCorpsTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -242,6 +264,14 @@
 			path = Supports;
 			sourceTree = "<group>";
 		};
+		B5F3E7D528876C94000C3129 /* DakeAndDevileCorpsTests */ = {
+			isa = PBXGroup;
+			children = (
+				B5F3E7D628876C94000C3129 /* DakeAndDevileCorpsTests.swift */,
+			);
+			path = DakeAndDevileCorpsTests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -262,6 +292,24 @@
 			productReference = 79379FE0288588EC0016D1A8 /* DakeAndDevileCorps.app */;
 			productType = "com.apple.product-type.application";
 		};
+		B5F3E7D328876C94000C3129 /* DakeAndDevileCorpsTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B5F3E7DC28876C94000C3129 /* Build configuration list for PBXNativeTarget "DakeAndDevileCorpsTests" */;
+			buildPhases = (
+				B5F3E7D028876C94000C3129 /* Sources */,
+				B5F3E7D128876C94000C3129 /* Frameworks */,
+				B5F3E7D228876C94000C3129 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B5F3E7D928876C94000C3129 /* PBXTargetDependency */,
+			);
+			name = DakeAndDevileCorpsTests;
+			productName = DakeAndDevileCorpsTests;
+			productReference = B5F3E7D428876C94000C3129 /* DakeAndDevileCorpsTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -269,11 +317,15 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1340;
+				LastSwiftUpdateCheck = 1320;
 				LastUpgradeCheck = 1340;
 				TargetAttributes = {
 					79379FDF288588EC0016D1A8 = {
 						CreatedOnToolsVersion = 13.4.1;
+					};
+					B5F3E7D328876C94000C3129 = {
+						CreatedOnToolsVersion = 13.2.1;
+						TestTargetID = 79379FDF288588EC0016D1A8;
 					};
 				};
 			};
@@ -291,6 +343,7 @@
 			projectRoot = "";
 			targets = (
 				79379FDF288588EC0016D1A8 /* DakeAndDevileCorps */,
+				B5F3E7D328876C94000C3129 /* DakeAndDevileCorpsTests */,
 			);
 		};
 /* End PBXProject section */
@@ -305,6 +358,13 @@
 				7937A02628859BFF0016D1A8 /* StoreDetail.storyboard in Resources */,
 				7937A02428859BF20016D1A8 /* Search.storyboard in Resources */,
 				7937A01428858CB40016D1A8 /* MapHome.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B5F3E7D228876C94000C3129 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -332,7 +392,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B5F3E7D028876C94000C3129 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B5F3E7D728876C94000C3129 /* DakeAndDevileCorpsTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B5F3E7D928876C94000C3129 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 79379FDF288588EC0016D1A8 /* DakeAndDevileCorps */;
+			targetProxy = B5F3E7D828876C94000C3129 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		79379FF1288588ED0016D1A8 /* LaunchScreen.storyboard */ = {
@@ -523,6 +599,44 @@
 			};
 			name = Release;
 		};
+		B5F3E7DA28876C94000C3129 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LIBRARY = "libc++";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yoonah.DakeAndDevileCorpsTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DakeAndDevileCorps.app/DakeAndDevileCorps";
+			};
+			name = Debug;
+		};
+		B5F3E7DB28876C94000C3129 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LIBRARY = "libc++";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yoonah.DakeAndDevileCorpsTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DakeAndDevileCorps.app/DakeAndDevileCorps";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -540,6 +654,15 @@
 			buildConfigurations = (
 				79379FF8288588ED0016D1A8 /* Debug */,
 				79379FF9288588ED0016D1A8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B5F3E7DC28876C94000C3129 /* Build configuration list for PBXNativeTarget "DakeAndDevileCorpsTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B5F3E7DA28876C94000C3129 /* Debug */,
+				B5F3E7DB28876C94000C3129 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
