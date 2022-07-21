@@ -8,7 +8,7 @@
 import UIKit
 import CloudKit
 
-enum CellModel {
+enum ProductTableViewCellModel {
     case product(productName: String)
     case item(itemName: String, itemPrice: String)
 }
@@ -18,10 +18,11 @@ class StoreDetailViewController: UIViewController {
     @IBOutlet weak var storeDetailTableView: UITableView!
     var storeInformations: [StoreInformation] = []
     var items: [String : [Item]] = [:]
-    var products: [String] = ["주방세제", " 세탁세제", "섬유유연제", "기타세제", "헤어", "스킨", "바디", "생활", "문구", "애견", "기타"]
-    var productCount: [Int] = []
-    var totalElements: Int = 0
-    var section2DataSource = [CellModel]()
+//    var products: [String] = ["주방세제", " 세탁세제", "섬유유연제", "기타세제", "헤어", "스킨", "바디", "생활", "문구", "애견", "기타"]
+//    var productCount: [Int] = []
+//    var totalElements: Int = 0
+    var section2DataSource = [ProductTableViewCellModel]()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,7 +31,6 @@ class StoreDetailViewController: UIViewController {
         storeDetailTableView.separatorStyle = UITableViewCell.SeparatorStyle.none
         storeDetailTableView.rowHeight = UITableView.automaticDimension
         storeDetailTableView.estimatedRowHeight = 100
-//        storeDetailTableView.rowHeight = 200
         initStoreInformationData()
     }
     
@@ -66,11 +66,11 @@ class StoreDetailViewController: UIViewController {
             .product(productName: "세탁세제"),
             .item(itemName: "인블리스 세탁세제", itemPrice: "1g = 4원")
         ]
-        
-        for key in items.keys {
-            productCount.append(items[key]?.count ?? 0)
-        }
-        totalElements = productCount.reduce(0, +)
+//
+//        for key in items.keys {
+//            productCount.append(items[key]?.count ?? 0)
+//        }
+//        totalElements = productCount.reduce(0, +)
     }
     
 }
@@ -98,23 +98,6 @@ extension StoreDetailViewController: UITableViewDataSource {
         default:
             return 0
         }
-//        switch section {
-//        case 0:
-//            return 1
-//        case 1:
-//            return products.count + totalElements
-//        default:
-//            return 0
-//        }
-//        if section == 0 {
-//            return 1
-//        } else {
-//            var totalElements: Int = 0
-//            for key in items.keys {
-//                totalElements += items[key]?.count ?? 0
-//            }
-//            return products.count + totalElements
-//        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -130,11 +113,12 @@ extension StoreDetailViewController: UITableViewDataSource {
         else { return UITableViewCell() }
 //        operationTimeAndProductCell.setUpOperationTimeAndProductCell()
         
-        if indexPath.section == 0 {
+        switch indexPath.section {
+        case 0:
             storeInformationCell.setUpperData(isOperation: true)
             storeInformationCell.setBottomData(address: "ddd", phoneNumber: "01040404040", operationTime: "1902939")
             return storeInformationCell
-        } else {
+        case 1:
             switch self.section2DataSource[indexPath.row] {
             case let .product(productName):
                 productCell.setData(productName: productName)
@@ -142,10 +126,28 @@ extension StoreDetailViewController: UITableViewDataSource {
             case let .item(itemName, itemPrice):
                 itemCell.setData(itemName: itemName, itemPrice: itemPrice)
                 return itemCell
-            default:
-                return UITableViewCell()
             }
+        default:
+                return UITableViewCell()
         }
+        
+        
+//        if indexPath.section == 0 {
+//            storeInformationCell.setUpperData(isOperation: true)
+//            storeInformationCell.setBottomData(address: "ddd", phoneNumber: "01040404040", operationTime: "1902939")
+//            return storeInformationCell
+//        } else {
+//            switch self.section2DataSource[indexPath.row] {
+//            case let .product(productName):
+//                productCell.setData(productName: productName)
+//                return productCell
+//            case let .item(itemName, itemPrice):
+//                itemCell.setData(itemName: itemName, itemPrice: itemPrice)
+//                return itemCell
+//            default:
+//                return UITableViewCell()
+//            }
+//        }
         
                         
 //
