@@ -31,4 +31,3 @@ class BaseViewController: UIViewController {
         // View Configuration
     }
 }
-
