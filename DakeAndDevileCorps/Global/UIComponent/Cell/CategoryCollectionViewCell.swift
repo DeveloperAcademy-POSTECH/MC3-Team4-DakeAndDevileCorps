@@ -11,6 +11,12 @@ final class CategoryCollectionViewCell: UICollectionViewCell {
     
     // MARK: - properties
     
+    override var isSelected: Bool {
+        didSet {
+            applySelectedState(oldValue)
+        }
+    }
+    
     private let backgroundContentView: UIView = {
         let view = UIView()
         view.layer.masksToBounds = true
@@ -34,6 +40,12 @@ final class CategoryCollectionViewCell: UICollectionViewCell {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func prepareForReuse() {
+        backgroundContentView.backgroundColor = .white
+        itemLabel.textColor = .black
+        itemLabel.font = .preferredFont(forTextStyle: .subheadline)
     }
     
     // MARK: - func
@@ -62,7 +74,16 @@ final class CategoryCollectionViewCell: UICollectionViewCell {
         backgroundContentView.layer.cornerRadius = cellCornerRadius
     }
     
+    private func applySelectedState(_ isSelected: Bool) {
+        backgroundContentView.backgroundColor = !isSelected ? .black : .white
+        itemLabel.textColor = !isSelected ? .white : .black
+        itemLabel.font = !isSelected ? .preferredFont(forTextStyle: .subheadline, compatibleWith: .init(legibilityWeight: .bold))
+                                    : .preferredFont(forTextStyle: .subheadline)
+    }
+    
     func setItemLabel(with itemText: String) {
         itemLabel.text = itemText
+        itemLabel.sizeToFit()
+        layoutIfNeeded()
     }
 }
