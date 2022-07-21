@@ -7,6 +7,11 @@
 
 import UIKit
 
+enum CategoryEntryPoint {
+    case map
+    case detail
+}
+
 final class CategoryView: UIView {
     
     // MARK: - properties
@@ -29,12 +34,14 @@ final class CategoryView: UIView {
         return collectionView
     }()
     
+    private var entryPoint: CategoryEntryPoint
     private let categoryList: [String] = ["주방세제", "세탁세제", "섬유유연제", "기타세제", "헤어", "스킨", "바디", "식품", "생활", "문구", "애견", "기타"]
     
     // MARK: - init
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    init(entryPoint: CategoryEntryPoint) {
+        self.entryPoint = entryPoint
+        super.init(frame: .zero)
         render()
         configCollectionView()
     }
@@ -64,6 +71,7 @@ extension CategoryView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryCollectionViewCell.className, for: indexPath) as? CategoryCollectionViewCell else { return UICollectionViewCell() }
         cell.setItemLabel(with: categoryList[indexPath.item])
+        cell.setEntryPointView(entryPoint: entryPoint)
         return cell
     }
 }

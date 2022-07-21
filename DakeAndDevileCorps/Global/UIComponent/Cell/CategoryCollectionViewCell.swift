@@ -65,10 +65,6 @@ final class CategoryCollectionViewCell: UICollectionViewCell {
     
     private func configUI() {
         layer.masksToBounds = false
-        makeShadow(color: .black,
-                   opacity: 0.3,
-                   offset: CGSize(width: 0, height: 2),
-                   radius: 2)
         
         let cellCornerRadius = (self.bounds.size.width * (self.bounds.size.height / self.bounds.size.width)) / 2
         backgroundContentView.layer.cornerRadius = cellCornerRadius
@@ -85,5 +81,18 @@ final class CategoryCollectionViewCell: UICollectionViewCell {
         itemLabel.text = itemText
         itemLabel.sizeToFit()
         layoutIfNeeded()
+    }
+    
+    func setEntryPointView(entryPoint: CategoryEntryPoint) {
+        switch entryPoint {
+        case .map:
+            makeShadow(color: .black,
+                       opacity: 0.3,
+                       offset: CGSize(width: 0, height: 2),
+                       radius: 2)
+        case .detail:
+            backgroundContentView.layer.borderWidth = 0.5
+            backgroundContentView.layer.borderColor = UIColor.lightGray.cgColor
+        }
     }
 }
