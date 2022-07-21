@@ -13,7 +13,7 @@ final class CategoryView: UIView {
     
     private enum Size {
         static let cellHeight: CGFloat = 36
-        static let estimatedtWidth: CGFloat = 48.0
+        static let estimatedtWidth: CGFloat = 10.0
     }
     
     private let categoryCollectionView: UICollectionView = {
