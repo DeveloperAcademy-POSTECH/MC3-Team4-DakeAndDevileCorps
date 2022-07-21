@@ -7,13 +7,17 @@
 
 import UIKit
 
+enum ConstraintType {
+    case top, leading, trailing, bottom
+}
+
 extension UIView {
     func constraint(_ anchor: NSLayoutDimension, constant: CGFloat) {
         self.translatesAutoresizingMaskIntoConstraints = false
         anchor.constraint(equalToConstant: constant).isActive = true
     }
     
-    func edgesConstraint(to view: UIView, insets: UIEdgeInsets = .zero){
+    func constraint(to view: UIView, insets: UIEdgeInsets = .zero) {
         self.translatesAutoresizingMaskIntoConstraints = false
         
         let top = NSLayoutConstraint(item: self,
@@ -50,5 +54,36 @@ extension UIView {
         NSLayoutConstraint.activate([
             top, bottom, leading, trailing
         ])
+    }
+    
+    @discardableResult
+    func constraint(top: NSLayoutYAxisAnchor? = nil,
+                    leading: NSLayoutXAxisAnchor? = nil,
+                    bottom: NSLayoutYAxisAnchor? = nil,
+                    trailing: NSLayoutXAxisAnchor? = nil,
+                    padding: UIEdgeInsets = .zero) -> [ConstraintType : NSLayoutConstraint] {
+        self.translatesAutoresizingMaskIntoConstraints = false
+        
+        var constraints: [ConstraintType : NSLayoutConstraint] = [:]
+        
+        if let top = top {
+            constraints[.top] = topAnchor.constraint(equalTo: top, constant: padding.top)
+        }
+        
+        if let leading = leading {
+            constraints[.leading] = leadingAnchor.constraint(equalTo: leading, constant: padding.left)
+        }
+        
+        if let bottom = bottom {
+            constraints[.bottom] = bottomAnchor.constraint(equalTo: bottom, constant: -padding.bottom)
+        }
+        
+        if let trailing = trailing {
+            constraints[.trailing] = trailingAnchor.constraint(equalTo: trailing, constant: -padding.right)
+        }
+        
+        let constraintsArray = Array<NSLayoutConstraint>(constraints.values)
+        NSLayoutConstraint.activate(constraintsArray)
+        return constraints
     }
 }
