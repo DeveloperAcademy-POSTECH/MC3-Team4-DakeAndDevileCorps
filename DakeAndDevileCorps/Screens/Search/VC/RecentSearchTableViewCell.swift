@@ -25,7 +25,7 @@ class RecentSearchTableViewCell: UITableViewCell {
         searchedTitle.text = title
     }
     
-    @IBAction func deleteData(_ sender: Any) {
+    @IBAction func touchUpToDeleteData(_ sender: Any) {
         
     }
 }

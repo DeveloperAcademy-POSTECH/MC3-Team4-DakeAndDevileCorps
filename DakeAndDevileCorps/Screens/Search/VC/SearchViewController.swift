@@ -69,7 +69,7 @@ class SearchViewController: UIViewController {
     }
     
     
-    @IBAction func deleteAllSearchedData(_ sender: Any) {
+    @IBAction func touchUpToDeleteAllSearchedData(_ sender: Any) {
         
     }
     
