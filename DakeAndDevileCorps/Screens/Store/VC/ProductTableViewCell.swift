@@ -14,13 +14,12 @@ class ProductTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        
     }
+    
     func setData(productName: String, isSeperated: Bool) {
         self.productName.text = productName
         self.productName.font = UIFont.boldSystemFont(ofSize: 17)

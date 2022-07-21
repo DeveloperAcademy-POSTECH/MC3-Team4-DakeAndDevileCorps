@@ -18,14 +18,10 @@ class StoreInformationTableViewCell: UITableViewCell {
     @IBOutlet weak var operationTime: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
-        
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        
-        // Configure the view for the selected state
     }
     func setUpperData(isOperation: Bool) {
         operationStatus.text = isOperation ? "영업중" : "영업 종료"

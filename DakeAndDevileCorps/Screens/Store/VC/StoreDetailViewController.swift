@@ -64,8 +64,6 @@ class StoreDetailViewController: UIViewController {
             .item(itemName: "인블리스 세탁세제", itemPrice: "1g = 4원"),
             .product(productName: "기타", isSeperated: false),
             .item(itemName: "인블리스 세탁세제", itemPrice: "1g = 4원")
-            
-            
         ]
     }
 }
