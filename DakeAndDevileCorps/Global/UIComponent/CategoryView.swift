@@ -11,17 +11,24 @@ final class CategoryView: UIView {
     
     // MARK: - properties
     
+    private enum Size {
+        static let cellHeight: CGFloat = 36
+        static let estimatedtWidth: CGFloat = 48.0
+    }
+    
     private let categoryCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         layout.minimumInteritemSpacing = 10
         layout.sectionInset = UIEdgeInsets(top: 12, left: 20, bottom: 12, right: 20)
-        layout.itemSize = CGSize(width: 100, height: 36)
+        layout.estimatedItemSize = CGSize(width: Size.estimatedtWidth, height: Size.cellHeight)
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.backgroundColor = .clear
+        collectionView.showsHorizontalScrollIndicator = false
         return collectionView
     }()
+    
     private let categoryList: [String] = ["주방세제", "세탁세제", "섬유유연제", "기타세제", "헤어", "스킨", "바디", "식품", "생활", "문구", "애견", "기타"]
     
     // MARK: - init
@@ -56,6 +63,7 @@ extension CategoryView: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryCollectionViewCell.className, for: indexPath) as? CategoryCollectionViewCell else { return UICollectionViewCell() }
+        cell.setItemLabel(with: categoryList[indexPath.item])
         return cell
     }
 }

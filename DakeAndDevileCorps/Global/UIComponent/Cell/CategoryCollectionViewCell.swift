@@ -20,6 +20,7 @@ final class CategoryCollectionViewCell: UICollectionViewCell {
     private let itemLabel: UILabel = {
         let label = UILabel()
         label.font = .preferredFont(forTextStyle: .subheadline)
+        label.textAlignment = .center
         return label
     }()
     
@@ -44,8 +45,9 @@ final class CategoryCollectionViewCell: UICollectionViewCell {
         backgroundContentView.addSubview(itemLabel)
         itemLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            itemLabel.centerXAnchor.constraint(equalTo: self.safeAreaLayoutGuide.centerXAnchor),
-            itemLabel.centerYAnchor.constraint(equalTo: self.safeAreaLayoutGuide.centerYAnchor)
+            itemLabel.centerYAnchor.constraint(equalTo: self.safeAreaLayoutGuide.centerYAnchor),
+            itemLabel.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 14),
+            itemLabel.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -14)
         ])
     }
     
@@ -60,4 +62,7 @@ final class CategoryCollectionViewCell: UICollectionViewCell {
         backgroundContentView.layer.cornerRadius = cellCornerRadius
     }
     
+    func setItemLabel(with itemText: String) {
+        itemLabel.text = itemText
+    }
 }
