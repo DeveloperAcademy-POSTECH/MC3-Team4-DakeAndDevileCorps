@@ -77,6 +77,12 @@ class SearchBarView: UIView {
         textField.placeholder = "가게 이름, 상품 검색"
         return textField
     }()
+    
+    private lazy var containerView: UIView = {
+       let containerView = UIView()
+        containerView.translatesAutoresizingMaskIntoConstraints = false
+        return containerView
+    }()
 
     init() {
         super.init(frame: .zero)
@@ -96,16 +102,28 @@ class SearchBarView: UIView {
 
     // MARK: - configure
     private func configure() {
-        layer.cornerRadius = 10
-        layer.borderWidth = 0.5
-        layer.borderColor = UIColor.lightGray.cgColor
+        containerView.layer.cornerRadius = 10
+        containerView.layer.borderWidth = 0.5
+        containerView.layer.borderColor = UIColor.lightGray.cgColor
+        
+        containerView.backgroundColor = .white
+
     }
     
     // MARK: - layout
     private func configureLayout() {
         heightAnchor.constraint(equalToConstant: 48).isActive = true
         
-        addSubview(textField)
+        addSubview(containerView)
+        NSLayoutConstraint.activate([
+            containerView.topAnchor.constraint(equalTo: topAnchor),
+            containerView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            containerView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            containerView.trailingAnchor.constraint(equalTo: trailingAnchor),
+        ])
+        
+        
+        containerView.addSubview(textField)
         NSLayoutConstraint.activate([
             textField.topAnchor.constraint(equalTo: topAnchor),
             textField.bottomAnchor.constraint(equalTo: bottomAnchor),
@@ -114,7 +132,7 @@ class SearchBarView: UIView {
         ])
         
         // TODO: symbolImageView, leftButton의 오토레이아웃 다시 맞추기
-        addSubview(symbolImageView)
+        containerView.addSubview(symbolImageView)
         NSLayoutConstraint.activate([
             symbolImageView.topAnchor.constraint(equalTo: topAnchor, constant: 7),
             symbolImageView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -7),
@@ -126,7 +144,7 @@ class SearchBarView: UIView {
             
         ])
         
-        addSubview(leftButton)
+        containerView.addSubview(leftButton)
         NSLayoutConstraint.activate([
             leftButton.topAnchor.constraint(equalTo: topAnchor, constant: 7),
             leftButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -7),
