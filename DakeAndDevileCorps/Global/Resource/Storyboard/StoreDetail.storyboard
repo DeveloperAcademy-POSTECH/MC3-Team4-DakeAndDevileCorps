@@ -238,8 +238,8 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="itemName" destination="LCT-kF-iBJ" id="CGg-qQ-Q9S"/>
-                                            <outlet property="itemPrice" destination="E7n-Rb-i9l" id="nRc-DW-Ved"/>
+                                            <outlet property="itemNameLabel" destination="LCT-kF-iBJ" id="SVm-9m-dgX"/>
+                                            <outlet property="itemPriceLabel" destination="E7n-Rb-i9l" id="Rwv-rX-Wf1"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
