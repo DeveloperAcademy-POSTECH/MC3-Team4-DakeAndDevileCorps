@@ -99,7 +99,7 @@ class SearchViewController: UIViewController {
     }
     
     @IBAction func touchUpToDeleteAllSearchedData(_ sender: Any) {
-        
+        print("delete all!!")
     }
     
 }
