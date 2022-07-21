@@ -17,7 +17,6 @@ class StoreDetailViewController: UIViewController {
     @IBOutlet weak var storeName: UILabel!
     @IBOutlet weak var storeDetailTableView: UITableView!
     
-    private var storeInformations: [StoreInformation] = []
     private var productList = [ProductTableViewCellModel]()
     
     override func viewDidLoad() {
