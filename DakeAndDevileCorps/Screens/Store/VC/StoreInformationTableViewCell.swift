@@ -8,6 +8,7 @@
 import UIKit
 
 class StoreInformationTableViewCell: UITableViewCell {
+    
     static let identifier = "StoreInformationTableViewCell"
     
     @IBOutlet weak var operationStatus: UILabel!
@@ -16,6 +17,7 @@ class StoreInformationTableViewCell: UITableViewCell {
     @IBOutlet weak var address: UILabel!
     @IBOutlet weak var phoneNumber: UILabel!
     @IBOutlet weak var operationTime: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
     }
@@ -23,12 +25,12 @@ class StoreInformationTableViewCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
-    func setUpperData(isOperation: Bool) {
+    func setUpperData(isOperation: Bool, todayOperationTime: String, productCategories: String) {
         operationStatus.text = isOperation ? "영업중" : "영업 종료"
         operationStatus.textColor = isOperation ? .systemGreen : .systemRed
-        todayOperationTime.text = "10:00 ~ 18:00"
-        productCategories.text = "샴푸류, 청소용품, 화장품, 식품"
-        productCategories.textColor = .secondaryLabel
+        self.todayOperationTime.text = todayOperationTime
+        self.productCategories.text = productCategories
+        self.productCategories.textColor = .secondaryLabel
     }
     
     func setBottomData(address: String, phoneNumber: String, operationTime: String) {

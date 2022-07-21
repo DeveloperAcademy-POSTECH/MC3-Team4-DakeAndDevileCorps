@@ -16,14 +16,13 @@ class StoreDetailViewController: UIViewController {
     
     @IBOutlet weak var storeName: UILabel!
     @IBOutlet weak var storeDetailTableView: UITableView!
+    
     var storeInformations: [StoreInformation] = []
     var section2DataSource = [ProductTableViewCellModel]()
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         storeDetailTableView.dataSource = self
-        storeDetailTableView.delegate = self
         storeDetailTableView.separatorStyle = UITableViewCell.SeparatorStyle.none
         storeDetailTableView.rowHeight = UITableView.automaticDimension
         storeDetailTableView.estimatedRowHeight = 100
@@ -74,19 +73,25 @@ extension StoreDetailViewController: UITableViewDataSource {
         return 2
     }
     
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        if section == 0 {
+    private func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        switch section {
+        case 0:
             return nil
-        } else {
-            return nil // colletionView
+        case 1:
+            return nil //collectionView
+        default:
+            return nil
         }
     }
     
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if section == 0 {
+    private func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        switch section {
+        case 0:
             return 0
-        } else {
-            return 0 // collcetionView height
+        case 1:
+            return 0 //collectionView
+        default:
+            return 0
         }
     }
     
@@ -115,8 +120,8 @@ extension StoreDetailViewController: UITableViewDataSource {
         
         switch indexPath.section {
         case 0:
-            storeInformationCell.setUpperData(isOperation: true)
-            storeInformationCell.setBottomData(address: "ddd", phoneNumber: "01040404040", operationTime: "1902939")
+            storeInformationCell.setUpperData(isOperation: true, todayOperationTime: "10:00 ~ 18:00", productCategories: "화장품, 청소용품, 화장품, 식품")
+            storeInformationCell.setBottomData(address: "서울 마포구 월드컵로25길 47 3층", phoneNumber: "010-2229-1027", operationTime: "10:00 - 18:00")
             return storeInformationCell
         case 1:
             switch self.section2DataSource[indexPath.row] {
@@ -131,21 +136,4 @@ extension StoreDetailViewController: UITableViewDataSource {
                 return UITableViewCell()
         }
     }
-}
-
-extension StoreDetailViewController: UITableViewDelegate {
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        return dimension
-////        switch indexPath.section {
-////        case 0:
-////            return 200
-////        case 1:
-////            return 50
-////        default:
-////            return 0
-////        }
-//    }
-//    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-//        return uitableviewau
-//    }
 }
