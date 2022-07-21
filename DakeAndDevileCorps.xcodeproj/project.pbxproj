@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0B6BA51F28884A8500E30B37 /* SearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6BA51E28884A8500E30B37 /* SearchBarView.swift */; };
 		79379FE4288588EC0016D1A8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79379FE3288588EC0016D1A8 /* AppDelegate.swift */; };
 		79379FE6288588EC0016D1A8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79379FE5288588EC0016D1A8 /* SceneDelegate.swift */; };
 		79379FEE288588EC0016D1A8 /* Keywords.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 79379FEC288588EC0016D1A8 /* Keywords.xcdatamodeld */; };
@@ -42,6 +43,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0B6BA51E28884A8500E30B37 /* SearchBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarView.swift; sourceTree = "<group>"; };
 		79379FE0288588EC0016D1A8 /* DakeAndDevileCorps.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DakeAndDevileCorps.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		79379FE3288588EC0016D1A8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		79379FE5288588EC0016D1A8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -87,6 +89,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0B6BA51D288849E800E30B37 /* Component */ = {
+			isa = PBXGroup;
+			children = (
+				0B6BA51E28884A8500E30B37 /* SearchBarView.swift */,
+			);
+			path = Component;
+			sourceTree = "<group>";
+		};
 		79379FD7288588EB0016D1A8 = {
 			isa = PBXGroup;
 			children = (
@@ -203,6 +213,7 @@
 		7937A00D28858B9F0016D1A8 /* MapHome */ = {
 			isa = PBXGroup;
 			children = (
+				0B6BA51D288849E800E30B37 /* Component */,
 				7937A00F28858BAB0016D1A8 /* VC */,
 			);
 			path = MapHome;
@@ -389,6 +400,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0B6BA51F28884A8500E30B37 /* SearchBarView.swift in Sources */,
 				79379FE8288588EC0016D1A8 /* MainMapViewController.swift in Sources */,
 				79379FE4288588EC0016D1A8 /* AppDelegate.swift in Sources */,
 				7937A01E28859B490016D1A8 /* SearchViewController.swift in Sources */,
