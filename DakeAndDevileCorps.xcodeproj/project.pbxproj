@@ -9,8 +9,8 @@
 /* Begin PBXBuildFile section */
 		79379FE4288588EC0016D1A8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79379FE3288588EC0016D1A8 /* AppDelegate.swift */; };
 		79379FE6288588EC0016D1A8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79379FE5288588EC0016D1A8 /* SceneDelegate.swift */; };
+		79379FEE288588EC0016D1A8 /* Keywords.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 79379FEC288588EC0016D1A8 /* Keywords.xcdatamodeld */; };
 		79379FE8288588EC0016D1A8 /* MainMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79379FE7288588EC0016D1A8 /* MainMapViewController.swift */; };
-		79379FEE288588EC0016D1A8 /* DakeAndDevileCorps.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 79379FEC288588EC0016D1A8 /* DakeAndDevileCorps.xcdatamodeld */; };
 		79379FF0288588ED0016D1A8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79379FEF288588ED0016D1A8 /* Assets.xcassets */; };
 		79379FF3288588ED0016D1A8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 79379FF1288588ED0016D1A8 /* LaunchScreen.storyboard */; };
 		7937A01428858CB40016D1A8 /* MapHome.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7937A01328858CB40016D1A8 /* MapHome.storyboard */; };
@@ -24,6 +24,9 @@
 		797CAC542886CFCB0041C3F7 /* RecentSearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797CAC532886CFCB0041C3F7 /* RecentSearchTableViewCell.swift */; };
 		79D7BA682886EBE100F65ECD /* StoreModelTestN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D7BA672886EBE100F65ECD /* StoreModelTestN.swift */; };
 		79E2DCA82886E3C800355E30 /* ResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E2DCA72886E3C800355E30 /* ResultTableViewCell.swift */; };
+		B5F3E7DE2887DB90000C3129 /* Keywords+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F3E7DD2887DB90000C3129 /* Keywords+CoreDataClass.swift */; };
+		B5F3E7E02887DBA2000C3129 /* Keywords+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F3E7DF2887DBA2000C3129 /* Keywords+CoreDataProperties.swift */; };
+		B5F3E7E32887DC49000C3129 /* KeywordManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F3E7E22887DC49000C3129 /* KeywordManager.swift */; };
 		B5F3E7D728876C94000C3129 /* DakeAndDevileCorpsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F3E7D628876C94000C3129 /* DakeAndDevileCorpsTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -59,6 +62,9 @@
 		79E2DCA72886E3C800355E30 /* ResultTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultTableViewCell.swift; sourceTree = "<group>"; };
 		B5F3E7D428876C94000C3129 /* DakeAndDevileCorpsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DakeAndDevileCorpsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5F3E7D628876C94000C3129 /* DakeAndDevileCorpsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DakeAndDevileCorpsTests.swift; sourceTree = "<group>"; };
+		B5F3E7DD2887DB90000C3129 /* Keywords+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Keywords+CoreDataClass.swift"; sourceTree = "<group>"; };
+		B5F3E7DF2887DBA2000C3129 /* Keywords+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Keywords+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		B5F3E7E22887DC49000C3129 /* KeywordManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeywordManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,7 +116,7 @@
 		79379FFA288589B60016D1A8 /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				79379FEC288588EC0016D1A8 /* DakeAndDevileCorps.xcdatamodeld */,
+				B5F3E7E12887DC37000C3129 /* CoreData */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -250,6 +256,17 @@
 			path = DakeAndDevileCorpsTests;
 			sourceTree = "<group>";
 		};
+		B5F3E7E12887DC37000C3129 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				79379FEC288588EC0016D1A8 /* Keywords.xcdatamodeld */,
+				B5F3E7DD2887DB90000C3129 /* Keywords+CoreDataClass.swift */,
+				B5F3E7DF2887DBA2000C3129 /* Keywords+CoreDataProperties.swift */,
+				B5F3E7E22887DC49000C3129 /* KeywordManager.swift */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -357,12 +374,16 @@
 				79379FE8288588EC0016D1A8 /* MainMapViewController.swift in Sources */,
 				79379FE4288588EC0016D1A8 /* AppDelegate.swift in Sources */,
 				7937A01E28859B490016D1A8 /* SearchViewController.swift in Sources */,
+				B5F3E7E32887DC49000C3129 /* KeywordManager.swift in Sources */,
+				B5F3E7E02887DBA2000C3129 /* Keywords+CoreDataProperties.swift in Sources */,
+				B5F3E7DE2887DB90000C3129 /* Keywords+CoreDataClass.swift in Sources */,
 				79379FE6288588EC0016D1A8 /* SceneDelegate.swift in Sources */,
 				79D7BA682886EBE100F65ECD /* StoreModelTestN.swift in Sources */,
 				7976990C28859E1100DB53F8 /* ImageLiteral.swift in Sources */,
 				7937A02228859B990016D1A8 /* StoreDetailViewController.swift in Sources */,
 				797CAC542886CFCB0041C3F7 /* RecentSearchTableViewCell.swift in Sources */,
 				79379FEE288588EC0016D1A8 /* DakeAndDevileCorps.xcdatamodeld in Sources */,
+				79379FEE288588EC0016D1A8 /* Keywords.xcdatamodeld in Sources */,
 				7937A01A28859A830016D1A8 /* BaseViewController.swift in Sources */,
 				7937A016288597A60016D1A8 /* UIColor+Extension.swift in Sources */,
 			);
@@ -646,13 +667,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		79379FEC288588EC0016D1A8 /* DakeAndDevileCorps.xcdatamodeld */ = {
+		79379FEC288588EC0016D1A8 /* Keywords.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
 				79379FED288588EC0016D1A8 /* DakeAndDevileCorps.xcdatamodel */,
 			);
 			currentVersion = 79379FED288588EC0016D1A8 /* DakeAndDevileCorps.xcdatamodel */;
-			path = DakeAndDevileCorps.xcdatamodeld;
+			path = Keywords.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
