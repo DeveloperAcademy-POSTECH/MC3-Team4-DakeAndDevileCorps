@@ -54,7 +54,7 @@ class SearchViewController: UIViewController {
     private func setResultTitle(searchType: SearchType) {
         tableTitleText.text = searchType.title
         switch searchType {
-        case .result(textField.text):
+        case .result(_):
             deleteAllButton.isHidden = true
         default:
             deleteAllButton.isHidden = false
