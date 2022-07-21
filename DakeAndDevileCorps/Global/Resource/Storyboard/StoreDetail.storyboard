@@ -32,6 +32,7 @@
                                             <constraint firstAttribute="width" constant="27" id="5HP-uQ-Efl"/>
                                             <constraint firstAttribute="height" constant="28" id="lse-Nc-YtN"/>
                                         </constraints>
+                                        <color key="tintColor" systemColor="systemGray4Color"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal" image="xmark.circle.fill" catalog="system"/>
                                         <buttonConfiguration key="configuration" style="plain">
@@ -175,20 +176,31 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M1i-Z3-Lta">
-                                                    <rect key="frame" x="24" y="23" width="41.5" height="11"/>
+                                                    <rect key="frame" x="24" y="12.5" width="41.5" height="32.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BLa-RD-c9u">
+                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="0.5"/>
+                                                    <color key="backgroundColor" systemColor="systemGray4Color"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="0.5" id="2Pl-Qa-5lE"/>
+                                                    </constraints>
+                                                </view>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="M1i-Z3-Lta" firstAttribute="leading" secondItem="SDQ-Jq-lHp" secondAttribute="leading" constant="24" id="2lS-BW-2jd"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="M1i-Z3-Lta" secondAttribute="bottom" constant="12" id="7gO-pJ-DPv"/>
-                                                <constraint firstItem="M1i-Z3-Lta" firstAttribute="top" secondItem="SDQ-Jq-lHp" secondAttribute="topMargin" constant="12" id="cYe-8X-Iwv"/>
+                                                <constraint firstItem="M1i-Z3-Lta" firstAttribute="top" secondItem="BLa-RD-c9u" secondAttribute="bottom" constant="12" id="Nsy-G1-Xwh"/>
+                                                <constraint firstAttribute="trailing" secondItem="BLa-RD-c9u" secondAttribute="trailing" id="Rkn-vV-RfB"/>
+                                                <constraint firstItem="BLa-RD-c9u" firstAttribute="top" secondItem="SDQ-Jq-lHp" secondAttribute="top" id="eQC-il-xVV"/>
+                                                <constraint firstItem="BLa-RD-c9u" firstAttribute="leading" secondItem="SDQ-Jq-lHp" secondAttribute="leading" id="u2A-Sy-Ra6"/>
+                                                <constraint firstAttribute="bottom" secondItem="M1i-Z3-Lta" secondAttribute="bottom" constant="12" id="whK-7t-h3U"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="productName" destination="M1i-Z3-Lta" id="jSV-K0-LPA"/>
+                                            <outlet property="seperateLine" destination="BLa-RD-c9u" id="ASu-e2-FWg"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="ItemTableViewCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ItemTableViewCell" rowHeight="78" id="g6g-xO-54i" customClass="ItemTableViewCell" customModule="DakeAndDevileCorps" customModuleProvider="target">
@@ -262,6 +274,9 @@
         <image name="xmark.circle.fill" catalog="system" width="128" height="121"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray4Color">
+            <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray6Color">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
