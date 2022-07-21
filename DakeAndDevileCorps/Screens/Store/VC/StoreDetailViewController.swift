@@ -14,6 +14,8 @@ enum ProductTableViewCellModel {
 
 class StoreDetailViewController: UIViewController {
     
+    static let identifier = "StoreDetailViewController"
+    
     @IBOutlet weak var storeName: UILabel!
     @IBOutlet weak var storeDetailTableView: UITableView!
     
@@ -23,15 +25,14 @@ class StoreDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         storeDetailTableView.dataSource = self
+        storeDetailTableView.delegate = self
         storeDetailTableView.separatorStyle = UITableViewCell.SeparatorStyle.none
         storeDetailTableView.rowHeight = UITableView.automaticDimension
-        storeDetailTableView.estimatedRowHeight = 100
+        storeName.text = "알맹상점"
+        storeName.font = UIFont.boldSystemFont(ofSize: 22)
         if #available(iOS 15.0, *) {
             storeDetailTableView.sectionHeaderTopPadding = 0
         }
-        
-        storeName.text = "알맹상점"
-        storeName.font = UIFont.boldSystemFont(ofSize: 22)
         
         initStoreInformationData()
     }
@@ -65,6 +66,10 @@ class StoreDetailViewController: UIViewController {
             .item(itemName: "인블리스 세탁세제", itemPrice: "1g = 4원")
         ]
     }
+    
+    func reloadStoreDetailTableView() {
+        storeDetailTableView.reloadData()
+    }
 }
 
 extension StoreDetailViewController: UITableViewDataSource {
@@ -73,7 +78,7 @@ extension StoreDetailViewController: UITableViewDataSource {
         return 2
     }
     
-    private func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    internal func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         switch section {
         case 0:
             return nil
@@ -84,7 +89,7 @@ extension StoreDetailViewController: UITableViewDataSource {
         }
     }
     
-    private func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    internal func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         switch section {
         case 0:
             return 0
@@ -118,10 +123,23 @@ extension StoreDetailViewController: UITableViewDataSource {
               ) as? ItemTableViewCell
         else { return UITableViewCell() }
         
+        storeInformationCell.storeInformationDelegate = self
+        
         switch indexPath.section {
         case 0:
-            storeInformationCell.setUpperData(isOperation: true, todayOperationTime: "10:00 ~ 18:00", productCategories: "화장품, 청소용품, 화장품, 식품")
-            storeInformationCell.setBottomData(address: "서울 마포구 월드컵로25길 47 3층", phoneNumber: "010-2229-1027", operationTime: "10:00 - 18:00")
+            storeInformationCell.setUpperData(isOperation: true,
+                                              todayOperationTime: "10:00 ~ 18:00",
+                                              productCategories: "화장품, 청소용품, 화장품, 식품")
+            storeInformationCell.setBottomData(address: "서울 마포구 월드컵로25길 47 3층",
+                                               phoneNumber: "010-2229-1027",
+                                               operationTime: "10:00 - 18:00")
+            storeInformationCell.setOperationTime(monday: "월 정기 휴일",
+                                                  tuesday: "화 10:00 ~ 18:00",
+                                                  wednesday: "수 10:00 ~ 18:00",
+                                                  thursday: "목 10:00 ~ 18:00",
+                                                  friday: "금 10:00 ~ 18:00",
+                                                  saturday: "토 10:00 ~ 18:00",
+                                                  sunday: "일 정기 휴일")
             return storeInformationCell
         case 1:
             switch self.section2DataSource[indexPath.row] {
@@ -135,5 +153,22 @@ extension StoreDetailViewController: UITableViewDataSource {
         default:
                 return UITableViewCell()
         }
+    }
+}
+
+extension StoreDetailViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
+    }
+}
+
+extension StoreDetailViewController: StoreInformationTableViewCellDelegate {
+    func requestReload(cell: StoreInformationTableViewCell) {
+        storeDetailTableView.reloadData()
+        print("리로드")
     }
 }

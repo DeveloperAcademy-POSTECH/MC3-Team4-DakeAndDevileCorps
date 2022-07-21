@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol StoreInformationTableViewCellDelegate: UITableView {
+    func requestReload(cell: StoreInformationTableViewCell)
+}
+
 class StoreInformationTableViewCell: UITableViewCell {
     
     static let identifier = "StoreInformationTableViewCell"
@@ -18,8 +22,29 @@ class StoreInformationTableViewCell: UITableViewCell {
     @IBOutlet weak var phoneNumber: UILabel!
     @IBOutlet weak var operationTime: UILabel!
     
+    @IBOutlet weak var monday: UILabel!
+    @IBOutlet weak var tuesday: UILabel!
+    @IBOutlet weak var wednesday: UILabel!
+    @IBOutlet weak var thursday: UILabel!
+    @IBOutlet weak var friday: UILabel!
+    @IBOutlet weak var saturday: UILabel!
+    @IBOutlet weak var sunday: UILabel!
+    
+    @IBOutlet weak var weekOperationTime: UIStackView!
+    @IBOutlet weak var weekOperationTimeToggle: UIButton!
+    
+    weak var storeInformationDelegate: StoreInformationTableViewCellDelegate?
+    var isOpen: Bool = true
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+    }
+    
+    @IBAction func toggleWeekOperationTime(_ sender: Any) {
+        isOpen.toggle()
+        weekOperationTimeToggle.setBackgroundImage(UIImage(systemName: isOpen ? "chevron.down" : "chevron.up"), for: .normal)
+        weekOperationTime.isHidden.toggle()
+        storeInformationDelegate?.requestReload(cell: self)
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -38,4 +63,22 @@ class StoreInformationTableViewCell: UITableViewCell {
         self.phoneNumber.text = phoneNumber
         self.operationTime.text = operationTime
     }
+    
+    func setOperationTime(monday: String,
+                          tuesday: String,
+                          wednesday: String,
+                          thursday: String,
+                          friday: String,
+                          saturday: String,
+                          sunday: String) {
+        self.monday.text = monday
+        self.tuesday.text = tuesday
+        self.wednesday.text = wednesday
+        self.thursday.text = thursday
+        self.friday.text = friday
+        self.saturday.text = saturday
+        self.sunday.text = sunday
+        
+    }
+    
 }
