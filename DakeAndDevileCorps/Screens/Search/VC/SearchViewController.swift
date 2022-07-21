@@ -23,11 +23,15 @@ class SearchViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        searchTableView.dataSource = self
-        textField.delegate = self
+        initDelegate()
         initRecentSearchedItem()
         initResultData()
         showResultTitle()
+    }
+    
+    private func initDelegate() {
+        searchTableView.dataSource = self
+        textField.delegate = self
     }
 
     private func initRecentSearchedItem() {
