@@ -103,7 +103,6 @@ class SearchBarView: UIView {
         containerView.layer.borderColor = UIColor.lightGray.cgColor
         
         containerView.backgroundColor = .white
-
     }
     
     // MARK: - layout
