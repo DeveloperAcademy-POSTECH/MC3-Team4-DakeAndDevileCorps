@@ -15,58 +15,74 @@ import UIKit
 
 class SearchBarView: UIView {
     
-    weak var delegate: SearchBarDelegate?
-    var leftItemMode: LeftItemMode = .imageMode {
-        didSet {
-            switch leftItemMode {
-            case .imageMode:
-                symbolImageView.isHidden = false
-                leftButton.isHidden = true
-            case .buttonMode:
-                symbolImageView.isHidden = true
-                leftButton.isHidden = false
+    enum LeftItemMode {
+        case imageMode
+        case buttonMode
+        
+        var imageHidden: Bool {
+            switch self {
+            case .imageMode: return false
+            case .buttonMode: return true
+            }
+        }
+        
+        var buttonHidden: Bool {
+            switch self {
+            case .imageMode: return true
+            case .buttonMode: return false
             }
         }
     }
-    var image: UIImage? = UIImage(systemName: "magnifyingglass") {
+    
+    weak var delegate: SearchBarDelegate?
+    var leftItemMode: LeftItemMode = .imageMode {
         didSet {
-            symbolImageView.image = image
-            leftButton.setImage(image, for: .normal)
+            setComponentsIsHidden()
+        }
+    }
+    var leftItemImage: UIImage = UIImage(systemName: "magnifyingglass") ?? UIImage() {
+        didSet {
+            symbolImageView.image = leftItemImage
+            leftButton.setImage(leftItemImage, for: .normal)
         }
     }
     
     private lazy var symbolImageView: UIImageView = {
-        $0.translatesAutoresizingMaskIntoConstraints = false
-        $0.image = image
-        $0.contentMode = .scaleAspectFit
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.image = leftItemImage
+        imageView.contentMode = .scaleAspectFit
         if leftItemMode == .imageMode {
-            $0.isHidden = false
-        } else { $0.isHidden = true }
-        $0.tintColor = .black
-        return $0
-    }(UIImageView())
+            imageView.isHidden = false
+        } else { imageView.isHidden = true }
+        imageView.tintColor = .black
+        return imageView
+    }()
     
     private lazy var leftButton: UIButton = {
-        $0.translatesAutoresizingMaskIntoConstraints = false
-        $0.setBackgroundImage(image, for: .normal)
-        $0.sizeToFit()
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setBackgroundImage(leftItemImage, for: .normal)
+        button.sizeToFit()
         if leftItemMode == .buttonMode {
-            $0.isHidden = false
-        } else { $0.isHidden = true }
-        $0.tintColor = .black
-        return $0
-    }(UIButton())
+            button.isHidden = false
+        } else { button.isHidden = true }
+        button.tintColor = .black
+        return button
+    }()
     
     private lazy var textField: UITextField = {
-        $0.translatesAutoresizingMaskIntoConstraints = false
-        $0.placeholder = "가게 이름, 상품 검색"
-        return $0
-    }(UITextField())
+        let textField = UITextField()
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        textField.placeholder = "가게 이름, 상품 검색"
+        return textField
+    }()
 
     init() {
         super.init(frame: .zero)
-        textField.delegate = self
+        setTextField()
         setLeftButton()
+        configure()
         configureLayout()
     }
 
@@ -78,12 +94,15 @@ class SearchBarView: UIView {
         super.draw(rect)
     }
 
-    // MARK: - layout
-    func configureLayout() {
+    // MARK: - configure
+    private func configure() {
         layer.cornerRadius = 10
         layer.borderWidth = 0.5
         layer.borderColor = UIColor.lightGray.cgColor
-
+    }
+    
+    // MARK: - layout
+    private func configureLayout() {
         heightAnchor.constraint(equalToConstant: 48).isActive = true
         
         addSubview(textField)
@@ -118,19 +137,25 @@ class SearchBarView: UIView {
 
     }
     
+    // MARK: - set components
+    private func setComponentsIsHidden() {
+        leftButton.isHidden = leftItemMode.buttonHidden
+        symbolImageView.isHidden = leftItemMode.imageHidden
+    }
+    
+    // MARK: - set TextField
+    private func setTextField() {
+        textField.delegate = self
+    }
+    
     // MARK: - leftButton setting
     private func setLeftButton() {
         leftButton.addTarget(self, action: #selector(touchUpInsideLeftButton), for: .touchUpInside)
     }
     
     @objc
-    func touchUpInsideLeftButton() {
+    private func touchUpInsideLeftButton() {
         delegate?.touchUpInsideLeftButton?()
-    }
-    
-    enum LeftItemMode {
-        case imageMode
-        case buttonMode
     }
 
 }

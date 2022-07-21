@@ -10,7 +10,7 @@ import UIKit
 class MapHomeViewController: UIViewController {
 
     // TODO: - 서치바 그림자 그리기
-    let searchBarView: SearchBarView = {
+    private let searchBarView: SearchBarView = {
         $0.translatesAutoresizingMaskIntoConstraints = false
         return $0
     }(SearchBarView())
@@ -22,11 +22,11 @@ class MapHomeViewController: UIViewController {
         configureLayout()
     }
     
-    func setSearchBarView() {
+    private func setSearchBarView() {
         searchBarView.delegate = self
     }
 
-    func configureLayout() {
+    private func configureLayout() {
         let safeArea = view.safeAreaLayoutGuide
         
         view.addSubview(searchBarView)
