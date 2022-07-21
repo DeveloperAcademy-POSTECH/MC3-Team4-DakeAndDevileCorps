@@ -9,9 +9,9 @@ import UIKit
 
 class RecentSearchTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var searchedTitle: UILabel!
-    
     static let identifier = "RecentSearchTableViewCell"
+    
+    @IBOutlet weak var searchedTitle: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

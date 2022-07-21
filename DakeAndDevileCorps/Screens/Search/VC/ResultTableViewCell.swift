@@ -9,10 +9,11 @@ import UIKit
 
 class ResultTableViewCell: UITableViewCell {
 
+    static let identifier = "ResultTableViewCell"
+    
     @IBOutlet weak var storeTitle: UILabel!
     @IBOutlet weak var storeAddress: UILabel!
     @IBOutlet weak var distanceToStore: UILabel!
-    static let identifier = "ResultTableViewCell"
     
     override func awakeFromNib() {
         super.awakeFromNib()

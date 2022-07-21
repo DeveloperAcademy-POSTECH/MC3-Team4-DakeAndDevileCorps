@@ -17,9 +17,9 @@ class SearchViewController: UIViewController {
     @IBOutlet weak var nothingView: UIStackView!
     @IBOutlet weak var nothingMessage: UILabel!
     
-    var recentSearchedItemList: [String] = []
-    var resultList: [StoreModel] = []
-    var isShowingResult: Bool = false
+    private var recentSearchedItemList: [String] = []
+    private var resultList: [StoreModel] = []
+    private var isShowingResult: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,13 +30,13 @@ class SearchViewController: UIViewController {
         showResultTitle()
     }
 
-    func initRecentSearchedItem() {
+    private func initRecentSearchedItem() {
         recentSearchedItemList.append(contentsOf: [
             "샴푸", "리필스테이션", "세탁세제", "샴푸", "리필스테이션", "세탁세제", "샴푸", "리필스테이션", "세탁세제", "샴푸", "리필스테이션", "세탁세제",
         ])
     }
     
-    func initResultData() {
+    private func initResultData() {
         resultList.append(contentsOf: [
             StoreModel(storeName: "알맹 상점", storeAddress: "서울 마포구 월드컵로25길 47 3층", distanceToStore: "1.7km"),
             StoreModel(storeName: "더 피커", storeAddress: "서울 마포구 월드컵로25길 47 3층", distanceToStore: "16.2km"),
@@ -45,7 +45,7 @@ class SearchViewController: UIViewController {
         ])
     }
     
-    func showResultTitle() {
+    private func showResultTitle() {
         if isShowingResult {
             tableTitleText.text = "'\(textField.text ?? "")'와 관련 있는 검색 결과"
             deleteAllButton.isHidden = true
