@@ -17,6 +17,11 @@ class SearchViewController: UIViewController {
     @IBOutlet weak var nothingView: UIStackView!
     @IBOutlet weak var nothingMessage: UILabel!
     
+    private let searchBarView: SearchBarView = {
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        return $0
+    }(SearchBarView())
+    
     private var recentSearchedItemList: [String] = []
     private var resultList: [StoreModel] = []
     private var isShowingResult: Bool = false
@@ -79,6 +84,8 @@ class SearchViewController: UIViewController {
         initDelegate()
         initData()
         setTableResult(searchtype: searchType)
+        setSearchBarView()
+        configureLayout()
     }
     
     private func initDelegate() {
@@ -96,6 +103,21 @@ class SearchViewController: UIViewController {
             StoreModel(storeName: "더 피커", storeAddress: "서울 마포구 월드컵로25길 47 3층", distanceToStore: "16.2km"),
             StoreModel(storeName: "알맹 상점", storeAddress: "서울 마포구 월드컵로25길 47 3층", distanceToStore: "1.7km"),
             StoreModel(storeName: "더 피커", storeAddress: "서울 마포구 월드컵로25길 47 3층", distanceToStore: "16.2km"),
+        ])
+    }
+    
+    private func setSearchBarView() {
+        searchBarView.delegate = self
+    }
+
+    private func configureLayout() {
+        let safeArea = view.safeAreaLayoutGuide
+        
+        view.addSubview(searchBarView)
+        NSLayoutConstraint.activate([
+            searchBarView.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: 8),
+            searchBarView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 16),
+            searchBarView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -16)
         ])
     }
     
@@ -153,5 +175,17 @@ extension SearchViewController: UITextFieldDelegate {
         searchTableView.reloadData()
 
         return true
+    }
+}
+
+extension SearchViewController: SearchBarDelegate {
+    @objc func didBeginEditing() {
+        view.endEditing(true)
+        
+//        let nextViewController = UIViewController()
+//        nextViewController.view.backgroundColor = .yellow
+//        nextViewController.modalTransitionStyle = .crossDissolve
+//        nextViewController.modalPresentationStyle = .fullScreen
+//        present(nextViewController, animated: true)
     }
 }
