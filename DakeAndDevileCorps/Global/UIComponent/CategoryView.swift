@@ -38,7 +38,7 @@ final class CategoryView: UIView {
         return collectionView
     }()
     
-    var delegate: CategoryCollectionViewDelegate?
+    weak var delegate: CategoryCollectionViewDelegate?
     private var entryPoint: CategoryEntryPoint
     private let categoryList: [String] = ["주방세제", "세탁세제", "섬유유연제", "기타세제", "헤어", "스킨", "바디", "식품", "생활", "문구", "애견", "기타"]
     
