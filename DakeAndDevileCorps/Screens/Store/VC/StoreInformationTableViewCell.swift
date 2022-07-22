@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol StoreInformationTableViewCellDelegate: UITableView {
+protocol StoreInformationTableViewCellDelegate: StoreDetailViewController {
     func requestReload(cell: StoreInformationTableViewCell)
 }
 

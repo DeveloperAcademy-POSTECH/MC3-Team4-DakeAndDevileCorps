@@ -118,7 +118,7 @@
                                                                         </label>
                                                                     </subviews>
                                                                 </stackView>
-                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GpS-KY-WNF">
+                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GpS-KY-WNF">
                                                                     <rect key="frame" x="73.5" y="101.5" width="17" height="10.5"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="17" id="Jdg-x3-sUB"/>
