@@ -25,6 +25,9 @@
 		7937A02428859BF20016D1A8 /* Search.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7937A02328859BF20016D1A8 /* Search.storyboard */; };
 		7937A02628859BFF0016D1A8 /* StoreDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7937A02528859BFF0016D1A8 /* StoreDetail.storyboard */; };
 		7976990C28859E1100DB53F8 /* ImageLiteral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7976990B28859E1100DB53F8 /* ImageLiteral.swift */; };
+		797CAC542886CFCB0041C3F7 /* RecentSearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797CAC532886CFCB0041C3F7 /* RecentSearchTableViewCell.swift */; };
+		79D7BA682886EBE100F65ECD /* StoreModelTestN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D7BA672886EBE100F65ECD /* StoreModelTestN.swift */; };
+		79E2DCA82886E3C800355E30 /* ResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E2DCA72886E3C800355E30 /* ResultTableViewCell.swift */; };
 		B5F3E7DE2887DB90000C3129 /* Keywords+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F3E7DD2887DB90000C3129 /* Keywords+CoreDataClass.swift */; };
 		B5F3E7E02887DBA2000C3129 /* Keywords+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F3E7DF2887DBA2000C3129 /* Keywords+CoreDataProperties.swift */; };
 		B5F3E7E32887DC49000C3129 /* KeywordManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F3E7E22887DC49000C3129 /* KeywordManager.swift */; };
@@ -62,6 +65,9 @@
 		7937A02328859BF20016D1A8 /* Search.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Search.storyboard; sourceTree = "<group>"; };
 		7937A02528859BFF0016D1A8 /* StoreDetail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = StoreDetail.storyboard; sourceTree = "<group>"; };
 		7976990B28859E1100DB53F8 /* ImageLiteral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLiteral.swift; sourceTree = "<group>"; };
+		797CAC532886CFCB0041C3F7 /* RecentSearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentSearchTableViewCell.swift; sourceTree = "<group>"; };
+		79D7BA672886EBE100F65ECD /* StoreModelTestN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreModelTestN.swift; sourceTree = "<group>"; };
+		79E2DCA72886E3C800355E30 /* ResultTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultTableViewCell.swift; sourceTree = "<group>"; };
 		B5F3E7D428876C94000C3129 /* DakeAndDevileCorpsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DakeAndDevileCorpsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5F3E7D628876C94000C3129 /* DakeAndDevileCorpsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DakeAndDevileCorpsTests.swift; sourceTree = "<group>"; };
 		B5F3E7DD2887DB90000C3129 /* Keywords+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Keywords+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -226,6 +232,9 @@
 			isa = PBXGroup;
 			children = (
 				7937A01D28859B490016D1A8 /* SearchViewController.swift */,
+				797CAC532886CFCB0041C3F7 /* RecentSearchTableViewCell.swift */,
+				79E2DCA72886E3C800355E30 /* ResultTableViewCell.swift */,
+				79D7BA672886EBE100F65ECD /* StoreModelTestN.swift */,
 			);
 			path = VC;
 			sourceTree = "<group>";
@@ -381,6 +390,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				79E2DCA82886E3C800355E30 /* ResultTableViewCell.swift in Sources */,
 				0B6BA51F28884A8500E30B37 /* SearchBarView.swift in Sources */,
 				79379FE8288588EC0016D1A8 /* MainMapViewController.swift in Sources */,
 				79379FE4288588EC0016D1A8 /* AppDelegate.swift in Sources */,
@@ -391,8 +401,10 @@
 				B5F3E7E02887DBA2000C3129 /* Keywords+CoreDataProperties.swift in Sources */,
 				B5F3E7DE2887DB90000C3129 /* Keywords+CoreDataClass.swift in Sources */,
 				79379FE6288588EC0016D1A8 /* SceneDelegate.swift in Sources */,
+				79D7BA682886EBE100F65ECD /* StoreModelTestN.swift in Sources */,
 				7976990C28859E1100DB53F8 /* ImageLiteral.swift in Sources */,
 				7937A02228859B990016D1A8 /* StoreDetailViewController.swift in Sources */,
+				797CAC542886CFCB0041C3F7 /* RecentSearchTableViewCell.swift in Sources */,
 				79379FEE288588EC0016D1A8 /* DakeAndDevileCorps.xcdatamodeld in Sources */,
 				4AB368E52886D95E0075E03A /* StoreInformationTableViewCell.swift in Sources */,
 				79379FEE288588EC0016D1A8 /* Keywords.xcdatamodeld in Sources */,
