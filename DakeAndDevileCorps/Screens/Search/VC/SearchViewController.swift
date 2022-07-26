@@ -133,6 +133,10 @@ extension SearchViewController: UITableViewDataSource {
     }
 }
 
+extension SearchViewController: UITableViewDelegate {
+    
+}
+
 extension SearchViewController: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         searchType = .recentSearch
