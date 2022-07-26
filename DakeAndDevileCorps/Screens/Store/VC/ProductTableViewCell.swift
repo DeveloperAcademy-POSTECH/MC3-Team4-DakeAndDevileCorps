@@ -11,8 +11,8 @@ class ProductTableViewCell: UITableViewCell {
     
     static let identifier = "ProductTableViewCell"
     
-    @IBOutlet weak var productName: UILabel!
-    @IBOutlet weak var seperateLine: UIView!
+    @IBOutlet weak var productNameLabel: UILabel!
+    @IBOutlet weak var seperateLineView: UIView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -23,8 +23,8 @@ class ProductTableViewCell: UITableViewCell {
     }
     
     func setData(productName: String, isSeperated: Bool) {
-        self.productName.text = productName
-        self.productName.font = UIFont.boldSystemFont(ofSize: 17)
-        seperateLine.isHidden = isSeperated
+        self.productNameLabel.text = productName
+        self.productNameLabel.font = UIFont.boldSystemFont(ofSize: 17)
+        seperateLineView.isHidden = isSeperated
     }
 }

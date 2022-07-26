@@ -132,8 +132,11 @@
                                                                     </connections>
                                                                 </button>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7wF-CA-clK">
-                                                                    <rect key="frame" x="94.5" y="81.5" width="240" height="50"/>
+                                                                    <rect key="frame" x="94.5" y="96.5" width="240" height="20.5"/>
                                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="20.5" id="aN8-1F-AD2"/>
+                                                                    </constraints>
                                                                 </view>
                                                             </subviews>
                                                             <constraints>
@@ -308,8 +311,8 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="productName" destination="M1i-Z3-Lta" id="jSV-K0-LPA"/>
-                                            <outlet property="seperateLine" destination="BLa-RD-c9u" id="ASu-e2-FWg"/>
+                                            <outlet property="productNameLabel" destination="M1i-Z3-Lta" id="Tqh-9H-jfG"/>
+                                            <outlet property="seperateLineView" destination="SDQ-Jq-lHp" id="Qd6-g8-ju4"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="ItemTableViewCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ItemTableViewCell" rowHeight="78" id="g6g-xO-54i" customClass="ItemTableViewCell" customModule="DakeAndDevileCorps" customModuleProvider="target">
@@ -347,8 +350,8 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="itemName" destination="LCT-kF-iBJ" id="CGg-qQ-Q9S"/>
-                                            <outlet property="itemPrice" destination="E7n-Rb-i9l" id="nRc-DW-Ved"/>
+                                            <outlet property="itemNameLabel" destination="LCT-kF-iBJ" id="SVm-9m-dgX"/>
+                                            <outlet property="itemPriceLabel" destination="E7n-Rb-i9l" id="Rwv-rX-Wf1"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

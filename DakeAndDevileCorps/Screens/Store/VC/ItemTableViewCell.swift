@@ -11,8 +11,8 @@ class ItemTableViewCell: UITableViewCell {
     
     static let identifier = "ItemTableViewCell"
     
-    @IBOutlet weak var itemName: UILabel!
-    @IBOutlet weak var itemPrice: UILabel!
+    @IBOutlet weak var itemNameLabel: UILabel!
+    @IBOutlet weak var itemPriceLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -23,8 +23,8 @@ class ItemTableViewCell: UITableViewCell {
     }
     
     func setData(itemName: String, itemPrice: String) {
-        self.itemName.text = itemName
-        self.itemPrice.text = itemPrice
-        self.itemPrice.textColor = .secondaryLabel
+        self.itemNameLabel.text = itemName
+        self.itemPriceLabel.text = itemPrice
+        self.itemPriceLabel.textColor = .secondaryLabel
     }
 }
