@@ -38,7 +38,6 @@ class MainMapViewController: UIViewController {
             searchBarView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -16)
         ])
     }
-
 }
 
 extension MainMapViewController: SearchBarDelegate {
