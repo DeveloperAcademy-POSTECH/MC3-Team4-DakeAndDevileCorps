@@ -11,16 +11,17 @@ class StoreDetailViewController: UIViewController {
     
     static let identifier = "StoreDetailViewController"
     
-    enum ProductTableViewCellModel {
-        case product(productName: String, isSeperated: Bool)
+    enum ProductTableViewCellModel: Equatable {
+        case product(productName: String)
         case item(itemName: String, itemPrice: String)
     }
     
     @IBOutlet weak var storeName: UILabel!
     @IBOutlet weak var storeDetailTableView: UITableView!
     
-    private var productList = [ProductTableViewCellModel]()
-    private var operationList = [String]()
+    private var productList: [ProductTableViewCellModel] = []
+    private var operationList: [String] = []
+    private let categoryList: [String] = ["주방세제", "세탁세제", "섬유유연제", "기타세제", "헤어", "스킨", "바디", "식품", "생활", "문구", "애견", "기타"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,37 +49,39 @@ class StoreDetailViewController: UIViewController {
     
     func initStoreInformationData() {
         productList = [
-            .product(productName: "주방세제", isSeperated: true),
+            .product(productName: "주방세제"),
             .item(itemName: "인블리스 세탁세제", itemPrice: "1g = 4원"),
             .item(itemName: "인블리스 세탁세제", itemPrice: "1g = 4원"),
             .item(itemName: "인블리스 세탁세제", itemPrice: "1g = 4원"),
             .item(itemName: "인블리스 세탁세제", itemPrice: "1g = 4원"),
-            .product(productName: "세탁세제", isSeperated: false),
+            .product(productName: "세탁세제"),
             .item(itemName: "인블리스 세탁세제", itemPrice: "1g = 4원"),
-            .product(productName: "섬유유연제", isSeperated: false),
+            .product(productName: "섬유유연제"),
             .item(itemName: "인블리스 세탁세제", itemPrice: "1g = 4원"),
-            .product(productName: "기타세제", isSeperated: false),
+            .product(productName: "기타세제"),
             .item(itemName: "인블리스 세탁세제", itemPrice: "1g = 4원"),
-            .product(productName: "헤어", isSeperated: false),
+            .product(productName: "헤어"),
             .item(itemName: "인블리스 세탁세제", itemPrice: "1g = 4원"),
-            .product(productName: "스킨", isSeperated: false),
+            .product(productName: "스킨"),
             .item(itemName: "인블리스 세탁세제", itemPrice: "1g = 4원"),
-            .product(productName: "바디", isSeperated: false),
+            .product(productName: "바디"),
             .item(itemName: "인블리스 세탁세제", itemPrice: "1g = 4원"),
-            .product(productName: "생활", isSeperated: false),
+            .product(productName: "생활"),
             .item(itemName: "인블리스 세탁세제", itemPrice: "1g = 4원"),
-            .product(productName: "문구", isSeperated: false),
+            .product(productName: "문구"),
             .item(itemName: "인블리스 세탁세제", itemPrice: "1g = 4원"),
-            .product(productName: "애견", isSeperated: false),
+            .product(productName: "애견"),
             .item(itemName: "인블리스 세탁세제", itemPrice: "1g = 4원"),
-            .product(productName: "기타", isSeperated: false),
+            .product(productName: "기타"),
             .item(itemName: "인블리스 세탁세제", itemPrice: "1g = 4원")
         ]
         operationList = ["월 정기 휴일", "화 10:00 ~ 18:00", "수 10:00 ~ 18:00", "목 10:00 ~ 18:00", "금 10:00 ~ 18:00", "토 10:00 ~ 18:00", "일 정기 휴일"]
     }
     
-    func reloadStoreDetailTableView() {
-        storeDetailTableView.reloadData()
+    func scrollToSelectedCategory(indexPath: IndexPath) {
+        guard let rowIndex = productList.firstIndex(of: .product(productName: categoryList[indexPath.row])) else { return }
+        let indexPath = IndexPath(row: rowIndex, section: 1)
+        storeDetailTableView.scrollToRow(at: indexPath, at: .top, animated: true)
     }
 }
 
@@ -128,8 +131,8 @@ extension StoreDetailViewController: UITableViewDataSource {
                   ) as? ItemTableViewCell else { return UITableViewCell() }
             
             switch self.productList[indexPath.row] {
-            case let .product(productName, isSeperated):
-                productCell.setData(productName: productName, isSeperated: isSeperated)
+            case let .product(productName):
+                productCell.setData(productName: productName)
                 return productCell
             case let .item(itemName, itemPrice):
                 itemCell.setData(itemName: itemName, itemPrice: itemPrice)
@@ -146,6 +149,7 @@ extension StoreDetailViewController: UITableViewDelegate {
         switch section {
         case 1:
             let headerView = CategoryView(entryPoint: CategoryEntryPoint.detail)
+            headerView.delegate = self
             headerView.backgroundColor = .white
             return headerView
         default:
@@ -171,6 +175,6 @@ extension StoreDetailViewController: StoreInformationTableViewCellDelegate {
 
 extension StoreDetailViewController: CategoryCollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("\(indexPath)")
+        scrollToSelectedCategory(indexPath: indexPath)
     }
 }
