@@ -125,12 +125,13 @@ class SearchBarView: UIView {
     }
 
     override func draw(_ rect: CGRect) {
+        configure()
         super.draw(rect)
     }
 
     // MARK: - configure
     private func configure() {
-        containerView.layer.cornerRadius = 10
+        containerView.layer.cornerRadius = 24
         containerView.layer.borderWidth = 0.5
         containerView.layer.borderColor = UIColor.lightGray.cgColor
         
@@ -162,35 +163,35 @@ class SearchBarView: UIView {
         // TODO: symbolImageView, leftButton의 오토레이아웃 다시 맞추기
         containerView.addSubview(symbolImageView)
         NSLayoutConstraint.activate([
-            symbolImageView.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 7),
-            symbolImageView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -7),
+            symbolImageView.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 13),
+            symbolImageView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -13),
             
             symbolImageView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 16),
-            symbolImageView.trailingAnchor.constraint(equalTo: textField.leadingAnchor, constant: -8),
+            symbolImageView.trailingAnchor.constraint(equalTo: textField.leadingAnchor, constant: -11),
             
-            symbolImageView.widthAnchor.constraint(equalToConstant: 16)
-            
+            symbolImageView.widthAnchor.constraint(equalToConstant: 13)
         ])
         
         containerView.addSubview(leftButton)
         NSLayoutConstraint.activate([
-            leftButton.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 7),
-            leftButton.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -7),
+            leftButton.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 13),
+            leftButton.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -13),
             
             leftButton.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 16),
             symbolImageView.trailingAnchor.constraint(equalTo: textField.leadingAnchor, constant: -11)
         ])
         
         containerView.addSubview(myPageButton)
-        let myPageButtonTrailingConstraintContainerView = myPageButton.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -8)
+        let myPageButtonTrailingConstraintContainerView = myPageButton.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -16)
         myPageButtonTrailingConstraintContainerView.priority = .defaultHigh
 
         NSLayoutConstraint.activate([
-            myPageButton.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 7),
-            myPageButton.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -7),
+            myPageButton.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 12),
+            myPageButton.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -12),
             
             myPageButton.leadingAnchor.constraint(equalTo: textField.trailingAnchor, constant: 8),
-            myPageButtonTrailingConstraintContainerView
+            myPageButtonTrailingConstraintContainerView,
+            myPageButton.widthAnchor.constraint(equalTo: myPageButton.heightAnchor)
         ])
 
     }
