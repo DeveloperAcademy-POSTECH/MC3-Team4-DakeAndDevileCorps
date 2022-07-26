@@ -31,6 +31,7 @@ class StoreDetailViewController: UIViewController {
     
     func configStoreDetailTableView() {
         storeDetailTableView.dataSource = self
+        storeDetailTableView.delegate = self
         storeDetailTableView.separatorStyle = UITableViewCell.SeparatorStyle.none
         storeDetailTableView.rowHeight = UITableView.automaticDimension
         storeName.text = "알맹상점"
@@ -87,24 +88,6 @@ extension StoreDetailViewController: UITableViewDataSource {
         return 2
     }
     
-    internal func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        switch section {
-        case 1:
-            return nil
-        default:
-            return nil
-        }
-    }
-    
-    internal func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        switch section {
-        case 1:
-            return 0
-        default:
-            return 0
-        }
-    }
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0:
@@ -158,8 +141,34 @@ extension StoreDetailViewController: UITableViewDataSource {
     }
 }
 
+extension StoreDetailViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        switch section {
+        case 1:
+            return CategoryView(entryPoint: CategoryEntryPoint.detail)
+        default:
+            return nil
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        switch section {
+        case 1:
+            return 50
+        default:
+            return 0
+        }
+    }
+}
+
 extension StoreDetailViewController: StoreInformationTableViewCellDelegate {
     func requestReload(cell: StoreInformationTableViewCell) {
         storeDetailTableView.reloadData()
+    }
+}
+
+extension StoreDetailViewController: CategoryCollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        <#code#>
     }
 }
