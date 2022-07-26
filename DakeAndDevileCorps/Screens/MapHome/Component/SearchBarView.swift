@@ -35,12 +35,12 @@ class SearchBarView: UIView {
     }
     
     enum RightItemMode {
-        case myPageButtom
+        case myPageButton
         case none
         
         var myPageButtonHidden: Bool {
             switch self {
-            case .myPageButtom: return false
+            case .myPageButton: return false
             case .none: return true
             }
         }
@@ -63,7 +63,7 @@ class SearchBarView: UIView {
             leftButton.setImage(leftItemImage, for: .normal)
         }
     }
-    var rightItemMode: RightItemMode = .none {
+    var rightItemMode: RightItemMode = .myPageButton {
         didSet {
             setRightItem()
         }
@@ -151,7 +151,7 @@ class SearchBarView: UIView {
         
         
         containerView.addSubview(textField)
-        let textFieldTrailingConstraintContainerView =  textField.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -8)
+        let textFieldTrailingConstraintContainerView = textField.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -8)
         textFieldTrailingConstraintContainerView.priority = .defaultLow
         NSLayoutConstraint.activate([
             textField.topAnchor.constraint(equalTo: containerView.topAnchor),
