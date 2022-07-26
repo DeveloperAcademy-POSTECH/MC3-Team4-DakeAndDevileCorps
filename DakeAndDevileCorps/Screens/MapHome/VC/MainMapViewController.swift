@@ -15,17 +15,28 @@ class MainMapViewController: UIViewController {
         return $0
     }(SearchBarView())
     
+    private let categoryView: CategoryView = {
+        let categoryView = CategoryView(entryPoint: .map)
+        categoryView.translatesAutoresizingMaskIntoConstraints = false
+        return categoryView
+    }()
+    
     @IBOutlet weak var mapView: MKMapView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setSearchBarView()
+        setCategoryView()
         configureLayout()
     }
     
     private func setSearchBarView() {
         searchBarView.delegate = self
+    }
+    
+    private func setCategoryView() {
+        categoryView.delegate = self
     }
 
     private func configureLayout() {
@@ -36,6 +47,14 @@ class MainMapViewController: UIViewController {
             searchBarView.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: 8),
             searchBarView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 16),
             searchBarView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -16)
+        ])
+        
+        view.addSubview(categoryView)
+        NSLayoutConstraint.activate([
+            categoryView.topAnchor.constraint(equalTo: searchBarView.bottomAnchor),
+            categoryView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
+            categoryView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor),
+            categoryView.heightAnchor.constraint(equalToConstant: 50)
         ])
     }
 }
@@ -50,4 +69,11 @@ extension MainMapViewController: SearchBarDelegate {
         nextViewController.modalPresentationStyle = .fullScreen
         present(nextViewController, animated: true)
     }
+}
+
+extension MainMapViewController: CategoryCollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        //
+    }
+    
 }
