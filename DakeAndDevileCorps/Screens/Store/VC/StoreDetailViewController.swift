@@ -145,7 +145,9 @@ extension StoreDetailViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         switch section {
         case 1:
-            return CategoryView(entryPoint: CategoryEntryPoint.detail)
+            let headerView = CategoryView(entryPoint: CategoryEntryPoint.detail)
+            headerView.backgroundColor = .white
+            return headerView
         default:
             return nil
         }
@@ -154,7 +156,7 @@ extension StoreDetailViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         switch section {
         case 1:
-            return 50
+            return 60
         default:
             return 0
         }
@@ -169,6 +171,6 @@ extension StoreDetailViewController: StoreInformationTableViewCellDelegate {
 
 extension StoreDetailViewController: CategoryCollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        <#code#>
+        print("\(indexPath)")
     }
 }
