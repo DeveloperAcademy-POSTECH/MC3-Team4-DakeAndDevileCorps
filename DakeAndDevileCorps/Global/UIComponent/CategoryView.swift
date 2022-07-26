@@ -63,6 +63,7 @@ final class CategoryView: UIView {
     }
     
     private func configCollectionView() {
+        categoryCollectionView.delegate = self
         categoryCollectionView.dataSource = self
         categoryCollectionView.register(CategoryCollectionViewCell.self, forCellWithReuseIdentifier: CategoryCollectionViewCell.className)
     }
