@@ -54,7 +54,7 @@ class SearchViewController: UIViewController {
     private func setResultTitle(searchType: SearchType) {
         tableTitleText.text = searchType.title
         switch searchType {
-        case .result(textField.text):
+        case .result(_):
             deleteAllButton.isHidden = true
         default:
             deleteAllButton.isHidden = false
@@ -100,7 +100,7 @@ class SearchViewController: UIViewController {
     }
     
     @IBAction func touchUpToDeleteAllSearchedData(_ sender: Any) {
-        
+        print("delete all!!")
     }
     
 }
@@ -131,10 +131,6 @@ extension SearchViewController: UITableViewDataSource {
         textField.text = recentSearchedItemList[indexPath.row]
         textFieldShouldReturn(textField)
     }
-}
-
-extension SearchViewController: UITableViewDelegate {
-    
 }
 
 extension SearchViewController: UITextFieldDelegate {
