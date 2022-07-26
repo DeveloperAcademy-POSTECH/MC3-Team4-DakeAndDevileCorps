@@ -26,7 +26,6 @@ final class ReviewPhotoViewController: BaseViewController {
         let label = UILabel()
         label.font = .preferredFont(forTextStyle: .headline, compatibleWith: .init(legibilityWeight: .bold))
         label.textColor = .white
-        label.text = "1/3"
         return label
     }()
     private let photoCollectionView: UICollectionView = {
@@ -49,6 +48,7 @@ final class ReviewPhotoViewController: BaseViewController {
     override func configUI() {
         view.backgroundColor = .black
         setupCollectionView()
+        applyScrollIndexLabel()
     }
     
     override func render() {
@@ -74,8 +74,13 @@ final class ReviewPhotoViewController: BaseViewController {
     
     private func setupCollectionView() {
         photoCollectionView.dataSource = self
+        photoCollectionView.delegate = self
         photoCollectionView.register(ReviewPhotoCollectionViewCell.self,
                                      forCellWithReuseIdentifier: ReviewPhotoCollectionViewCell.className)
+    }
+    
+    private func applyScrollIndexLabel(with index: Int = 1) {
+        scrollIndexLabel.text = "\(index)/\(dummyPhotos.count)"
     }
 }
 
@@ -90,5 +95,13 @@ extension ReviewPhotoViewController: UICollectionViewDataSource {
             cell.setupPhotoImageView(to: photo)
         }
         return cell
+    }
+}
+
+extension ReviewPhotoViewController: UICollectionViewDelegate {
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        let currentIndex = Int(targetContentOffset.pointee.x / photoCollectionView.frame.width)
+        let currentPage = currentIndex + 1
+        applyScrollIndexLabel(with: currentPage)
     }
 }
