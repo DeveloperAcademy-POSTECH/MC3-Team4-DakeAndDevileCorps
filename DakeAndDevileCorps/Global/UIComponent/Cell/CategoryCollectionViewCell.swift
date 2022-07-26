@@ -12,8 +12,8 @@ final class CategoryCollectionViewCell: UICollectionViewCell {
     // MARK: - properties
     
     override var isSelected: Bool {
-        didSet {
-            applySelectedState(oldValue)
+        willSet {
+            applySelectedState(newValue)
         }
     }
     
@@ -71,9 +71,9 @@ final class CategoryCollectionViewCell: UICollectionViewCell {
     }
     
     private func applySelectedState(_ isSelected: Bool) {
-        backgroundContentView.backgroundColor = !isSelected ? .black : .white
-        itemLabel.textColor = !isSelected ? .white : .black
-        itemLabel.font = !isSelected ? .preferredFont(forTextStyle: .subheadline, compatibleWith: .init(legibilityWeight: .bold))
+        backgroundContentView.backgroundColor = isSelected ? .black : .white
+        itemLabel.textColor = isSelected ? .white : .black
+        itemLabel.font = isSelected ? .preferredFont(forTextStyle: .subheadline, compatibleWith: .init(legibilityWeight: .bold))
                                     : .preferredFont(forTextStyle: .subheadline)
     }
     
