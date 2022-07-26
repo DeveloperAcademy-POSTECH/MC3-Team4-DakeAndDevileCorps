@@ -42,6 +42,20 @@ final class ReviewPhotoViewController: BaseViewController {
         collectionView.isPagingEnabled = true
         return collectionView
     }()
+    var dummyPhotos: [UIImage?]
+    
+    // MARK: - init
+    
+    init(photos: [UIImage?]) {
+        dummyPhotos = [UIImage(systemName: "moon.fill"),
+                       UIImage(systemName: "sun.min"),
+                       UIImage(systemName: "sun.max")]
+        super.init()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func configUI() {
         view.backgroundColor = .black
@@ -78,7 +92,7 @@ final class ReviewPhotoViewController: BaseViewController {
 
 extension ReviewPhotoViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 3
+        return dummyPhotos.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
