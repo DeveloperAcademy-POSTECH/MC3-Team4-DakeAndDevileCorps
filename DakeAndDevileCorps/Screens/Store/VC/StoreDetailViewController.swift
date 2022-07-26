@@ -31,7 +31,6 @@ class StoreDetailViewController: UIViewController {
     
     func configStoreDetailTableView() {
         storeDetailTableView.dataSource = self
-        storeDetailTableView.delegate = self
         storeDetailTableView.separatorStyle = UITableViewCell.SeparatorStyle.none
         storeDetailTableView.rowHeight = UITableView.automaticDimension
         storeName.text = "알맹상점"
@@ -159,19 +158,8 @@ extension StoreDetailViewController: UITableViewDataSource {
     }
 }
 
-extension StoreDetailViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableView.automaticDimension
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableView.automaticDimension
-    }
-}
-
 extension StoreDetailViewController: StoreInformationTableViewCellDelegate {
     func requestReload(cell: StoreInformationTableViewCell) {
         storeDetailTableView.reloadData()
-        print("리로드")
     }
 }
