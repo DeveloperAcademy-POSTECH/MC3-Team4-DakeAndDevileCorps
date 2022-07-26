@@ -33,6 +33,7 @@ final class ReviewPhotoViewController: BaseViewController {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         layout.sectionInset = UIEdgeInsets.zero
+        layout.minimumLineSpacing = 0
         layout.itemSize = CGSize(width: Size.cellWidth, height: Size.cellHeight)
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
@@ -42,10 +43,9 @@ final class ReviewPhotoViewController: BaseViewController {
         return collectionView
     }()
     
-    // MARK: - func
-    
     override func configUI() {
         view.backgroundColor = .black
+        setupCollectionView()
     }
     
     override func render() {
@@ -58,5 +58,31 @@ final class ReviewPhotoViewController: BaseViewController {
         scrollIndexLabel.constraint(top: view.safeAreaLayoutGuide.topAnchor,
                                     centerX: view.centerXAnchor,
                                     padding: UIEdgeInsets(top: 16, left: 0, bottom: 0, right: 0))
+        
+        view.addSubview(photoCollectionView)
+        photoCollectionView.constraint(leading: view.leadingAnchor,
+                                       trailing: view.trailingAnchor,
+                                       centerX: view.centerXAnchor,
+                                       centerY: view.centerYAnchor)
+        photoCollectionView.constraint(photoCollectionView.heightAnchor, constant: Size.cellWidth)
+    }
+    
+    // MARK: - func
+    
+    private func setupCollectionView() {
+        photoCollectionView.dataSource = self
+        photoCollectionView.register(ReviewPhotoCollectionViewCell.self,
+                                     forCellWithReuseIdentifier: ReviewPhotoCollectionViewCell.className)
+    }
+}
+
+extension ReviewPhotoViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 3
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ReviewPhotoCollectionViewCell.className, for: indexPath) as? ReviewPhotoCollectionViewCell else { return UICollectionViewCell() }
+        return cell
     }
 }
