@@ -114,9 +114,8 @@ class SearchBarView: UIView {
             containerView.topAnchor.constraint(equalTo: topAnchor),
             containerView.bottomAnchor.constraint(equalTo: bottomAnchor),
             containerView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            containerView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            containerView.trailingAnchor.constraint(equalTo: trailingAnchor)
         ])
-        
         
         containerView.addSubview(textField)
         NSLayoutConstraint.activate([
@@ -126,7 +125,6 @@ class SearchBarView: UIView {
             textField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8)
         ])
         
-        // TODO: symbolImageView, leftButton의 오토레이아웃 다시 맞추기
         containerView.addSubview(symbolImageView)
         NSLayoutConstraint.activate([
             symbolImageView.topAnchor.constraint(equalTo: topAnchor, constant: 7),
