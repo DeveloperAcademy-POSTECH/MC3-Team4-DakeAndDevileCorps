@@ -20,6 +20,7 @@ class StoreDetailViewController: UIViewController {
     @IBOutlet weak var storeDetailTableView: UITableView!
     
     private var productList = [ProductTableViewCellModel]()
+    private var operationList = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -73,6 +74,7 @@ class StoreDetailViewController: UIViewController {
             .product(productName: "기타", isSeperated: false),
             .item(itemName: "인블리스 세탁세제", itemPrice: "1g = 4원")
         ]
+        operationList = ["월 정기 휴일", "화 10:00 ~ 18:00", "수 10:00 ~ 18:00", "목 10:00 ~ 18:00", "금 10:00 ~ 18:00", "토 10:00 ~ 18:00", "일 정기 휴일"]
     }
     
     func reloadStoreDetailTableView() {
@@ -89,7 +91,7 @@ extension StoreDetailViewController: UITableViewDataSource {
     internal func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         switch section {
         case 1:
-            return nil //collectionView
+            return nil
         default:
             return nil
         }
@@ -98,7 +100,7 @@ extension StoreDetailViewController: UITableViewDataSource {
     internal func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         switch section {
         case 1:
-            return 0 //collectionView
+            return 0
         default:
             return 0
         }
@@ -117,7 +119,6 @@ extension StoreDetailViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        
         switch indexPath.section {
         case 0:
             guard let storeInformationCell = tableView.dequeueReusableCell(
@@ -133,13 +134,8 @@ extension StoreDetailViewController: UITableViewDataSource {
             storeInformationCell.setBottomData(address: "서울 마포구 월드컵로25길 47 3층",
                                                phoneNumber: "010-2229-1027",
                                                operationTime: "10:00 - 18:00")
-            storeInformationCell.setOperationTime(monday: "월 정기 휴일",
-                                                  tuesday: "화 10:00 ~ 18:00",
-                                                  wednesday: "수 10:00 ~ 18:00",
-                                                  thursday: "목 10:00 ~ 18:00",
-                                                  friday: "금 10:00 ~ 18:00",
-                                                  saturday: "토 10:00 ~ 18:00",
-                                                  sunday: "일 정기 휴일")
+            storeInformationCell.setOperationTime(operationList: operationList)
+            
             return storeInformationCell
         case 1:
             guard let productCell = tableView.dequeueReusableCell(

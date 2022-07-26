@@ -8,7 +8,7 @@
 import UIKit
 
 class SearchViewController: UIViewController {
-
+    
     @IBOutlet weak var searchTableView: UITableView!
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var deleteAllButton: UIButton!
@@ -27,10 +27,10 @@ class SearchViewController: UIViewController {
         
         var title: String {
             switch self {
-                case .recentSearch:
-                    return "최근 검색"
-                case .result(let titleString):
-                    return "'\(titleString)'와 관련 있는 검색 결과"
+            case .recentSearch:
+                return "최근 검색"
+            case .result(let titleString):
+                return "'\(titleString)'와 관련 있는 검색 결과"
             }
         }
         
@@ -54,22 +54,22 @@ class SearchViewController: UIViewController {
     private func setResultTitle(searchType: SearchType) {
         tableTitleText.text = searchType.title
         switch searchType {
-        case .result(_):
+        case .result:
             deleteAllButton.isHidden = true
         default:
             deleteAllButton.isHidden = false
         }
     }
-
+    
     private func setNothingView(searchType: SearchType) {
         var hasResult: Bool
         switch searchType {
         case .recentSearch:
             hasResult = !recentSearchedItemList.isEmpty
-        case .result(_):
+        case .result:
             hasResult = !resultList.isEmpty
         }
-    
+        
         nothingView.isHidden = hasResult
         nothingMessage.text = searchType.message
     }
@@ -85,16 +85,16 @@ class SearchViewController: UIViewController {
         searchTableView.dataSource = self
         textField.delegate = self
     }
-
+    
     private func initData() {
         recentSearchedItemList.append(contentsOf: [
-            "샴푸", "리필스테이션", "세탁세제", "샴푸", "리필스테이션", "세탁세제", "샴푸", "리필스테이션", "세탁세제", "샴푸", "리필스테이션", "세탁세제",
+            "샴푸", "리필스테이션", "세탁세제", "샴푸", "리필스테이션", "세탁세제", "샴푸", "리필스테이션", "세탁세제", "샴푸", "리필스테이션", "세탁세제"
         ])
         resultList.append(contentsOf: [
             StoreModel(storeName: "알맹 상점", storeAddress: "서울 마포구 월드컵로25길 47 3층", distanceToStore: "1.7km"),
             StoreModel(storeName: "더 피커", storeAddress: "서울 마포구 월드컵로25길 47 3층", distanceToStore: "16.2km"),
             StoreModel(storeName: "알맹 상점", storeAddress: "서울 마포구 월드컵로25길 47 3층", distanceToStore: "1.7km"),
-            StoreModel(storeName: "더 피커", storeAddress: "서울 마포구 월드컵로25길 47 3층", distanceToStore: "16.2km"),
+            StoreModel(storeName: "더 피커", storeAddress: "서울 마포구 월드컵로25길 47 3층", distanceToStore: "16.2km")
         ])
     }
     
@@ -116,11 +116,11 @@ extension SearchViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if isShowingResult {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier:  "ResultTableViewCell", for: indexPath) as? ResultTableViewCell else { return UITableViewCell()}
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "ResultTableViewCell", for: indexPath) as? ResultTableViewCell else { return UITableViewCell()}
             cell.setupCell(title: resultList[indexPath.row].storeName, address: resultList[indexPath.row].storeAddress, distance: resultList[indexPath.row].distanceToStore)
             return cell
         } else {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier:  "RecentSearchTableViewCell", for: indexPath) as? RecentSearchTableViewCell else { return UITableViewCell()}
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "RecentSearchTableViewCell", for: indexPath) as? RecentSearchTableViewCell else { return UITableViewCell()}
             cell.setupCell(title: recentSearchedItemList[indexPath.row])
             return cell
         }
@@ -141,7 +141,7 @@ extension SearchViewController: UITextFieldDelegate {
         textField.endEditing(true)
         setTableResult(searchtype: searchType)
         searchTableView.reloadData()
-
+        
         return true
     }
 }
