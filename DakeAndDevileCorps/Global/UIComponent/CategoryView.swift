@@ -14,6 +14,7 @@ protocol CategoryCollectionViewDelegate: AnyObject {
 enum CategoryEntryPoint {
     case map
     case detail
+    case write
 }
 
 final class CategoryView: UIView {

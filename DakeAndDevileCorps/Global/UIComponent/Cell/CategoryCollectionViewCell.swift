@@ -90,7 +90,7 @@ final class CategoryCollectionViewCell: UICollectionViewCell {
                        opacity: 0.3,
                        offset: CGSize(width: 0, height: 2),
                        radius: 2)
-        case .detail:
+        default:
             backgroundContentView.layer.borderWidth = 0.5
             backgroundContentView.layer.borderColor = UIColor.lightGray.cgColor
         }
