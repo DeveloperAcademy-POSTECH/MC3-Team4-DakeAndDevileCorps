@@ -26,8 +26,18 @@ final class WriteReviewViewController: BaseViewController {
         button.titleLabel?.font = .preferredFont(forTextStyle: .headline)
         return button
     }()
+    private let reviewInputView = ReviewInputView()
     
     var storeName: String = "알맹상점"
+    
+    override func render() {
+        view.addSubview(reviewInputView)
+        reviewInputView.constraint(top: view.safeAreaLayoutGuide.topAnchor,
+                                   leading: view.leadingAnchor,
+                                   bottom: view.bottomAnchor,
+                                   trailing: view.trailingAnchor,
+                                   padding: .zero)
+    }
 
     override func configUI() {
         setupNavigationBar()
