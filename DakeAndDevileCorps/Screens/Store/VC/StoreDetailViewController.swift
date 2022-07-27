@@ -9,11 +9,6 @@ import UIKit
 
 class StoreDetailViewController: UIViewController {
     
-    enum ProductTableViewCellModel {
-        case product(productName: String, isSeperated: Bool)
-        case item(itemName: String, itemPrice: String)
-    }
-    
     @IBOutlet weak var storeName: UILabel!
     @IBOutlet weak var storeDetailTableView: UITableView!
     

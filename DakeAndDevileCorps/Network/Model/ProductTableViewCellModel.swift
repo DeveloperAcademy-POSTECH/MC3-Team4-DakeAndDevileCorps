@@ -6,3 +6,8 @@
 //
 
 import Foundation
+
+enum ProductTableViewCellModel {
+    case product(productName: String, isSeperated: Bool)
+    case item(itemName: String, itemPrice: String)
+}
