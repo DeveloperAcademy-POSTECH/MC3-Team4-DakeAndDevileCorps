@@ -54,7 +54,7 @@ class MainMapViewController: UIViewController {
             categoryView.topAnchor.constraint(equalTo: searchBarView.bottomAnchor),
             categoryView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
             categoryView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor),
-            categoryView.heightAnchor.constraint(equalToConstant: 50)
+            categoryView.heightAnchor.constraint(equalToConstant: 60)
         ])
     }
 }
