@@ -12,7 +12,7 @@ class MainMapViewController: UIViewController {
 
     private let searchBarView: SearchBarView = {
         $0.translatesAutoresizingMaskIntoConstraints = false
-        $0.entryPoint = .Map
+        $0.entryPoint = .map
         return $0
     }(SearchBarView())
     

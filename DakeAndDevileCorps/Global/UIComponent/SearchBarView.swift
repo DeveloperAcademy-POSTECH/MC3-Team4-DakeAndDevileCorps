@@ -16,27 +16,27 @@ import UIKit
 class SearchBarView: UIView {
     
     enum EntryPoint {
-        case Map
-        case Search
+        case map
+        case search
         
         var symbolImageHidden: Bool {
             switch self {
-            case .Map: return false
-            case .Search: return true
+            case .map: return false
+            case .search: return true
             }
         }
         
         var backButtonHidden: Bool {
             switch self {
-            case .Map: return true
-            case .Search: return false
+            case .map: return true
+            case .search: return false
             }
         }
         
         var myPageButtonIsHidden: Bool {
             switch self {
-            case .Map: return false
-            case .Search: return true
+            case .map: return false
+            case .search: return true
             }
         }
     }
@@ -47,7 +47,7 @@ class SearchBarView: UIView {
     }
     
     weak var delegate: SearchBarDelegate?
-    var entryPoint: EntryPoint = .Map {
+    var entryPoint: EntryPoint = .map {
         didSet {
             configure()
             setComponentsIsHidden()
@@ -121,13 +121,13 @@ class SearchBarView: UIView {
         
         containerView.backgroundColor = .white
         switch entryPoint {
-        case .Map:
+        case .map:
             containerView.layer.borderWidth = 0
             containerView.layer.shadowColor = UIColor.black.cgColor
             containerView.layer.shadowOpacity = 0.1
             containerView.layer.shadowOffset = CGSize(width: 0, height: 2)
             containerView.layer.shadowRadius = 20
-        case .Search:
+        case .search:
             containerView.layer.borderWidth = 0.5
             containerView.layer.shadowColor = nil
         }
