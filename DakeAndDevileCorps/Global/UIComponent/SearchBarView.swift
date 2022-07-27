@@ -15,77 +15,61 @@ import UIKit
 
 class SearchBarView: UIView {
     
-    enum LeftItemMode {
-        case imageMode
-        case buttonMode
+    enum EntryPoint {
+        case Map
+        case Search
         
-        var imageHidden: Bool {
+        var symbolImageHidden: Bool {
             switch self {
-            case .imageMode: return false
-            case .buttonMode: return true
+            case .Map: return false
+            case .Search: return true
             }
         }
         
-        var buttonHidden: Bool {
+        var backButtonHidden: Bool {
             switch self {
-            case .imageMode: return true
-            case .buttonMode: return false
+            case .Map: return true
+            case .Search: return false
             }
         }
         
-        var image : UIImage {
+        var myPageButtonIsHidden: Bool {
             switch self {
-            case .imageMode: return UIImage(systemName: "magnifyingglass") ?? UIImage()
-            case .buttonMode: return UIImage(systemName: "chevron.backward") ?? UIImage()
-            }
-        }
-    }
-    
-    enum RightItemMode {
-        case myPageButton
-        case none
-        
-        var myPageButtonHidden: Bool {
-            switch self {
-            case .myPageButton: return false
-            case .none: return true
+            case .Map: return false
+            case .Search: return true
             }
         }
     }
-    
+
     var text: String {
         get { return textField.text ?? "" }
         set(value) { textField.text = value }
     }
     
     weak var delegate: SearchBarDelegate?
-    var leftItemMode: LeftItemMode = .imageMode {
+    var entryPoint: EntryPoint = .Map {
         didSet {
             setLeftItemIsHidden()
-        }
-    }
-    var rightItemMode: RightItemMode = .myPageButton {
-        didSet {
             setRightItem()
         }
     }
-    
+
     private lazy var symbolImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.image = leftItemMode.image
+        imageView.image = UIImage(systemName: "magnifyingglass")
         imageView.contentMode = .scaleAspectFit
-        imageView.isHidden = leftItemMode.imageHidden
+        imageView.isHidden = entryPoint.symbolImageHidden
         imageView.tintColor = .black
         return imageView
     }()
     
-    private lazy var leftButton: UIButton = {
+    private lazy var backButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setBackgroundImage(leftItemMode.image, for: .normal)
+        button.setBackgroundImage(UIImage(systemName: "chevron.backward"), for: .normal)
         button.sizeToFit()
-        button.isHidden = leftItemMode.buttonHidden
+        button.isHidden = entryPoint.backButtonHidden
         button.tintColor = .black
         return button
     }()
@@ -95,7 +79,7 @@ class SearchBarView: UIView {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setBackgroundImage(UIImage(systemName: "person.crop.circle"), for: .normal)
         button.sizeToFit()
-        button.isHidden = rightItemMode.myPageButtonHidden
+        button.isHidden = entryPoint.myPageButtonIsHidden
         button.tintColor = .systemGray4
         return button
     }()
@@ -145,7 +129,7 @@ class SearchBarView: UIView {
         
         addSubview(containerView)
         containerView.addSubview(symbolImageView)
-        containerView.addSubview(leftButton)
+        containerView.addSubview(backButton)
         containerView.addSubview(myPageButton)
         containerView.addSubview(textField)
         
@@ -164,7 +148,7 @@ class SearchBarView: UIView {
             return constraint
         }()
         let textFieldLeadingToLeftButton: NSLayoutConstraint = {
-            let constraint = textField.leadingAnchor.constraint(equalTo: leftButton.trailingAnchor, constant: 11)
+            let constraint = textField.leadingAnchor.constraint(equalTo: backButton.trailingAnchor, constant: 11)
             constraint.priority = .defaultLow
             return constraint
         }()
@@ -198,11 +182,11 @@ class SearchBarView: UIView {
         
         // MARK: leftButton layout
         NSLayoutConstraint.activate([
-            leftButton.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 13),
-            leftButton.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -13),
-            leftButton.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 16),
+            backButton.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 13),
+            backButton.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -13),
+            backButton.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 16),
             
-            leftButton.widthAnchor.constraint(equalToConstant: 13)
+            backButton.widthAnchor.constraint(equalToConstant: 13)
         ])
         
         // MARK: myPageButton
@@ -218,12 +202,12 @@ class SearchBarView: UIView {
     
     // MARK: - set components
     private func setLeftItemIsHidden() {
-        leftButton.isHidden = leftItemMode.buttonHidden
-        symbolImageView.isHidden = leftItemMode.imageHidden
+        backButton.isHidden = entryPoint.backButtonHidden
+        symbolImageView.isHidden = entryPoint.symbolImageHidden
     }
 
     private func setRightItem() {
-        myPageButton.isHidden = rightItemMode.myPageButtonHidden
+        myPageButton.isHidden = entryPoint.myPageButtonIsHidden
     }
     
     // MARK: - set TextField
@@ -233,7 +217,7 @@ class SearchBarView: UIView {
     
     // MARK: - leftButton setting
     private func setLeftButton() {
-        leftButton.addTarget(self, action: #selector(touchUpInsideLeftButton), for: .touchUpInside)
+        backButton.addTarget(self, action: #selector(touchUpInsideLeftButton), for: .touchUpInside)
     }
     
     @objc
