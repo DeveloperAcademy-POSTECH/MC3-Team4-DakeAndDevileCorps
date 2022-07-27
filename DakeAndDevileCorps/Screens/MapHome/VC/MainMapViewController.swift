@@ -45,10 +45,7 @@ extension MainMapViewController: SearchBarDelegate {
     @objc func didBeginEditing() {
         view.endEditing(true)
         
-        let nextViewController = UIViewController()
-        nextViewController.view.backgroundColor = .yellow
-        nextViewController.modalTransitionStyle = .crossDissolve
-        nextViewController.modalPresentationStyle = .fullScreen
+        let nextViewController = UIStoryboard(name: "Search", bundle: nil).instantiateViewController(withIdentifier: SearchViewController.className)
         present(nextViewController, animated: true)
     }
 }
