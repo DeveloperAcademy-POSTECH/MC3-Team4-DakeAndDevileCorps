@@ -146,9 +146,8 @@ class SearchBarView: UIView {
             containerView.topAnchor.constraint(equalTo: topAnchor),
             containerView.bottomAnchor.constraint(equalTo: bottomAnchor),
             containerView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            containerView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            containerView.trailingAnchor.constraint(equalTo: trailingAnchor)
         ])
-        
         
         containerView.addSubview(textField)
         let textFieldTrailingConstraintContainerView = textField.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -8)
@@ -159,7 +158,6 @@ class SearchBarView: UIView {
             textFieldTrailingConstraintContainerView
         ])
         
-        // TODO: symbolImageView, leftButton의 오토레이아웃 다시 맞추기
         containerView.addSubview(symbolImageView)
         NSLayoutConstraint.activate([
             symbolImageView.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 7),
@@ -182,15 +180,15 @@ class SearchBarView: UIView {
         ])
         
         containerView.addSubview(myPageButton)
-        let myPageButtonTrailingConstraintContainerView = myPageButton.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -8)
-        myPageButtonTrailingConstraintContainerView.priority = .defaultHigh
+        let myPageButtonTrailingConstraint = myPageButton.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -8)
+        myPageButtonTrailingConstraint.priority = .defaultHigh
 
         NSLayoutConstraint.activate([
             myPageButton.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 7),
             myPageButton.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -7),
             
             myPageButton.leadingAnchor.constraint(equalTo: textField.trailingAnchor, constant: 8),
-            myPageButtonTrailingConstraintContainerView
+            myPageButtonTrailingConstraint
         ])
 
     }
