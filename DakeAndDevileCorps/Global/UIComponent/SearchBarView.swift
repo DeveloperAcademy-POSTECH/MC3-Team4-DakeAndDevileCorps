@@ -32,6 +32,13 @@ class SearchBarView: UIView {
             case .buttonMode: return false
             }
         }
+        
+        var image : UIImage {
+            switch self {
+            case .imageMode: return UIImage(systemName: "magnifyingglass") ?? UIImage()
+            case .buttonMode: return UIImage(systemName: "chevron.backward") ?? UIImage()
+            }
+        }
     }
     
     enum RightItemMode {
@@ -57,12 +64,6 @@ class SearchBarView: UIView {
             setLeftItemIsHidden()
         }
     }
-    var leftItemImage: UIImage = UIImage(systemName: "magnifyingglass") ?? UIImage() {
-        didSet {
-            symbolImageView.image = leftItemImage
-            leftButton.setImage(leftItemImage, for: .normal)
-        }
-    }
     var rightItemMode: RightItemMode = .myPageButton {
         didSet {
             setRightItem()
@@ -72,7 +73,7 @@ class SearchBarView: UIView {
     private lazy var symbolImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.image = leftItemImage
+        imageView.image = leftItemMode.image
         imageView.contentMode = .scaleAspectFit
         imageView.isHidden = leftItemMode.imageHidden
         imageView.tintColor = .black
@@ -82,7 +83,7 @@ class SearchBarView: UIView {
     private lazy var leftButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setBackgroundImage(leftItemImage, for: .normal)
+        button.setBackgroundImage(leftItemMode.image, for: .normal)
         button.sizeToFit()
         button.isHidden = leftItemMode.buttonHidden
         button.tintColor = .black
@@ -143,6 +144,12 @@ class SearchBarView: UIView {
         heightAnchor.constraint(equalToConstant: 48).isActive = true
         
         addSubview(containerView)
+        containerView.addSubview(symbolImageView)
+        containerView.addSubview(leftButton)
+        containerView.addSubview(myPageButton)
+        containerView.addSubview(textField)
+        
+        // MARK: containerView layout
         NSLayoutConstraint.activate([
             containerView.topAnchor.constraint(equalTo: topAnchor),
             containerView.bottomAnchor.constraint(equalTo: bottomAnchor),
@@ -150,50 +157,63 @@ class SearchBarView: UIView {
             containerView.trailingAnchor.constraint(equalTo: trailingAnchor),
         ])
         
-        
-        containerView.addSubview(textField)
-        let textFieldTrailingConstraintContainerView = textField.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -8)
-        textFieldTrailingConstraintContainerView.priority = .defaultLow
+        // MARK: textField layout
+        let textFieldLeadingToLeftImage: NSLayoutConstraint = {
+            let constraint = textField.leadingAnchor.constraint(equalTo: symbolImageView.trailingAnchor, constant: 11)
+            constraint.priority = .defaultLow
+            return constraint
+        }()
+        let textFieldLeadingToLeftButton: NSLayoutConstraint = {
+            let constraint = textField.leadingAnchor.constraint(equalTo: leftButton.trailingAnchor, constant: 11)
+            constraint.priority = .defaultLow
+            return constraint
+        }()
+        let textFieldTrailingToRightButton: NSLayoutConstraint = {
+            let constraint = textField.trailingAnchor.constraint(equalTo: myPageButton.leadingAnchor, constant: -8)
+            constraint.priority = .defaultLow
+            return constraint
+        }()
+        let textFieldTrailingToContainer: NSLayoutConstraint = {
+            let constraint = textField.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -8)
+            constraint.priority = .defaultLow
+            return constraint
+        }()
         NSLayoutConstraint.activate([
             textField.topAnchor.constraint(equalTo: containerView.topAnchor),
             textField.bottomAnchor.constraint(equalTo: containerView.bottomAnchor),
-            textFieldTrailingConstraintContainerView
+            textFieldLeadingToLeftImage,
+            textFieldLeadingToLeftButton,
+            textFieldTrailingToRightButton,
+            textFieldTrailingToContainer
         ])
-        
-        // TODO: symbolImageView, leftButton의 오토레이아웃 다시 맞추기
-        containerView.addSubview(symbolImageView)
+
+        // MARK: symbolImageView layout
         NSLayoutConstraint.activate([
             symbolImageView.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 13),
             symbolImageView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -13),
-            
             symbolImageView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 16),
-            symbolImageView.trailingAnchor.constraint(equalTo: textField.leadingAnchor, constant: -11),
             
-            symbolImageView.widthAnchor.constraint(equalToConstant: 13)
+            symbolImageView.widthAnchor.constraint(equalToConstant: 21)
         ])
         
-        containerView.addSubview(leftButton)
+        // MARK: leftButton layout
         NSLayoutConstraint.activate([
             leftButton.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 13),
             leftButton.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -13),
-            
             leftButton.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 16),
-            symbolImageView.trailingAnchor.constraint(equalTo: textField.leadingAnchor, constant: -11)
+            
+            leftButton.widthAnchor.constraint(equalToConstant: 13)
         ])
         
-        containerView.addSubview(myPageButton)
-        let myPageButtonTrailingConstraintContainerView = myPageButton.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -16)
-        myPageButtonTrailingConstraintContainerView.priority = .defaultHigh
-
+        // MARK: myPageButton
         NSLayoutConstraint.activate([
             myPageButton.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 12),
             myPageButton.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -12),
+            myPageButton.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -16),
             
-            myPageButton.leadingAnchor.constraint(equalTo: textField.trailingAnchor, constant: 8),
-            myPageButtonTrailingConstraintContainerView,
-            myPageButton.widthAnchor.constraint(equalTo: myPageButton.heightAnchor)
+            myPageButton.widthAnchor.constraint(equalToConstant: 24)
         ])
-
+        
     }
     
     // MARK: - set components
