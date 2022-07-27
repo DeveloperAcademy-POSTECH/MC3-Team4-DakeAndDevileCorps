@@ -49,8 +49,7 @@ class SearchBarView: UIView {
     weak var delegate: SearchBarDelegate?
     var entryPoint: EntryPoint = .Map {
         didSet {
-            setLeftItemIsHidden()
-            setRightItem()
+            setComponentsIsHidden()
         }
     }
 
@@ -201,12 +200,9 @@ class SearchBarView: UIView {
     }
     
     // MARK: - set components
-    private func setLeftItemIsHidden() {
+    private func setComponentsIsHidden() {
         backButton.isHidden = entryPoint.backButtonHidden
         symbolImageView.isHidden = entryPoint.symbolImageHidden
-    }
-
-    private func setRightItem() {
         myPageButton.isHidden = entryPoint.myPageButtonIsHidden
     }
     
