@@ -9,8 +9,6 @@ import UIKit
 
 class ItemTableViewCell: UITableViewCell {
     
-    static let identifier = "ItemTableViewCell"
-    
     @IBOutlet weak var itemNameLabel: UILabel!
     @IBOutlet weak var itemPriceLabel: UILabel!
     
