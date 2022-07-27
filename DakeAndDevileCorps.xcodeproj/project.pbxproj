@@ -35,6 +35,7 @@
 		B5B05D54289124550013E65F /* WriteReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B05D53289124550013E65F /* WriteReviewViewController.swift */; };
 		B5B05D5728912BD30013E65F /* ReviewInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B05D5628912BD30013E65F /* ReviewInputView.swift */; };
 		B5B05D59289164800013E65F /* UITextField+Padding.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B05D58289164800013E65F /* UITextField+Padding.swift */; };
+		B5B05D5F289167A70013E65F /* ReviewTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B05D5E289167A70013E65F /* ReviewTextView.swift */; };
 		B5F1F24B2888313F0021B026 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F1F24A2888313F0021B026 /* UIView+Extension.swift */; };
 		B5F1F24E288834A40021B026 /* CategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F1F24D288834A40021B026 /* CategoryView.swift */; };
 		B5F1F25128883EA80021B026 /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F1F25028883EA80021B026 /* CategoryCollectionViewCell.swift */; };
@@ -86,6 +87,7 @@
 		B5B05D53289124550013E65F /* WriteReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteReviewViewController.swift; sourceTree = "<group>"; };
 		B5B05D5628912BD30013E65F /* ReviewInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewInputView.swift; sourceTree = "<group>"; };
 		B5B05D58289164800013E65F /* UITextField+Padding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Padding.swift"; sourceTree = "<group>"; };
+		B5B05D5E289167A70013E65F /* ReviewTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewTextView.swift; sourceTree = "<group>"; };
 		B5F1F24A2888313F0021B026 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		B5F1F24D288834A40021B026 /* CategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryView.swift; sourceTree = "<group>"; };
 		B5F1F25028883EA80021B026 /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -318,6 +320,7 @@
 			isa = PBXGroup;
 			children = (
 				B5B05D5628912BD30013E65F /* ReviewInputView.swift */,
+				B5B05D5E289167A70013E65F /* ReviewTextView.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -472,6 +475,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				79E2DCA82886E3C800355E30 /* ResultTableViewCell.swift in Sources */,
+				B5B05D5F289167A70013E65F /* ReviewTextView.swift in Sources */,
 				B5B05D522890ABA10013E65F /* ReviewPhotoCollectionViewCell.swift in Sources */,
 				B5B05D50288F81510013E65F /* ReviewPhotoViewController.swift in Sources */,
 				0B6BA51F28884A8500E30B37 /* SearchBarView.swift in Sources */,

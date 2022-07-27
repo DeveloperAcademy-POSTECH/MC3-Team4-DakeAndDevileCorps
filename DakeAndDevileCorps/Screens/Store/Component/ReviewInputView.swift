@@ -25,6 +25,13 @@ final class ReviewInputView: UIView {
         label.font = .preferredFont(forTextStyle: .headline, compatibleWith: .init(legibilityWeight: .bold))
         return label
     }()
+    private let reviewTitleLabel: UILabel = {
+        let label = UILabel()
+        label.text = "리뷰*"
+        label.textColor = .black
+        label.font = .preferredFont(forTextStyle: .headline, compatibleWith: .init(legibilityWeight: .bold))
+        return label
+    }()
     private let itemTextField: UITextField = {
         let textfield = UITextField()
         textfield.placeholder = "상품명을 입력해주세요"
@@ -39,6 +46,7 @@ final class ReviewInputView: UIView {
         return textfield
     }()
     private let categoryView = CategoryView(entryPoint: .write)
+    private let reviewTextView = ReviewTextView()
     
     // MARK: - init
     
@@ -77,5 +85,16 @@ final class ReviewInputView: UIView {
                                  trailing: self.trailingAnchor,
                                  padding: UIEdgeInsets(top: 10, left: 24, bottom: 0, right: 24))
         itemTextField.constraint(itemTextField.heightAnchor, constant: 48)
+        
+        addSubview(reviewTitleLabel)
+        reviewTitleLabel.constraint(top: itemTextField.bottomAnchor,
+                                  leading: categoryTitleLabel.leadingAnchor,
+                                  padding: UIEdgeInsets(top: 22, left: 0, bottom: 0, right: 0))
+        
+        addSubview(reviewTextView)
+        reviewTextView.constraint(top: reviewTitleLabel.bottomAnchor,
+                                   leading: self.leadingAnchor,
+                                   trailing: self.trailingAnchor,
+                                   padding: UIEdgeInsets(top: 10, left: 24, bottom: 0, right: 24))
     }
 }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y6W-OH-hqX">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="L0l-V7-YAj">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -38,9 +38,6 @@
                                         <buttonConfiguration key="configuration" style="plain">
                                             <backgroundConfiguration key="background" image="xmark.circle.fill" catalog="system" imageContentMode="scaleAspectFit"/>
                                         </buttonConfiguration>
-                                        <connections>
-                                            <segue destination="L0l-V7-YAj" kind="presentation" id="soN-cx-f1Q"/>
-                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -388,7 +385,7 @@
             <objects>
                 <viewController storyboardIdentifier="WriteReviewViewController" id="MJ6-Rt-3bQ" customClass="WriteReviewViewController" customModule="DakeAndDevileCorps" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="FLT-oH-Awo">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="HjS-pr-Hzb"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -405,7 +402,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="L0l-V7-YAj" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="awN-84-WMn">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
