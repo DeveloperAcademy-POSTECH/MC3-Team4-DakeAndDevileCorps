@@ -18,6 +18,26 @@ final class ReviewInputView: UIView {
         label.font = .preferredFont(forTextStyle: .headline, compatibleWith: .init(legibilityWeight: .bold))
         return label
     }()
+    private let itemTitleLabel: UILabel = {
+        let label = UILabel()
+        label.text = "상품명*"
+        label.textColor = .black
+        label.font = .preferredFont(forTextStyle: .headline, compatibleWith: .init(legibilityWeight: .bold))
+        return label
+    }()
+    private let itemTextField: UITextField = {
+        let textfield = UITextField()
+        textfield.placeholder = "상품명을 입력해주세요"
+        textfield.borderStyle = .none
+        textfield.font = .preferredFont(forTextStyle: .subheadline)
+        textfield.textColor = .label
+        textfield.layer.borderColor = UIColor.separator.cgColor
+        textfield.layer.borderWidth = 0.5
+        textfield.layer.cornerRadius = 10
+        textfield.setLeftPaddingPoints(16)
+        textfield.clearButtonMode = .whileEditing
+        return textfield
+    }()
     private let categoryView = CategoryView(entryPoint: .write)
     
     // MARK: - init
@@ -45,5 +65,17 @@ final class ReviewInputView: UIView {
                                 trailing: self.trailingAnchor,
                                 padding: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0))
         categoryView.constraint(categoryView.heightAnchor, constant: 60)
+        
+        addSubview(itemTitleLabel)
+        itemTitleLabel.constraint(top: categoryView.bottomAnchor,
+                                  leading: categoryTitleLabel.leadingAnchor,
+                                  padding: UIEdgeInsets(top: 12, left: 0, bottom: 0, right: 0))
+        
+        addSubview(itemTextField)
+        itemTextField.constraint(top: itemTitleLabel.bottomAnchor,
+                                 leading: self.leadingAnchor,
+                                 trailing: self.trailingAnchor,
+                                 padding: UIEdgeInsets(top: 10, left: 24, bottom: 0, right: 24))
+        itemTextField.constraint(itemTextField.heightAnchor, constant: 48)
     }
 }
