@@ -179,12 +179,6 @@ extension SearchViewController: UITextFieldDelegate {
 
 extension SearchViewController: SearchBarDelegate {
     @objc func didBeginEditing() {
-        view.endEditing(true)
-        
-//        let nextViewController = UIViewController()
-//        nextViewController.view.backgroundColor = .yellow
-//        nextViewController.modalTransitionStyle = .crossDissolve
-//        nextViewController.modalPresentationStyle = .fullScreen
-//        present(nextViewController, animated: true)
+
     }
 }
