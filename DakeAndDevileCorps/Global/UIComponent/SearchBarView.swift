@@ -49,6 +49,7 @@ class SearchBarView: UIView {
     weak var delegate: SearchBarDelegate?
     var entryPoint: EntryPoint = .Map {
         didSet {
+            configure()
             setComponentsIsHidden()
         }
     }
@@ -116,10 +117,21 @@ class SearchBarView: UIView {
     // MARK: - configure
     private func configure() {
         containerView.layer.cornerRadius = 24
-        containerView.layer.borderWidth = 0.5
         containerView.layer.borderColor = UIColor.lightGray.cgColor
         
         containerView.backgroundColor = .white
+        switch entryPoint {
+        case .Map:
+            containerView.layer.borderWidth = 0
+            containerView.layer.shadowColor = UIColor.black.cgColor
+            containerView.layer.shadowOpacity = 0.1
+            containerView.layer.shadowOffset = CGSize(width: 0, height: 2)
+            containerView.layer.shadowRadius = 20
+        case .Search:
+            containerView.layer.borderWidth = 0.5
+            containerView.layer.shadowColor = nil
+        }
+
     }
     
     // MARK: - layout
