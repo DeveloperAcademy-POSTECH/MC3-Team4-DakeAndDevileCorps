@@ -99,7 +99,7 @@ class SearchBarView: UIView {
         return button
     }()
     
-    private lazy var textField: UITextField = {
+    lazy var textField: UITextField = {
         let textField = UITextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.placeholder = "가게 이름, 상품 검색"

@@ -10,7 +10,6 @@ import UIKit
 class SearchViewController: UIViewController {
     
     @IBOutlet weak var searchTableView: UITableView!
-    @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var deleteAllButton: UIButton!
     @IBOutlet weak var tableTitle: UIStackView!
     @IBOutlet weak var tableTitleText: UILabel!
@@ -84,14 +83,13 @@ class SearchViewController: UIViewController {
         initDelegate()
         initData()
         setTableResult(searchtype: searchType)
-        setSearchBarView()
         configureLayout()
     }
     
     private func initDelegate() {
         searchTableView.dataSource = self
         searchTableView.delegate = self
-        textField.delegate = self
+        searchBarView.textField.delegate = self
     }
     
     private func initData() {
@@ -106,9 +104,6 @@ class SearchViewController: UIViewController {
         ])
     }
     
-    private func setSearchBarView() {
-        searchBarView.delegate = self
-    }
 
     private func configureLayout() {
         let safeArea = view.safeAreaLayoutGuide
@@ -153,8 +148,10 @@ extension SearchViewController: UITableViewDataSource {
 
 extension SearchViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        textField.text = recentSearchedItemList[indexPath.row]
-        textFieldShouldReturn(textField)
+        if !isShowingResult {
+            searchBarView.text = recentSearchedItemList[indexPath.row]
+            textFieldShouldReturn(searchBarView.textField)
+        }
     }
 }
 
@@ -167,7 +164,7 @@ extension SearchViewController: UITextFieldDelegate {
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        searchType = .result(titleString: textField.text ?? "")
+        searchType = .result(titleString: searchBarView.text ?? "")
         isShowingResult = true
         textField.endEditing(true)
         setTableResult(searchtype: searchType)

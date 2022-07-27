@@ -152,11 +152,6 @@
                                     </label>
                                 </subviews>
                             </stackView>
-                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="beo-WN-37o">
-                                <rect key="frame" x="20" y="64" width="374" height="34"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -169,10 +164,7 @@
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="7OW-E5-zZL" secondAttribute="trailing" id="eUp-po-QWE"/>
                             <constraint firstItem="awt-pR-krr" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="92" id="i1M-1r-PeZ"/>
                             <constraint firstItem="7OW-E5-zZL" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="jlt-j3-IH4"/>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="beo-WN-37o" secondAttribute="trailing" constant="20" id="k2G-IX-dmN"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="7OW-E5-zZL" secondAttribute="bottom" id="o93-R3-ckq"/>
-                            <constraint firstItem="beo-WN-37o" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="20" id="rWR-VK-G4g"/>
-                            <constraint firstItem="beo-WN-37o" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="thO-ct-UQl"/>
                         </constraints>
                     </view>
                     <connections>
@@ -182,7 +174,6 @@
                         <outlet property="searchTableView" destination="7OW-E5-zZL" id="vb1-Fe-tlt"/>
                         <outlet property="tableTitle" destination="awt-pR-krr" id="FMW-1b-ZuM"/>
                         <outlet property="tableTitleText" destination="Jhv-uf-mPk" id="Hds-Tl-6gp"/>
-                        <outlet property="textField" destination="beo-WN-37o" id="Ock-Tf-hMm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
