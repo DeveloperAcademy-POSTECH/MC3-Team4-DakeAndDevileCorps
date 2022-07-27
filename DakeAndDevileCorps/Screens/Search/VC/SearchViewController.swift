@@ -83,7 +83,6 @@ class SearchViewController: UIViewController {
     
     private func initDelegate() {
         searchTableView.dataSource = self
-        searchTableView.delegate = self
         textField.delegate = self
     }
 
@@ -133,9 +132,6 @@ extension SearchViewController: UITableViewDataSource {
     }
 }
 
-extension SearchViewController: UITableViewDelegate {
-    
-}
 
 extension SearchViewController: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
