@@ -9,13 +9,6 @@ import UIKit
 
 class StoreDetailViewController: UIViewController {
     
-    static let identifier = "StoreDetailViewController"
-    
-    enum ProductTableViewCellModel: Equatable {
-        case product(productName: String)
-        case item(itemName: String, itemPrice: String)
-    }
-    
     @IBOutlet weak var storeName: UILabel!
     @IBOutlet weak var storeDetailTableView: UITableView!
     
@@ -26,7 +19,6 @@ class StoreDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configStoreDetailTableView()
-        configStoreName()
         initStoreInformationData()
     }
     
@@ -40,11 +32,6 @@ class StoreDetailViewController: UIViewController {
         if #available(iOS 15.0, *) {
             storeDetailTableView.sectionHeaderTopPadding = 0
         }
-    }
-    
-    func configStoreName() {
-        storeName.text = "알맹상점"
-        storeName.font = UIFont.boldSystemFont(ofSize: 22)
     }
     
     func initStoreInformationData() {
@@ -107,7 +94,7 @@ extension StoreDetailViewController: UITableViewDataSource {
         switch indexPath.section {
         case 0:
             guard let storeInformationCell = tableView.dequeueReusableCell(
-                withIdentifier: StoreInformationTableViewCell.identifier, for: indexPath
+                withIdentifier: StoreInformationTableViewCell.className, for: indexPath
             ) as? StoreInformationTableViewCell else { return UITableViewCell() }
             
             storeInformationCell.storeInformationDelegate = self
@@ -124,10 +111,10 @@ extension StoreDetailViewController: UITableViewDataSource {
             return storeInformationCell
         case 1:
             guard let productCell = tableView.dequeueReusableCell(
-                    withIdentifier: ProductTableViewCell.identifier, for: indexPath
+                    withIdentifier: ProductTableViewCell.className, for: indexPath
                   ) as? ProductTableViewCell,
                   let itemCell = tableView.dequeueReusableCell(
-                    withIdentifier: ItemTableViewCell.identifier, for: indexPath
+                    withIdentifier: ItemTableViewCell.className, for: indexPath
                   ) as? ItemTableViewCell else { return UITableViewCell() }
             
             switch self.productList[indexPath.row] {

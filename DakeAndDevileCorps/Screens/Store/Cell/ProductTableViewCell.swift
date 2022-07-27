@@ -9,8 +9,6 @@ import UIKit
 
 class ProductTableViewCell: UITableViewCell {
     
-    static let identifier = "ProductTableViewCell"
-    
     @IBOutlet weak var productNameLabel: UILabel!
     @IBOutlet weak var seperateLineView: UIView!
     
