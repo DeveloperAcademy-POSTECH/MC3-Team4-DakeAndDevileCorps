@@ -81,7 +81,7 @@ extension StoreDetailViewController: UITableViewDataSource {
     private func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         switch section {
         case 1:
-            return nil //collectionView
+            return nil // collectionView
         default:
             return nil
         }
@@ -90,7 +90,7 @@ extension StoreDetailViewController: UITableViewDataSource {
     private func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         switch section {
         case 1:
-            return 0 //collectionView
+            return 0 // collectionView
         default:
             return 0
         }
