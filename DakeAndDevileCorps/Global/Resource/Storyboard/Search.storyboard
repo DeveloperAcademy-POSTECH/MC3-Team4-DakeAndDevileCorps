@@ -34,7 +34,7 @@
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="전체 삭제" buttonSize="small"/>
                                         <connections>
-                                            <action selector="deleteAllSearchedData:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="kJd-rk-Up5"/>
+                                            <action selector="touchUpToDeleteAllSearchedData:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="Zwq-2V-vdj"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -107,8 +107,7 @@
                                                         <imageReference key="image" image="xmark" catalog="system" symbolScale="default"/>
                                                     </buttonConfiguration>
                                                     <connections>
-                                                        <action selector="deleteData:" destination="dbG-Rw-USI" eventType="touchUpInside" id="Vjv-zu-y9D"/>
-                                                        <action selector="deleteSearchedData:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="873-1b-NTU"/>
+                                                        <action selector="touchUpToDeleteData:" destination="dbG-Rw-USI" eventType="touchUpInside" id="Rm2-Cz-wqA"/>
                                                     </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Q4-no-R5a">
