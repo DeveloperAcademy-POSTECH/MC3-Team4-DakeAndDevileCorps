@@ -83,6 +83,7 @@ class SearchViewController: UIViewController {
     
     private func initDelegate() {
         searchTableView.dataSource = self
+        searchTableView.delegate = self
         textField.delegate = self
     }
 
@@ -126,12 +127,14 @@ extension SearchViewController: UITableViewDataSource {
         }
     }
     
+}
+
+extension SearchViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         textField.text = recentSearchedItemList[indexPath.row]
         textFieldShouldReturn(textField)
     }
 }
-
 
 extension SearchViewController: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
