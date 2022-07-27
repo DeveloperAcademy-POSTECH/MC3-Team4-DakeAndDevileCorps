@@ -127,6 +127,7 @@
 			isa = PBXGroup;
 			children = (
 				4A6535D728910D53006B6971 /* ProductTableViewCellModel.swift */,
+				79D7BA672886EBE100F65ECD /* StoreModelTestN.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -241,6 +242,7 @@
 		7937A00C28858B9A0016D1A8 /* Search */ = {
 			isa = PBXGroup;
 			children = (
+				79AD07292891122C00E2CFC5 /* Cell */,
 				7937A01C28859B0E0016D1A8 /* VC */,
 			);
 			path = Search;
@@ -267,9 +269,6 @@
 			isa = PBXGroup;
 			children = (
 				7937A01D28859B490016D1A8 /* SearchViewController.swift */,
-				79D7BA672886EBE100F65ECD /* StoreModelTestN.swift */,
-				797CAC532886CFCB0041C3F7 /* RecentSearchTableViewCell.swift */,
-				79E2DCA72886E3C800355E30 /* ResultTableViewCell.swift */,
 			);
 			path = VC;
 			sourceTree = "<group>";
@@ -289,6 +288,15 @@
 				7937A02128859B990016D1A8 /* StoreDetailViewController.swift */,
 			);
 			path = VC;
+			sourceTree = "<group>";
+		};
+		79AD07292891122C00E2CFC5 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				797CAC532886CFCB0041C3F7 /* RecentSearchTableViewCell.swift */,
+				79E2DCA72886E3C800355E30 /* ResultTableViewCell.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		B5B05D4C288F73ED0013E65F /* Utils */ = {
