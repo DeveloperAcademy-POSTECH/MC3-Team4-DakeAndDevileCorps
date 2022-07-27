@@ -149,7 +149,7 @@ class SearchBarView: UIView {
             containerView.topAnchor.constraint(equalTo: topAnchor),
             containerView.bottomAnchor.constraint(equalTo: bottomAnchor),
             containerView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            containerView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            containerView.trailingAnchor.constraint(equalTo: trailingAnchor)
         ])
         
         // MARK: textField layout

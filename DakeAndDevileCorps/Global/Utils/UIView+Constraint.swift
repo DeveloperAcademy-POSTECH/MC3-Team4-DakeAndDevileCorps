@@ -8,7 +8,7 @@
 import UIKit
 
 enum ConstraintType {
-    case top, leading, trailing, bottom
+    case top, leading, trailing, bottom, centerX, centerY
 }
 
 extension UIView {
@@ -61,6 +61,8 @@ extension UIView {
                     leading: NSLayoutXAxisAnchor? = nil,
                     bottom: NSLayoutYAxisAnchor? = nil,
                     trailing: NSLayoutXAxisAnchor? = nil,
+                    centerX: NSLayoutXAxisAnchor? = nil,
+                    centerY: NSLayoutYAxisAnchor? = nil,
                     padding: UIEdgeInsets = .zero) -> [ConstraintType: NSLayoutConstraint] {
         self.translatesAutoresizingMaskIntoConstraints = false
         
@@ -80,6 +82,14 @@ extension UIView {
         
         if let trailing = trailing {
             constraints[.trailing] = trailingAnchor.constraint(equalTo: trailing, constant: -padding.right)
+        }
+        
+        if let centerX = centerX {
+            constraints[.centerX] = centerXAnchor.constraint(equalTo: centerX)
+        }
+        
+        if let centerY = centerY {
+            constraints[.centerY] = centerYAnchor.constraint(equalTo: centerY)
         }
         
         let constraintsArray: [NSLayoutConstraint] = Array(constraints.values)
