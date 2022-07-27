@@ -10,7 +10,6 @@ import UIKit
 
 class MainMapViewController: UIViewController {
 
-    // TODO: - 서치바 그림자 그리기
     private let searchBarView: SearchBarView = {
         $0.translatesAutoresizingMaskIntoConstraints = false
         return $0
@@ -39,7 +38,6 @@ class MainMapViewController: UIViewController {
             searchBarView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -16)
         ])
     }
-
 }
 
 extension MainMapViewController: SearchBarDelegate {
