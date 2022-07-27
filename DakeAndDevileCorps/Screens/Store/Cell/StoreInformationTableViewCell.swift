@@ -13,8 +13,6 @@ protocol StoreInformationTableViewCellDelegate: AnyObject {
 
 class StoreInformationTableViewCell: UITableViewCell {
     
-    static let identifier = "StoreInformationTableViewCell"
-    
     @IBOutlet weak var operationStatusLabel: UILabel!
     @IBOutlet weak var todayOperationTimeLabel: UILabel!
     @IBOutlet weak var productCategoriesLabel: UILabel!
@@ -34,8 +32,8 @@ class StoreInformationTableViewCell: UITableViewCell {
     @IBOutlet weak var weekOperationTimeToggle: UIButton!
     
     weak var storeInformationDelegate: StoreInformationTableViewCellDelegate?
-    var isOpen: Bool = true
-    var dateLabels: [UILabel] = []
+    private var isOpen: Bool = true
+    private var dateLabels: [UILabel] = []
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -45,14 +43,9 @@ class StoreInformationTableViewCell: UITableViewCell {
     @IBAction func toggleWeekOperationTime(_ sender: Any) {
         isOpen.toggle()
         weekOperationTimeToggle.setBackgroundImage(UIImage(systemName: isOpen ? "chevron.down" : "chevron.up"), for: .normal)
-        //        weekOperationTimeStack.isHidden.toggle()
-        mondayLabel.isHidden.toggle()
-        tuesdayLabel.isHidden.toggle()
-        wednesdayLabel.isHidden.toggle()
-        thursdayLabel.isHidden.toggle()
-        fridayLabel.isHidden.toggle()
-        saturdayLabel.isHidden.toggle()
-        sundayLabel.isHidden.toggle()
+        for dateLabel in dateLabels {
+            dateLabel.isHidden.toggle()
+        }
         storeInformationDelegate?.requestReload(cell: self)
     }
     
@@ -60,7 +53,7 @@ class StoreInformationTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
-    func setDateLabel() {
+    private func setDateLabel() {
         dateLabels.append(contentsOf: [
             mondayLabel,
             tuesdayLabel,
@@ -72,7 +65,9 @@ class StoreInformationTableViewCell: UITableViewCell {
         ])
     }
     
-    func setUpperData(isOperation: Bool, todayOperationTime: String, productCategories: String) {
+    func setUpperData(isOperation: Bool,
+                      todayOperationTime: String,
+                      productCategories: String) {
         operationStatusLabel.text = isOperation ? "영업중" : "영업 종료"
         operationStatusLabel.textColor = isOperation ? .systemGreen : .systemRed
         self.todayOperationTimeLabel.text = todayOperationTime
@@ -80,7 +75,9 @@ class StoreInformationTableViewCell: UITableViewCell {
         self.productCategoriesLabel.textColor = .secondaryLabel
     }
     
-    func setBottomData(address: String, phoneNumber: String, operationTime: String) {
+    func setBottomData(address: String,
+                       phoneNumber: String,
+                       operationTime: String) {
         self.addressLabel.text = address
         self.phoneNumberLabel.text = phoneNumber
         self.operationTimeLabel.text = operationTime
