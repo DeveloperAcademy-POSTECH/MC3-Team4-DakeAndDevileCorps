@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum ProductTableViewCellModel {
-    case product(productName: String, isSeperated: Bool)
+enum ProductTableViewCellModel: Equatable {
+    case product(productName: String)
     case item(itemName: String, itemPrice: String)
 }

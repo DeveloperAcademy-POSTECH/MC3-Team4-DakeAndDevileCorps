@@ -13,6 +13,7 @@ class MainMapViewController: UIViewController {
     // MARK: - subViews
     private let searchBarView: SearchBarView = {
         $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.entryPoint = .map
         return $0
     }(SearchBarView())
     
@@ -71,10 +72,9 @@ extension MainMapViewController: SearchBarDelegate {
     @objc func didBeginEditing() {
         view.endEditing(true)
         
-        let nextViewController = UIViewController()
-        nextViewController.view.backgroundColor = .yellow
-        nextViewController.modalTransitionStyle = .crossDissolve
+        let nextViewController = UIStoryboard(name: "Search", bundle: nil).instantiateViewController(withIdentifier: SearchViewController.className)
         nextViewController.modalPresentationStyle = .fullScreen
+        nextViewController.modalTransitionStyle = .crossDissolve
         present(nextViewController, animated: true)
     }
 }

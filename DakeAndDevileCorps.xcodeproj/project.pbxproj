@@ -257,7 +257,6 @@
 		7937A00D28858B9F0016D1A8 /* MapHome */ = {
 			isa = PBXGroup;
 			children = (
-				0B6BA51D288849E800E30B37 /* Component */,
 				7937A00F28858BAB0016D1A8 /* VC */,
 			);
 			path = MapHome;
@@ -313,6 +312,7 @@
 			children = (
 				B5F1F24F28883E9A0021B026 /* Cell */,
 				B5F1F24D288834A40021B026 /* CategoryView.swift */,
+				0B6BA51E28884A8500E30B37 /* SearchBarView.swift */,
 			);
 			path = UIComponent;
 			sourceTree = "<group>";
