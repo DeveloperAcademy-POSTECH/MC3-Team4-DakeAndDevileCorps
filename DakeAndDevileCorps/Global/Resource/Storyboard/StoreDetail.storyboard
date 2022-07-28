@@ -375,26 +375,17 @@
                                                         <constraint firstAttribute="width" constant="72" id="r92-pp-FiX"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sFh-Le-HEa">
-                                                    <rect key="frame" x="344.5" y="72" width="41.5" height="20.5"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="sFh-Le-HEa" secondAttribute="trailing" constant="28" id="EwL-2B-PKq"/>
                                                 <constraint firstItem="u6V-oZ-OEi" firstAttribute="leading" secondItem="f2e-EF-oZt" secondAttribute="leading" constant="24" id="JZn-MP-JhK"/>
                                                 <constraint firstAttribute="trailing" secondItem="ksm-4g-iuQ" secondAttribute="trailing" constant="24" id="MEG-O6-F4w"/>
                                                 <constraint firstAttribute="bottom" secondItem="u6V-oZ-OEi" secondAttribute="bottom" constant="18" id="O9g-Bf-ubB"/>
-                                                <constraint firstItem="sFh-Le-HEa" firstAttribute="top" secondItem="f2e-EF-oZt" secondAttribute="top" constant="72" id="SCe-xX-j9k"/>
                                                 <constraint firstItem="ksm-4g-iuQ" firstAttribute="leading" secondItem="u6V-oZ-OEi" secondAttribute="trailing" constant="22" id="c7T-LX-ng2"/>
                                                 <constraint firstItem="u6V-oZ-OEi" firstAttribute="top" secondItem="f2e-EF-oZt" secondAttribute="top" constant="18" id="f8T-Nu-yOd"/>
                                                 <constraint firstItem="ksm-4g-iuQ" firstAttribute="top" secondItem="f2e-EF-oZt" secondAttribute="top" constant="18" id="xkb-NY-sXd"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="numberOfReviewImageLabel" destination="sFh-Le-HEa" id="Bmd-gH-2uh"/>
                                             <outlet property="reviewContentLabel" destination="ZHD-qh-GDO" id="s7s-Ts-sl6"/>
                                             <outlet property="reviewImageView" destination="ksm-4g-iuQ" id="tMH-Ec-Ziv"/>
                                             <outlet property="reviewStackView" destination="u6V-oZ-OEi" id="BTs-BD-YEz"/>

@@ -68,8 +68,8 @@ class StoreDetailViewController: UIViewController {
         
         reviewList.append(contentsOf: [
             ReviewModel(reviewTitle: "인블리스 세탁세제", reviewContent: "좋습니다. 벌써 3번 리필했어요!", category: "세탁세제", nickname: "냥냥이", reviewDate: "21.7.18", reviewImageNames: ["star.fill", "moon.fill", "sun.max.fill"]),
-            ReviewModel(reviewTitle: "에코라운드 중성 주방세제", reviewContent: "최고네용~ 캬캬캬 한 번 더 리필할 듯 싶습니다. 향이 짱 좋고 세척력도 넘넘 좋아요! 추천추천합니다ㅎㅎ", category: "주방세제", nickname: "뇸뇸", reviewDate: "21.7.18", reviewImageNames: ["star.fill", "moon.fill"]),
-            ReviewModel(reviewTitle: "에코티끄 섬유유연제", reviewContent: "흠... 이 향 뭐지? 향이 짱 좋고 산뜻합니다! 친구들한테 추천하구 다녀영~ 최고오오오오오오오", category: "섬유유연제", nickname: "감자도리", reviewDate: "21.7.18", reviewImageNames: ["star.fill"])
+            ReviewModel(reviewTitle: "에코라운드 중성 주방세제", reviewContent: "최고네용~ 캬캬캬 한 번 더 리필할 듯 싶습니다. 향이 짱 좋고 세척력도 넘넘 좋아요! 추천추천합니다ㅎㅎ", category: "주방세제", nickname: "뇸뇸", reviewDate: "21.7.18", reviewImageNames: ["moon.fill", "star.fill"]),
+            ReviewModel(reviewTitle: "에코티끄 섬유유연제", reviewContent: "흠... 이 향 뭐지? 향이 짱 좋고 산뜻합니다! 친구들한테 추천하구 다녀영~ 최고오오오오오오오", category: "섬유유연제", nickname: "감자도리", reviewDate: "21.7.18", reviewImageNames: nil)
         ])
     }
     
