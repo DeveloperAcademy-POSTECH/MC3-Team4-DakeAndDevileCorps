@@ -109,14 +109,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0B6BA51D288849E800E30B37 /* Component */ = {
-			isa = PBXGroup;
-			children = (
-				0B6BA51E28884A8500E30B37 /* SearchBarView.swift */,
-			);
-			path = Component;
-			sourceTree = "<group>";
-		};
 		4A03F6CB288F814A00342E66 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
@@ -132,6 +124,7 @@
 			isa = PBXGroup;
 			children = (
 				4A6535D728910D53006B6971 /* ProductTableViewCellModel.swift */,
+				79D7BA672886EBE100F65ECD /* StoreModelTestN.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -246,6 +239,7 @@
 		7937A00C28858B9A0016D1A8 /* Search */ = {
 			isa = PBXGroup;
 			children = (
+				79AD07292891122C00E2CFC5 /* Cell */,
 				7937A01C28859B0E0016D1A8 /* VC */,
 			);
 			path = Search;
@@ -271,9 +265,6 @@
 			isa = PBXGroup;
 			children = (
 				7937A01D28859B490016D1A8 /* SearchViewController.swift */,
-				797CAC532886CFCB0041C3F7 /* RecentSearchTableViewCell.swift */,
-				79E2DCA72886E3C800355E30 /* ResultTableViewCell.swift */,
-				79D7BA672886EBE100F65ECD /* StoreModelTestN.swift */,
 			);
 			path = VC;
 			sourceTree = "<group>";
@@ -294,6 +285,15 @@
 				B5B05D4F288F81510013E65F /* ReviewPhotoViewController.swift */,
 			);
 			path = VC;
+			sourceTree = "<group>";
+		};
+		79AD07292891122C00E2CFC5 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				797CAC532886CFCB0041C3F7 /* RecentSearchTableViewCell.swift */,
+				79E2DCA72886E3C800355E30 /* ResultTableViewCell.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		B5B05D4C288F73ED0013E65F /* Utils */ = {
