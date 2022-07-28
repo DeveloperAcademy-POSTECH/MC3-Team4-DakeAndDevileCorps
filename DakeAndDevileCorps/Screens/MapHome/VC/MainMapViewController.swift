@@ -38,6 +38,10 @@ class MainMapViewController: UIViewController {
             searchBarView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 16),
             searchBarView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -16)
         ])
+        
+        let categoryView = CategoryView(entryPoint: .map)
+        view.addSubview(categoryView)
+        categoryView.constraint(top: view.safeAreaLayoutGuide.topAnchor, leading: view.leadingAnchor, trailing: view.trailingAnchor, padding: UIEdgeInsets(top: 100, left: 0, bottom: 0, right: 0))
     }
 }
 

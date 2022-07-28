@@ -61,6 +61,7 @@ final class CategoryView: UIView {
     private func render() {
         addSubview(categoryCollectionView)
         categoryCollectionView.constraint(to: self)
+        categoryCollectionView.constraint(categoryCollectionView.heightAnchor, constant: 60)
     }
     
     private func configCollectionView() {
