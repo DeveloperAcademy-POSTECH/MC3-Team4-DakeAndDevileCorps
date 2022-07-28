@@ -18,6 +18,7 @@ class SearchViewController: UIViewController {
     
     private let searchBarView: SearchBarView = {
         $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.entryPoint = .search
         return $0
     }(SearchBarView())
     

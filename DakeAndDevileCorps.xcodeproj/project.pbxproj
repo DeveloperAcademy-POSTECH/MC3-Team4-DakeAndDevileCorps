@@ -109,14 +109,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0B6BA51D288849E800E30B37 /* Component */ = {
-			isa = PBXGroup;
-			children = (
-				0B6BA51E28884A8500E30B37 /* SearchBarView.swift */,
-			);
-			path = Component;
-			sourceTree = "<group>";
-		};
 		4A03F6CB288F814A00342E66 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
