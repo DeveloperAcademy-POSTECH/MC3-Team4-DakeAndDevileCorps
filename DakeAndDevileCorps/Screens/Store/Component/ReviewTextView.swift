@@ -26,6 +26,11 @@ final class ReviewTextView: UIView {
         label.text = "0/300"
         return label
     }()
+    private let reviewTextView: UITextView = {
+        let textView = UITextView()
+        textView.font = .preferredFont(forTextStyle: .subheadline)
+        return textView
+    }()
 
     // MARK: - init
     
@@ -49,6 +54,13 @@ final class ReviewTextView: UIView {
         counterLabel.constraint(bottom: self.bottomAnchor,
                                 trailing: self.trailingAnchor,
                                 padding: UIEdgeInsets(top: 0, left: 0, bottom: 16, right: 16))
+        
+        borderView.addSubview(reviewTextView)
+        reviewTextView.constraint(top: borderView.topAnchor,
+                                  leading: borderView.leadingAnchor,
+                                  bottom: counterLabel.bottomAnchor,
+                                  trailing: borderView.trailingAnchor,
+                                  padding: UIEdgeInsets(top: 16, left: 16, bottom: 12, right: 16))
     }
     
 }

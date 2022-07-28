@@ -88,13 +88,13 @@ final class ReviewInputView: UIView {
         
         addSubview(reviewTitleLabel)
         reviewTitleLabel.constraint(top: itemTextField.bottomAnchor,
-                                  leading: categoryTitleLabel.leadingAnchor,
-                                  padding: UIEdgeInsets(top: 22, left: 0, bottom: 0, right: 0))
+                                    leading: categoryTitleLabel.leadingAnchor,
+                                    padding: UIEdgeInsets(top: 22, left: 0, bottom: 0, right: 0))
         
         addSubview(reviewTextView)
         reviewTextView.constraint(top: reviewTitleLabel.bottomAnchor,
-                                   leading: self.leadingAnchor,
-                                   trailing: self.trailingAnchor,
-                                   padding: UIEdgeInsets(top: 10, left: 24, bottom: 0, right: 24))
+                                  leading: self.leadingAnchor,
+                                  trailing: self.trailingAnchor,
+                                  padding: UIEdgeInsets(top: 10, left: 24, bottom: 0, right: 24))
     }
 }
