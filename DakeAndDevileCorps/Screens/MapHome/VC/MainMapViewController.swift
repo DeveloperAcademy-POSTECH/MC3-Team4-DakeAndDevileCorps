@@ -47,7 +47,6 @@ extension MainMapViewController: SearchBarDelegate {
         
         let nextViewController = UIStoryboard(name: "Search", bundle: nil).instantiateViewController(withIdentifier: SearchViewController.className)
         nextViewController.modalPresentationStyle = .fullScreen
-        nextViewController.modalTransitionStyle = .crossDissolve
-        present(nextViewController, animated: true)
+        present(nextViewController, animated: false)
     }
 }

@@ -167,4 +167,8 @@ extension SearchViewController: SearchBarDelegate {
         setTableResult(searchtype: searchType)
         searchTableView.reloadData()
     }
+    
+    @objc func touchUpInsideLeftButton() {
+        dismiss(animated: false)
+    }
 }
