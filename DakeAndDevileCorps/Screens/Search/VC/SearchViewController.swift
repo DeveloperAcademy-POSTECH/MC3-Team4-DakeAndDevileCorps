@@ -104,7 +104,6 @@ class SearchViewController: UIViewController {
         ])
     }
     
-
     private func configureLayout() {
         let safeArea = view.safeAreaLayoutGuide
         
