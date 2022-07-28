@@ -148,6 +148,8 @@ extension SearchViewController: UITableViewDelegate {
         if !isResultShowing {
             searchBarView.text = recentSearchedItemList[indexPath.row]
             didReturnKeyInput()
+        } else {
+            dismiss(animated: false)
         }
     }
 }
