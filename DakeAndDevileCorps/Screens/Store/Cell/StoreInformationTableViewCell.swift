@@ -8,7 +8,7 @@
 import UIKit
 
 protocol StoreInformationTableViewCellDelegate: AnyObject {
-    func requestReload(cell: StoreInformationTableViewCell)
+    func requestReload()
 }
 
 class StoreInformationTableViewCell: UITableViewCell {
@@ -46,7 +46,7 @@ class StoreInformationTableViewCell: UITableViewCell {
         for dateLabel in dateLabels {
             dateLabel.isHidden.toggle()
         }
-        storeInformationDelegate?.requestReload(cell: self)
+        storeInformationDelegate?.requestReload()
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {

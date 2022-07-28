@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol ReviewTableViewCellDelegate: AnyObject {
+    func requestReviewTableViewCellReload()
+}
+
 class ReviewTableViewCell: UITableViewCell {
 
     @IBOutlet weak var reviewTitleLabel: UILabel!
@@ -16,6 +20,8 @@ class ReviewTableViewCell: UITableViewCell {
     @IBOutlet weak var reviewDateLabel: UILabel!
     @IBOutlet weak var reviewImageView: UIImageView!
     @IBOutlet weak var numberOfReviewImageLabel: UILabel!
+    
+    weak var reviewDelegate: ReviewTableViewCellDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -27,5 +33,15 @@ class ReviewTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-
+    
+    func setData(reviewModel: ReviewModel) {
+        reviewTitleLabel.text = reviewModel.reviewTitle
+        reviewContentLabel.text = reviewModel.reviewContent
+        reviewContentLabel.numberOfLines = 0
+        reviewContentLabel.lineBreakMode = .byClipping
+        categoryLabel.text = reviewModel.category
+        nicknameLabel.text = reviewModel.nickname
+        reviewDateLabel.text = reviewModel.reviewDate
+        reviewImageView.image = UIImage(systemName: reviewModel.reviewImageNames?.first ?? "")
+    }
 }
