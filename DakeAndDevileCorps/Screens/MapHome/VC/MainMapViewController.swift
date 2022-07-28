@@ -26,19 +26,34 @@ class MainMapViewController: UIViewController {
     @IBOutlet weak var mapView: MKMapView!
     
     // MARK: - properties
-    var shops: [MKAnnotation] = []
+    var shops: [MKAnnotation] = [
+        ShopInfo(coordinate: CLLocationCoordinate2D(latitude: 37.557761, longitude: 126.9052787),
+                 sellingProductsCategory: ["주방세제"],
+                 category: .zeroWasteShop),
+        ShopInfo(coordinate: CLLocationCoordinate2D(latitude: 37.5007395, longitude: 126.9338591),
+                 sellingProductsCategory: ["주방세제"],
+                 category: .refillStation)
+    ]
     
     // MARK: - lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setMapView()
         setSearchBarView()
         setCategoryView()
         configureLayout()
+        
+        drawAnnotationViews()
     }
     
     
     // MARK: - func
+    private func setMapView() {
+        mapView.delegate = self
+        mapView.register(AnnotationView.self, forAnnotationViewWithReuseIdentifier: AnnotationView.className)
+    }
+    
     private func setSearchBarView() {
         searchBarView.delegate = self
     }
@@ -64,6 +79,21 @@ class MainMapViewController: UIViewController {
             categoryView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor),
             categoryView.heightAnchor.constraint(equalToConstant: 60)
         ])
+    }
+    
+    private func drawAnnotationViews() {
+        mapView.addAnnotations(shops)
+    }
+}
+
+// MARK: - MapViewDelegate
+extension MainMapViewController: MKMapViewDelegate {
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        guard let marker = mapView.dequeueReusableAnnotationView(withIdentifier: AnnotationView.className) as? AnnotationView else {
+            return AnnotationView()
+        }
+        
+        return marker
     }
 }
 
