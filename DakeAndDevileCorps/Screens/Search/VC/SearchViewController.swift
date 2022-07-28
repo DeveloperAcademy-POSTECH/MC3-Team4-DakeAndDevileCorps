@@ -24,7 +24,7 @@ class SearchViewController: UIViewController {
     
     private var recentSearchedItemList: [String] = []
     private var resultList: [StoreModel] = []
-    private var isShowingResult: Bool = false
+    private var isResultShowing: Bool = false
     
     private enum SearchType {
         case recentSearch
@@ -123,7 +123,7 @@ class SearchViewController: UIViewController {
 
 extension SearchViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if isShowingResult {
+        if isResultShowing {
             return resultList.count
         } else {
             return recentSearchedItemList.count > 10 ? 10 : recentSearchedItemList.count
@@ -131,7 +131,7 @@ extension SearchViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if isShowingResult {
+        if isResultShowing {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: ResultTableViewCell.className, for: indexPath) as? ResultTableViewCell else { return UITableViewCell() }
             cell.setupCell(title: resultList[indexPath.row].storeName, address: resultList[indexPath.row].storeAddress, distance: resultList[indexPath.row].distanceToStore)
             return cell
@@ -145,7 +145,7 @@ extension SearchViewController: UITableViewDataSource {
 
 extension SearchViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if !isShowingResult {
+        if !isResultShowing {
             searchBarView.text = recentSearchedItemList[indexPath.row]
             didReturnKeyInput()
         }
@@ -155,14 +155,14 @@ extension SearchViewController: UITableViewDelegate {
 extension SearchViewController: SearchBarDelegate {
     @objc func didBeginEditing() {
         searchType = .recentSearch
-        isShowingResult = false
+        isResultShowing = false
         setTableResult(searchtype: searchType)
         searchTableView.reloadData()
     }
     
     @objc func didReturnKeyInput() {
         searchType = .result(titleString: searchBarView.text)
-        isShowingResult = true
+        isResultShowing = true
         view.endEditing(true)
         setTableResult(searchtype: searchType)
         searchTableView.reloadData()
