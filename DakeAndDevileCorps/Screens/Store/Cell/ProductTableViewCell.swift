@@ -9,8 +9,6 @@ import UIKit
 
 class ProductTableViewCell: UITableViewCell {
     
-    static let identifier = "ProductTableViewCell"
-    
     @IBOutlet weak var productNameLabel: UILabel!
     @IBOutlet weak var seperateLineView: UIView!
     
@@ -22,9 +20,11 @@ class ProductTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
-    func setData(productName: String, isSeperated: Bool) {
+    func setData(productName: String) {
         self.productNameLabel.text = productName
         self.productNameLabel.font = UIFont.boldSystemFont(ofSize: 17)
-        seperateLineView.isHidden = isSeperated
+        if productName == "주방세제" {
+            seperateLineView.isHidden = true
+        }
     }
 }

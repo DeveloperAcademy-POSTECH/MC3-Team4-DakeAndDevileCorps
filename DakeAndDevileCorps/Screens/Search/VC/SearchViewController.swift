@@ -8,18 +8,23 @@
 import UIKit
 
 class SearchViewController: UIViewController {
-
+    
     @IBOutlet weak var searchTableView: UITableView!
-    @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var deleteAllButton: UIButton!
     @IBOutlet weak var tableTitle: UIStackView!
     @IBOutlet weak var tableTitleText: UILabel!
     @IBOutlet weak var nothingView: UIStackView!
     @IBOutlet weak var nothingMessage: UILabel!
     
+    private let searchBarView: SearchBarView = {
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.entryPoint = .search
+        return $0
+    }(SearchBarView())
+    
     private var recentSearchedItemList: [String] = []
     private var resultList: [StoreModel] = []
-    private var isShowingResult: Bool = false
+    private var isResultShowing: Bool = false
     
     private enum SearchType {
         case recentSearch
@@ -60,7 +65,7 @@ class SearchViewController: UIViewController {
             deleteAllButton.isHidden = false
         }
     }
-
+    
     private func setNothingView(searchType: SearchType) {
         var hasResult: Bool
         switch searchType {
@@ -69,7 +74,7 @@ class SearchViewController: UIViewController {
         case .result:
             hasResult = !resultList.isEmpty
         }
-    
+        
         nothingView.isHidden = hasResult
         nothingMessage.text = searchType.message
     }
@@ -79,14 +84,15 @@ class SearchViewController: UIViewController {
         initDelegate()
         initData()
         setTableResult(searchtype: searchType)
+        configureLayout()
     }
     
     private func initDelegate() {
         searchTableView.dataSource = self
         searchTableView.delegate = self
-        textField.delegate = self
+        searchBarView.delegate = self
     }
-
+    
     private func initData() {
         recentSearchedItemList.append(contentsOf: [
             "샴푸", "리필스테이션", "세탁세제", "샴푸", "리필스테이션", "세탁세제", "샴푸", "리필스테이션", "세탁세제", "샴푸", "리필스테이션", "세탁세제"
@@ -99,58 +105,66 @@ class SearchViewController: UIViewController {
         ])
     }
     
+    private func configureLayout() {
+        let safeArea = view.safeAreaLayoutGuide
+        
+        view.addSubview(searchBarView)
+        NSLayoutConstraint.activate([
+            searchBarView.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: 8),
+            searchBarView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 16),
+            searchBarView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -16)
+        ])
+    }
+    
     @IBAction func touchUpToDeleteAllSearchedData(_ sender: Any) {
         print("delete all!!")
     }
-    
 }
 
 extension SearchViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if isShowingResult {
+        if isResultShowing {
             return resultList.count
         } else {
             return recentSearchedItemList.count > 10 ? 10 : recentSearchedItemList.count
         }
-        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if isShowingResult {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "ResultTableViewCell", for: indexPath) as? ResultTableViewCell else { return UITableViewCell() }
+        if isResultShowing {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: ResultTableViewCell.className, for: indexPath) as? ResultTableViewCell else { return UITableViewCell() }
             cell.setupCell(title: resultList[indexPath.row].storeName, address: resultList[indexPath.row].storeAddress, distance: resultList[indexPath.row].distanceToStore)
             return cell
         } else {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "RecentSearchTableViewCell", for: indexPath) as? RecentSearchTableViewCell else { return UITableViewCell() }
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: RecentSearchTableViewCell.className, for: indexPath) as? RecentSearchTableViewCell else { return UITableViewCell() }
             cell.setupCell(title: recentSearchedItemList[indexPath.row])
             return cell
         }
     }
-    
 }
 
 extension SearchViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        textField.text = recentSearchedItemList[indexPath.row]
-        textFieldShouldReturn(textField)
+        if !isResultShowing {
+            searchBarView.text = recentSearchedItemList[indexPath.row]
+            didReturnKeyInput()
+        }
     }
 }
 
-extension SearchViewController: UITextFieldDelegate {
-    func textFieldDidBeginEditing(_ textField: UITextField) {
+extension SearchViewController: SearchBarDelegate {
+    @objc func didBeginEditing() {
         searchType = .recentSearch
-        isShowingResult = false
+        isResultShowing = false
         setTableResult(searchtype: searchType)
         searchTableView.reloadData()
     }
     
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        searchType = .result(titleString: textField.text ?? "")
-        isShowingResult = true
-        textField.endEditing(true)
+    @objc func didReturnKeyInput() {
+        searchType = .result(titleString: searchBarView.text)
+        isResultShowing = true
+        view.endEditing(true)
         setTableResult(searchtype: searchType)
         searchTableView.reloadData()
-
-        return true
     }
 }
