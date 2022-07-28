@@ -161,7 +161,7 @@ extension SearchViewController: SearchBarDelegate {
     }
     
     @objc func didReturnKeyInput() {
-        searchType = .result(titleString: searchBarView.text ?? "")
+        searchType = .result(titleString: searchBarView.text)
         isShowingResult = true
         view.endEditing(true)
         setTableResult(searchtype: searchType)
