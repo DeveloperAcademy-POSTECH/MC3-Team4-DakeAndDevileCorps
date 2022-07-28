@@ -89,7 +89,7 @@ class SearchViewController: UIViewController {
     private func initDelegate() {
         searchTableView.dataSource = self
         searchTableView.delegate = self
-        searchBarView.textField.delegate = self
+        searchBarView.delegate = self
     }
     
     private func initData() {
@@ -118,7 +118,6 @@ class SearchViewController: UIViewController {
     @IBAction func touchUpToDeleteAllSearchedData(_ sender: Any) {
         print("delete all!!")
     }
-    
 }
 
 extension SearchViewController: UITableViewDataSource {
@@ -128,7 +127,6 @@ extension SearchViewController: UITableViewDataSource {
         } else {
             return recentSearchedItemList.count > 10 ? 10 : recentSearchedItemList.count
         }
-        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -142,39 +140,30 @@ extension SearchViewController: UITableViewDataSource {
             return cell
         }
     }
-    
 }
 
 extension SearchViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if !isShowingResult {
             searchBarView.text = recentSearchedItemList[indexPath.row]
-            textFieldShouldReturn(searchBarView.textField)
+            didReturnKeyInput()
         }
     }
 }
 
-extension SearchViewController: UITextFieldDelegate {
-    func textFieldDidBeginEditing(_ textField: UITextField) {
+extension SearchViewController: SearchBarDelegate {
+    @objc func didBeginEditing() {
         searchType = .recentSearch
         isShowingResult = false
         setTableResult(searchtype: searchType)
         searchTableView.reloadData()
     }
     
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    @objc func didReturnKeyInput() {
         searchType = .result(titleString: searchBarView.text ?? "")
         isShowingResult = true
-        textField.endEditing(true)
+        view.endEditing(true)
         setTableResult(searchtype: searchType)
         searchTableView.reloadData()
-        
-        return true
-    }
-}
-
-extension SearchViewController: SearchBarDelegate {
-    @objc func didBeginEditing() {
-
     }
 }
