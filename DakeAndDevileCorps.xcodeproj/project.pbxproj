@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0B6589CA28917EFC00B9A091 /* ShopInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6589C928917EFC00B9A091 /* ShopInfo.swift */; };
 		0B6BA51F28884A8500E30B37 /* SearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6BA51E28884A8500E30B37 /* SearchBarView.swift */; };
 		4A6535D828910D53006B6971 /* ProductTableViewCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A6535D728910D53006B6971 /* ProductTableViewCellModel.swift */; };
 		4AB368E52886D95E0075E03A /* StoreInformationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB368E42886D95E0075E03A /* StoreInformationTableViewCell.swift */; };
@@ -53,6 +54,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0B6589C928917EFC00B9A091 /* ShopInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopInfo.swift; sourceTree = "<group>"; };
 		0B6BA51E28884A8500E30B37 /* SearchBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarView.swift; sourceTree = "<group>"; };
 		4A6535D728910D53006B6971 /* ProductTableViewCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductTableViewCellModel.swift; sourceTree = "<group>"; };
 		4AB368E42886D95E0075E03A /* StoreInformationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreInformationTableViewCell.swift; sourceTree = "<group>"; };
@@ -132,6 +134,7 @@
 			isa = PBXGroup;
 			children = (
 				4A6535D728910D53006B6971 /* ProductTableViewCellModel.swift */,
+				0B6589C928917EFC00B9A091 /* ShopInfo.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -460,6 +463,7 @@
 				0B6BA51F28884A8500E30B37 /* SearchBarView.swift in Sources */,
 				79379FE8288588EC0016D1A8 /* MainMapViewController.swift in Sources */,
 				79379FE4288588EC0016D1A8 /* AppDelegate.swift in Sources */,
+				0B6589CA28917EFC00B9A091 /* ShopInfo.swift in Sources */,
 				B5B05D4E288F73FD0013E65F /* UIView+Constraint.swift in Sources */,
 				4A6535D828910D53006B6971 /* ProductTableViewCellModel.swift in Sources */,
 				7937A01E28859B490016D1A8 /* SearchViewController.swift in Sources */,

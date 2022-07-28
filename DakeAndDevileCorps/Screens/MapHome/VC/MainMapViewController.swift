@@ -9,7 +9,8 @@ import MapKit
 import UIKit
 
 class MainMapViewController: UIViewController {
-
+    
+    // MARK: - subViews
     private let searchBarView: SearchBarView = {
         $0.translatesAutoresizingMaskIntoConstraints = false
         return $0
@@ -23,6 +24,10 @@ class MainMapViewController: UIViewController {
     
     @IBOutlet weak var mapView: MKMapView!
     
+    // MARK: - properties
+    var shops: [MKAnnotation] = []
+    
+    // MARK: - lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -31,6 +36,8 @@ class MainMapViewController: UIViewController {
         configureLayout()
     }
     
+    
+    // MARK: - func
     private func setSearchBarView() {
         searchBarView.delegate = self
     }
@@ -59,6 +66,7 @@ class MainMapViewController: UIViewController {
     }
 }
 
+// MARK: - SearchBarDelegate
 extension MainMapViewController: SearchBarDelegate {
     @objc func didBeginEditing() {
         view.endEditing(true)
@@ -71,6 +79,7 @@ extension MainMapViewController: SearchBarDelegate {
     }
 }
 
+// MARK: - CategoryCollectionViewDelegate
 extension MainMapViewController: CategoryCollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         //
