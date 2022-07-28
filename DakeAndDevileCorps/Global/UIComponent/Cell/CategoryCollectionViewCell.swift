@@ -71,7 +71,7 @@ final class CategoryCollectionViewCell: UICollectionViewCell {
     }
     
     private func applySelectedState(_ isSelected: Bool) {
-        backgroundContentView.backgroundColor = isSelected ? .black : .white
+        backgroundContentView.backgroundColor = isSelected ? .zeroMint50 : .white
         itemLabel.textColor = isSelected ? .white : .black
         itemLabel.font = isSelected ? .preferredFont(forTextStyle: .subheadline, compatibleWith: .init(legibilityWeight: .bold))
                                     : .preferredFont(forTextStyle: .subheadline)
