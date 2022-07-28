@@ -19,21 +19,21 @@ class SearchBarView: UIView {
         case map
         case search
         
-        var symbolImageHidden: Bool {
+        var isSymbolImageHidden: Bool {
             switch self {
             case .map: return false
             case .search: return true
             }
         }
         
-        var backButtonHidden: Bool {
+        var isBackButtonHidden: Bool {
             switch self {
             case .map: return true
             case .search: return false
             }
         }
         
-        var myPageButtonIsHidden: Bool {
+        var isMyPageButtonHidden: Bool {
             switch self {
             case .map: return false
             case .search: return true
@@ -59,7 +59,7 @@ class SearchBarView: UIView {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.image = UIImage(systemName: "magnifyingglass")
         imageView.contentMode = .scaleAspectFit
-        imageView.isHidden = entryPoint.symbolImageHidden
+        imageView.isHidden = entryPoint.isSymbolImageHidden
         imageView.tintColor = .black
         return imageView
     }()
@@ -69,7 +69,7 @@ class SearchBarView: UIView {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setBackgroundImage(UIImage(systemName: "chevron.backward"), for: .normal)
         button.sizeToFit()
-        button.isHidden = entryPoint.backButtonHidden
+        button.isHidden = entryPoint.isBackButtonHidden
         button.tintColor = .black
         return button
     }()
@@ -79,7 +79,7 @@ class SearchBarView: UIView {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setBackgroundImage(UIImage(systemName: "person.crop.circle"), for: .normal)
         button.sizeToFit()
-        button.isHidden = entryPoint.myPageButtonIsHidden
+        button.isHidden = entryPoint.isMyPageButtonHidden
         button.tintColor = .systemGray4
         return button
     }()
@@ -213,9 +213,9 @@ class SearchBarView: UIView {
     
     // MARK: - set components
     private func setComponentsIsHidden() {
-        backButton.isHidden = entryPoint.backButtonHidden
-        symbolImageView.isHidden = entryPoint.symbolImageHidden
-        myPageButton.isHidden = entryPoint.myPageButtonIsHidden
+        backButton.isHidden = entryPoint.isBackButtonHidden
+        symbolImageView.isHidden = entryPoint.isSymbolImageHidden
+        myPageButton.isHidden = entryPoint.isMyPageButtonHidden
     }
     
     // MARK: - set TextField
