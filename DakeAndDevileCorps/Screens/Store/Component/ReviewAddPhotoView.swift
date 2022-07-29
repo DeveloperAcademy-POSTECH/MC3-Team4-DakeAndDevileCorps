@@ -92,8 +92,8 @@ class ReviewAddPhotoView: UIView {
     private func setupCollectionView() {
         photoCollectionView.dataSource = self
         photoCollectionView.delegate = self
-        photoCollectionView.register(ReviewPhotoCollectionViewCell.self,
-                                     forCellWithReuseIdentifier: ReviewPhotoCollectionViewCell.className)
+        photoCollectionView.register(AddReviewPhotoCollectionViewCell.self,
+                                     forCellWithReuseIdentifier: AddReviewPhotoCollectionViewCell.className)
     }
     
     private func setAddPhotoButton() {

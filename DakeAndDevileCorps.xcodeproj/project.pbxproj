@@ -30,6 +30,7 @@
 		79AD0E0A2893B68F00A9A1E0 /* ReviewAddPhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79AD0E092893B68F00A9A1E0 /* ReviewAddPhotoView.swift */; };
 		79D7BA682886EBE100F65ECD /* StoreModelTestN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D7BA672886EBE100F65ECD /* StoreModelTestN.swift */; };
 		79E2DCA82886E3C800355E30 /* ResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E2DCA72886E3C800355E30 /* ResultTableViewCell.swift */; };
+		79ECCE02289474D10095E412 /* AddReviewPhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79ECCE01289474D10095E412 /* AddReviewPhotoCollectionViewCell.swift */; };
 		B5B05D4E288F73FD0013E65F /* UIView+Constraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B05D4D288F73FD0013E65F /* UIView+Constraint.swift */; };
 		B5B05D50288F81510013E65F /* ReviewPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B05D4F288F81510013E65F /* ReviewPhotoViewController.swift */; };
 		B5B05D522890ABA10013E65F /* ReviewPhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B05D512890ABA10013E65F /* ReviewPhotoCollectionViewCell.swift */; };
@@ -83,6 +84,7 @@
 		79AD0E092893B68F00A9A1E0 /* ReviewAddPhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewAddPhotoView.swift; sourceTree = "<group>"; };
 		79D7BA672886EBE100F65ECD /* StoreModelTestN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreModelTestN.swift; sourceTree = "<group>"; };
 		79E2DCA72886E3C800355E30 /* ResultTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultTableViewCell.swift; sourceTree = "<group>"; };
+		79ECCE01289474D10095E412 /* AddReviewPhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddReviewPhotoCollectionViewCell.swift; sourceTree = "<group>"; };
 		B5B05D4D288F73FD0013E65F /* UIView+Constraint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Constraint.swift"; sourceTree = "<group>"; };
 		B5B05D4F288F81510013E65F /* ReviewPhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewPhotoViewController.swift; sourceTree = "<group>"; };
 		B5B05D512890ABA10013E65F /* ReviewPhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewPhotoCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -126,6 +128,7 @@
 				4AB368E42886D95E0075E03A /* StoreInformationTableViewCell.swift */,
 				4AB368E62886DBD20075E03A /* ItemTableViewCell.swift */,
 				4AB368EB2886F4870075E03A /* ProductTableViewCell.swift */,
+				79ECCE01289474D10095E412 /* AddReviewPhotoCollectionViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -500,6 +503,7 @@
 				B5F1F25128883EA80021B026 /* CategoryCollectionViewCell.swift in Sources */,
 				7976990C28859E1100DB53F8 /* ImageLiteral.swift in Sources */,
 				B5F1F24E288834A40021B026 /* CategoryView.swift in Sources */,
+				79ECCE02289474D10095E412 /* AddReviewPhotoCollectionViewCell.swift in Sources */,
 				B5F1F25328883EC40021B026 /* NSObject+Extension.swift in Sources */,
 				7937A02228859B990016D1A8 /* StoreDetailViewController.swift in Sources */,
 				797CAC542886CFCB0041C3F7 /* RecentSearchTableViewCell.swift in Sources */,

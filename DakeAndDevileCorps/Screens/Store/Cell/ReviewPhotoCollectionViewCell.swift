@@ -14,16 +14,7 @@ final class ReviewPhotoCollectionViewCell: UICollectionViewCell {
     private let photoImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleToFill
-        imageView.layer.cornerRadius = 10
-        imageView.clipsToBounds = true
         return imageView
-    }()
-    
-    lazy var deletePhotoButton: UIButton = {
-       let button = UIButton()
-        button.setImage(UIImage(systemName: "xmark.circle.fill"), for: .normal)
-        button.tintColor = .black
-        return button
     }()
     
     // MARK: - init
@@ -45,16 +36,7 @@ final class ReviewPhotoCollectionViewCell: UICollectionViewCell {
     
     private func render() {
         addSubview(photoImageView)
-//        photoImageView.constraint(to: self)
-        photoImageView.constraint(top: self.topAnchor,
-                                  leading: self.leadingAnchor,
-                                  padding: UIEdgeInsets(top: 6, left: 0, bottom: 0, right: 0))
-        photoImageView.widthAnchor.constraint(equalToConstant: 75).isActive = true
-        photoImageView.heightAnchor.constraint(equalToConstant: 75).isActive = true
-        addSubview(deletePhotoButton)
-        deletePhotoButton.constraint(top: self.topAnchor,
-                                     leading: photoImageView.trailingAnchor,
-                                     padding: UIEdgeInsets(top: -2, left: -11, bottom: 0, right: 0))
+        photoImageView.constraint(to: self)
     }
     
     func setupPhotoImageView(to photo: UIImage) {
