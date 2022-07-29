@@ -112,11 +112,8 @@ extension MainMapViewController: SearchBarDelegate {
 // MARK: - CategoryCollectionViewDelegate
 extension MainMapViewController: CategoryCollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        // categoryView.categoryList
-        // - ["주방세제", "세탁세제", "섬유유연제", "기타세제", "헤어", "스킨", "바디", "식품", "생활", "문구", "애견", "기타"]
         mapView.removeAnnotations(mapView.annotations)
         let categoryName = categoryView.categoryList[indexPath.row]
-        print("select \(categoryName)")
 
         for shop in shops {
             guard let shop = shop as? ShopInfo else { return }
@@ -127,11 +124,6 @@ extension MainMapViewController: CategoryCollectionViewDelegate {
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-        // categoryView.categoryList
-        // - ["주방세제", "세탁세제", "섬유유연제", "기타세제", "헤어", "스킨", "바디", "식품", "생활", "문구", "애견", "기타"]
-        let categoryName = categoryView.categoryList[indexPath.row]
-        print("deselect \(categoryName)")
-        
         mapView.removeAnnotations(mapView.annotations)
         drawAnnotationViews()
     }
