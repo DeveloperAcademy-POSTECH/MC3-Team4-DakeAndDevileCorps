@@ -47,6 +47,7 @@ final class ReviewInputView: UIView {
     }()
     private let categoryView = CategoryView(entryPoint: .write)
     private let reviewTextView = ReviewTextView()
+    private let reviewAddPhotoView = ReviewAddPhotoView()
     
     // MARK: - init
     
@@ -96,5 +97,10 @@ final class ReviewInputView: UIView {
                                   leading: self.leadingAnchor,
                                   trailing: self.trailingAnchor,
                                   padding: UIEdgeInsets(top: 10, left: 24, bottom: 0, right: 24))
+        addSubview(reviewAddPhotoView)
+        reviewAddPhotoView.constraint(top: reviewTextView.bottomAnchor,
+                                      leading: self.leadingAnchor,
+                                      trailing: self.trailingAnchor,
+                                      padding: UIEdgeInsets(top: 10, left: 24, bottom: 0, right: 24))
     }
 }
