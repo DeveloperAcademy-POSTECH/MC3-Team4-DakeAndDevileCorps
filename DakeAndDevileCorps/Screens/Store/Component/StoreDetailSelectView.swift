@@ -10,6 +10,7 @@ import UIKit
 protocol StoreDetailSelectViewDelegate: AnyObject {
     func showingReview(cell: StoreDetailSelectView)
     func showingProduct(cell: StoreDetailSelectView)
+    func setUpNumberOfButtons(cell: StoreDetailSelectView)
 }
 
 final class StoreDetailSelectView: UIView {
@@ -18,11 +19,37 @@ final class StoreDetailSelectView: UIView {
     
     weak var delegate: StoreDetailSelectViewDelegate?
     var isShowingReview: Bool = false
+    var numberOfProducts: Int = 0 {
+        didSet {
+            productButton.setTitle("취급상품 \(numberOfProducts)", for: .normal)
+        }
+    }
+    var numberOfReviews: Int = 0 {
+        didSet {
+            reviewButton.setTitle("상품리뷰 \(numberOfReviews)", for: .normal)
+        }
+    }
+    
+    let productButtonBottomBar: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .black
+        
+        return view
+    }()
+    
+    let reviewButtonBottomBar: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .black
+        view.isHidden = true
+        
+        return view
+    }()
     
     private let productButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("취급상품 22", for: .normal)
         button.setTitleColor( UIColor.black, for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 17)
         
@@ -54,7 +81,7 @@ final class StoreDetailSelectView: UIView {
         button.titleLabel?.font = UIFont.systemFont(ofSize: 17)
         stackView.addArrangedSubview(image)
         stackView.addArrangedSubview(button)
-       
+        
         return stackView
     }()
     
@@ -64,26 +91,46 @@ final class StoreDetailSelectView: UIView {
         super.init(frame: .zero)
         render()
         setupButtonAction()
-        print("하이루")
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func draw(_ rect: CGRect) {
+        delegate?.setUpNumberOfButtons(cell: self)
+        super.draw(rect)
+    }
+    
     // MARK: - func
     
     private func render() {
-       addSubview(productButton)
+        addSubview(productButton)
+        productButton.setTitle("취급상품 \(numberOfProducts)", for: .normal)
         NSLayoutConstraint.activate([
             productButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 24),
-            productButton.topAnchor.constraint(equalTo: topAnchor, constant: 28)
+            productButton.topAnchor.constraint(equalTo: topAnchor, constant: 10)
+        ])
+        
+        productButton.addSubview(productButtonBottomBar)
+        NSLayoutConstraint.activate([
+            productButtonBottomBar.heightAnchor.constraint(equalToConstant: 2),
+            productButtonBottomBar.topAnchor.constraint(equalTo: productButton.bottomAnchor, constant: 2),
+            productButtonBottomBar.widthAnchor.constraint(equalTo: productButton.widthAnchor)
         ])
         
         addSubview(reviewButton)
+        reviewButton.setTitle("상품리뷰 \(numberOfReviews)", for: .normal)
         NSLayoutConstraint.activate([
             reviewButton.leadingAnchor.constraint(equalTo: productButton.trailingAnchor, constant: 19),
             reviewButton.topAnchor.constraint(equalTo: productButton.topAnchor)
+        ])
+        
+        reviewButton.addSubview(reviewButtonBottomBar)
+        NSLayoutConstraint.activate([
+            reviewButtonBottomBar.heightAnchor.constraint(equalToConstant: 2),
+            reviewButtonBottomBar.topAnchor.constraint(equalTo: reviewButton.bottomAnchor, constant: 2),
+            reviewButtonBottomBar.widthAnchor.constraint(equalTo: reviewButton.widthAnchor)
         ])
         
         addSubview(writeReviewButton)
@@ -91,14 +138,15 @@ final class StoreDetailSelectView: UIView {
             writeReviewButton.topAnchor.constraint(equalTo: productButton.topAnchor),
             writeReviewButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -24)
         ])
+        
     }
     
-    private func setupButtonAction() {        
+    private func setupButtonAction() {
         let productButtonAction = UIAction { _ in
             self.delegate?.showingProduct(cell: self)
         }
         productButton.addAction(productButtonAction, for: .touchUpInside)
-
+        
         let reviewButtonACtion = UIAction { _ in
             self.delegate?.showingReview(cell: self)
         }

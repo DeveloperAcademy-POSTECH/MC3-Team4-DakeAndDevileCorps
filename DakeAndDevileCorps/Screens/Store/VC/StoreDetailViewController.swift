@@ -16,7 +16,7 @@ class StoreDetailViewController: UIViewController {
     private var operationList: [String] = []
     private let categoryList: [String] = ["주방세제", "세탁세제", "섬유유연제", "기타세제", "헤어", "스킨", "바디", "식품", "생활", "문구", "애견", "기타"]
     private var reviewList: [ReviewModel] = []
-    private var isShowingReview: Bool = true
+    private var isShowingReview: Bool = false
     private var selectHeader = StoreDetailSelectView()
     
     override func viewDidLoad() {
@@ -174,7 +174,7 @@ extension StoreDetailViewController: UITableViewDelegate {
                 categoryHeader.delegate = self
                 categoryHeader.backgroundColor = .white
                 view.addArrangedSubview(categoryHeader)
-
+                
                 NSLayoutConstraint.activate([
                     selectHeader.heightAnchor.constraint(equalToConstant: 60),
                     categoryHeader.heightAnchor.constraint(equalToConstant: 60)
@@ -190,7 +190,7 @@ extension StoreDetailViewController: UITableViewDelegate {
         switch section {
         case 1:
             if isShowingReview {
-               return 60
+                return 60
             } else {
                 return 120
             }
@@ -202,8 +202,6 @@ extension StoreDetailViewController: UITableViewDelegate {
 
 extension StoreDetailViewController: StoreInformationTableViewCellDelegate {
     func requestReload() {
-//        storeDetailTableView.reloadSections(IndexSet(0...0), with: .none)
-//        storeDetailTableView.reloadRows(at: [IndexPath(item: 0, section: 0)], with: .none)
         storeDetailTableView.reloadData()
     }
 }
@@ -221,10 +219,21 @@ extension StoreDetailViewController: ReviewTableViewCellDelegate {
 }
 
 extension StoreDetailViewController: StoreDetailSelectViewDelegate {
+    func setUpNumberOfButtons(cell: StoreDetailSelectView) {
+        print("StoreDetailViewController - StoreDetailSelectViewDelegate - setUpNumberOfButtons")
+        cell.numberOfReviews = reviewList.count
+        cell.numberOfProducts = productList.count - categoryList.count
+        print(cell.numberOfReviews)
+        print(cell.numberOfProducts)
+        
+    }
+    
     func showingReview(cell: StoreDetailSelectView) {
         isShowingReview = true
         cell.isShowingReview = true
         cell.applyShowingState()
+        cell.productButtonBottomBar.isHidden = true
+        cell.reviewButtonBottomBar.isHidden = false
         storeDetailTableView.reloadData()
     }
     
@@ -232,7 +241,8 @@ extension StoreDetailViewController: StoreDetailSelectViewDelegate {
         isShowingReview = false
         cell.isShowingReview = false
         cell.applyShowingState()
+        cell.productButtonBottomBar.isHidden = false
+        cell.reviewButtonBottomBar.isHidden = true
         storeDetailTableView.reloadData()
-        
     }
 }

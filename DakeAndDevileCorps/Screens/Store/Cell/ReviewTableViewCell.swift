@@ -72,6 +72,8 @@ class ReviewTableViewCell: UITableViewCell {
             reviewImageView.layer.cornerRadius = 6
             numberOfReviewImageLabel?.text = String(reviewImageName.count )
             self.numberOfReviewImageLabel = numberOfReviewImageLabel
+        } else {
+            numberOfReviewImageLabel?.isHidden = true
         }
     }
     
