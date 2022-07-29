@@ -13,5 +13,5 @@ struct ReviewModel {
     var category: String
     var nickname: String
     var reviewDate: String
-    var reviewImageNames: [String]?
+    var reviewImageNames: [String]
 }

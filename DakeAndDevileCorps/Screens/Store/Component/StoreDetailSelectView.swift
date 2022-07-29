@@ -8,9 +8,9 @@
 import UIKit
 
 protocol StoreDetailSelectViewDelegate: AnyObject {
-    func showingReview(cell: StoreDetailSelectView)
-    func showingProduct(cell: StoreDetailSelectView)
-    func setUpNumberOfButtons(cell: StoreDetailSelectView)
+    func showingReview(_ storeDetailSelectView: StoreDetailSelectView)
+    func showingProduct(_ storeDetailSelectView: StoreDetailSelectView)
+    func setUpNumberOfButtons(_ storeDetailSelectView: StoreDetailSelectView)
 }
 
 final class StoreDetailSelectView: UIView {
@@ -98,7 +98,7 @@ final class StoreDetailSelectView: UIView {
     }
     
     override func draw(_ rect: CGRect) {
-        delegate?.setUpNumberOfButtons(cell: self)
+        delegate?.setUpNumberOfButtons(self)
         super.draw(rect)
     }
     
@@ -143,12 +143,12 @@ final class StoreDetailSelectView: UIView {
     
     private func setupButtonAction() {
         let productButtonAction = UIAction { _ in
-            self.delegate?.showingProduct(cell: self)
+            self.delegate?.showingProduct(self)
         }
         productButton.addAction(productButtonAction, for: .touchUpInside)
         
         let reviewButtonACtion = UIAction { _ in
-            self.delegate?.showingReview(cell: self)
+            self.delegate?.showingReview(self)
         }
         reviewButton.addAction(reviewButtonACtion, for: .touchUpInside)
     }

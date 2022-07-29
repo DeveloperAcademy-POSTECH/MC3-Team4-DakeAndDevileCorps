@@ -59,22 +59,24 @@ class ReviewTableViewCell: UITableViewCell {
     func setData(reviewModel: ReviewModel) {
         reviewTitleLabel.text = reviewModel.reviewTitle
         reviewTitleLabel.font = UIFont.boldSystemFont(ofSize: 15)
+        
         reviewContentLabel.text = reviewModel.reviewContent
         reviewContentLabel.font = UIFont.systemFont(ofSize: 15)
         reviewContentLabel.numberOfLines = 0
         reviewContentLabel.lineBreakMode = .byWordWrapping
+        
         categoryLabel.text = reviewModel.category
         nicknameLabel.text = reviewModel.nickname
         reviewDateLabel.text = reviewModel.reviewDate
         
-        if let reviewImageName = reviewModel.reviewImageNames {
-            reviewImageView.image = UIImage(systemName: reviewImageName.first ?? "")
-            reviewImageView.layer.cornerRadius = 6
-            numberOfReviewImageLabel?.text = String(reviewImageName.count )
-            self.numberOfReviewImageLabel = numberOfReviewImageLabel
-        } else {
+        reviewImageView.image = UIImage(systemName: reviewModel.reviewImageNames.first ?? "")
+        reviewImageView.layer.cornerRadius = 6
+        
+        guard reviewModel.reviewImageNames.isEmpty == false else {
             numberOfReviewImageLabel?.isHidden = true
+            return
         }
+        numberOfReviewImageLabel?.text = String(reviewModel.reviewImageNames.count)
     }
     
     private func render() {
@@ -86,10 +88,10 @@ class ReviewTableViewCell: UITableViewCell {
             numberOfReviewImageLabel.backgroundColor = .gray
             numberOfReviewImageLabel.layer.masksToBounds = true
             numberOfReviewImageLabel.layer.opacity = 0.5
-
+            
             return numberOfReviewImageLabel
         }()
-                
+        
         lazy var categoryLabel: PaddingLabel = {
             let categoryLabel = PaddingLabel(padding: UIEdgeInsets(top: 4, left: 8, bottom: 4, right: 8))
             categoryLabel.font = UIFont.systemFont(ofSize: 12)
@@ -134,7 +136,7 @@ class ReviewTableViewCell: UITableViewCell {
     override func draw(_ rect: CGRect) {
         let radius = (numberOfReviewImageLabel?.frame.height ?? 0) * 0.5
         numberOfReviewImageLabel?.layer.cornerRadius = radius
-
+        
         super.draw(rect)
     }
 }
