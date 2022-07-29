@@ -7,6 +7,11 @@
 
 import UIKit
 
+protocol StoreDetailSelectViewDelegate: AnyObject {
+    func showingReview()
+    func showingProduct()
+}
+
 final class StoreDetailSelectView: UIView {
     
     // MARK: - properties
@@ -32,8 +37,6 @@ final class StoreDetailSelectView: UIView {
     }()
     
     private let writeReviewButton: UIStackView = {
-//        let stackView = UIStackView()
-//        stackView.axis = .horizontal
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .horizontal
@@ -51,11 +54,14 @@ final class StoreDetailSelectView: UIView {
        
         return stackView
     }()
+    
+    weak var delegate: StoreDetailSelectViewDelegate?
     // MARK: - init
     
     init() {
         super.init(frame: .zero)
         render()
+        setupButtonAction()
     }
     
     required init?(coder: NSCoder) {
@@ -83,9 +89,16 @@ final class StoreDetailSelectView: UIView {
             writeReviewButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -24)
         ])
     }
-        
-    private func configUI() {
-        
-    }
     
+    private func setupButtonAction() {        
+        let productButtonAction = UIAction { _ in
+            self.delegate?.showingProduct()
+        }
+        productButton.addAction(productButtonAction, for: .touchUpInside)
+
+        let reviewButtonACtion = UIAction { _ in
+            self.delegate?.showingReview()
+        }
+        reviewButton.addAction(reviewButtonACtion, for: .touchUpInside)
+    }
 }

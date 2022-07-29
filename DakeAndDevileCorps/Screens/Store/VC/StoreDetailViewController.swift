@@ -16,12 +16,14 @@ class StoreDetailViewController: UIViewController {
     private var operationList: [String] = []
     private let categoryList: [String] = ["주방세제", "세탁세제", "섬유유연제", "기타세제", "헤어", "스킨", "바디", "식품", "생활", "문구", "애견", "기타"]
     private var reviewList: [ReviewModel] = []
-    private var showingReview: Bool = true
+    private var isShowingReview: Bool = true
+    private var selectHeader = StoreDetailSelectView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configStoreDetailTableView()
         initStoreInformationData()
+        configSelectHeader()
     }
     
     func configStoreDetailTableView() {
@@ -33,6 +35,11 @@ class StoreDetailViewController: UIViewController {
         if #available(iOS 15.0, *) {
             storeDetailTableView.sectionHeaderTopPadding = 0
         }
+    }
+    
+    func configSelectHeader() {
+        selectHeader.delegate = self
+        selectHeader.backgroundColor = .white
     }
     
     func initStoreInformationData() {
@@ -91,7 +98,7 @@ extension StoreDetailViewController: UITableViewDataSource {
         case 0:
             return 1
         case 1:
-            if !showingReview {
+            if !isShowingReview {
                 return productList.count
             } else {
                 return reviewList.count
@@ -122,7 +129,12 @@ extension StoreDetailViewController: UITableViewDataSource {
             
             return storeInformationCell
         case 1:
-            if !showingReview {
+            if isShowingReview {
+                guard let reviewCell = tableView.dequeueReusableCell(withIdentifier: ReviewTableViewCell.className, for: indexPath) as? ReviewTableViewCell else { return UITableViewCell() }
+                reviewCell.setData(reviewModel: reviewList[indexPath.row])
+                reviewCell.reviewDelegate = self
+                return reviewCell
+            } else {
                 guard let productCell = tableView.dequeueReusableCell(
                     withIdentifier: ProductTableViewCell.className, for: indexPath
                 ) as? ProductTableViewCell,
@@ -138,13 +150,7 @@ extension StoreDetailViewController: UITableViewDataSource {
                     itemCell.setData(itemName: itemName, itemPrice: itemPrice)
                     return itemCell
                 }
-            } else {
-                guard let reviewCell = tableView.dequeueReusableCell(withIdentifier: ReviewTableViewCell.className, for: indexPath) as? ReviewTableViewCell else { return UITableViewCell() }
-                reviewCell.setData(reviewModel: reviewList[indexPath.row])
-                reviewCell.reviewDelegate = self
-                return reviewCell
             }
-            
         default:
             return UITableViewCell()
         }
@@ -162,19 +168,18 @@ extension StoreDetailViewController: UITableViewDelegate {
         case 1:
             let view = UIStackView()
             view.axis = .vertical
-//            view.translatesAutoresizingMaskIntoConstraints = false
-            let categoryHeader = CategoryView(entryPoint: CategoryEntryPoint.detail)
-            categoryHeader.delegate = self
-            categoryHeader.backgroundColor = .white
-            let selectHeader = StoreDetailSelectView()
-            selectHeader.backgroundColor = .white
             view.addArrangedSubview(selectHeader)
-            view.addArrangedSubview(categoryHeader)
+            if !isShowingReview {
+                let categoryHeader = CategoryView(entryPoint: CategoryEntryPoint.detail)
+                categoryHeader.delegate = self
+                categoryHeader.backgroundColor = .white
+                view.addArrangedSubview(categoryHeader)
 
-            NSLayoutConstraint.activate([
-                selectHeader.heightAnchor.constraint(equalToConstant: 60),
-                categoryHeader.heightAnchor.constraint(equalToConstant: 60)
-            ])
+                NSLayoutConstraint.activate([
+                    selectHeader.heightAnchor.constraint(equalToConstant: 60),
+                    categoryHeader.heightAnchor.constraint(equalToConstant: 60)
+                ])
+            }
             return view
         default:
             return nil
@@ -184,7 +189,11 @@ extension StoreDetailViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         switch section {
         case 1:
-            return 120
+            if isShowingReview {
+               return 60
+            } else {
+                return 120
+            }
         default:
             return 0
         }
@@ -209,4 +218,17 @@ extension StoreDetailViewController: ReviewTableViewCellDelegate {
     func requestReviewTableViewCellReload() {
         storeDetailTableView.reloadData()
     }
+}
+
+extension StoreDetailViewController: StoreDetailSelectViewDelegate {
+    func showingReview() {
+        isShowingReview = true
+        storeDetailTableView.reloadData()
+    }
+    
+    func showingProduct() {
+        isShowingReview = false
+        storeDetailTableView.reloadData()
+    }
+    
 }
