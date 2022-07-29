@@ -11,7 +11,8 @@ final class WriteReviewViewController: BaseViewController {
     
     // MARK: - properties
     
-    let imagePickerViewController = UIImagePickerController()
+    private let imagePickerViewController = UIImagePickerController()
+    private let photoLimitAlert = UIAlertController(title: "알림", message: "사진은 최대 3장까지 등록할 수 있어요.", preferredStyle: .alert)
     
     private func initDelegate() {
         imagePickerViewController.delegate = self
@@ -33,6 +34,11 @@ final class WriteReviewViewController: BaseViewController {
     
     private func choosePhotoFromAlbum() {
         present(imagePickerViewController, animated: true)
+    }
+    
+    private func setPhotoAlert() {
+        let confirmAction = UIAlertAction(title: "확인", style: .default, handler: nil)
+        photoLimitAlert.addAction(confirmAction)
     }
     
     private let cancelButton: UIButton = {
@@ -64,6 +70,7 @@ final class WriteReviewViewController: BaseViewController {
                                    trailing: view.trailingAnchor,
                                    padding: .zero)
         initDelegate()
+        setPhotoAlert()
     }
 
     override func configUI() {
@@ -102,7 +109,7 @@ extension WriteReviewViewController: ReviewAddPhotoDelegate {
             imagePickerViewController.sourceType = .photoLibrary
             present(imagePickerViewController, animated: true, completion: nil)
         } else {
-            print("over 3 photos")
+            present(photoLimitAlert, animated:  true, completion: nil)
         }
     }
 }
