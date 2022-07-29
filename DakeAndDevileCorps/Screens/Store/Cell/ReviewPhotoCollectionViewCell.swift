@@ -14,6 +14,8 @@ final class ReviewPhotoCollectionViewCell: UICollectionViewCell {
     private let photoImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleToFill
+        imageView.layer.cornerRadius = 10
+        imageView.clipsToBounds = true
         return imageView
     }()
     
