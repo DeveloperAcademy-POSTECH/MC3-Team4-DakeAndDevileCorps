@@ -64,7 +64,7 @@ final class ReviewTextView: UIView {
         }
     }
     private let maxCount = 300
-
+    
     // MARK: - init
     
     override init(frame: CGRect) {
@@ -109,12 +109,23 @@ final class ReviewTextView: UIView {
     
     private func setCounter(count: Int) {
         counterLabel.text = "\(count)/\(maxCount)"
-        checkMaxLength(textView: reviewTextView, maxLength: maxCount)
     }
     
     private func checkMaxLength(textView: UITextView, maxLength: Int) {
-        if (textView.text?.count ?? 0 > maxLength) {
-            textView.deleteBackward()
+        guard var textViewText = textView.text else { return }
+        let isOverMaxLength = textViewText.count > maxLength
+        
+        if isOverMaxLength {
+            textViewText.removeLast()
+            textView.text = textViewText + " "
+            rearrangeTextViewText(with: textView, text: textViewText)
+        }
+    }
+    
+    private func rearrangeTextViewText(with textView: UITextView, text: String) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
+            textView.text = text
+            self.setCounter(count: textView.text.count)
         }
     }
 }
@@ -134,5 +145,6 @@ extension ReviewTextView: UITextViewDelegate {
     
     func textViewDidChange(_ textView: UITextView) {
         setCounter(count: textView.text?.count ?? 0)
+        checkMaxLength(textView: textView, maxLength: maxCount)
     }
 }
