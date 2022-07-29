@@ -47,7 +47,7 @@ final class ReviewInputView: UIView {
     }()
     private let categoryView = CategoryView(entryPoint: .write)
     private let reviewTextView = ReviewTextView()
-    private let reviewAddPhotoView = ReviewAddPhotoView()
+    let reviewAddPhotoView = ReviewAddPhotoView()
     
     // MARK: - init
     

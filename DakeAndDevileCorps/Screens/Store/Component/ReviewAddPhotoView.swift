@@ -7,7 +7,15 @@
 
 import UIKit
 
+@objc protocol ReviewAddPhotoDelegate {
+    @objc optional func touchUpInsideToAddPhotoButton()
+}
+
 class ReviewAddPhotoView: UIView {
+    
+    weak var delegate: ReviewAddPhotoDelegate?
+    
+    var photoList: [UIImage] = []
     
     private enum Size {
         static let cellWidth: CGFloat = UIScreen.main.bounds.size.width
@@ -15,9 +23,7 @@ class ReviewAddPhotoView: UIView {
     }
     
     private lazy var addPhotoButton: UIButton = {
-        let button = UIButton(type: .custom, primaryAction: UIAction(handler: { _ in
-            print("hi")
-        }))
+        let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setImage(UIImage(systemName: "photo"), for: .normal)
         button.tintColor = .gray
@@ -52,8 +58,21 @@ class ReviewAddPhotoView: UIView {
         return collectionView
     }()
     
+    let photoCollectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.sectionInset = UIEdgeInsets.zero
+        layout.minimumLineSpacing = 0
+        layout.itemSize = CGSize(width: 75, height: 75)
+        
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.backgroundColor = .clear
+        return collectionView
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: .zero)
+        setAddPhotoButton()
+        setupCollectionView()
         render()
     }
     
@@ -72,7 +91,33 @@ class ReviewAddPhotoView: UIView {
         
         addPhotoButton.widthAnchor.constraint(equalToConstant: 75).isActive = true
         addPhotoButton.heightAnchor.constraint(equalToConstant: 75).isActive = true
+        addSubview(photoCollectionView)
+        photoCollectionView.constraint(top: photoTitleLabel.bottomAnchor,
+                                       leading: addPhotoButton.trailingAnchor,
+                                       trailing: self.trailingAnchor,
+                                       padding: UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0))
+        photoCollectionView.widthAnchor.constraint(equalToConstant: 75).isActive = true
+        photoCollectionView.heightAnchor.constraint(equalToConstant: 75).isActive = true
     }
+    
+    private func setupCollectionView() {
+        photoCollectionView.dataSource = self
+        photoCollectionView.delegate = self
+        photoCollectionView.register(ReviewPhotoCollectionViewCell.self,
+                                     forCellWithReuseIdentifier: ReviewPhotoCollectionViewCell.className)
+    }
+    
+    private func setAddPhotoButton() {
+        addPhotoButton.addTarget(self, action: #selector(touchUpInsideToAddPhotoButton), for: .touchUpInside)
+        print("set")
+    }
+    
+    @objc
+    private func touchUpInsideToAddPhotoButton() {
+        delegate?.touchUpInsideToAddPhotoButton?()
+        print("hi")
+    }
+
 }
 
 
