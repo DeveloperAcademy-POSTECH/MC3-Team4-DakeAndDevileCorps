@@ -13,6 +13,7 @@ final class WriteReviewViewController: BaseViewController {
     
     private let imagePickerViewController = UIImagePickerController()
     private let photoLimitAlert = UIAlertController(title: "알림", message: "사진은 최대 3장까지 등록할 수 있어요.", preferredStyle: .alert)
+    private let addPhotoAlert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
     
     private func initDelegate() {
         imagePickerViewController.delegate = self
@@ -37,8 +38,16 @@ final class WriteReviewViewController: BaseViewController {
     }
     
     private func setPhotoAlert() {
+        let choosePhotoFromAlbumAction = UIAlertAction(title: "앨범에서 선택", style: .default, handler: { [weak self] (action: UIAlertAction) in self?.setImagePickerToPhotoLibrary()})
+        let takePhotoAction = UIAlertAction(title: "사진 촬영", style: .default, handler: { [weak self] (action: UIAlertAction) in
+            self?.setImagePickerToCamera()
+        })
+        let cancelAction = UIAlertAction(title: "취소", style: .cancel)
         let confirmAction = UIAlertAction(title: "확인", style: .default, handler: nil)
         photoLimitAlert.addAction(confirmAction)
+        addPhotoAlert.addAction(choosePhotoFromAlbumAction)
+        addPhotoAlert.addAction(takePhotoAction)
+        addPhotoAlert.addAction(cancelAction)
     }
     
     private let cancelButton: UIButton = {
@@ -106,8 +115,7 @@ final class WriteReviewViewController: BaseViewController {
 extension WriteReviewViewController: ReviewAddPhotoDelegate {
     @objc func touchUpInsideToAddPhotoButton() {
         if reviewInputView.reviewAddPhotoView.photoList.count < 3 {
-            imagePickerViewController.sourceType = .photoLibrary
-            present(imagePickerViewController, animated: true, completion: nil)
+            present(addPhotoAlert, animated: true, completion: nil)
         } else {
             present(photoLimitAlert, animated:  true, completion: nil)
         }
