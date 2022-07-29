@@ -7,7 +7,6 @@
 
 import MapKit
 
-
 class ShopInfo: NSObject, MKAnnotation {
     enum Category {
         case zeroWasteShop
@@ -32,7 +31,6 @@ class ShopInfo: NSObject, MKAnnotation {
     let subtitle: String?
     
     let coordinate: CLLocationCoordinate2D
-    
     
     let sellingProductsCategory: [String]
     let category: Category

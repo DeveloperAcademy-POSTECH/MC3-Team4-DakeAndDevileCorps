@@ -47,7 +47,6 @@ class MainMapViewController: UIViewController {
         drawAnnotationViews()
     }
     
-    
     // MARK: - func
     private func setMapView() {
         mapView.delegate = self
