@@ -12,6 +12,7 @@ class RecentSearchTableViewCell: UITableViewCell {
     static let identifier = "RecentSearchTableViewCell"
     
     @IBOutlet weak var searchedTitle: UILabel!
+    var didSelectedDeleteButton: (() -> Void)?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -26,6 +27,6 @@ class RecentSearchTableViewCell: UITableViewCell {
     }
     
     @IBAction func touchUpToDeleteData(_ sender: Any) {
-        print("deleted!")
+        didSelectedDeleteButton?()
     }
 }

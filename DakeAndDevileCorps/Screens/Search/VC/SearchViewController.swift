@@ -25,6 +25,7 @@ class SearchViewController: UIViewController {
     private var recentSearchedItemList: [String] = []
     private var resultList: [StoreModel] = []
     private var isResultShowing: Bool = false
+    private let keywordCoreData = KeywordManager.shared
     
     private enum SearchType {
         case recentSearch
@@ -94,9 +95,6 @@ class SearchViewController: UIViewController {
     }
     
     private func initData() {
-        recentSearchedItemList.append(contentsOf: [
-            "샴푸", "리필스테이션", "세탁세제", "샴푸", "리필스테이션", "세탁세제", "샴푸", "리필스테이션", "세탁세제", "샴푸", "리필스테이션", "세탁세제"
-        ])
         resultList.append(contentsOf: [
             StoreModel(storeName: "알맹 상점", storeAddress: "서울 마포구 월드컵로25길 47 3층", distanceToStore: "1.7km"),
             StoreModel(storeName: "더 피커", storeAddress: "서울 마포구 월드컵로25길 47 3층", distanceToStore: "16.2km"),
@@ -117,7 +115,7 @@ class SearchViewController: UIViewController {
     }
     
     @IBAction func touchUpToDeleteAllSearchedData(_ sender: Any) {
-        print("delete all!!")
+        keywordCoreData.deleteAll(request: Keywords.fetchRequest())
     }
 }
 
@@ -138,6 +136,12 @@ extension SearchViewController: UITableViewDataSource {
         } else {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: RecentSearchTableViewCell.className, for: indexPath) as? RecentSearchTableViewCell else { return UITableViewCell() }
             cell.setupCell(title: recentSearchedItemList[indexPath.row])
+            cell.didSelectedDeleteButton = { [weak self] in
+                guard let items = self?.keywordCoreData.loadFromCoreData(request: Keywords.fetchRequest()) else { return }
+                let selectedItem = items[indexPath.row]
+                
+                self?.keywordCoreData.delete(at: selectedItem.term, request: Keywords.fetchRequest())
+            }
             return cell
         }
     }
