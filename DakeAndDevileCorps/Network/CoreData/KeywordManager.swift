@@ -51,7 +51,7 @@ final class KeywordManager {
     
     @discardableResult
     func delete<T: NSManagedObject>(at keyword: String, request: NSFetchRequest<T>) -> Bool {
-        request.predicate = NSPredicate(format: "keyword = %@", NSString(string: keyword))
+        request.predicate = NSPredicate(format: "term = %@", NSString(string: keyword))
 
         do {
             if let recentTerms = try context?.fetch(request) {

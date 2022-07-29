@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="19574" systemVersion="21F79" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Keywords" representedClassName="Keywords" syncable="YES" codeGenerationType="class">
-        <attribute name="keyword" optional="YES" attributeType="String"/>
+        <attribute name="term" optional="YES" attributeType="String"/>
     </entity>
     <elements>
         <element name="Keywords" positionX="-63" positionY="-18" width="128" height="44"/>

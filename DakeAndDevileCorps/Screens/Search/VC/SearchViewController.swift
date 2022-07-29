@@ -114,8 +114,14 @@ class SearchViewController: UIViewController {
         ])
     }
     
+    private func saveRecentKeyword() {
+        let keyword = searchBarView.text
+        keywordCoreData.saveRecentSearch(keyword: keyword)
+    }
+    
     @IBAction func touchUpToDeleteAllSearchedData(_ sender: Any) {
         keywordCoreData.deleteAll(request: Keywords.fetchRequest())
+        searchTableView.reloadData()
     }
 }
 
@@ -141,6 +147,7 @@ extension SearchViewController: UITableViewDataSource {
             cell.didSelectedDeleteButton = { [weak self] in
                 let selectedItem = recentItemList[indexPath.row].term
                 self?.keywordCoreData.delete(at: selectedItem, request: Keywords.fetchRequest())
+                self?.searchTableView.reloadData()
             }
             return cell
         }
@@ -170,6 +177,7 @@ extension SearchViewController: SearchBarDelegate {
         isResultShowing = true
         view.endEditing(true)
         setTableResult(searchtype: searchType)
+        saveRecentKeyword()
         searchTableView.reloadData()
     }
 }
