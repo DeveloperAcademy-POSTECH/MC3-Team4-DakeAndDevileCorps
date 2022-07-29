@@ -12,6 +12,7 @@ final class ReviewTextView: UIView {
     private enum TextMode {
         case beforeWriting
         case write
+        case complete
         
         var placeholder: String? {
             switch self {
@@ -26,7 +27,7 @@ final class ReviewTextView: UIView {
             switch self {
             case .beforeWriting:
                 return .tertiaryLabel
-            case .write:
+            default:
                 return .black
             }
         }
@@ -56,9 +57,10 @@ final class ReviewTextView: UIView {
     }()
     private var textMode: TextMode? {
         willSet {
-            if let newValue = newValue {
-                applyTextViewConfiguration(with: newValue)
-            }
+            guard let newValue = newValue,
+                  newValue != .complete else { return }
+            
+            applyTextViewConfiguration(with: newValue)
         }
     }
 
@@ -96,10 +98,25 @@ final class ReviewTextView: UIView {
     
     private func configUI() {
         textMode = .beforeWriting
+        reviewTextView.delegate = self
     }
     
     private func applyTextViewConfiguration(with state: TextMode) {
-        reviewTextView.textColor = state.textColor
         reviewTextView.text = state.placeholder
+        reviewTextView.textColor = state.textColor
+    }
+}
+
+extension ReviewTextView: UITextViewDelegate {
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        let isBeforeWriting = textMode == .beforeWriting
+        if isBeforeWriting {
+            textMode = .write
+        }
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        let isEmpty = textView.text.isEmpty
+        textMode = isEmpty ? .beforeWriting : .complete
     }
 }

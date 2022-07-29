@@ -30,6 +30,13 @@ final class WriteReviewViewController: BaseViewController {
     
     var storeName: String = "알맹상점"
     
+    // MARK: - life cycle
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        hidekeyboardWhenTappedAround()
+    }
+    
     override func render() {
         view.addSubview(reviewInputView)
         reviewInputView.constraint(top: view.safeAreaLayoutGuide.topAnchor,
