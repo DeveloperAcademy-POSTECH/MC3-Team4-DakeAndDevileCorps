@@ -9,6 +9,7 @@ import UIKit
 
 protocol CategoryCollectionViewDelegate: AnyObject {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath)
 }
 
 enum CategoryEntryPoint {
@@ -97,6 +98,8 @@ extension CategoryView: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         guard let cell = collectionView.cellForItem(at: indexPath) as? CategoryCollectionViewCell else { return }
+        
         cell.applySelectedState(false)
+        delegate?.collectionView(collectionView, didDeselectItemAt: indexPath)
     }
 }

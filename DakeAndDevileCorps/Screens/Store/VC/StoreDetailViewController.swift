@@ -164,4 +164,8 @@ extension StoreDetailViewController: CategoryCollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         scrollToSelectedCategory(indexPath: indexPath)
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        
+    }
 }
