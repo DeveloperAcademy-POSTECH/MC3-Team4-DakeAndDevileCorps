@@ -98,8 +98,12 @@ final class WriteReviewViewController: BaseViewController {
 
 extension WriteReviewViewController: ReviewAddPhotoDelegate {
     @objc func touchUpInsideToAddPhotoButton() {
-        imagePickerViewController.sourceType = .photoLibrary
-        present(imagePickerViewController, animated: true, completion: nil)
+        if reviewInputView.reviewAddPhotoView.photoList.count < 3 {
+            imagePickerViewController.sourceType = .photoLibrary
+            present(imagePickerViewController, animated: true, completion: nil)
+        } else {
+            print("over 3 photos")
+        }
     }
 }
 
