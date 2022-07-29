@@ -41,7 +41,7 @@ final class CategoryView: UIView {
     
     weak var delegate: CategoryCollectionViewDelegate?
     private var entryPoint: CategoryEntryPoint
-    public private(set) let categoryList: [String] = ["주방세제", "세탁세제", "섬유유연제", "기타세제", "헤어", "스킨", "바디", "식품", "생활", "문구", "애견", "기타"]
+    public private(set) var categoryList: [String] = ["주방세제", "세탁세제", "섬유유연제", "기타세제", "헤어", "스킨", "바디", "식품", "생활", "문구", "애견", "기타"]
     
     // MARK: - init
     
@@ -86,6 +86,17 @@ extension CategoryView: UICollectionViewDataSource {
 
 extension CategoryView: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let cell = collectionView.cellForItem(at: indexPath) as? CategoryCollectionViewCell else { return }
+        let isSelectedForMap = !cell.isSelectedCell
+        let isSelected = cell.isSelected
+        let isSelectedAccordingToEntryPoint = (entryPoint == .map) ? isSelectedForMap : isSelected
+        
+        cell.applySelectedState(isSelectedAccordingToEntryPoint)
         delegate?.collectionView(collectionView, didSelectItemAt: indexPath)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        guard let cell = collectionView.cellForItem(at: indexPath) as? CategoryCollectionViewCell else { return }
+        cell.applySelectedState(false)
     }
 }

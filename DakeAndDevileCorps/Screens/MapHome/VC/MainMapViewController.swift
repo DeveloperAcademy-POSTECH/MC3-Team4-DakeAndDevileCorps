@@ -39,7 +39,7 @@ class MainMapViewController: UIViewController {
             searchBarView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -16)
         ])
         
-        let categoryView = CategoryView(entryPoint: .map)
+        let categoryView = CategoryView(entryPoint: .detail)
         view.addSubview(categoryView)
         categoryView.constraint(top: view.safeAreaLayoutGuide.topAnchor, leading: view.leadingAnchor, trailing: view.trailingAnchor, padding: UIEdgeInsets(top: 100, left: 0, bottom: 0, right: 0))
     }
