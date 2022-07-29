@@ -47,12 +47,12 @@ final class ReviewTextView: UIView {
         label.textColor = .secondaryLabel
         label.font = .preferredFont(forTextStyle: .caption2,
                                     compatibleWith: .init(legibilityWeight: .bold))
-        label.text = "0/300"
         return label
     }()
-    private let reviewTextView: UITextView = {
+    private lazy var reviewTextView: UITextView = {
         let textView = UITextView()
         textView.font = .preferredFont(forTextStyle: .subheadline)
+        textView.delegate = self
         return textView
     }()
     private var textMode: TextMode? {
@@ -63,6 +63,7 @@ final class ReviewTextView: UIView {
             applyTextViewConfiguration(with: newValue)
         }
     }
+    private let maxCount = 300
 
     // MARK: - init
     
@@ -97,13 +98,24 @@ final class ReviewTextView: UIView {
     }
     
     private func configUI() {
+        counterLabel.text = "0/\(maxCount)"
         textMode = .beforeWriting
-        reviewTextView.delegate = self
     }
     
     private func applyTextViewConfiguration(with state: TextMode) {
         reviewTextView.text = state.placeholder
         reviewTextView.textColor = state.textColor
+    }
+    
+    private func setCounter(count: Int) {
+        counterLabel.text = "\(count)/\(maxCount)"
+        checkMaxLength(textView: reviewTextView, maxLength: maxCount)
+    }
+    
+    private func checkMaxLength(textView: UITextView, maxLength: Int) {
+        if (textView.text?.count ?? 0 > maxLength) {
+            textView.deleteBackward()
+        }
     }
 }
 
@@ -118,5 +130,9 @@ extension ReviewTextView: UITextViewDelegate {
     func textViewDidEndEditing(_ textView: UITextView) {
         let isEmpty = textView.text.isEmpty
         textMode = isEmpty ? .beforeWriting : .complete
+    }
+    
+    func textViewDidChange(_ textView: UITextView) {
+        setCounter(count: textView.text?.count ?? 0)
     }
 }
