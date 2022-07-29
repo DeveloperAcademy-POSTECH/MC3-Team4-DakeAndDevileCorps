@@ -47,17 +47,6 @@ class ReviewAddPhotoView: UIView {
         return label
     }()
     
-    private let addPhotoCollectionView: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        layout.sectionInset = UIEdgeInsets.zero
-        layout.minimumLineSpacing = 0
-        layout.itemSize = CGSize(width: Size.cellWidth, height: Size.cellHeight)
-        
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-
-        return collectionView
-    }()
-    
     let photoCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsets.zero
@@ -87,7 +76,7 @@ class ReviewAddPhotoView: UIView {
         addSubview(addPhotoButton)
         addPhotoButton.constraint(top: photoTitleLabel.bottomAnchor,
                                   leading: self.leadingAnchor,
-                                  padding: UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0))
+                                  padding: UIEdgeInsets(top: 15, left: 0, bottom: 0, right: 0))
         
         addPhotoButton.widthAnchor.constraint(equalToConstant: 75).isActive = true
         addPhotoButton.heightAnchor.constraint(equalToConstant: 75).isActive = true
@@ -95,9 +84,9 @@ class ReviewAddPhotoView: UIView {
         photoCollectionView.constraint(top: photoTitleLabel.bottomAnchor,
                                        leading: addPhotoButton.trailingAnchor,
                                        trailing: self.trailingAnchor,
-                                       padding: UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0))
+                                       padding: UIEdgeInsets(top: 9, left: 0, bottom: 0, right: 0))
         photoCollectionView.widthAnchor.constraint(equalToConstant: 75).isActive = true
-        photoCollectionView.heightAnchor.constraint(equalToConstant: 75).isActive = true
+        photoCollectionView.heightAnchor.constraint(equalToConstant: 100).isActive = true
     }
     
     private func setupCollectionView() {
@@ -109,13 +98,11 @@ class ReviewAddPhotoView: UIView {
     
     private func setAddPhotoButton() {
         addPhotoButton.addTarget(self, action: #selector(touchUpInsideToAddPhotoButton), for: .touchUpInside)
-        print("set")
     }
     
     @objc
     private func touchUpInsideToAddPhotoButton() {
         delegate?.touchUpInsideToAddPhotoButton?()
-        print("hi")
     }
 
 }

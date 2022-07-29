@@ -98,7 +98,6 @@ final class WriteReviewViewController: BaseViewController {
 
 extension WriteReviewViewController: ReviewAddPhotoDelegate {
     @objc func touchUpInsideToAddPhotoButton() {
-        print("Hi")
         imagePickerViewController.sourceType = .photoLibrary
         present(imagePickerViewController, animated: true, completion: nil)
     }
@@ -113,7 +112,6 @@ extension WriteReviewViewController: UIImagePickerControllerDelegate, UINavigati
             ])
         }
         
-//        setNumberOfPhotos()
         reviewInputView.reviewAddPhotoView.photoCollectionView.reloadData()
         print(reviewInputView.reviewAddPhotoView.photoList.count)
         picker.dismiss(animated: true, completion: nil)
@@ -133,23 +131,20 @@ extension WriteReviewViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier:ReviewPhotoCollectionViewCell.className, for: indexPath) as? ReviewPhotoCollectionViewCell else { return UICollectionViewCell() }
             cell.setupPhotoImageView(to: reviewInputView.reviewAddPhotoView.photoList[indexPath.row])
-//            cell.setImageConrerRadius()
-//            cell.deleteButton.tag = indexPath.row
-//            cell.deleteButton.addTarget(self, action: #selector(cancelButtonAction(sender:)), for: .touchUpInside)
-            print("setup!")
-
+            cell.deletePhotoButton.tag = indexPath.row
+            cell.deletePhotoButton.addTarget(self, action: #selector(touchUpInsideToDeletePhoto(sender:)), for: .touchUpInside)
             return cell
     }
 }
 
 extension WriteReviewViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = (UIScreen.main.bounds.size.width - 24 * 2 - 100) / 3
+        let width = (UIScreen.main.bounds.size.width - 24 * 2 - 95) / 3
         return CGSize(width: width, height: width)
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 0, left: 10, bottom: 0, right:  0)
+        return UIEdgeInsets(top: 0, left: 13, bottom: 0, right:  0)
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
@@ -158,5 +153,12 @@ extension WriteReviewViewController: UICollectionViewDelegateFlowLayout {
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 0
+    }
+}
+
+extension WriteReviewViewController {
+    @objc func touchUpInsideToDeletePhoto(sender: UIButton) {
+        reviewInputView.reviewAddPhotoView.photoCollectionView.deleteItems(at: [IndexPath.init(row: sender.tag, section: 0)])
+        reviewInputView.reviewAddPhotoView.photoList.remove(at: sender.tag)
     }
 }
