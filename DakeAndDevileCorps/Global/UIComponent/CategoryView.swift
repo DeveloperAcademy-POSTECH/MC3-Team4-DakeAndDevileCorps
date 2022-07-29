@@ -70,6 +70,17 @@ final class CategoryView: UIView {
         categoryCollectionView.dataSource = self
         categoryCollectionView.register(CategoryCollectionViewCell.self, forCellWithReuseIdentifier: CategoryCollectionViewCell.className)
     }
+    
+    private func selectMapDelegateMethod(with isSelected: Bool,
+                                         collectionView: UICollectionView,
+                                         indexPath: IndexPath) {
+        guard entryPoint == .map else { return }
+        
+        isSelected ?
+        delegate?.collectionView(collectionView, didSelectItemAt: indexPath)
+        :
+        delegate?.collectionView?(collectionView, didDeselectItemAt: indexPath)
+    }
 }
 
 extension CategoryView: UICollectionViewDataSource {
@@ -93,13 +104,15 @@ extension CategoryView: UICollectionViewDelegate {
         let isSelectedAccordingToEntryPoint = (entryPoint == .map) ? isSelectedForMap : isSelected
         
         cell.applySelectedState(isSelectedAccordingToEntryPoint)
-        delegate?.collectionView(collectionView, didSelectItemAt: indexPath)
+        
+        selectMapDelegateMethod(with: isSelectedForMap,
+                                collectionView: collectionView,
+                                indexPath: indexPath)
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         guard let cell = collectionView.cellForItem(at: indexPath) as? CategoryCollectionViewCell else { return }
         
         cell.applySelectedState(false)
-        delegate?.collectionView?(collectionView, didDeselectItemAt: indexPath)
     }
 }
