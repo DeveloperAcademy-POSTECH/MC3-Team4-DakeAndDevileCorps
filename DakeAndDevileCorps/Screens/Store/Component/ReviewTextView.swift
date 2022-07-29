@@ -9,6 +9,29 @@ import UIKit
 
 final class ReviewTextView: UIView {
     
+    private enum TextMode {
+        case beforeWriting
+        case write
+        
+        var placeholder: String? {
+            switch self {
+            case .beforeWriting:
+                return "리뷰를 남겨주세요"
+            default:
+                return nil
+            }
+        }
+        
+        var textColor: UIColor {
+            switch self {
+            case .beforeWriting:
+                return .tertiaryLabel
+            case .write:
+                return .black
+            }
+        }
+    }
+    
     // MARK: - properties
     
     private let borderView: UIView = {
@@ -31,12 +54,20 @@ final class ReviewTextView: UIView {
         textView.font = .preferredFont(forTextStyle: .subheadline)
         return textView
     }()
+    private var textMode: TextMode? {
+        willSet {
+            if let newValue = newValue {
+                applyTextViewConfiguration(with: newValue)
+            }
+        }
+    }
 
     // MARK: - init
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         render()
+        configUI()
     }
     
     required init?(coder: NSCoder) {
@@ -63,4 +94,12 @@ final class ReviewTextView: UIView {
                                   padding: UIEdgeInsets(top: 16, left: 16, bottom: 12, right: 16))
     }
     
+    private func configUI() {
+        textMode = .beforeWriting
+    }
+    
+    private func applyTextViewConfiguration(with state: TextMode) {
+        reviewTextView.textColor = state.textColor
+        reviewTextView.text = state.placeholder
+    }
 }
