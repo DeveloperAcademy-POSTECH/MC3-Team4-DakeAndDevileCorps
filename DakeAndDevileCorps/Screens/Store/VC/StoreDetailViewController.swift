@@ -18,12 +18,13 @@ class StoreDetailViewController: UIViewController {
     private var reviewList: [ReviewModel] = []
     private var isShowingReview: Bool = false
     private var selectHeader = StoreDetailSelectView()
+    private var categoryHeader = CategoryView(entryPoint: .detail)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configStoreDetailTableView()
         initStoreInformationData()
-        configSelectHeader()
+        configHeader()
     }
     
     private func configStoreDetailTableView() {
@@ -37,9 +38,11 @@ class StoreDetailViewController: UIViewController {
         }
     }
     
-    private func configSelectHeader() {
+    private func configHeader() {
         selectHeader.delegate = self
         selectHeader.backgroundColor = .white
+        categoryHeader.delegate = self
+        categoryHeader.backgroundColor = .white
     }
     
     private func initStoreInformationData() {
@@ -74,6 +77,9 @@ class StoreDetailViewController: UIViewController {
         operationList = ["월 정기 휴일", "화 10:00 ~ 18:00", "수 10:00 ~ 18:00", "목 10:00 ~ 18:00", "금 10:00 ~ 18:00", "토 10:00 ~ 18:00", "일 정기 휴일"]
         
         reviewList.append(contentsOf: [
+            ReviewModel(reviewTitle: "인블리스 세탁세제", reviewContent: "좋습니다. 벌써 3번 리필했어요!", category: "세탁세제", nickname: "냥냥이", reviewDate: "21.7.18", reviewImageNames: ["star.fill", "moon.fill", "sun.max.fill"]),
+            ReviewModel(reviewTitle: "에코라운드 중성 주방세제", reviewContent: "최고네용~ 캬캬캬 한 번 더 리필할 듯 싶습니다. 향이 짱 좋고 세척력도 넘넘 좋아요! 추천추천합니다ㅎㅎ", category: "주방세제", nickname: "뇸뇸", reviewDate: "21.7.18", reviewImageNames: ["moon.fill", "star.fill"]),
+            ReviewModel(reviewTitle: "에코티끄 섬유유연제", reviewContent: "흠... 이 향 뭐지? 향이 짱 좋고 산뜻합니다! 친구들한테 추천하구 다녀영~ 최고오오오오오오오", category: "섬유유연제", nickname: "감자도리", reviewDate: "21.7.18", reviewImageNames: []),
             ReviewModel(reviewTitle: "인블리스 세탁세제", reviewContent: "좋습니다. 벌써 3번 리필했어요!", category: "세탁세제", nickname: "냥냥이", reviewDate: "21.7.18", reviewImageNames: ["star.fill", "moon.fill", "sun.max.fill"]),
             ReviewModel(reviewTitle: "에코라운드 중성 주방세제", reviewContent: "최고네용~ 캬캬캬 한 번 더 리필할 듯 싶습니다. 향이 짱 좋고 세척력도 넘넘 좋아요! 추천추천합니다ㅎㅎ", category: "주방세제", nickname: "뇸뇸", reviewDate: "21.7.18", reviewImageNames: ["moon.fill", "star.fill"]),
             ReviewModel(reviewTitle: "에코티끄 섬유유연제", reviewContent: "흠... 이 향 뭐지? 향이 짱 좋고 산뜻합니다! 친구들한테 추천하구 다녀영~ 최고오오오오오오오", category: "섬유유연제", nickname: "감자도리", reviewDate: "21.7.18", reviewImageNames: [])
@@ -162,21 +168,22 @@ extension StoreDetailViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         switch section {
         case 1:
-            let view = UIStackView()
-            view.axis = .vertical
-            view.addArrangedSubview(selectHeader)
+            let stackView: UIStackView = {
+               let stackView = UIStackView()
+                stackView.axis = .vertical
+                
+                return stackView
+            }()
+            stackView.addArrangedSubview(selectHeader)
             if !isShowingReview {
-                let categoryHeader = CategoryView(entryPoint: CategoryEntryPoint.detail)
-                categoryHeader.delegate = self
-                categoryHeader.backgroundColor = .white
-                view.addArrangedSubview(categoryHeader)
+                stackView.addArrangedSubview(categoryHeader)
                 
                 NSLayoutConstraint.activate([
                     selectHeader.heightAnchor.constraint(equalToConstant: 60),
                     categoryHeader.heightAnchor.constraint(equalToConstant: 60)
                 ])
             }
-            return view
+            return stackView
         default:
             return nil
         }
