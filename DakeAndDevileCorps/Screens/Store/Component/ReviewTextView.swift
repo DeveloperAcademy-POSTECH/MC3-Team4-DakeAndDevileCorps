@@ -98,7 +98,7 @@ final class ReviewTextView: UIView {
     }
     
     private func configUI() {
-        counterLabel.text = "0/\(maxCount)"
+        setCounter(count: 0)
         textMode = .beforeWriting
     }
     
