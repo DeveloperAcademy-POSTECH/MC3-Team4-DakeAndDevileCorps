@@ -53,6 +53,9 @@ final class ReviewTextView: UIView {
         let textView = UITextView()
         textView.font = .preferredFont(forTextStyle: .subheadline)
         textView.delegate = self
+        textView.autocapitalizationType = .none
+        textView.autocorrectionType = .no
+        textView.spellCheckingType = .no
         return textView
     }()
     private var textMode: TextMode? {
