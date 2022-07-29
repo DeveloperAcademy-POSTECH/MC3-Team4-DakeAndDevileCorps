@@ -48,11 +48,14 @@ final class ReviewInputView: UIView {
     private let categoryView = CategoryView(entryPoint: .write)
     private let reviewTextView = ReviewTextView()
     
+    private var isSelectedCollection: Bool = false
+    
     // MARK: - init
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         render()
+        configUI()
     }
     
     required init?(coder: NSCoder) {
@@ -96,5 +99,31 @@ final class ReviewInputView: UIView {
                                   leading: self.leadingAnchor,
                                   trailing: self.trailingAnchor,
                                   padding: UIEdgeInsets(top: 10, left: 24, bottom: 0, right: 24))
+    }
+    
+    private func configUI() {
+        categoryView.delegate = self
+        itemTextField.delegate = self
+    }
+    
+    func checkButtonCanBeActivated() -> Bool {
+        guard let text = itemTextField.text else { return false }
+        let textViewIsEmpty = reviewTextView.checkIsEmpty()
+        let canActived: Bool = !text.isEmpty && !textViewIsEmpty && isSelectedCollection
+        
+        return canActived
+    }
+}
+
+extension ReviewInputView: CategoryCollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        isSelectedCollection = true
+        NotificationCenter.default.post(name: .activeReview, object: nil)
+    }
+}
+
+extension ReviewInputView: UITextFieldDelegate {
+    func textFieldDidChangeSelection(_ textField: UITextField) {
+        NotificationCenter.default.post(name: .activeReview, object: nil)
     }
 }

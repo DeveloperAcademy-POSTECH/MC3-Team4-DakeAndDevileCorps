@@ -30,6 +30,7 @@
 		79D7BA682886EBE100F65ECD /* StoreModelTestN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D7BA672886EBE100F65ECD /* StoreModelTestN.swift */; };
 		79E2DCA82886E3C800355E30 /* ResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E2DCA72886E3C800355E30 /* ResultTableViewCell.swift */; };
 		B542BE7A2893C64F00F2BC82 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B542BE792893C64F00F2BC82 /* UIViewController+Extension.swift */; };
+		B542BE7C289418EC00F2BC82 /* NSNotification+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B542BE7B289418EC00F2BC82 /* NSNotification+Extension.swift */; };
 		B5B05D4E288F73FD0013E65F /* UIView+Constraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B05D4D288F73FD0013E65F /* UIView+Constraint.swift */; };
 		B5B05D50288F81510013E65F /* ReviewPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B05D4F288F81510013E65F /* ReviewPhotoViewController.swift */; };
 		B5B05D522890ABA10013E65F /* ReviewPhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B05D512890ABA10013E65F /* ReviewPhotoCollectionViewCell.swift */; };
@@ -83,6 +84,7 @@
 		79D7BA672886EBE100F65ECD /* StoreModelTestN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreModelTestN.swift; sourceTree = "<group>"; };
 		79E2DCA72886E3C800355E30 /* ResultTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultTableViewCell.swift; sourceTree = "<group>"; };
 		B542BE792893C64F00F2BC82 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
+		B542BE7B289418EC00F2BC82 /* NSNotification+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSNotification+Extension.swift"; sourceTree = "<group>"; };
 		B5B05D4D288F73FD0013E65F /* UIView+Constraint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Constraint.swift"; sourceTree = "<group>"; };
 		B5B05D4F288F81510013E65F /* ReviewPhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewPhotoViewController.swift; sourceTree = "<group>"; };
 		B5B05D512890ABA10013E65F /* ReviewPhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewPhotoCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -213,6 +215,7 @@
 				B5F1F24A2888313F0021B026 /* UIView+Extension.swift */,
 				B5F1F25228883EC40021B026 /* NSObject+Extension.swift */,
 				B542BE792893C64F00F2BC82 /* UIViewController+Extension.swift */,
+				B542BE7B289418EC00F2BC82 /* NSNotification+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -506,6 +509,7 @@
 				79379FEE288588EC0016D1A8 /* Keywords.xcdatamodeld in Sources */,
 				4AB368E52886D95E0075E03A /* StoreInformationTableViewCell.swift in Sources */,
 				79379FEE288588EC0016D1A8 /* Keywords.xcdatamodeld in Sources */,
+				B542BE7C289418EC00F2BC82 /* NSNotification+Extension.swift in Sources */,
 				7937A01A28859A830016D1A8 /* BaseViewController.swift in Sources */,
 				B5B05D5728912BD30013E65F /* ReviewInputView.swift in Sources */,
 				B5F1F24B2888313F0021B026 /* UIView+Extension.swift in Sources */,
