@@ -146,7 +146,7 @@ extension SearchViewController: UITableViewDataSource {
             return cell
         } else {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: RecentSearchTableViewCell.className, for: indexPath) as? RecentSearchTableViewCell else { return UITableViewCell() }
-            let recentItemList = keywordCoreData.loadFromCoreData(request: Keywords.fetchRequest())
+            let recentItemList: [Keywords] = keywordCoreData.loadFromCoreData(request: Keywords.fetchRequest()).reversed()
             cell.setupCell(title: recentItemList[indexPath.row].term)
             cell.didSelectedDeleteButton = { [weak self] in
                 let selectedItem = recentItemList[indexPath.row].term
