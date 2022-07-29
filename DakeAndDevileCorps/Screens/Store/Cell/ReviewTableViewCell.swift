@@ -46,6 +46,7 @@ class ReviewTableViewCell: UITableViewCell {
     lazy var categoryLabel: UILabel = UILabel()
     lazy var nicknameLabel: UILabel = UILabel()
     lazy var reviewDateLabel: UILabel = UILabel()
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         render()
@@ -111,8 +112,6 @@ class ReviewTableViewCell: UITableViewCell {
             
             return reviewDateLabel
         }()
-        
-        
         
         self.categoryLabel = categoryLabel
         self.nicknameLabel = nicknameLabel

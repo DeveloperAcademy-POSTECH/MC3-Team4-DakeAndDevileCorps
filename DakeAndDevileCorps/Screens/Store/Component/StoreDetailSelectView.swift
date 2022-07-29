@@ -49,7 +49,6 @@ final class StoreDetailSelectView: UIView {
         stackView.addArrangedSubview(image)
         stackView.addArrangedSubview(button)
        
-        
         return stackView
     }()
     // MARK: - init
