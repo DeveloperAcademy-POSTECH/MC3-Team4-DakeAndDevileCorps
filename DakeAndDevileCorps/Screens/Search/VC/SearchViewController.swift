@@ -121,6 +121,7 @@ class SearchViewController: UIViewController {
     
     @IBAction func touchUpToDeleteAllSearchedData(_ sender: Any) {
         keywordCoreData.deleteAll(request: Keywords.fetchRequest())
+        setNothingView(searchType: .recentSearch)
         searchTableView.reloadData()
     }
 }
@@ -147,6 +148,7 @@ extension SearchViewController: UITableViewDataSource {
             cell.didSelectedDeleteButton = { [weak self] in
                 let selectedItem = recentItemList[indexPath.row].term
                 self?.keywordCoreData.delete(at: selectedItem, request: Keywords.fetchRequest())
+                self?.setNothingView(searchType: .recentSearch)
                 self?.searchTableView.reloadData()
             }
             return cell
