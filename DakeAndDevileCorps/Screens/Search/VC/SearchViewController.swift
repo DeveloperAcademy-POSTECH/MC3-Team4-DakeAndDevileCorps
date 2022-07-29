@@ -116,7 +116,10 @@ class SearchViewController: UIViewController {
     
     private func saveRecentKeyword() {
         let keyword = searchBarView.text
-        keywordCoreData.saveRecentSearch(keyword: keyword)
+        let recentItemList = keywordCoreData.loadFromCoreData(request: Keywords.fetchRequest())
+        if !recentItemList.map({ $0.term }).contains(keyword) {
+            keywordCoreData.saveRecentSearch(keyword: keyword)
+        }
     }
     
     @IBAction func touchUpToDeleteAllSearchedData(_ sender: Any) {
