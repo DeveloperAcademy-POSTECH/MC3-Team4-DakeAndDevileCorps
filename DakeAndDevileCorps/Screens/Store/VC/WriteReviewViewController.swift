@@ -27,6 +27,7 @@ final class WriteReviewViewController: BaseViewController {
         return button
     }()
     private let reviewInputView = ReviewInputView()
+    private let reviewAddPhotoView = ReviewAddPhotoView()
     
     var storeName: String = "알맹상점"
     
@@ -37,6 +38,8 @@ final class WriteReviewViewController: BaseViewController {
                                    bottom: view.bottomAnchor,
                                    trailing: view.trailingAnchor,
                                    padding: .zero)
+//        view.addSubview(reviewAddPhotoView)
+//        reviewAddPhotoView.constraint(top:reviewInputView.bottomAnchor)
     }
 
     override func configUI() {

@@ -7,21 +7,22 @@
 
 import UIKit
 
-final class ReviewAddPhotoView: UIView {
+class ReviewAddPhotoView: UIView {
     
     private enum Size {
         static let cellWidth: CGFloat = UIScreen.main.bounds.size.width
         static let cellHeight: CGFloat = cellWidth
     }
     
-    private let addPhotoButton: UIButton = {
-        let button = UIButton()
-        button.setImage(UIImage(systemName: "photo"), for: .normal)
-        button.frame.size = CGSize(width: 100, height: 100)
-        button.tintColor = .gray
-        button.backgroundColor = .lightGray
-        button.layer.cornerRadius = 10
+    private lazy var addPhotoButton: UIButton = {
+        let button = UIButton(type: .custom, primaryAction: UIAction(handler: { _ in
+            print("hi")
+        }))
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.setImage(UIImage(systemName: "photo"), for: .normal)
+        button.tintColor = .gray
+        button.backgroundColor = .systemGray6
+        button.layer.cornerRadius = 10
         return button
     }()
     
@@ -52,7 +53,7 @@ final class ReviewAddPhotoView: UIView {
     }()
     
     override init(frame: CGRect) {
-        super.init(frame: frame)
+        super.init(frame: .zero)
         render()
     }
     
@@ -66,7 +67,11 @@ final class ReviewAddPhotoView: UIView {
                                    leading: self.leadingAnchor)
         addSubview(addPhotoButton)
         addPhotoButton.constraint(top: photoTitleLabel.bottomAnchor,
-                                  leading: self.leadingAnchor)
+                                  leading: self.leadingAnchor,
+                                  padding: UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0))
+        
+        addPhotoButton.widthAnchor.constraint(equalToConstant: 75).isActive = true
+        addPhotoButton.heightAnchor.constraint(equalToConstant: 75).isActive = true
     }
 }
 
