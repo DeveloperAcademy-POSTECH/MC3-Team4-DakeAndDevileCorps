@@ -9,8 +9,6 @@ import UIKit
 
 class RecentSearchTableViewCell: UITableViewCell {
 
-    static let identifier = "RecentSearchTableViewCell"
-    
     @IBOutlet weak var searchedTitle: UILabel!
     var didSelectedDeleteButton: (() -> Void)?
     

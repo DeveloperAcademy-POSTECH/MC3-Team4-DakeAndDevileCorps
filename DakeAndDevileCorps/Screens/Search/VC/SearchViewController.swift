@@ -22,7 +22,6 @@ class SearchViewController: UIViewController {
         return $0
     }(SearchBarView())
     
-    private var recentSearchedItemList: [String] = []
     private var resultList: [StoreModel] = []
     private var isResultShowing: Bool = false
     private let keywordCoreData = KeywordManager.shared
@@ -71,7 +70,8 @@ class SearchViewController: UIViewController {
         var hasResult: Bool
         switch searchType {
         case .recentSearch:
-            hasResult = !recentSearchedItemList.isEmpty
+            let recentItemList = keywordCoreData.loadFromCoreData(request: Keywords.fetchRequest())
+            hasResult = !recentItemList.isEmpty
         case .result:
             hasResult = !resultList.isEmpty
         }
@@ -124,7 +124,8 @@ extension SearchViewController: UITableViewDataSource {
         if isResultShowing {
             return resultList.count
         } else {
-            return recentSearchedItemList.count > 10 ? 10 : recentSearchedItemList.count
+            let recentItemList = keywordCoreData.loadFromCoreData(request: Keywords.fetchRequest())
+            return recentItemList.count > 10 ? 10 : recentItemList.count
         }
     }
     
@@ -135,12 +136,11 @@ extension SearchViewController: UITableViewDataSource {
             return cell
         } else {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: RecentSearchTableViewCell.className, for: indexPath) as? RecentSearchTableViewCell else { return UITableViewCell() }
-            cell.setupCell(title: recentSearchedItemList[indexPath.row])
+            let recentItemList = keywordCoreData.loadFromCoreData(request: Keywords.fetchRequest())
+            cell.setupCell(title: recentItemList[indexPath.row].term)
             cell.didSelectedDeleteButton = { [weak self] in
-                guard let items = self?.keywordCoreData.loadFromCoreData(request: Keywords.fetchRequest()) else { return }
-                let selectedItem = items[indexPath.row]
-                
-                self?.keywordCoreData.delete(at: selectedItem.term, request: Keywords.fetchRequest())
+                let selectedItem = recentItemList[indexPath.row].term
+                self?.keywordCoreData.delete(at: selectedItem, request: Keywords.fetchRequest())
             }
             return cell
         }
@@ -150,7 +150,8 @@ extension SearchViewController: UITableViewDataSource {
 extension SearchViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if !isResultShowing {
-            searchBarView.text = recentSearchedItemList[indexPath.row]
+            let recentItemList = keywordCoreData.loadFromCoreData(request: Keywords.fetchRequest())
+            searchBarView.text = recentItemList[indexPath.row].term
             didReturnKeyInput()
         }
     }
