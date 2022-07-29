@@ -26,6 +26,5 @@ class ProductTableViewCell: UITableViewCell {
         if productName == "주방세제" {
             seperateLineView.isHidden = true
         }
-//        seperateLineView.isHidden = isSeperated
     }
 }

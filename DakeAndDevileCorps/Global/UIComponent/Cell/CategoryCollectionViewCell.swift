@@ -55,12 +55,12 @@ final class CategoryCollectionViewCell: UICollectionViewCell {
         backgroundContentView.constraint(to: self)
         
         backgroundContentView.addSubview(itemLabel)
-        itemLabel.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            itemLabel.centerYAnchor.constraint(equalTo: self.safeAreaLayoutGuide.centerYAnchor),
-            itemLabel.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 14),
-            itemLabel.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -14)
-        ])
+        let itemConstraints = itemLabel.constraint(leading: self.leadingAnchor,
+                                                   trailing: self.trailingAnchor,
+                                                   centerY: self.centerYAnchor,
+                                                   padding: UIEdgeInsets(top: 0, left: 14, bottom: 0, right: 14))
+        itemConstraints[.leading]?.priority = UILayoutPriority(999)
+        itemConstraints[.trailing]?.priority = UILayoutPriority(999)
     }
     
     private func configUI() {
