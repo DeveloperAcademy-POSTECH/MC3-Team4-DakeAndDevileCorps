@@ -221,14 +221,18 @@ extension StoreDetailViewController: ReviewTableViewCellDelegate {
 }
 
 extension StoreDetailViewController: StoreDetailSelectViewDelegate {
-    func showingReview() {
+    func showingReview(cell: StoreDetailSelectView) {
         isShowingReview = true
+        cell.isShowingReview = true
+        cell.applyShowingState()
         storeDetailTableView.reloadData()
     }
     
-    func showingProduct() {
+    func showingProduct(cell: StoreDetailSelectView) {
         isShowingReview = false
+        cell.isShowingReview = false
+        cell.applyShowingState()
         storeDetailTableView.reloadData()
+        
     }
-    
 }

@@ -8,19 +8,22 @@
 import UIKit
 
 protocol StoreDetailSelectViewDelegate: AnyObject {
-    func showingReview()
-    func showingProduct()
+    func showingReview(cell: StoreDetailSelectView)
+    func showingProduct(cell: StoreDetailSelectView)
 }
 
 final class StoreDetailSelectView: UIView {
     
     // MARK: - properties
     
+    weak var delegate: StoreDetailSelectViewDelegate?
+    var isShowingReview: Bool = false
+    
     private let productButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("취급상품 22", for: .normal)
-        button.setTitleColor(UIColor.black, for: .normal)
+        button.setTitleColor( UIColor.black, for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 17)
         
         return button
@@ -30,7 +33,7 @@ final class StoreDetailSelectView: UIView {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("상품리뷰 4", for: .normal)
-        button.setTitleColor(UIColor.black, for: .normal)
+        button.setTitleColor(UIColor.tertiaryLabel, for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 17)
         
         return button
@@ -55,13 +58,13 @@ final class StoreDetailSelectView: UIView {
         return stackView
     }()
     
-    weak var delegate: StoreDetailSelectViewDelegate?
     // MARK: - init
     
     init() {
         super.init(frame: .zero)
         render()
         setupButtonAction()
+        print("하이루")
     }
     
     required init?(coder: NSCoder) {
@@ -92,13 +95,18 @@ final class StoreDetailSelectView: UIView {
     
     private func setupButtonAction() {        
         let productButtonAction = UIAction { _ in
-            self.delegate?.showingProduct()
+            self.delegate?.showingProduct(cell: self)
         }
         productButton.addAction(productButtonAction, for: .touchUpInside)
 
         let reviewButtonACtion = UIAction { _ in
-            self.delegate?.showingReview()
+            self.delegate?.showingReview(cell: self)
         }
         reviewButton.addAction(reviewButtonACtion, for: .touchUpInside)
+    }
+    
+    func applyShowingState() {
+        productButton.setTitleColor(isShowingReview ? UIColor.tertiaryLabel : UIColor.black, for: .normal)
+        reviewButton.setTitleColor(isShowingReview ? UIColor.black : UIColor.tertiaryLabel, for: .normal)
     }
 }
