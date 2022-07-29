@@ -47,7 +47,7 @@ class SearchBarView: UIView {
     }
     
     weak var delegate: SearchBarDelegate?
-    var entryPoint: EntryPoint = .map {
+    var entryPoint: EntryPoint = .search {
         didSet {
             configure()
             setComponentsIsHidden()

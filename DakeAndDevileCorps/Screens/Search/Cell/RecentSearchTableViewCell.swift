@@ -26,6 +26,6 @@ class RecentSearchTableViewCell: UITableViewCell {
     }
     
     @IBAction func touchUpToDeleteData(_ sender: Any) {
-        
+        print("deleted!")
     }
 }
