@@ -7,9 +7,9 @@
 
 import UIKit
 
-protocol CategoryCollectionViewDelegate: AnyObject {
+@objc protocol CategoryCollectionViewDelegate: AnyObject {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
-    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath)
+    @objc optional func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath)
 }
 
 enum CategoryEntryPoint {
@@ -100,6 +100,6 @@ extension CategoryView: UICollectionViewDelegate {
         guard let cell = collectionView.cellForItem(at: indexPath) as? CategoryCollectionViewCell else { return }
         
         cell.applySelectedState(false)
-        delegate?.collectionView(collectionView, didDeselectItemAt: indexPath)
+        delegate?.collectionView?(collectionView, didDeselectItemAt: indexPath)
     }
 }
