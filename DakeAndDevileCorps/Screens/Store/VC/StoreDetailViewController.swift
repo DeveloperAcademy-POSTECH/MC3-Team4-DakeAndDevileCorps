@@ -160,10 +160,22 @@ extension StoreDetailViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         switch section {
         case 1:
-            let headerView = CategoryView(entryPoint: CategoryEntryPoint.detail)
-            headerView.delegate = self
-            headerView.backgroundColor = .white
-            return headerView
+            let view = UIStackView()
+            view.axis = .vertical
+//            view.translatesAutoresizingMaskIntoConstraints = false
+            let categoryHeader = CategoryView(entryPoint: CategoryEntryPoint.detail)
+            categoryHeader.delegate = self
+            categoryHeader.backgroundColor = .white
+            let selectHeader = StoreDetailSelectView()
+            selectHeader.backgroundColor = .white
+            view.addArrangedSubview(selectHeader)
+            view.addArrangedSubview(categoryHeader)
+
+            NSLayoutConstraint.activate([
+                selectHeader.heightAnchor.constraint(equalToConstant: 60),
+                categoryHeader.heightAnchor.constraint(equalToConstant: 60)
+            ])
+            return view
         default:
             return nil
         }
@@ -172,7 +184,7 @@ extension StoreDetailViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         switch section {
         case 1:
-            return 60
+            return 120
         default:
             return 0
         }
@@ -181,6 +193,8 @@ extension StoreDetailViewController: UITableViewDelegate {
 
 extension StoreDetailViewController: StoreInformationTableViewCellDelegate {
     func requestReload() {
+//        storeDetailTableView.reloadSections(IndexSet(0...0), with: .none)
+//        storeDetailTableView.reloadRows(at: [IndexPath(item: 0, section: 0)], with: .none)
         storeDetailTableView.reloadData()
     }
 }
