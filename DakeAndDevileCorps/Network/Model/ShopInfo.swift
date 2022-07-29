@@ -22,8 +22,8 @@ class ShopInfo: NSObject, MKAnnotation {
         
         var pinColor: UIColor {
             switch self {
-            case .zeroWasteShop: return UIColor(hex: "#6EDBA0") // .zeroGreen50
-            case .refillStation: return UIColor(hex: "#69D3F5") // .zeroSky50
+            case .zeroWasteShop: return .zeroGreen50
+            case .refillStation: return .zeroSky50
             }
         }
     }
