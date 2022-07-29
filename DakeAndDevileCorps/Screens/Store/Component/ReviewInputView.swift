@@ -41,7 +41,7 @@ final class ReviewInputView: UIView {
         textfield.layer.borderColor = UIColor.separator.cgColor
         textfield.layer.borderWidth = 0.5
         textfield.layer.cornerRadius = 10
-        textfield.setLeftPaddingPoints(16)
+        textfield.setLeftPaddingWithLeftView(point: 16)
         textfield.clearButtonMode = .whileEditing
         return textfield
     }()
