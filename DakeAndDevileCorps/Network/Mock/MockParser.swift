@@ -13,16 +13,23 @@ final class MockParser {
             assert(false, "Cannot convert to json file")
             return nil
         }
+        
         let fileURL = URL(fileURLWithPath: path)
         guard let data = try? Data(contentsOf: fileURL) else {
             assert(false, "Path is set incorrectly.")
             return nil
         }
+        
         guard let jsonObject = try? JSONSerialization.jsonObject(with: data, options: .allowFragments) else {
             assert(false, "Json serialization is not possible.")
             return nil
         }
-        guard let decodable = try? JSONSerialization.data(withJSONObject: jsonObject) else { return nil }
+        
+        guard let decodable = try? JSONSerialization.data(withJSONObject: jsonObject) else {
+            assert(false, "Json will not be generated")
+            return nil
+        }
+        
         return try? JSONDecoder().decode(T.self, from: decodable)
     }
 }
