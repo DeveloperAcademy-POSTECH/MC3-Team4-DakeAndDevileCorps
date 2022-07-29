@@ -42,10 +42,10 @@ class ReviewTableViewCell: UITableViewCell {
     @IBOutlet weak var reviewSubStackView: UIStackView!
     weak var reviewDelegate: ReviewTableViewCellDelegate?
     
-    lazy var numberOfReviewImageLabel: PaddingLabel? = PaddingLabel()
-    lazy var categoryLabel: UILabel = UILabel()
-    lazy var nicknameLabel: UILabel = UILabel()
-    lazy var reviewDateLabel: UILabel = UILabel()
+    private var numberOfReviewImageLabel: PaddingLabel? = PaddingLabel()
+    private var categoryLabel: UILabel = UILabel()
+    private var nicknameLabel: UILabel = UILabel()
+    private var reviewDateLabel: UILabel = UILabel()
     
     override func awakeFromNib() {
         super.awakeFromNib()

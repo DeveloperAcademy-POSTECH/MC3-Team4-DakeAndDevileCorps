@@ -26,7 +26,7 @@ class StoreDetailViewController: UIViewController {
         configSelectHeader()
     }
     
-    func configStoreDetailTableView() {
+    private func configStoreDetailTableView() {
         storeDetailTableView.dataSource = self
         storeDetailTableView.delegate = self
         storeDetailTableView.separatorStyle = UITableViewCell.SeparatorStyle.none
@@ -37,12 +37,12 @@ class StoreDetailViewController: UIViewController {
         }
     }
     
-    func configSelectHeader() {
+    private func configSelectHeader() {
         selectHeader.delegate = self
         selectHeader.backgroundColor = .white
     }
     
-    func initStoreInformationData() {
+    private func initStoreInformationData() {
         productList = [
             .product(productName: "주방세제"),
             .item(itemName: "인블리스 세탁세제", itemPrice: "1g = 4원"),
@@ -80,7 +80,7 @@ class StoreDetailViewController: UIViewController {
         ])
     }
     
-    func scrollToSelectedCategory(indexPath: IndexPath) {
+    private func scrollToSelectedCategory(indexPath: IndexPath) {
         guard let rowIndex = productList.firstIndex(of: .product(productName: categoryList[indexPath.row])) else { return }
         let indexPath = IndexPath(row: rowIndex, section: 1)
         storeDetailTableView.scrollToRow(at: indexPath, at: .top, animated: true)
@@ -109,16 +109,12 @@ extension StoreDetailViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         switch indexPath.section {
         case 0:
             guard let storeInformationCell = tableView.dequeueReusableCell(
                 withIdentifier: StoreInformationTableViewCell.className, for: indexPath
             ) as? StoreInformationTableViewCell else { return UITableViewCell() }
-            
             storeInformationCell.storeInformationDelegate = self
-            storeInformationCell.setUpperData(isOperation: true, todayOperationTime: "10:00 ~ 18:00", productCategories: "화장품, 청소용품, 화장품, 식품")
-            storeInformationCell.setBottomData(address: "서울 마포구 월드컵로25길 47 3층", phoneNumber: "010-2229-1027", operationTime: "10:00 - 18:00")
             storeInformationCell.setUpperData(isOperation: true,
                                               todayOperationTime: "10:00 ~ 18:00",
                                               productCategories: "화장품, 청소용품, 화장품, 식품")
