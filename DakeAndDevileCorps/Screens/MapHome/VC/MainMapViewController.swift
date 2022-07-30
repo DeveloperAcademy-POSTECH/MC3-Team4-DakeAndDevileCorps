@@ -12,10 +12,11 @@ class MainMapViewController: UIViewController {
     
     // MARK: - subViews
     private let searchBarView: SearchBarView = {
-        $0.translatesAutoresizingMaskIntoConstraints = false
-        $0.entryPoint = .map
-        return $0
-    }(SearchBarView())
+        let searchBarView = SearchBarView()
+        searchBarView.translatesAutoresizingMaskIntoConstraints = false
+        searchBarView.entryPoint = .map
+        return searchBarView
+    }()
     
     private let categoryView: CategoryView = {
         let categoryView = CategoryView(entryPoint: .map)
@@ -26,7 +27,7 @@ class MainMapViewController: UIViewController {
     @IBOutlet weak var mapView: MKMapView!
     
     // MARK: - properties
-    var shops: [MKAnnotation] = [
+    var shops: [ShopInfo] = [
         ShopInfo(coordinate: CLLocationCoordinate2D(latitude: 37.557761, longitude: 126.9052787),
                  sellingProductsCategory: ["주방세제"],
                  category: .zeroWasteShop),
@@ -114,8 +115,7 @@ extension MainMapViewController: CategoryCollectionViewDelegate {
         mapView.removeAnnotations(mapView.annotations)
         let categoryName = categoryView.categoryList[indexPath.row]
 
-        for shop in shops {
-            guard let shop = shop as? ShopInfo else { return }
+        shops.forEach { shop in
             if shop.sellingProductsCategory.contains(categoryName) {
                 mapView.addAnnotation(shop)
             }

@@ -14,8 +14,10 @@ class ShopInfo: NSObject, MKAnnotation {
         
         var image: UIImage {
             switch self {
-            case .zeroWasteShop: return UIImage(systemName: "leaf.fill") ?? UIImage()
-            case .refillStation: return UIImage(systemName: "drop.fill") ?? UIImage()
+            case .zeroWasteShop:
+                return UIImage(systemName: "leaf.fill") ?? UIImage()
+            case .refillStation:
+                return UIImage(systemName: "drop.fill") ?? UIImage()
             }
         }
         
@@ -42,6 +44,5 @@ class ShopInfo: NSObject, MKAnnotation {
         self.sellingProductsCategory = sellingProductsCategory
         self.category = category
         
-        super.init()
     }
 }
