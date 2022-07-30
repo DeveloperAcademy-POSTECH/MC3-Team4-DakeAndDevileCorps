@@ -15,7 +15,6 @@
 		79379FE4288588EC0016D1A8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79379FE3288588EC0016D1A8 /* AppDelegate.swift */; };
 		79379FE6288588EC0016D1A8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79379FE5288588EC0016D1A8 /* SceneDelegate.swift */; };
 		79379FE8288588EC0016D1A8 /* MainMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79379FE7288588EC0016D1A8 /* MainMapViewController.swift */; };
-		79379FEE288588EC0016D1A8 /* Keywords.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 79379FEC288588EC0016D1A8 /* Keywords.xcdatamodeld */; };
 		79379FF0288588ED0016D1A8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79379FEF288588ED0016D1A8 /* Assets.xcassets */; };
 		79379FF3288588ED0016D1A8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 79379FF1288588ED0016D1A8 /* LaunchScreen.storyboard */; };
 		7937A01428858CB40016D1A8 /* MapHome.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7937A01328858CB40016D1A8 /* MapHome.storyboard */; };
@@ -29,10 +28,15 @@
 		797CAC542886CFCB0041C3F7 /* RecentSearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797CAC532886CFCB0041C3F7 /* RecentSearchTableViewCell.swift */; };
 		79D7BA682886EBE100F65ECD /* StoreModelTestN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D7BA672886EBE100F65ECD /* StoreModelTestN.swift */; };
 		79E2DCA82886E3C800355E30 /* ResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E2DCA72886E3C800355E30 /* ResultTableViewCell.swift */; };
+		B542BE782893B57300F2BC82 /* Keywords.xcdatamodeld in Resources */ = {isa = PBXBuildFile; fileRef = 79379FEC288588EC0016D1A8 /* Keywords.xcdatamodeld */; };
 		B5366B872893732900637CDC /* MockParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5366B862893732900637CDC /* MockParser.swift */; };
 		B5B05D4E288F73FD0013E65F /* UIView+Constraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B05D4D288F73FD0013E65F /* UIView+Constraint.swift */; };
 		B5B05D50288F81510013E65F /* ReviewPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B05D4F288F81510013E65F /* ReviewPhotoViewController.swift */; };
 		B5B05D522890ABA10013E65F /* ReviewPhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B05D512890ABA10013E65F /* ReviewPhotoCollectionViewCell.swift */; };
+		B5B05D54289124550013E65F /* WriteReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B05D53289124550013E65F /* WriteReviewViewController.swift */; };
+		B5B05D5728912BD30013E65F /* ReviewInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B05D5628912BD30013E65F /* ReviewInputView.swift */; };
+		B5B05D59289164800013E65F /* UITextField+Padding.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B05D58289164800013E65F /* UITextField+Padding.swift */; };
+		B5B05D5F289167A70013E65F /* ReviewTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B05D5E289167A70013E65F /* ReviewTextView.swift */; };
 		B5F1F24B2888313F0021B026 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F1F24A2888313F0021B026 /* UIView+Extension.swift */; };
 		B5F1F24E288834A40021B026 /* CategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F1F24D288834A40021B026 /* CategoryView.swift */; };
 		B5F1F25128883EA80021B026 /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F1F25028883EA80021B026 /* CategoryCollectionViewCell.swift */; };
@@ -82,6 +86,10 @@
 		B5B05D4D288F73FD0013E65F /* UIView+Constraint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Constraint.swift"; sourceTree = "<group>"; };
 		B5B05D4F288F81510013E65F /* ReviewPhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewPhotoViewController.swift; sourceTree = "<group>"; };
 		B5B05D512890ABA10013E65F /* ReviewPhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewPhotoCollectionViewCell.swift; sourceTree = "<group>"; };
+		B5B05D53289124550013E65F /* WriteReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteReviewViewController.swift; sourceTree = "<group>"; };
+		B5B05D5628912BD30013E65F /* ReviewInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewInputView.swift; sourceTree = "<group>"; };
+		B5B05D58289164800013E65F /* UITextField+Padding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Padding.swift"; sourceTree = "<group>"; };
+		B5B05D5E289167A70013E65F /* ReviewTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewTextView.swift; sourceTree = "<group>"; };
 		B5F1F24A2888313F0021B026 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		B5F1F24D288834A40021B026 /* CategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryView.swift; sourceTree = "<group>"; };
 		B5F1F25028883EA80021B026 /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -275,6 +283,7 @@
 		7937A01F28859B710016D1A8 /* Store */ = {
 			isa = PBXGroup;
 			children = (
+				B5B05D5528912BAF0013E65F /* Component */,
 				7937A02028859B8F0016D1A8 /* VC */,
 				4A03F6CB288F814A00342E66 /* Cell */,
 			);
@@ -286,6 +295,7 @@
 			children = (
 				7937A02128859B990016D1A8 /* StoreDetailViewController.swift */,
 				B5B05D4F288F81510013E65F /* ReviewPhotoViewController.swift */,
+				B5B05D53289124550013E65F /* WriteReviewViewController.swift */,
 			);
 			path = VC;
 			sourceTree = "<group>";
@@ -311,8 +321,18 @@
 			isa = PBXGroup;
 			children = (
 				B5B05D4D288F73FD0013E65F /* UIView+Constraint.swift */,
+				B5B05D58289164800013E65F /* UITextField+Padding.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		B5B05D5528912BAF0013E65F /* Component */ = {
+			isa = PBXGroup;
+			children = (
+				B5B05D5628912BD30013E65F /* ReviewInputView.swift */,
+				B5B05D5E289167A70013E65F /* ReviewTextView.swift */,
+			);
+			path = Component;
 			sourceTree = "<group>";
 		};
 		B5F1F24C288834660021B026 /* UIComponent */ = {
@@ -443,6 +463,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B542BE782893B57300F2BC82 /* Keywords.xcdatamodeld in Resources */,
 				79379FF3288588ED0016D1A8 /* LaunchScreen.storyboard in Resources */,
 				79379FF0288588ED0016D1A8 /* Assets.xcassets in Resources */,
 				7937A02628859BFF0016D1A8 /* StoreDetail.storyboard in Resources */,
@@ -466,11 +487,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				79E2DCA82886E3C800355E30 /* ResultTableViewCell.swift in Sources */,
+				B5B05D5F289167A70013E65F /* ReviewTextView.swift in Sources */,
 				B5B05D522890ABA10013E65F /* ReviewPhotoCollectionViewCell.swift in Sources */,
 				B5B05D50288F81510013E65F /* ReviewPhotoViewController.swift in Sources */,
 				0B6BA51F28884A8500E30B37 /* SearchBarView.swift in Sources */,
 				B5366B872893732900637CDC /* MockParser.swift in Sources */,
 				79379FE8288588EC0016D1A8 /* MainMapViewController.swift in Sources */,
+				B5B05D54289124550013E65F /* WriteReviewViewController.swift in Sources */,
 				79379FE4288588EC0016D1A8 /* AppDelegate.swift in Sources */,
 				B5B05D4E288F73FD0013E65F /* UIView+Constraint.swift in Sources */,
 				4A6535D828910D53006B6971 /* ProductTableViewCellModel.swift in Sources */,
@@ -481,6 +504,7 @@
 				B5F3E7E02887DBA2000C3129 /* Keywords+CoreDataProperties.swift in Sources */,
 				B5F3E7DE2887DB90000C3129 /* Keywords+CoreDataClass.swift in Sources */,
 				79379FE6288588EC0016D1A8 /* SceneDelegate.swift in Sources */,
+				B5B05D59289164800013E65F /* UITextField+Padding.swift in Sources */,
 				79D7BA682886EBE100F65ECD /* StoreModelTestN.swift in Sources */,
 				B5F1F25128883EA80021B026 /* CategoryCollectionViewCell.swift in Sources */,
 				7976990C28859E1100DB53F8 /* ImageLiteral.swift in Sources */,
@@ -488,10 +512,9 @@
 				B5F1F25328883EC40021B026 /* NSObject+Extension.swift in Sources */,
 				7937A02228859B990016D1A8 /* StoreDetailViewController.swift in Sources */,
 				797CAC542886CFCB0041C3F7 /* RecentSearchTableViewCell.swift in Sources */,
-				79379FEE288588EC0016D1A8 /* Keywords.xcdatamodeld in Sources */,
 				4AB368E52886D95E0075E03A /* StoreInformationTableViewCell.swift in Sources */,
-				79379FEE288588EC0016D1A8 /* Keywords.xcdatamodeld in Sources */,
 				7937A01A28859A830016D1A8 /* BaseViewController.swift in Sources */,
+				B5B05D5728912BD30013E65F /* ReviewInputView.swift in Sources */,
 				B5F1F24B2888313F0021B026 /* UIView+Extension.swift in Sources */,
 				7937A016288597A60016D1A8 /* UIColor+Extension.swift in Sources */,
 			);
@@ -655,6 +678,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = MapHome;
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -686,6 +710,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = MapHome;
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
