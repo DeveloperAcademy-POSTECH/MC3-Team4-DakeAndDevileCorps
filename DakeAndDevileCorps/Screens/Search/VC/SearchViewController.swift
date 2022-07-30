@@ -50,6 +50,7 @@ class SearchViewController: UIViewController {
     }
     
     private var searchType: SearchType = .recentSearch
+    private let maxCount = 10
     
     private func setTableResult(searchtype: SearchType) {
         setResultTitle(searchType: searchtype)
@@ -117,8 +118,21 @@ class SearchViewController: UIViewController {
     private func saveRecentKeyword() {
         let keyword = searchBarView.text
         let recentItemList = keywordCoreData.loadFromCoreData(request: Keywords.fetchRequest())
-        if !recentItemList.map({ $0.term }).contains(keyword) {
-            keywordCoreData.saveRecentSearch(keyword: keyword)
+        
+        checkKeywordItemList(recentItemList, with: keyword)
+        keywordCoreData.saveRecentSearch(keyword: keyword)
+    }
+    
+    private func checkKeywordItemList(_ list: [Keywords], with keyword: String) {
+        let hasKeyword = list.map({ $0.term }).contains(keyword)
+        if hasKeyword {
+            keywordCoreData.delete(at: keyword, request: Keywords.fetchRequest())
+        }
+        
+        let recentItemList = keywordCoreData.loadFromCoreData(request: Keywords.fetchRequest())
+        let overMaxCount = recentItemList.count >= maxCount
+        if overMaxCount {
+            keywordCoreData.deleteLast(request: Keywords.fetchRequest())
         }
     }
     
@@ -135,7 +149,7 @@ extension SearchViewController: UITableViewDataSource {
             return resultList.count
         } else {
             let recentItemList = keywordCoreData.loadFromCoreData(request: Keywords.fetchRequest())
-            return recentItemList.count > 10 ? 10 : recentItemList.count
+            return recentItemList.count
         }
     }
     
@@ -163,7 +177,8 @@ extension SearchViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if !isResultShowing {
             let recentItemList = keywordCoreData.loadFromCoreData(request: Keywords.fetchRequest())
-            searchBarView.text = recentItemList[indexPath.row].term
+            let index = recentItemList.count - indexPath.row - 1
+            searchBarView.text = recentItemList[index].term
             didReturnKeyInput()
         }
     }
