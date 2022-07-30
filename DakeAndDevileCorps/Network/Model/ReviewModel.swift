@@ -14,18 +14,4 @@ struct ReviewModel {
     var nickname: String
     var reviewDate: String
     var reviewImageNames: [String]
-
-    init(reviewTitle: String = "",
-         reviewContent: String = "",
-         category: String = "",
-         nickname: String = "",
-         reviewDate: String = "",
-         reviewImageNames: [String] = []) {
-        self.reviewTitle = reviewTitle
-        self.reviewContent = reviewContent
-        self.category = category
-        self.nickname = nickname
-        self.reviewDate = reviewDate
-        self.reviewImageNames = reviewImageNames
-    }
 }
