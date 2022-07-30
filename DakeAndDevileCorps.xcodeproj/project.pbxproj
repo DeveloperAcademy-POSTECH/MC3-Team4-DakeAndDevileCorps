@@ -29,6 +29,7 @@
 		797CAC542886CFCB0041C3F7 /* RecentSearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797CAC532886CFCB0041C3F7 /* RecentSearchTableViewCell.swift */; };
 		79D7BA682886EBE100F65ECD /* StoreModelTestN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D7BA672886EBE100F65ECD /* StoreModelTestN.swift */; };
 		79E2DCA82886E3C800355E30 /* ResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E2DCA72886E3C800355E30 /* ResultTableViewCell.swift */; };
+		B5366B872893732900637CDC /* MockParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5366B862893732900637CDC /* MockParser.swift */; };
 		B5B05D4E288F73FD0013E65F /* UIView+Constraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B05D4D288F73FD0013E65F /* UIView+Constraint.swift */; };
 		B5B05D50288F81510013E65F /* ReviewPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B05D4F288F81510013E65F /* ReviewPhotoViewController.swift */; };
 		B5B05D522890ABA10013E65F /* ReviewPhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B05D512890ABA10013E65F /* ReviewPhotoCollectionViewCell.swift */; };
@@ -81,6 +82,7 @@
 		797CAC532886CFCB0041C3F7 /* RecentSearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentSearchTableViewCell.swift; sourceTree = "<group>"; };
 		79D7BA672886EBE100F65ECD /* StoreModelTestN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreModelTestN.swift; sourceTree = "<group>"; };
 		79E2DCA72886E3C800355E30 /* ResultTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultTableViewCell.swift; sourceTree = "<group>"; };
+		B5366B862893732900637CDC /* MockParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockParser.swift; sourceTree = "<group>"; };
 		B5B05D4D288F73FD0013E65F /* UIView+Constraint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Constraint.swift"; sourceTree = "<group>"; };
 		B5B05D4F288F81510013E65F /* ReviewPhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewPhotoViewController.swift; sourceTree = "<group>"; };
 		B5B05D512890ABA10013E65F /* ReviewPhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewPhotoCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -168,6 +170,7 @@
 		79379FFA288589B60016D1A8 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				B5366B852893731F00637CDC /* Mock */,
 				4A6535D628910D33006B6971 /* Model */,
 				B5F3E7E12887DC37000C3129 /* CoreData */,
 			);
@@ -304,6 +307,14 @@
 				79E2DCA72886E3C800355E30 /* ResultTableViewCell.swift */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		B5366B852893731F00637CDC /* Mock */ = {
+			isa = PBXGroup;
+			children = (
+				B5366B862893732900637CDC /* MockParser.swift */,
+			);
+			path = Mock;
 			sourceTree = "<group>";
 		};
 		B5B05D4C288F73ED0013E65F /* Utils */ = {
@@ -479,6 +490,7 @@
 				B5B05D522890ABA10013E65F /* ReviewPhotoCollectionViewCell.swift in Sources */,
 				B5B05D50288F81510013E65F /* ReviewPhotoViewController.swift in Sources */,
 				0B6BA51F28884A8500E30B37 /* SearchBarView.swift in Sources */,
+				B5366B872893732900637CDC /* MockParser.swift in Sources */,
 				79379FE8288588EC0016D1A8 /* MainMapViewController.swift in Sources */,
 				B5B05D54289124550013E65F /* WriteReviewViewController.swift in Sources */,
 				79379FE4288588EC0016D1A8 /* AppDelegate.swift in Sources */,
