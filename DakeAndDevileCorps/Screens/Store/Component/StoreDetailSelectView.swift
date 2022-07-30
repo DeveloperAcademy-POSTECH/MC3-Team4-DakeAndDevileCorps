@@ -8,10 +8,10 @@
 import UIKit
 
 protocol StoreDetailSelectViewDelegate: AnyObject {
-    func showingReview(_ storeDetailSelectView: StoreDetailSelectView)
-    func showingProduct(_ storeDetailSelectView: StoreDetailSelectView)
-    func setUpNumberOfButtons(_ storeDetailSelectView: StoreDetailSelectView)
-    func presentWriteReviewView()
+    func didSelectedReview(_ storeDetailSelectView: StoreDetailSelectView)
+    func didSelectedProduct(_ storeDetailSelectView: StoreDetailSelectView)
+    func updateListCountOfButton(_ storeDetailSelectView: StoreDetailSelectView)
+    func didTappedWriteReviewButton()
 }
 
 final class StoreDetailSelectView: UIView {
@@ -34,7 +34,7 @@ final class StoreDetailSelectView: UIView {
     private let productButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitleColor( UIColor.black, for: .normal)
+        button.setTitleColor(UIColor.black, for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 17)
         
         return button
@@ -91,7 +91,7 @@ final class StoreDetailSelectView: UIView {
     }
     
     override func draw(_ rect: CGRect) {
-        delegate?.setUpNumberOfButtons(self)
+        delegate?.updateListCountOfButton(self)
         super.draw(rect)
     }
     
@@ -135,17 +135,17 @@ final class StoreDetailSelectView: UIView {
     
     private func setupButtonAction() {
         let productButtonAction = UIAction { _ in
-            self.delegate?.showingProduct(self)
+            self.delegate?.didSelectedProduct(self)
         }
         productButton.addAction(productButtonAction, for: .touchUpInside)
         
         let reviewButtonAction = UIAction { _ in
-            self.delegate?.showingReview(self)
+            self.delegate?.didSelectedReview(self)
         }
         reviewButton.addAction(reviewButtonAction, for: .touchUpInside)
         
         let writeReviewButtonAction = UIAction { _ in
-            self.delegate?.presentWriteReviewView()
+            self.delegate?.didTappedWriteReviewButton()
         }
         writeReviewButton.addAction(writeReviewButtonAction, for: .touchUpInside)
     }
@@ -156,6 +156,6 @@ final class StoreDetailSelectView: UIView {
     }
 
     @objc func callPresentWrtieReviewView(_ sender: UITapGestureRecognizer) {
-        delegate?.presentWriteReviewView()
+        delegate?.didTappedWriteReviewButton()
     }
 }

@@ -7,31 +7,6 @@
 
 import UIKit
 
-protocol ReviewTableViewCellDelegate: AnyObject {
-    func requestReviewTableViewCellReload()
-}
-
-class PaddingLabel: UILabel {
-    private var padding = UIEdgeInsets()
-    
-    convenience init(padding: UIEdgeInsets) {
-        self.init()
-        self.padding = padding
-    }
-    
-    override func drawText(in rect: CGRect) {
-        super.drawText(in: rect.inset(by: padding))
-    }
-    
-    override var intrinsicContentSize: CGSize {
-        var contentSize = super.intrinsicContentSize
-        contentSize.height += padding.top + padding.bottom
-        contentSize.width += padding.left + padding.right
-        
-        return contentSize
-    }
-}
-
 class ReviewTableViewCell: UITableViewCell {
     
     @IBOutlet weak var reviewTitleLabel: UILabel!
@@ -40,12 +15,44 @@ class ReviewTableViewCell: UITableViewCell {
     
     @IBOutlet weak var reviewStackView: UIStackView!
     @IBOutlet weak var reviewSubStackView: UIStackView!
-    weak var reviewDelegate: ReviewTableViewCellDelegate?
+    weak var reviewDelegate: StoreDetailTableViewCellDelegate?
     
-    private var numberOfReviewImageLabel: PaddingLabel? = PaddingLabel()
-    private var categoryLabel: UILabel = UILabel()
-    private var nicknameLabel: UILabel = UILabel()
-    private var reviewDateLabel: UILabel = UILabel()
+    private let numberOfReviewImageLabel: PaddingLabel = {
+        let numberOfReviewImageLabel = PaddingLabel(padding: UIEdgeInsets(top: 2, left: 6, bottom: 2, right: 6))
+        numberOfReviewImageLabel.translatesAutoresizingMaskIntoConstraints = false
+        numberOfReviewImageLabel.font = UIFont.systemFont(ofSize: 11)
+        numberOfReviewImageLabel.textColor = .white
+        numberOfReviewImageLabel.backgroundColor = .gray
+        numberOfReviewImageLabel.layer.masksToBounds = true
+        numberOfReviewImageLabel.layer.opacity = 0.5
+        
+        return numberOfReviewImageLabel
+    }()
+    
+    private let categoryLabel: PaddingLabel = {
+        let categoryLabel = PaddingLabel(padding: UIEdgeInsets(top: 4, left: 8, bottom: 4, right: 8))
+        categoryLabel.font = UIFont.systemFont(ofSize: 12)
+        categoryLabel.backgroundColor = .systemGray6
+        categoryLabel.layer.masksToBounds = true
+        categoryLabel.layer.cornerRadius = 4
+        
+        return categoryLabel
+    }()
+    
+    private let nicknameLabel: UILabel = {
+        let nicknameLabel = UILabel()
+        nicknameLabel.textColor = .secondaryLabel
+        nicknameLabel.font = UIFont.systemFont(ofSize: 13, weight: .bold)
+        
+        return nicknameLabel
+    }()
+    
+    private let reviewDateLabel: UILabel = {
+        let reviewDateLabel = UILabel()
+        reviewDateLabel.font = UIFont.systemFont(ofSize: 13)
+        
+        return reviewDateLabel
+    }()
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -78,55 +85,13 @@ class ReviewTableViewCell: UITableViewCell {
 //            numberOfReviewImageLabel?.text = String(reviewModel.photos.count)
 //        }
         guard reviewModel.photos.isEmpty == false else {
-            numberOfReviewImageLabel?.isHidden = true
+            numberOfReviewImageLabel.isHidden = true
             return
         }
-        numberOfReviewImageLabel?.text = String(reviewModel.photos.count)
+        numberOfReviewImageLabel.text = String(reviewModel.photos.count)
     }
     
     private func render() {
-        lazy var numberOfReviewImageLabel: PaddingLabel = {
-            let numberOfReviewImageLabel = PaddingLabel(padding: UIEdgeInsets(top: 2, left: 6, bottom: 2, right: 6))
-            numberOfReviewImageLabel.translatesAutoresizingMaskIntoConstraints = false
-            numberOfReviewImageLabel.font = UIFont.systemFont(ofSize: 11)
-            numberOfReviewImageLabel.textColor = .white
-            numberOfReviewImageLabel.backgroundColor = .gray
-            numberOfReviewImageLabel.layer.masksToBounds = true
-            numberOfReviewImageLabel.layer.opacity = 0.5
-            
-            return numberOfReviewImageLabel
-        }()
-        
-        lazy var categoryLabel: PaddingLabel = {
-            let categoryLabel = PaddingLabel(padding: UIEdgeInsets(top: 4, left: 8, bottom: 4, right: 8))
-            categoryLabel.font = UIFont.systemFont(ofSize: 12)
-            categoryLabel.backgroundColor = .systemGray6
-            categoryLabel.layer.masksToBounds = true
-            categoryLabel.layer.cornerRadius = 4
-            
-            return categoryLabel
-        }()
-        
-        lazy var nicknameLabel: UILabel = {
-            let nicknameLabel = UILabel()
-            nicknameLabel.textColor = .secondaryLabel
-            nicknameLabel.font = UIFont.systemFont(ofSize: 13, weight: .bold)
-            
-            return nicknameLabel
-        }()
-        
-        lazy var reviewDateLabel: UILabel = {
-            let reviewDateLabel = UILabel()
-            reviewDateLabel.font = UIFont.systemFont(ofSize: 13)
-            
-            return reviewDateLabel
-        }()
-        
-        self.categoryLabel = categoryLabel
-        self.nicknameLabel = nicknameLabel
-        self.reviewDateLabel = reviewDateLabel
-        self.numberOfReviewImageLabel = numberOfReviewImageLabel
-        
         reviewSubStackView.addArrangedSubview(nicknameLabel)
         reviewSubStackView.addArrangedSubview(reviewDateLabel)
         reviewStackView.addArrangedSubview(categoryLabel)
@@ -139,8 +104,8 @@ class ReviewTableViewCell: UITableViewCell {
     }
     
     override func draw(_ rect: CGRect) {
-        let radius = (numberOfReviewImageLabel?.frame.height ?? 0) * 0.5
-        numberOfReviewImageLabel?.layer.cornerRadius = radius
+        let radius = (numberOfReviewImageLabel.frame.height ) * 0.5
+        numberOfReviewImageLabel.layer.cornerRadius = radius
         
         super.draw(rect)
     }

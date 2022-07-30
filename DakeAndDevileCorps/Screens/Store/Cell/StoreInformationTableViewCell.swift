@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol StoreInformationTableViewCellDelegate: AnyObject {
+protocol StoreDetailTableViewCellDelegate: AnyObject {
     func reloadStoreDetailTableView()
 }
 
@@ -31,7 +31,7 @@ class StoreInformationTableViewCell: UITableViewCell {
     @IBOutlet weak var weekOperationTimeStack: UIStackView!
     @IBOutlet weak var weekOperationTimeToggle: UIButton!
     
-    weak var storeInformationDelegate: StoreInformationTableViewCellDelegate?
+    weak var storeInformationDelegate: StoreDetailTableViewCellDelegate?
     private var isOpen: Bool = true
     private var dateLabels: [UILabel] = []
     

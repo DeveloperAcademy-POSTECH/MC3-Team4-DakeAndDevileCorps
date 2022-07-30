@@ -203,7 +203,7 @@ extension StoreDetailViewController: UITableViewDelegate {
     }
 }
 
-extension StoreDetailViewController: StoreInformationTableViewCellDelegate {
+extension StoreDetailViewController: StoreDetailTableViewCellDelegate {
     func reloadStoreDetailTableView() {
         storeDetailTableView.reloadData()
     }
@@ -215,24 +215,18 @@ extension StoreDetailViewController: CategoryCollectionViewDelegate {
     }
 }
 
-extension StoreDetailViewController: ReviewTableViewCellDelegate {
-    func requestReviewTableViewCellReload() {
-        storeDetailTableView.reloadData()
-    }
-}
-
 extension StoreDetailViewController: StoreDetailSelectViewDelegate {
-    func presentWriteReviewView() {
-        guard let viewController = storyboard?.instantiateViewController(withIdentifier: WriteReviewViewController.className) as? WriteReviewViewController else { return }
+    func didTappedWriteReviewButton() {
+        guard let viewController = storyboard?.instantiateViewController(withIdentifier: "WriteReviewNavigationController") as? UINavigationController else { return }
         present(viewController, animated: true, completion: nil)
     }
     
-    func setUpNumberOfButtons(_ storeDetailSelectView: StoreDetailSelectView) {
+    func updateListCountOfButton(_ storeDetailSelectView: StoreDetailSelectView) {
         storeDetailSelectView.numberOfReviews = reviewList.count
         storeDetailSelectView.numberOfProducts = productList.count - categoryList.count
     }
     
-    func showingReview(_ storeDetailSelectView: StoreDetailSelectView) {
+    func didSelectedReview(_ storeDetailSelectView: StoreDetailSelectView) {
         isShowingReview = true
         storeDetailSelectView.isShowingReview = true
         storeDetailSelectView.applyShowingState()
@@ -241,7 +235,7 @@ extension StoreDetailViewController: StoreDetailSelectViewDelegate {
         storeDetailTableView.reloadData()
     }
     
-    func showingProduct(_ storeDetailSelectView: StoreDetailSelectView) {
+    func didSelectedProduct(_ storeDetailSelectView: StoreDetailSelectView) {
         isShowingReview = false
         storeDetailSelectView.isShowingReview = false
         storeDetailSelectView.applyShowingState()
