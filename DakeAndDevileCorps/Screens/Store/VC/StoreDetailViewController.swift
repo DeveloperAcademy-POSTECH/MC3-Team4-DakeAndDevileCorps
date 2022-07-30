@@ -226,21 +226,12 @@ extension StoreDetailViewController: StoreDetailSelectViewDelegate {
         storeDetailSelectView.numberOfProducts = productList.count - categoryList.count
     }
     
-    func didSelectedReview(_ storeDetailSelectView: StoreDetailSelectView) {
-        isShowingReview = true
-        storeDetailSelectView.isShowingReview = true
+    func didSelectedButton(_ storeDetailSelectView: StoreDetailSelectView, isReviewButton: Bool) {
+        isShowingReview = isReviewButton
+        storeDetailSelectView.isShowingReview = isReviewButton
         storeDetailSelectView.applyShowingState()
-        storeDetailSelectView.productButtonBottomBar.isHidden = true
-        storeDetailSelectView.reviewButtonBottomBar.isHidden = false
-        storeDetailTableView.reloadData()
-    }
-    
-    func didSelectedProduct(_ storeDetailSelectView: StoreDetailSelectView) {
-        isShowingReview = false
-        storeDetailSelectView.isShowingReview = false
-        storeDetailSelectView.applyShowingState()
-        storeDetailSelectView.productButtonBottomBar.isHidden = false
-        storeDetailSelectView.reviewButtonBottomBar.isHidden = true
+        storeDetailSelectView.productButtonBottomBar.isHidden = isReviewButton
+        storeDetailSelectView.reviewButtonBottomBar.isHidden = !isReviewButton
         storeDetailTableView.reloadData()
     }
 }

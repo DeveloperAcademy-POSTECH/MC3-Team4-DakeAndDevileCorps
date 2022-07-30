@@ -8,8 +8,7 @@
 import UIKit
 
 protocol StoreDetailSelectViewDelegate: AnyObject {
-    func didSelectedReview(_ storeDetailSelectView: StoreDetailSelectView)
-    func didSelectedProduct(_ storeDetailSelectView: StoreDetailSelectView)
+    func didSelectedButton(_ storeDetailSelectView: StoreDetailSelectView, isReviewButton: Bool)
     func updateListCountOfButton(_ storeDetailSelectView: StoreDetailSelectView)
     func didTappedWriteReviewButton()
 }
@@ -135,12 +134,12 @@ final class StoreDetailSelectView: UIView {
     
     private func setupButtonAction() {
         let productButtonAction = UIAction { _ in
-            self.delegate?.didSelectedProduct(self)
+            self.delegate?.didSelectedButton(self, isReviewButton: false)
         }
         productButton.addAction(productButtonAction, for: .touchUpInside)
         
         let reviewButtonAction = UIAction { _ in
-            self.delegate?.didSelectedReview(self)
+            self.delegate?.didSelectedButton(self, isReviewButton: true)
         }
         reviewButton.addAction(reviewButtonAction, for: .touchUpInside)
         
