@@ -77,12 +77,12 @@ class StoreDetailViewController: UIViewController {
         operationList = ["월 정기 휴일", "화 10:00 ~ 18:00", "수 10:00 ~ 18:00", "목 10:00 ~ 18:00", "금 10:00 ~ 18:00", "토 10:00 ~ 18:00", "일 정기 휴일"]
         
         reviewList.append(contentsOf: [
-            ReviewModel(reviewTitle: "인블리스 세탁세제", reviewContent: "좋습니다. 벌써 3번 리필했어요!", category: "세탁세제", nickname: "냥냥이", reviewDate: "21.7.18", reviewImageNames: ["star.fill", "moon.fill", "sun.max.fill"]),
-            ReviewModel(reviewTitle: "에코라운드 중성 주방세제", reviewContent: "최고네용~ 캬캬캬 한 번 더 리필할 듯 싶습니다. 향이 짱 좋고 세척력도 넘넘 좋아요! 추천추천합니다ㅎㅎ", category: "주방세제", nickname: "뇸뇸", reviewDate: "21.7.18", reviewImageNames: ["moon.fill", "star.fill"]),
-            ReviewModel(reviewTitle: "에코티끄 섬유유연제", reviewContent: "흠... 이 향 뭐지? 향이 짱 좋고 산뜻합니다! 친구들한테 추천하구 다녀영~ 최고오오오오오오오", category: "섬유유연제", nickname: "감자도리", reviewDate: "21.7.18", reviewImageNames: []),
-            ReviewModel(reviewTitle: "인블리스 세탁세제", reviewContent: "좋습니다. 벌써 3번 리필했어요!", category: "세탁세제", nickname: "냥냥이", reviewDate: "21.7.18", reviewImageNames: ["star.fill", "moon.fill", "sun.max.fill"]),
-            ReviewModel(reviewTitle: "에코라운드 중성 주방세제", reviewContent: "최고네용~ 캬캬캬 한 번 더 리필할 듯 싶습니다. 향이 짱 좋고 세척력도 넘넘 좋아요! 추천추천합니다ㅎㅎ", category: "주방세제", nickname: "뇸뇸", reviewDate: "21.7.18", reviewImageNames: ["moon.fill", "star.fill"]),
-            ReviewModel(reviewTitle: "에코티끄 섬유유연제", reviewContent: "흠... 이 향 뭐지? 향이 짱 좋고 산뜻합니다! 친구들한테 추천하구 다녀영~ 최고오오오오오오오", category: "섬유유연제", nickname: "감자도리", reviewDate: "21.7.18", reviewImageNames: [])
+            ReviewModel(title: "인블리스 세탁세제", content: "좋습니다. 벌써 3번 리필했어요!", category: "세탁세제", nickname: "냥냥이", date: "21.7.18", photos: ["star.fill", "moon.fill", "sun.max.fill"]),
+            ReviewModel(title: "에코라운드 중성 주방세제", content: "최고네용~ 캬캬캬 한 번 더 리필할 듯 싶습니다. 향이 짱 좋고 세척력도 넘넘 좋아요! 추천추천합니다ㅎㅎ", category: "주방세제", nickname: "뇸뇸", date: "21.7.18", photos: ["moon.fill", "star.fill"]),
+            ReviewModel(title: "에코티끄 섬유유연제", content: "흠... 이 향 뭐지? 향이 짱 좋고 산뜻합니다! 친구들한테 추천하구 다녀영~ 최고오오오오오오오", category: "섬유유연제", nickname: "감자도리", date: "21.7.18", photos: []),
+            ReviewModel(title: "인블리스 세탁세제", content: "좋습니다. 벌써 3번 리필했어요!", category: "세탁세제", nickname: "냥냥이", date: "21.7.18", photos: ["star.fill", "moon.fill", "sun.max.fill"]),
+            ReviewModel(title: "에코라운드 중성 주방세제", content: "최고네용~ 캬캬캬 한 번 더 리필할 듯 싶습니다. 향이 짱 좋고 세척력도 넘넘 좋아요! 추천추천합니다ㅎㅎ", category: "주방세제", nickname: "뇸뇸", date: "21.7.18", photos: ["moon.fill", "star.fill"]),
+            ReviewModel(title: "에코티끄 섬유유연제", content: "흠... 이 향 뭐지? 향이 짱 좋고 산뜻합니다! 친구들한테 추천하구 다녀영~ 최고오오오오오오오", category: "섬유유연제", nickname: "감자도리", date: "21.7.18", photos: [])
         ])
     }
     
@@ -104,10 +104,10 @@ extension StoreDetailViewController: UITableViewDataSource {
         case 0:
             return 1
         case 1:
-            if !isShowingReview {
-                return productList.count
-            } else {
+            if isShowingReview {
                 return reviewList.count
+            } else {
+                return productList.count
             }
         default:
             return 0
@@ -204,7 +204,7 @@ extension StoreDetailViewController: UITableViewDelegate {
 }
 
 extension StoreDetailViewController: StoreInformationTableViewCellDelegate {
-    func requestReload() {
+    func reloadStoreDetailTableView() {
         storeDetailTableView.reloadData()
     }
 }

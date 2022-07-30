@@ -57,26 +57,31 @@ class ReviewTableViewCell: UITableViewCell {
     }
     
     func setData(reviewModel: ReviewModel) {
-        reviewTitleLabel.text = reviewModel.reviewTitle
+        reviewTitleLabel.text = reviewModel.title
         reviewTitleLabel.font = UIFont.boldSystemFont(ofSize: 15)
         
-        reviewContentLabel.text = reviewModel.reviewContent
+        reviewContentLabel.text = reviewModel.content
         reviewContentLabel.font = UIFont.systemFont(ofSize: 15)
         reviewContentLabel.numberOfLines = 0
         reviewContentLabel.lineBreakMode = .byWordWrapping
         
         categoryLabel.text = reviewModel.category
         nicknameLabel.text = reviewModel.nickname
-        reviewDateLabel.text = reviewModel.reviewDate
+        reviewDateLabel.text = reviewModel.date
         
-        reviewImageView.image = UIImage(systemName: reviewModel.reviewImageNames.first ?? "")
+        reviewImageView.image = UIImage(systemName: reviewModel.photos.first ?? "")
         reviewImageView.layer.cornerRadius = 6
         
-        guard reviewModel.reviewImageNames.isEmpty == false else {
+//        if reviewModel.photos.isEmpty {
+//            numberOfReviewImageLabel?.isHidden = true
+//        } else {
+//            numberOfReviewImageLabel?.text = String(reviewModel.photos.count)
+//        }
+        guard reviewModel.photos.isEmpty == false else {
             numberOfReviewImageLabel?.isHidden = true
             return
         }
-        numberOfReviewImageLabel?.text = String(reviewModel.reviewImageNames.count)
+        numberOfReviewImageLabel?.text = String(reviewModel.photos.count)
     }
     
     private func render() {

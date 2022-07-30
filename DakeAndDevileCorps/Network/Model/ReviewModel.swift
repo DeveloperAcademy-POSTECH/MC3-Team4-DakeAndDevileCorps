@@ -8,10 +8,10 @@
 import Foundation
 
 struct ReviewModel {
-    var reviewTitle: String
-    var reviewContent: String
+    var title: String
+    var content: String
     var category: String
     var nickname: String
-    var reviewDate: String
-    var reviewImageNames: [String]
+    var date: String
+    var photos: [String]
 }
