@@ -222,6 +222,11 @@ extension StoreDetailViewController: ReviewTableViewCellDelegate {
 }
 
 extension StoreDetailViewController: StoreDetailSelectViewDelegate {
+    func presentWriteReviewView() {
+        guard let viewController = storyboard?.instantiateViewController(withIdentifier: WriteReviewViewController.className) as? WriteReviewViewController else { return }
+        present(viewController, animated: true, completion: nil)
+    }
+    
     func setUpNumberOfButtons(_ storeDetailSelectView: StoreDetailSelectView) {
         storeDetailSelectView.numberOfReviews = reviewList.count
         storeDetailSelectView.numberOfProducts = productList.count - categoryList.count

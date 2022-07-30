@@ -11,6 +11,7 @@ protocol StoreDetailSelectViewDelegate: AnyObject {
     func showingReview(_ storeDetailSelectView: StoreDetailSelectView)
     func showingProduct(_ storeDetailSelectView: StoreDetailSelectView)
     func setUpNumberOfButtons(_ storeDetailSelectView: StoreDetailSelectView)
+    func presentWriteReviewView()
 }
 
 final class StoreDetailSelectView: UIView {
@@ -30,6 +31,24 @@ final class StoreDetailSelectView: UIView {
         }
     }
     
+    private let productButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitleColor( UIColor.black, for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 17)
+        
+        return button
+    }()
+    
+    private let reviewButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitleColor(UIColor.tertiaryLabel, for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 17)
+        
+        return button
+    }()
+    
     let productButtonBottomBar: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -47,42 +66,16 @@ final class StoreDetailSelectView: UIView {
         return view
     }()
     
-    private let productButton: UIButton = {
+    private let writeReviewButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitleColor( UIColor.black, for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 17)
-        
-        return button
-    }()
-    
-    private let reviewButton: UIButton = {
-        let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("상품리뷰 4", for: .normal)
-        button.setTitleColor(UIColor.tertiaryLabel, for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 17)
-        
-        return button
-    }()
-    
-    private let writeReviewButton: UIStackView = {
-        let stackView = UIStackView()
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.axis = .horizontal
-        stackView.distribution = .equalSpacing
-        let image = UIImageView(image: UIImage(systemName: "highlighter"))
-        image.frame.size = CGSize(width: 20, height: 20)
-        image.contentMode = .scaleAspectFit
-        let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setImage(UIImage(systemName: "highlighter"), for: .normal)
+        button.tintColor = UIColor.zeroMint50
         button.setTitle("리뷰쓰기", for: .normal)
-        button.setTitleColor(UIColor.black, for: .normal)
+        button.setTitleColor(UIColor.zeroMint50, for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 17)
-        stackView.addArrangedSubview(image)
-        stackView.addArrangedSubview(button)
         
-        return stackView
+        return button
     }()
     
     // MARK: - init
@@ -109,7 +102,7 @@ final class StoreDetailSelectView: UIView {
         productButton.setTitle("취급상품 \(numberOfProducts)", for: .normal)
         NSLayoutConstraint.activate([
             productButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 24),
-            productButton.topAnchor.constraint(equalTo: topAnchor, constant: 10)
+            productButton.centerYAnchor.constraint(equalTo: centerYAnchor)
         ])
         
         productButton.addSubview(productButtonBottomBar)
@@ -123,7 +116,7 @@ final class StoreDetailSelectView: UIView {
         reviewButton.setTitle("상품리뷰 \(numberOfReviews)", for: .normal)
         NSLayoutConstraint.activate([
             reviewButton.leadingAnchor.constraint(equalTo: productButton.trailingAnchor, constant: 19),
-            reviewButton.topAnchor.constraint(equalTo: productButton.topAnchor)
+            reviewButton.centerYAnchor.constraint(equalTo: centerYAnchor)
         ])
         
         reviewButton.addSubview(reviewButtonBottomBar)
@@ -135,10 +128,9 @@ final class StoreDetailSelectView: UIView {
         
         addSubview(writeReviewButton)
         NSLayoutConstraint.activate([
-            writeReviewButton.topAnchor.constraint(equalTo: productButton.topAnchor),
+            writeReviewButton.centerYAnchor.constraint(equalTo: centerYAnchor),
             writeReviewButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -24)
         ])
-        
     }
     
     private func setupButtonAction() {
@@ -147,14 +139,23 @@ final class StoreDetailSelectView: UIView {
         }
         productButton.addAction(productButtonAction, for: .touchUpInside)
         
-        let reviewButtonACtion = UIAction { _ in
+        let reviewButtonAction = UIAction { _ in
             self.delegate?.showingReview(self)
         }
-        reviewButton.addAction(reviewButtonACtion, for: .touchUpInside)
+        reviewButton.addAction(reviewButtonAction, for: .touchUpInside)
+        
+        let writeReviewButtonAction = UIAction { _ in
+            self.delegate?.presentWriteReviewView()
+        }
+        writeReviewButton.addAction(writeReviewButtonAction, for: .touchUpInside)
     }
     
     func applyShowingState() {
         productButton.setTitleColor(isShowingReview ? UIColor.tertiaryLabel : UIColor.black, for: .normal)
         reviewButton.setTitleColor(isShowingReview ? UIColor.black : UIColor.tertiaryLabel, for: .normal)
+    }
+
+    @objc func callPresentWrtieReviewView(_ sender: UITapGestureRecognizer) {
+        delegate?.presentWriteReviewView()
     }
 }
