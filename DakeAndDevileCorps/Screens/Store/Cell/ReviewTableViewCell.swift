@@ -7,9 +7,9 @@
 
 import UIKit
 
-@objc protocol ReviewTableViewCellDelegate: AnyObject {
-    @objc optional func requestReviewTableViewCellReload()
-    @objc optional func presentReviewPhotoView()
+protocol ReviewTableViewCellDelegate: AnyObject {
+    func requestReviewTableViewCellReload()
+    func presentReviewPhotoView(reviewImageNames: [String])
 }
 
 class PaddingLabel: UILabel {
@@ -41,7 +41,6 @@ class ReviewTableViewCell: UITableViewCell {
     
     @IBOutlet weak var reviewStackView: UIStackView!
     @IBOutlet weak var reviewSubStackView: UIStackView!
-    weak var reviewDelegate: ReviewTableViewCellDelegate?
     
     private var numberOfReviewImageLabel: PaddingLabel? = PaddingLabel()
     private var categoryLabel: UILabel = UILabel()
@@ -55,10 +54,13 @@ class ReviewTableViewCell: UITableViewCell {
         return button
     }()
     
+    private var reviewModel: ReviewModel?
+    weak var reviewDelegate: ReviewTableViewCellDelegate?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         render()
-        setAction()
+        setupButtonAction()
         //        initGesture()
     }
     
@@ -66,14 +68,9 @@ class ReviewTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
-    private func setAction() {
-        let reviewImageButtonAction = UIAction { _ in
-            print("항")
-        }
-        reviewImageButton.addAction(reviewImageButtonAction, for: .touchUpInside)
-    }
-
     func setData(reviewModel: ReviewModel) {
+        self.reviewModel = reviewModel
+        
         reviewTitleLabel.text = reviewModel.reviewTitle
         reviewTitleLabel.font = UIFont.boldSystemFont(ofSize: 15)
         
@@ -86,17 +83,23 @@ class ReviewTableViewCell: UITableViewCell {
         nicknameLabel.text = reviewModel.nickname
         reviewDateLabel.text = reviewModel.reviewDate
         
-//        reviewImageView.image = UIImage(systemName: reviewModel.reviewImageNames.first ?? "")
-//        reviewImageView.layer.cornerRadius = 6
-        
         guard reviewModel.reviewImageNames.isEmpty == false else {
             numberOfReviewImageLabel?.isHidden = true
+            reviewImageButton.isHidden = true
             return
         }
         numberOfReviewImageLabel?.text = String(reviewModel.reviewImageNames.count)
         
         reviewImageButton.setBackgroundImage(UIImage(systemName: reviewModel.reviewImageNames.first ?? ""), for: .normal)
         
+    }
+    
+    private func setupButtonAction() {
+        let reviewImageButtonAction = UIAction { _ in
+            self.reviewDelegate?.presentReviewPhotoView(reviewImageNames: self.reviewModel?.reviewImageNames ?? [])
+            print("항")
+        }
+        reviewImageButton.addAction(reviewImageButtonAction, for: .touchUpInside)
     }
     
     private func render() {

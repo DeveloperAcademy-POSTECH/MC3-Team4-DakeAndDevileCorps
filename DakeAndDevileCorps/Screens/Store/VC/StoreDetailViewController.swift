@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol StoreDetailViewControllerDelegate: AnyObject {
+    func presentReviewPhotoView(reviewImageNames: [String])
+}
+
 class StoreDetailViewController: UIViewController {
     
     @IBOutlet weak var storeName: UILabel!
@@ -19,6 +23,8 @@ class StoreDetailViewController: UIViewController {
     private var isShowingReview: Bool = false
     private var selectHeader = StoreDetailSelectView()
     private var categoryHeader = CategoryView(entryPoint: .detail)
+    
+    weak var delegate: StoreDetailViewControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -216,6 +222,13 @@ extension StoreDetailViewController: CategoryCollectionViewDelegate {
 }
 
 extension StoreDetailViewController: ReviewTableViewCellDelegate {
+    func presentReviewPhotoView(reviewImageNames: [String]) {
+        guard let viewController = storyboard?.instantiateViewController(withIdentifier: ReviewPhotoViewController.className) as? ReviewPhotoViewController else { return }
+        viewController.setData(reviewImageNames: reviewImageNames)
+        present(viewController, animated: true, completion: nil)
+        
+    }
+    
     func requestReviewTableViewCellReload() {
         storeDetailTableView.reloadData()
     }
