@@ -7,8 +7,9 @@
 
 import UIKit
 
-protocol ReviewTableViewCellDelegate: AnyObject {
-    func requestReviewTableViewCellReload()
+@objc protocol ReviewTableViewCellDelegate: AnyObject {
+    @objc optional func requestReviewTableViewCellReload()
+    @objc optional func presentReviewPhotoView()
 }
 
 class PaddingLabel: UILabel {
@@ -47,15 +48,31 @@ class ReviewTableViewCell: UITableViewCell {
     private var nicknameLabel: UILabel = UILabel()
     private var reviewDateLabel: UILabel = UILabel()
     
+    private let reviewImageButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        
+        return button
+    }()
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         render()
+        setAction()
+        //        initGesture()
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
     
+    private func setAction() {
+        let reviewImageButtonAction = UIAction { _ in
+            print("항")
+        }
+        reviewImageButton.addAction(reviewImageButtonAction, for: .touchUpInside)
+    }
+
     func setData(reviewModel: ReviewModel) {
         reviewTitleLabel.text = reviewModel.reviewTitle
         reviewTitleLabel.font = UIFont.boldSystemFont(ofSize: 15)
@@ -69,14 +86,17 @@ class ReviewTableViewCell: UITableViewCell {
         nicknameLabel.text = reviewModel.nickname
         reviewDateLabel.text = reviewModel.reviewDate
         
-        reviewImageView.image = UIImage(systemName: reviewModel.reviewImageNames.first ?? "")
-        reviewImageView.layer.cornerRadius = 6
+//        reviewImageView.image = UIImage(systemName: reviewModel.reviewImageNames.first ?? "")
+//        reviewImageView.layer.cornerRadius = 6
         
         guard reviewModel.reviewImageNames.isEmpty == false else {
             numberOfReviewImageLabel?.isHidden = true
             return
         }
         numberOfReviewImageLabel?.text = String(reviewModel.reviewImageNames.count)
+        
+        reviewImageButton.setBackgroundImage(UIImage(systemName: reviewModel.reviewImageNames.first ?? ""), for: .normal)
+        
     }
     
     private func render() {
@@ -126,6 +146,15 @@ class ReviewTableViewCell: UITableViewCell {
         reviewSubStackView.addArrangedSubview(reviewDateLabel)
         reviewStackView.addArrangedSubview(categoryLabel)
         reviewStackView.addArrangedSubview(reviewSubStackView)
+        
+        addSubview(reviewImageButton)
+        NSLayoutConstraint.activate([
+            reviewImageButton.topAnchor.constraint(equalTo: topAnchor, constant: 18),
+            reviewImageButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -24),
+            reviewImageButton.widthAnchor.constraint(equalToConstant: 72),
+            reviewImageButton.heightAnchor.constraint(equalToConstant: 72)
+        ])
+        
         addSubview(numberOfReviewImageLabel)
         NSLayoutConstraint.activate([
             numberOfReviewImageLabel.topAnchor.constraint(equalTo: topAnchor, constant: 72),

@@ -16,6 +16,8 @@ final class ReviewPhotoViewController: BaseViewController {
 
     // MARK: - properties
     
+    private let reviewTalbeViewCell = ReviewTableViewCell()
+    
     private let xmarkButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(systemName: "xmark"), for: .normal)
@@ -82,6 +84,10 @@ final class ReviewPhotoViewController: BaseViewController {
     private func applyScrollIndexLabel(with index: Int = 1) {
         scrollIndexLabel.text = "\(index)/\(dummyPhotos.count)"
     }
+    
+    private func initDelegate() {
+        reviewTalbeViewCell.reviewDelegate = self
+    }
 }
 
 extension ReviewPhotoViewController: UICollectionViewDataSource {
@@ -103,5 +109,11 @@ extension ReviewPhotoViewController: UICollectionViewDelegate {
         let currentIndex = Int(targetContentOffset.pointee.x / photoCollectionView.frame.width)
         let currentPage = currentIndex + 1
         applyScrollIndexLabel(with: currentPage)
+    }
+}
+
+extension ReviewPhotoViewController: ReviewTableViewCellDelegate {
+    @objc func presentReviewPhotoView() {
+        print("gkdl")
     }
 }
