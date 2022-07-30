@@ -35,7 +35,7 @@ final class WriteReviewViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNotificationCenter()
-        hidekeyboardWhenTappedAround()
+        hideKeyboardWhenTappedAround()
     }
     
     override func render() {
