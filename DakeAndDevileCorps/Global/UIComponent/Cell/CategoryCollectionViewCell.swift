@@ -11,12 +11,6 @@ final class CategoryCollectionViewCell: UICollectionViewCell {
     
     // MARK: - properties
     
-    override var isSelected: Bool {
-        willSet {
-            applySelectedState(newValue)
-        }
-    }
-    
     private let backgroundContentView: UIView = {
         let view = UIView()
         view.layer.masksToBounds = true
@@ -29,6 +23,7 @@ final class CategoryCollectionViewCell: UICollectionViewCell {
         label.textAlignment = .center
         return label
     }()
+    public private(set) var isSelectedCell: Bool = false
     
     // MARK: - init
     
@@ -70,11 +65,12 @@ final class CategoryCollectionViewCell: UICollectionViewCell {
         backgroundContentView.layer.cornerRadius = cellCornerRadius
     }
     
-    private func applySelectedState(_ isSelected: Bool) {
-        backgroundContentView.backgroundColor = isSelected ? .black : .white
+    func applySelectedState(_ isSelected: Bool) {
+        backgroundContentView.backgroundColor = isSelected ? .zeroMint50 : .white
         itemLabel.textColor = isSelected ? .white : .black
         itemLabel.font = isSelected ? .preferredFont(forTextStyle: .subheadline, compatibleWith: .init(legibilityWeight: .bold))
                                     : .preferredFont(forTextStyle: .subheadline)
+        isSelectedCell = isSelected
     }
     
     func setItemLabel(with itemText: String) {
