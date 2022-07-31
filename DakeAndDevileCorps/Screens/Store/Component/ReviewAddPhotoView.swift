@@ -73,13 +73,14 @@ class ReviewAddPhotoView: UIView {
         addSubview(photoTitleLabel)
         photoTitleLabel.constraint(top: self.topAnchor,
                                    leading: self.leadingAnchor)
+        
         addSubview(addPhotoButton)
         addPhotoButton.constraint(top: photoTitleLabel.bottomAnchor,
                                   leading: self.leadingAnchor,
                                   padding: UIEdgeInsets(top: 15, left: 0, bottom: 0, right: 0))
-        
         addPhotoButton.widthAnchor.constraint(equalToConstant: 75).isActive = true
         addPhotoButton.heightAnchor.constraint(equalToConstant: 75).isActive = true
+        
         addSubview(photoCollectionView)
         photoCollectionView.constraint(top: photoTitleLabel.bottomAnchor,
                                        leading: addPhotoButton.trailingAnchor,

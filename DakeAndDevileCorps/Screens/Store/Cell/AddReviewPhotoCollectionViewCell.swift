@@ -50,6 +50,7 @@ final class AddReviewPhotoCollectionViewCell: UICollectionViewCell {
                                   padding: UIEdgeInsets(top: 6, left: 0, bottom: 0, right: 0))
         photoImageView.widthAnchor.constraint(equalToConstant: 75).isActive = true
         photoImageView.heightAnchor.constraint(equalToConstant: 75).isActive = true
+        
         addSubview(deletePhotoButton)
         deletePhotoButton.constraint(top: self.topAnchor,
                                      leading: photoImageView.trailingAnchor,
