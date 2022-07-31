@@ -102,6 +102,6 @@ final class ReviewInputView: UIView {
                                       leading: self.leadingAnchor,
                                       bottom: self.bottomAnchor,
                                       trailing: self.trailingAnchor,
-                                      padding: UIEdgeInsets(top: 22, left: 24, bottom: 0, right: 16))
+                                      padding: UIEdgeInsets(top: 22, left: 24, bottom: 0, right: 12))
     }
 }

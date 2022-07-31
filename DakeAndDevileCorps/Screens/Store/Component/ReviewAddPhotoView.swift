@@ -51,9 +51,9 @@ class ReviewAddPhotoView: UIView {
     
     let photoCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
-        layout.minimumLineSpacing = 0
-        layout.sectionInset = UIEdgeInsets(top: 0, left: (UIScreen.main.bounds.size.width - 22 * 2 - 82.5 * 3 - 75) / 3 + 5, bottom: 0, right: 8)
-        layout.itemSize = CGSize(width: 75, height: 75)
+        layout.minimumInteritemSpacing = 0
+        layout.sectionInset = UIEdgeInsets(top: 0, left: (UIScreen.main.bounds.size.width - 22 * 2 - 80 * 3 - 75) / 3, bottom: 0, right: 0)
+        layout.itemSize = CGSize(width: 84, height: 75)
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.backgroundColor = .clear
@@ -92,8 +92,7 @@ class ReviewAddPhotoView: UIView {
         photoCollectionView.constraint(top: photoTitleLabel.bottomAnchor,
                                        leading: addPhotoButton.trailingAnchor,
                                        trailing: self.trailingAnchor,
-                                       padding: UIEdgeInsets(top: 9, left: 0, bottom: 0, right: 0))
-        photoCollectionView.constraint(photoCollectionView.widthAnchor, constant: 75)
+                                       padding: UIEdgeInsets(top: 5, left: 0, bottom: 0, right: 0))
         photoCollectionView.constraint(photoCollectionView.heightAnchor, constant: 100)
     }
     
