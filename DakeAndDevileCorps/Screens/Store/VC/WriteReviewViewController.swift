@@ -67,12 +67,6 @@ final class WriteReviewViewController: BaseViewController {
     }()
     private let reviewInputView = ReviewInputView()
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        initDelegate()
-        setPhotoAlert()        
-    }
-    
     var storeName: String = "알맹상점"
     
     // MARK: - life cycle
@@ -80,6 +74,8 @@ final class WriteReviewViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         hidekeyboardWhenTappedAround()
+        initDelegate()
+        setPhotoAlert()
     }
     
     override func render() {
