@@ -45,7 +45,6 @@ final class AddReviewPhotoCollectionViewCell: UICollectionViewCell {
     
     private func render() {
         addSubview(photoImageView)
-//        photoImageView.constraint(to: self)
         photoImageView.constraint(top: self.topAnchor,
                                   leading: self.leadingAnchor,
                                   padding: UIEdgeInsets(top: 6, left: 0, bottom: 0, right: 0))
