@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0B6589CA28917EFC00B9A091 /* ShopInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6589C928917EFC00B9A091 /* ShopInfo.swift */; };
+		0B6589CD2892A8E000B9A091 /* AnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6589CC2892A8E000B9A091 /* AnnotationView.swift */; };
 		0B6BA51F28884A8500E30B37 /* SearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6BA51E28884A8500E30B37 /* SearchBarView.swift */; };
 		4A6535D828910D53006B6971 /* ProductTableViewCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A6535D728910D53006B6971 /* ProductTableViewCellModel.swift */; };
 		4AB368E52886D95E0075E03A /* StoreInformationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB368E42886D95E0075E03A /* StoreInformationTableViewCell.swift */; };
@@ -15,7 +17,6 @@
 		79379FE4288588EC0016D1A8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79379FE3288588EC0016D1A8 /* AppDelegate.swift */; };
 		79379FE6288588EC0016D1A8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79379FE5288588EC0016D1A8 /* SceneDelegate.swift */; };
 		79379FE8288588EC0016D1A8 /* MainMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79379FE7288588EC0016D1A8 /* MainMapViewController.swift */; };
-		79379FEE288588EC0016D1A8 /* Keywords.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 79379FEC288588EC0016D1A8 /* Keywords.xcdatamodeld */; };
 		79379FF0288588ED0016D1A8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79379FEF288588ED0016D1A8 /* Assets.xcassets */; };
 		79379FF3288588ED0016D1A8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 79379FF1288588ED0016D1A8 /* LaunchScreen.storyboard */; };
 		7937A01428858CB40016D1A8 /* MapHome.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7937A01328858CB40016D1A8 /* MapHome.storyboard */; };
@@ -29,6 +30,9 @@
 		797CAC542886CFCB0041C3F7 /* RecentSearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797CAC532886CFCB0041C3F7 /* RecentSearchTableViewCell.swift */; };
 		79D7BA682886EBE100F65ECD /* StoreModelTestN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D7BA672886EBE100F65ECD /* StoreModelTestN.swift */; };
 		79E2DCA82886E3C800355E30 /* ResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E2DCA72886E3C800355E30 /* ResultTableViewCell.swift */; };
+		B542BE782893B57300F2BC82 /* Keywords.xcdatamodeld in Resources */ = {isa = PBXBuildFile; fileRef = 79379FEC288588EC0016D1A8 /* Keywords.xcdatamodeld */; };
+		B5366B872893732900637CDC /* MockParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5366B862893732900637CDC /* MockParser.swift */; };
+		B5A479C5289501B700062604 /* Store.json in Resources */ = {isa = PBXBuildFile; fileRef = B5A479C4289501B700062604 /* Store.json */; };
 		B542BE7A2893C64F00F2BC82 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B542BE792893C64F00F2BC82 /* UIViewController+Extension.swift */; };
 		B542BE7C289418EC00F2BC82 /* NSNotification+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B542BE7B289418EC00F2BC82 /* NSNotification+Extension.swift */; };
 		B5B05D4E288F73FD0013E65F /* UIView+Constraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B05D4D288F73FD0013E65F /* UIView+Constraint.swift */; };
@@ -59,6 +63,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0B6589C928917EFC00B9A091 /* ShopInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopInfo.swift; sourceTree = "<group>"; };
+		0B6589CC2892A8E000B9A091 /* AnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnotationView.swift; sourceTree = "<group>"; };
 		0B6BA51E28884A8500E30B37 /* SearchBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarView.swift; sourceTree = "<group>"; };
 		4A6535D728910D53006B6971 /* ProductTableViewCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductTableViewCellModel.swift; sourceTree = "<group>"; };
 		4AB368E42886D95E0075E03A /* StoreInformationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreInformationTableViewCell.swift; sourceTree = "<group>"; };
@@ -83,7 +89,9 @@
 		797CAC532886CFCB0041C3F7 /* RecentSearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentSearchTableViewCell.swift; sourceTree = "<group>"; };
 		79D7BA672886EBE100F65ECD /* StoreModelTestN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreModelTestN.swift; sourceTree = "<group>"; };
 		79E2DCA72886E3C800355E30 /* ResultTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultTableViewCell.swift; sourceTree = "<group>"; };
+		B5366B862893732900637CDC /* MockParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockParser.swift; sourceTree = "<group>"; };
 		B542BE792893C64F00F2BC82 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
+		B5A479C4289501B700062604 /* Store.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Store.json; sourceTree = "<group>"; };
 		B542BE7B289418EC00F2BC82 /* NSNotification+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSNotification+Extension.swift"; sourceTree = "<group>"; };
 		B5B05D4D288F73FD0013E65F /* UIView+Constraint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Constraint.swift"; sourceTree = "<group>"; };
 		B5B05D4F288F81510013E65F /* ReviewPhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewPhotoViewController.swift; sourceTree = "<group>"; };
@@ -121,6 +129,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0B6589CB2892A8B100B9A091 /* Component */ = {
+			isa = PBXGroup;
+			children = (
+				0B6589CC2892A8E000B9A091 /* AnnotationView.swift */,
+			);
+			path = Component;
+			sourceTree = "<group>";
+		};
 		4A03F6CB288F814A00342E66 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
@@ -136,6 +152,7 @@
 			isa = PBXGroup;
 			children = (
 				4A6535D728910D53006B6971 /* ProductTableViewCellModel.swift */,
+				0B6589C928917EFC00B9A091 /* ShopInfo.swift */,
 				79D7BA672886EBE100F65ECD /* StoreModelTestN.swift */,
 			);
 			path = Model;
@@ -172,6 +189,7 @@
 		79379FFA288589B60016D1A8 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				B5366B852893731F00637CDC /* Mock */,
 				4A6535D628910D33006B6971 /* Model */,
 				B5F3E7E12887DC37000C3129 /* CoreData */,
 			);
@@ -262,6 +280,7 @@
 		7937A00D28858B9F0016D1A8 /* MapHome */ = {
 			isa = PBXGroup;
 			children = (
+				0B6589CB2892A8B100B9A091 /* Component */,
 				7937A00F28858BAB0016D1A8 /* VC */,
 			);
 			path = MapHome;
@@ -310,6 +329,15 @@
 				79E2DCA72886E3C800355E30 /* ResultTableViewCell.swift */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		B5366B852893731F00637CDC /* Mock */ = {
+			isa = PBXGroup;
+			children = (
+				B5366B862893732900637CDC /* MockParser.swift */,
+				B5A479C4289501B700062604 /* Store.json */,
+			);
+			path = Mock;
 			sourceTree = "<group>";
 		};
 		B5B05D4C288F73ED0013E65F /* Utils */ = {
@@ -458,7 +486,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B542BE782893B57300F2BC82 /* Keywords.xcdatamodeld in Resources */,
 				79379FF3288588ED0016D1A8 /* LaunchScreen.storyboard in Resources */,
+				B5A479C5289501B700062604 /* Store.json in Resources */,
 				79379FF0288588ED0016D1A8 /* Assets.xcassets in Resources */,
 				7937A02628859BFF0016D1A8 /* StoreDetail.storyboard in Resources */,
 				7937A02428859BF20016D1A8 /* Search.storyboard in Resources */,
@@ -485,9 +515,12 @@
 				B5B05D522890ABA10013E65F /* ReviewPhotoCollectionViewCell.swift in Sources */,
 				B5B05D50288F81510013E65F /* ReviewPhotoViewController.swift in Sources */,
 				0B6BA51F28884A8500E30B37 /* SearchBarView.swift in Sources */,
+				B5366B872893732900637CDC /* MockParser.swift in Sources */,
 				79379FE8288588EC0016D1A8 /* MainMapViewController.swift in Sources */,
 				B5B05D54289124550013E65F /* WriteReviewViewController.swift in Sources */,
 				79379FE4288588EC0016D1A8 /* AppDelegate.swift in Sources */,
+				0B6589CA28917EFC00B9A091 /* ShopInfo.swift in Sources */,
+				0B6589CD2892A8E000B9A091 /* AnnotationView.swift in Sources */,
 				B5B05D4E288F73FD0013E65F /* UIView+Constraint.swift in Sources */,
 				4A6535D828910D53006B6971 /* ProductTableViewCellModel.swift in Sources */,
 				7937A01E28859B490016D1A8 /* SearchViewController.swift in Sources */,
@@ -506,9 +539,7 @@
 				B5F1F25328883EC40021B026 /* NSObject+Extension.swift in Sources */,
 				7937A02228859B990016D1A8 /* StoreDetailViewController.swift in Sources */,
 				797CAC542886CFCB0041C3F7 /* RecentSearchTableViewCell.swift in Sources */,
-				79379FEE288588EC0016D1A8 /* Keywords.xcdatamodeld in Sources */,
 				4AB368E52886D95E0075E03A /* StoreInformationTableViewCell.swift in Sources */,
-				79379FEE288588EC0016D1A8 /* Keywords.xcdatamodeld in Sources */,
 				B542BE7C289418EC00F2BC82 /* NSNotification+Extension.swift in Sources */,
 				7937A01A28859A830016D1A8 /* BaseViewController.swift in Sources */,
 				B5B05D5728912BD30013E65F /* ReviewInputView.swift in Sources */,
@@ -669,7 +700,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = JP5BCXZWJP;
+				DEVELOPMENT_TEAM = 6XPJ277622;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DakeAndDevileCorps/Global/Supports/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -700,7 +731,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = JP5BCXZWJP;
+				DEVELOPMENT_TEAM = 6XPJ277622;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DakeAndDevileCorps/Global/Supports/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
