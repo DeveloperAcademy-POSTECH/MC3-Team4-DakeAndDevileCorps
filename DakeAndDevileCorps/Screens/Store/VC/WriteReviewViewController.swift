@@ -181,7 +181,7 @@ extension WriteReviewViewController: UICollectionViewDelegateFlowLayout {
 
 extension WriteReviewViewController {
     @objc func touchUpInsideToDeletePhoto(sender: UIButton) {
-        reviewInputView.reviewAddPhotoView.photoCollectionView.deleteItems(at: [IndexPath.init(row: sender.tag, section: 0)])
+        reviewInputView.reviewAddPhotoView.photoCollectionView.deleteItems(at: [IndexPath(row: sender.tag, section: 0)])
         reviewInputView.reviewAddPhotoView.photoList.remove(at: sender.tag)
     }
 }
