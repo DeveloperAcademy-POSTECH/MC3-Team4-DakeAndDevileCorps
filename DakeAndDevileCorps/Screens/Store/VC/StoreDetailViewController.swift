@@ -82,12 +82,7 @@ class StoreDetailViewController: UIViewController {
         operationList = ["월 정기 휴일", "화 10:00 ~ 18:00", "수 10:00 ~ 18:00", "목 10:00 ~ 18:00", "금 10:00 ~ 18:00", "토 10:00 ~ 18:00", "일 정기 휴일"]
         
         reviewList.append(contentsOf: [
-            ReviewModel(title: "인블리스 세탁세제", content: "좋습니다. 벌써 3번 리필했어요!", category: "세탁세제", nickname: "냥냥이", date: "21.7.18", photos: ["star.fill", "moon.fill", "sun.max.fill"]),
-            ReviewModel(title: "에코라운드 중성 주방세제", content: "최고네용~ 캬캬캬 한 번 더 리필할 듯 싶습니다. 향이 짱 좋고 세척력도 넘넘 좋아요! 추천추천합니다ㅎㅎ", category: "주방세제", nickname: "뇸뇸", date: "21.7.18", photos: ["moon.fill", "star.fill"]),
-            ReviewModel(title: "에코티끄 섬유유연제", content: "흠... 이 향 뭐지? 향이 짱 좋고 산뜻합니다! 친구들한테 추천하구 다녀영~ 최고오오오오오오오", category: "섬유유연제", nickname: "감자도리", date: "21.7.18", photos: []),
-            ReviewModel(title: "인블리스 세탁세제", content: "좋습니다. 벌써 3번 리필했어요!", category: "세탁세제", nickname: "냥냥이", date: "21.7.18", photos: ["star.fill", "moon.fill", "sun.max.fill"]),
-            ReviewModel(title: "에코라운드 중성 주방세제", content: "최고네용~ 캬캬캬 한 번 더 리필할 듯 싶습니다. 향이 짱 좋고 세척력도 넘넘 좋아요! 추천추천합니다ㅎㅎ", category: "주방세제", nickname: "뇸뇸", date: "21.7.18", photos: ["moon.fill", "star.fill"]),
-            ReviewModel(title: "에코티끄 섬유유연제", content: "흠... 이 향 뭐지? 향이 짱 좋고 산뜻합니다! 친구들한테 추천하구 다녀영~ 최고오오오오오오오", category: "섬유유연제", nickname: "감자도리", date: "21.7.18", photos: [])
+           
         ])
     }
     
@@ -112,7 +107,11 @@ extension StoreDetailViewController: UITableViewDataSource {
         case (.itemInformation, .productList):
             return productList.count
         case (.itemInformation, .reviewList):
-            return reviewList.count
+            if reviewList.isEmpty {
+                 return 1
+            } else {
+                return reviewList.count
+            }
         }
     }
     
@@ -154,10 +153,17 @@ extension StoreDetailViewController: UITableViewDataSource {
             }
             
         case (.itemInformation, .reviewList):
-            guard let reviewCell = tableView.dequeueReusableCell(withIdentifier: ReviewTableViewCell.className, for: indexPath) as? ReviewTableViewCell else { return UITableViewCell() }
-            reviewCell.configureUI(reviewModel: reviewList[indexPath.row])
-            reviewCell.reviewDelegate = self
-            return reviewCell
+//            if reviewList.isEmpty {
+                guard let emptyReviewCell = tableView.dequeueReusableCell(withIdentifier: EmptyReviewTableViewCell.className) as? EmptyReviewTableViewCell else { return UITableViewCell() }
+                emptyReviewCell.configureUI()
+                
+                return emptyReviewCell
+//            } else {
+//                guard let reviewCell = tableView.dequeueReusableCell(withIdentifier: ReviewTableViewCell.className, for: indexPath) as? ReviewTableViewCell else { return UITableViewCell() }
+//                reviewCell.configureUI(reviewModel: reviewList[indexPath.row])
+//                reviewCell.reviewDelegate = self
+//                return reviewCell
+//            }
         }
     }
 }
@@ -212,6 +218,7 @@ extension StoreDetailViewController: UITableViewDelegate {
 extension StoreDetailViewController: StoreDetailTableViewCellDelegate {
     func reloadStoreDetailTableView() {
         storeDetailTableView.reloadData()
+        print("리로드 완료")
     }
 }
 
