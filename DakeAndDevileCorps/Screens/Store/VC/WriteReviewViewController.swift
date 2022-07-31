@@ -121,7 +121,7 @@ extension WriteReviewViewController: ReviewAddPhotoDelegate {
         if reviewInputView.reviewAddPhotoView.photoList.count < 3 {
             present(addPhotoAlert, animated: true, completion: nil)
         } else {
-            present(photoLimitAlert, animated:  true, completion: nil)
+            present(photoLimitAlert, animated: true, completion: nil)
         }
     }
     
@@ -133,7 +133,7 @@ extension WriteReviewViewController: ReviewAddPhotoDelegate {
 
 extension WriteReviewViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
         if let image = info[UIImagePickerController.InfoKey(rawValue: "UIImagePickerControllerEditedImage")] as? UIImage {
             reviewInputView.reviewAddPhotoView.photoList.append(contentsOf: [
                 image

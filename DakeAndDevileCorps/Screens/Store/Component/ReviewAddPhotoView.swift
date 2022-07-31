@@ -50,7 +50,7 @@ class ReviewAddPhotoView: UIView {
     let photoCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.minimumLineSpacing = 0
-        layout.sectionInset = UIEdgeInsets(top: 0, left: (UIScreen.main.bounds.size.width - 22 * 2 - 82.5 * 3 - 75) / 3 + 5, bottom: 0, right:  8)
+        layout.sectionInset = UIEdgeInsets(top: 0, left: (UIScreen.main.bounds.size.width - 22 * 2 - 82.5 * 3 - 75) / 3 + 5, bottom: 0, right: 8)
         layout.itemSize = CGSize(width: 75, height: 75)
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
