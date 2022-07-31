@@ -19,7 +19,7 @@ final class AddReviewPhotoCollectionViewCell: UICollectionViewCell {
         return imageView
     }()
     
-    lazy var deletePhotoButton: UIButton = {
+    let deletePhotoButton: UIButton = {
        let button = UIButton()
         button.setImage(UIImage(systemName: "xmark.circle.fill"), for: .normal)
         button.tintColor = .black
