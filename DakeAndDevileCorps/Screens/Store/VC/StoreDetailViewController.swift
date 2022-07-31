@@ -155,7 +155,7 @@ extension StoreDetailViewController: UITableViewDataSource {
             
         case (.itemInformation, .reviewList):
             guard let reviewCell = tableView.dequeueReusableCell(withIdentifier: ReviewTableViewCell.className, for: indexPath) as? ReviewTableViewCell else { return UITableViewCell() }
-            reviewCell.setData(reviewModel: reviewList[indexPath.row])
+            reviewCell.configureUI(reviewModel: reviewList[indexPath.row])
             reviewCell.reviewDelegate = self
             return reviewCell
         }

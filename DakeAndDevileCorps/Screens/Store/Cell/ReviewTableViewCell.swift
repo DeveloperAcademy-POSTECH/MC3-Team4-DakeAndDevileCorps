@@ -56,14 +56,14 @@ class ReviewTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        render()
+        setupLayout()
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
     
-    func setData(reviewModel: ReviewModel) {
+    func configureUI(reviewModel: ReviewModel) {
         reviewTitleLabel.text = reviewModel.title
         reviewTitleLabel.font = UIFont.boldSystemFont(ofSize: 15)
         
@@ -79,19 +79,19 @@ class ReviewTableViewCell: UITableViewCell {
         reviewImageView.image = UIImage(systemName: reviewModel.photos.first ?? "")
         reviewImageView.layer.cornerRadius = 6
         
-//        if reviewModel.photos.isEmpty {
-//            numberOfReviewImageLabel?.isHidden = true
-//        } else {
-//            numberOfReviewImageLabel?.text = String(reviewModel.photos.count)
-//        }
-        guard reviewModel.photos.isEmpty == false else {
+        if reviewModel.photos.isEmpty {
             numberOfReviewImageLabel.isHidden = true
-            return
+        } else {
+            numberOfReviewImageLabel.text = String(reviewModel.photos.count)
         }
-        numberOfReviewImageLabel.text = String(reviewModel.photos.count)
+//        guard reviewModel.photos.isEmpty == false else {
+//            numberOfReviewImageLabel.isHidden = true
+//            return
+//        }
+//        numberOfReviewImageLabel.text = String(reviewModel.photos.count)
     }
     
-    private func render() {
+    private func setupLayout() {
         reviewSubStackView.addArrangedSubview(nicknameLabel)
         reviewSubStackView.addArrangedSubview(reviewDateLabel)
         reviewStackView.addArrangedSubview(categoryLabel)
