@@ -78,16 +78,16 @@ class ReviewAddPhotoView: UIView {
         addPhotoButton.constraint(top: photoTitleLabel.bottomAnchor,
                                   leading: self.leadingAnchor,
                                   padding: UIEdgeInsets(top: 15, left: 0, bottom: 0, right: 0))
-        addPhotoButton.widthAnchor.constraint(equalToConstant: 75).isActive = true
-        addPhotoButton.heightAnchor.constraint(equalToConstant: 75).isActive = true
+        addPhotoButton.constraint(addPhotoButton.widthAnchor, constant: 75)
+        addPhotoButton.constraint(addPhotoButton.heightAnchor, constant: 75)
         
         addSubview(photoCollectionView)
         photoCollectionView.constraint(top: photoTitleLabel.bottomAnchor,
                                        leading: addPhotoButton.trailingAnchor,
                                        trailing: self.trailingAnchor,
                                        padding: UIEdgeInsets(top: 9, left: 0, bottom: 0, right: 0))
-        photoCollectionView.widthAnchor.constraint(equalToConstant: 75).isActive = true
-        photoCollectionView.heightAnchor.constraint(equalToConstant: 100).isActive = true
+        photoCollectionView.constraint(photoCollectionView.widthAnchor, constant: 75)
+        photoCollectionView.constraint(photoCollectionView.heightAnchor, constant: 100)
     }
     
     private func setupCollectionView() {
