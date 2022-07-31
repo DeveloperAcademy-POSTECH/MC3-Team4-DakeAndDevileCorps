@@ -67,7 +67,11 @@ final class WriteReviewViewController: BaseViewController {
     }()
     private let reviewInputView = ReviewInputView()
     
-    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        initDelegate()
+        setPhotoAlert()        
+    }
     
     var storeName: String = "알맹상점"
     
@@ -78,8 +82,6 @@ final class WriteReviewViewController: BaseViewController {
                                    bottom: view.bottomAnchor,
                                    trailing: view.trailingAnchor,
                                    padding: .zero)
-        initDelegate()
-        setPhotoAlert()
     }
 
     override func configUI() {
