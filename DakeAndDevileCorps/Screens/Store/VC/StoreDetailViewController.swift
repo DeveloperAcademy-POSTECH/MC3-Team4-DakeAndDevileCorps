@@ -9,6 +9,11 @@ import UIKit
 
 class StoreDetailViewController: UIViewController {
     
+    private enum SectionType: Int, CaseIterable {
+        case storeInformation = 0
+        case productInformation = 1
+    }
+    
     @IBOutlet weak var storeName: UILabel!
     @IBOutlet weak var storeDetailTableView: UITableView!
     
@@ -16,9 +21,10 @@ class StoreDetailViewController: UIViewController {
     private var operationList: [String] = []
     private let categoryList: [String] = ["주방세제", "세탁세제", "섬유유연제", "기타세제", "헤어", "스킨", "바디", "식품", "생활", "문구", "애견", "기타"]
     private var reviewList: [ReviewModel] = []
-    private var isShowingReview: Bool = false
+//    private var isShowingReview: Bool = false
     private var selectHeader = StoreDetailSelectView()
     private var categoryHeader = CategoryView(entryPoint: .detail)
+    private var itemInformationType: ItemInformationType = .productList
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -96,30 +102,33 @@ class StoreDetailViewController: UIViewController {
 extension StoreDetailViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return SectionType.allCases.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch section {
-        case 0:
+        guard let sectionType = SectionType(rawValue: section) else { return 0 }
+        switch sectionType {
+        case .storeInformation:
             return 1
-        case 1:
-            if isShowingReview {
-                return reviewList.count
-            } else {
+        case .productInformation:
+            switch itemInformationType {
+            case .productList:
                 return productList.count
+            case .reviewList:
+                return reviewList.count
             }
-        default:
-            return 0
         }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        switch indexPath.section {
-        case 0:
+        guard let sectionType = SectionType(rawValue: indexPath.section) else { return UITableViewCell() }
+        
+        switch sectionType {
+        case .storeInformation:
             guard let storeInformationCell = tableView.dequeueReusableCell(
                 withIdentifier: StoreInformationTableViewCell.className, for: indexPath
             ) as? StoreInformationTableViewCell else { return UITableViewCell() }
+            
             storeInformationCell.storeInformationDelegate = self
             storeInformationCell.setUpperData(isOperation: true,
                                               todayOperationTime: "10:00 ~ 18:00",
@@ -130,13 +139,10 @@ extension StoreDetailViewController: UITableViewDataSource {
             storeInformationCell.setOperationTime(operationList: operationList)
             
             return storeInformationCell
-        case 1:
-            if isShowingReview {
-                guard let reviewCell = tableView.dequeueReusableCell(withIdentifier: ReviewTableViewCell.className, for: indexPath) as? ReviewTableViewCell else { return UITableViewCell() }
-                reviewCell.setData(reviewModel: reviewList[indexPath.row])
-                reviewCell.reviewDelegate = self
-                return reviewCell
-            } else {
+            
+        case .productInformation:
+            switch itemInformationType {
+            case .productList:
                 guard let productCell = tableView.dequeueReusableCell(
                     withIdentifier: ProductTableViewCell.className, for: indexPath
                 ) as? ProductTableViewCell,
@@ -152,9 +158,35 @@ extension StoreDetailViewController: UITableViewDataSource {
                     itemCell.setData(itemName: itemName, itemPrice: itemPrice)
                     return itemCell
                 }
+                
+            case .reviewList:
+                guard let reviewCell = tableView.dequeueReusableCell(withIdentifier: ReviewTableViewCell.className, for: indexPath) as? ReviewTableViewCell else { return UITableViewCell() }
+                reviewCell.setData(reviewModel: reviewList[indexPath.row])
+                reviewCell.reviewDelegate = self
+                return reviewCell
             }
-        default:
-            return UITableViewCell()
+//            if isShowingReview {
+//                guard let reviewCell = tableView.dequeueReusableCell(withIdentifier: ReviewTableViewCell.className, for: indexPath) as? ReviewTableViewCell else { return UITableViewCell() }
+//                reviewCell.setData(reviewModel: reviewList[indexPath.row])
+//                reviewCell.reviewDelegate = self
+//                return reviewCell
+//            } else {
+//                guard let productCell = tableView.dequeueReusableCell(
+//                    withIdentifier: ProductTableViewCell.className, for: indexPath
+//                ) as? ProductTableViewCell,
+//                      let itemCell = tableView.dequeueReusableCell(
+//                        withIdentifier: ItemTableViewCell.className, for: indexPath
+//                      ) as? ItemTableViewCell else { return UITableViewCell() }
+//
+//                switch self.productList[indexPath.row] {
+//                case let .product(productName):
+//                    productCell.setData(productName: productName)
+//                    return productCell
+//                case let .item(itemName, itemPrice):
+//                    itemCell.setData(itemName: itemName, itemPrice: itemPrice)
+//                    return itemCell
+//                }
+//            }
         }
     }
 }
@@ -166,8 +198,10 @@ extension StoreDetailViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        switch section {
-        case 1:
+        guard let sectionType = SectionType(rawValue: section) else { return UIView() }
+        
+        switch sectionType {
+        case .productInformation:
             let stackView: UIStackView = {
                let stackView = UIStackView()
                 stackView.axis = .vertical
@@ -175,28 +209,48 @@ extension StoreDetailViewController: UITableViewDelegate {
                 return stackView
             }()
             stackView.addArrangedSubview(selectHeader)
-            if !isShowingReview {
+            
+            switch itemInformationType {
+            case .productList:
                 stackView.addArrangedSubview(categoryHeader)
-                
+
                 NSLayoutConstraint.activate([
                     selectHeader.heightAnchor.constraint(equalToConstant: 60),
                     categoryHeader.heightAnchor.constraint(equalToConstant: 60)
                 ])
+                return stackView
+            case .reviewList:
+                return stackView
             }
-            return stackView
+//            if !isShowingReview {
+//                stackView.addArrangedSubview(categoryHeader)
+//
+//                NSLayoutConstraint.activate([
+//                    selectHeader.heightAnchor.constraint(equalToConstant: 60),
+//                    categoryHeader.heightAnchor.constraint(equalToConstant: 60)
+//                ])
+//            }
+//            return stackView
         default:
             return nil
         }
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        switch section {
-        case 1:
-            if isShowingReview {
-                return 60
-            } else {
+        guard let sectionType = SectionType(rawValue: section) else { return CGFloat() }
+        switch sectionType {
+        case .productInformation:
+            switch itemInformationType {
+            case .productList:
                 return 120
+            case .reviewList:
+                return 60
             }
+//            if isShowingReview {
+//                return 60
+//            } else {
+//                return 120
+//            }
         default:
             return 0
         }
@@ -216,6 +270,23 @@ extension StoreDetailViewController: CategoryCollectionViewDelegate {
 }
 
 extension StoreDetailViewController: StoreDetailSelectViewDelegate {
+    func didSelectedButton(_ storeDetailSelectView: StoreDetailSelectView, isReviewButton: Bool, itemInformationType: ItemInformationType) {
+        self.itemInformationType = itemInformationType
+       
+        storeDetailSelectView.iteminformationType = itemInformationType
+        storeDetailSelectView.applyShowingState()
+        storeDetailSelectView.productButtonBottomBar.isHidden = itemInformationType.isHiddenProductButtonBottomBar
+        storeDetailSelectView.reviewButtonBottomBar.isHidden = itemInformationType.isHiddenReviewButtonBottomBar
+        storeDetailTableView.reloadData()
+        
+//        isShowingReview = isReviewButton
+//        storeDetailSelectView.isShowingReview = isReviewButton
+//        storeDetailSelectView.applyShowingState()
+//        storeDetailSelectView.productButtonBottomBar.isHidden = isReviewButton
+//        storeDetailSelectView.reviewButtonBottomBar.isHidden = !isReviewButton
+//        storeDetailTableView.reloadData()
+    }
+    
     func didTappedWriteReviewButton() {
         guard let viewController = storyboard?.instantiateViewController(withIdentifier: "WriteReviewNavigationController") as? UINavigationController else { return }
         present(viewController, animated: true, completion: nil)
@@ -225,13 +296,5 @@ extension StoreDetailViewController: StoreDetailSelectViewDelegate {
         storeDetailSelectView.numberOfReviews = reviewList.count
         storeDetailSelectView.numberOfProducts = productList.count - categoryList.count
     }
-    
-    func didSelectedButton(_ storeDetailSelectView: StoreDetailSelectView, isReviewButton: Bool) {
-        isShowingReview = isReviewButton
-        storeDetailSelectView.isShowingReview = isReviewButton
-        storeDetailSelectView.applyShowingState()
-        storeDetailSelectView.productButtonBottomBar.isHidden = isReviewButton
-        storeDetailSelectView.reviewButtonBottomBar.isHidden = !isReviewButton
-        storeDetailTableView.reloadData()
-    }
 }
+ 
