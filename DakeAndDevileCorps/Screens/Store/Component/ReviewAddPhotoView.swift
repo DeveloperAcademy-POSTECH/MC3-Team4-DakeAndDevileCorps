@@ -26,6 +26,7 @@ class ReviewAddPhotoView: UIView {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setImage(UIImage(systemName: "photo"), for: .normal)
+        button.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 15, right: 0)
         button.tintColor = .gray
         button.backgroundColor = .systemGray6
         button.layer.cornerRadius = 10
@@ -86,7 +87,7 @@ class ReviewAddPhotoView: UIView {
         addSubview(numberOfPhotosLabel)
         numberOfPhotosLabel.constraint(top:photoTitleLabel.bottomAnchor,
                                        leading: self.leadingAnchor,
-                                       padding: UIEdgeInsets(top: 62, left: 28, bottom: 0, right: 0))
+                                       padding: UIEdgeInsets(top: 58, left: 28, bottom: 0, right: 0))
         
         addSubview(photoCollectionView)
         photoCollectionView.constraint(top: photoTitleLabel.bottomAnchor,
