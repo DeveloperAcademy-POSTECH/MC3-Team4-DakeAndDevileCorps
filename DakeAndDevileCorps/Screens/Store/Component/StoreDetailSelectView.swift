@@ -106,7 +106,6 @@ final class StoreDetailSelectView: UIView {
     init() {
         super.init(frame: .zero)
         render()
-        setupButtonTitle()
         setupButtonAction()
     }
     
@@ -153,11 +152,6 @@ final class StoreDetailSelectView: UIView {
             writeReviewButton.centerYAnchor.constraint(equalTo: centerYAnchor),
             writeReviewButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -24)
         ])
-    }
-    
-    private func setupButtonTitle() {
-        productButton.setTitle("취급상품 \(numberOfProducts)", for: .normal)
-        reviewButton.setTitle("상품리뷰 \(numberOfReviews)", for: .normal)
     }
     
     private func setupButtonAction() {
