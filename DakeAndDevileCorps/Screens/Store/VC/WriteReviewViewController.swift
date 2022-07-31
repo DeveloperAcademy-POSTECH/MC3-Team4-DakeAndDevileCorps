@@ -125,6 +125,11 @@ extension WriteReviewViewController: ReviewAddPhotoDelegate {
             present(photoLimitAlert, animated:  true, completion: nil)
         }
     }
+    
+    @objc func touchUpInsideToDeletePhoto(sender: UIButton) {
+        reviewInputView.reviewAddPhotoView.photoCollectionView.deleteItems(at: [IndexPath(row: sender.tag, section: 0)])
+        reviewInputView.reviewAddPhotoView.photoList.remove(at: sender.tag)
+    }
 }
 
 extension WriteReviewViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
@@ -176,12 +181,5 @@ extension WriteReviewViewController: UICollectionViewDelegateFlowLayout {
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 0
-    }
-}
-
-extension WriteReviewViewController {
-    @objc func touchUpInsideToDeletePhoto(sender: UIButton) {
-        reviewInputView.reviewAddPhotoView.photoCollectionView.deleteItems(at: [IndexPath(row: sender.tag, section: 0)])
-        reviewInputView.reviewAddPhotoView.photoList.remove(at: sender.tag)
     }
 }
