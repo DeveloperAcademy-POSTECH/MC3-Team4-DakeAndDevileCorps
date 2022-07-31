@@ -41,7 +41,6 @@ final class StoreDetailSelectView: UIView {
     // MARK: - properties
     
     weak var delegate: StoreDetailSelectViewDelegate?
-//    var isShowingReview: Bool = false
     var iteminformationType: ItemInformationType = .productList
     var numberOfProducts: Int = 0 {
         didSet {
@@ -161,7 +160,6 @@ final class StoreDetailSelectView: UIView {
                                              isReviewButton: false,
                                              itemInformationType: .productList)
         }
-        productButton.addAction(productButtonAction, for: .touchUpInside)
         
         let reviewButtonAction = UIAction { _ in
             self.iteminformationType = .reviewList
@@ -169,11 +167,13 @@ final class StoreDetailSelectView: UIView {
                                              isReviewButton: true,
                                              itemInformationType: .reviewList)
         }
-        reviewButton.addAction(reviewButtonAction, for: .touchUpInside)
         
         let writeReviewButtonAction = UIAction { _ in
             self.delegate?.didTappedWriteReviewButton()
         }
+        
+        productButton.addAction(productButtonAction, for: .touchUpInside)
+        reviewButton.addAction(reviewButtonAction, for: .touchUpInside)
         writeReviewButton.addAction(writeReviewButtonAction, for: .touchUpInside)
     }
     
@@ -186,8 +186,6 @@ final class StoreDetailSelectView: UIView {
             productButton.setTitleColor(.tertiaryLabel, for: .normal)
             reviewButton.setTitleColor(.black, for: .normal)
         }
-//        productButton.setTitleColor(isShowingReview ? UIColor.tertiaryLabel : UIColor.black, for: .normal)
-//        reviewButton.setTitleColor(isShowingReview ? UIColor.black : UIColor.tertiaryLabel, for: .normal)
     }
 
     @objc func callPresentWrtieReviewView(_ sender: UITapGestureRecognizer) {
