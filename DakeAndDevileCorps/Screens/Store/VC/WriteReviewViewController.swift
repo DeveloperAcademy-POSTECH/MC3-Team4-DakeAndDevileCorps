@@ -19,7 +19,6 @@ final class WriteReviewViewController: BaseViewController {
         imagePickerViewController.delegate = self
         imagePickerViewController.allowsEditing = true
         reviewInputView.reviewAddPhotoView.photoCollectionView.dataSource = self
-//        reviewInputView.reviewAddPhotoView.photoCollectionView.delegate = self
         reviewInputView.reviewAddPhotoView.delegate = self
     }
     
@@ -164,22 +163,3 @@ extension WriteReviewViewController: UICollectionViewDataSource {
             return cell
     }
 }
-
-//extension WriteReviewViewController: UICollectionViewDelegateFlowLayout {
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        let width = (UIScreen.main.bounds.size.width - 24 * 2 - 95) / 3
-//        return CGSize(width: width, height: width)
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-//        return UIEdgeInsets(top: 0, left: (UIScreen.main.bounds.size.width - 24 * 2 - 76 * 4) / 3, bottom: 0, right:  0)
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-//        return 0
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-//        return 0
-//    }
-//}
