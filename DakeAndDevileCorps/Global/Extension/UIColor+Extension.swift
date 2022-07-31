@@ -9,8 +9,28 @@ import UIKit
 
 extension UIColor {
 
-    static var exampleGray: UIColor {
-        return UIColor(hex: "#242424")
+    static var zeroGreen50: UIColor {
+        return UIColor(hex: "#47DC8C")
+    }
+    
+    static var zeroGreen60: UIColor {
+        return UIColor(hex: "#2FCE78")
+    }
+    
+    static var zeroMint20: UIColor {
+        return UIColor(hex: "#ABF1E5")
+    }
+    
+    static var zeroMint50: UIColor {
+        return UIColor(hex: "#00C9BD")
+    }
+    
+    static var zeroSky50: UIColor {
+        return UIColor(hex: "#4CCFF9")
+    }
+    
+    static var zeroRed: UIColor {
+        return UIColor(hex: "#FF5F5F")
     }
 }
 
