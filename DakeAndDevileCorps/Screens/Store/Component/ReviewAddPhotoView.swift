@@ -91,8 +91,6 @@ class ReviewAddPhotoView: UIView {
     }
     
     private func setupCollectionView() {
-        photoCollectionView.dataSource = self
-        photoCollectionView.delegate = self
         photoCollectionView.register(AddReviewPhotoCollectionViewCell.self,
                                      forCellWithReuseIdentifier: AddReviewPhotoCollectionViewCell.className)
     }
@@ -106,23 +104,4 @@ class ReviewAddPhotoView: UIView {
         delegate?.touchUpInsideToAddPhotoButton?()
     }
 
-}
-
-
-extension ReviewAddPhotoView:
-    UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 1
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ReviewPhotoCollectionViewCell.className, for: indexPath) as? ReviewPhotoCollectionViewCell else {
-            return UICollectionViewCell()
-        }
-        
-        return cell
-    }
-}
-
-extension ReviewAddPhotoView: UICollectionViewDelegate {
 }
