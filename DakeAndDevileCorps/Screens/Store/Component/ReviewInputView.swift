@@ -106,7 +106,7 @@ final class ReviewInputView: UIView {
         itemTextField.delegate = self
     }
     
-    func checkButtonCanBeActivated() -> Bool {
+    func isEssentialButtonFilled() -> Bool {
         guard let text = itemTextField.text else { return false }
         let textViewIsEmpty = reviewTextView.checkIsEmpty()
         let canActived: Bool = !text.isEmpty && !textViewIsEmpty && isSelectedCollection

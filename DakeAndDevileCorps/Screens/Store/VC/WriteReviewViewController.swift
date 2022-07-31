@@ -84,6 +84,6 @@ final class WriteReviewViewController: BaseViewController {
     
     @objc
     private func didChangeButtonState() {
-        confirmButton.isEnabled = reviewInputView.checkButtonCanBeActivated()
+        confirmButton.isEnabled = reviewInputView.isEssentialButtonFilled()
     }
 }
