@@ -128,6 +128,7 @@ extension WriteReviewViewController: ReviewAddPhotoDelegate {
     @objc func touchUpInsideToDeletePhoto(sender: UIButton) {
         reviewInputView.reviewAddPhotoView.photoCollectionView.deleteItems(at: [IndexPath(row: sender.tag, section: 0)])
         reviewInputView.reviewAddPhotoView.photoList.remove(at: sender.tag)
+        reviewInputView.reviewAddPhotoView.numberOfPhotosLabel.text = "\(reviewInputView.reviewAddPhotoView.photoList.count)/3"
     }
 }
 
@@ -139,7 +140,7 @@ extension WriteReviewViewController: UIImagePickerControllerDelegate, UINavigati
                 image
             ])
         }
-        
+        reviewInputView.reviewAddPhotoView.numberOfPhotosLabel.text = "\(reviewInputView.reviewAddPhotoView.photoList.count)/3"
         reviewInputView.reviewAddPhotoView.photoCollectionView.reloadData()
         picker.dismiss(animated: true, completion: nil)
     }

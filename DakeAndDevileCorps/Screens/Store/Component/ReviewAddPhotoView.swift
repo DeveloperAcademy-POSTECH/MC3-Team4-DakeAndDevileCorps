@@ -40,10 +40,12 @@ class ReviewAddPhotoView: UIView {
         return label
     }()
     
-    private let numberOfPhotosLabel: UILabel = {
+    let numberOfPhotosLabel: UILabel = {
         let label = UILabel()
         label.textColor = .black
         label.text = "0/3"
+        label.font = UIFont.systemFont(ofSize: 13)
+        label.textColor = .gray
         return label
     }()
     
@@ -80,6 +82,11 @@ class ReviewAddPhotoView: UIView {
                                   padding: UIEdgeInsets(top: 15, left: 0, bottom: 0, right: 0))
         addPhotoButton.constraint(addPhotoButton.widthAnchor, constant: 75)
         addPhotoButton.constraint(addPhotoButton.heightAnchor, constant: 75)
+        
+        addSubview(numberOfPhotosLabel)
+        numberOfPhotosLabel.constraint(top:photoTitleLabel.bottomAnchor,
+                                       leading: self.leadingAnchor,
+                                       padding: UIEdgeInsets(top: 62, left: 28, bottom: 0, right: 0))
         
         addSubview(photoCollectionView)
         photoCollectionView.constraint(top: photoTitleLabel.bottomAnchor,
