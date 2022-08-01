@@ -7,8 +7,8 @@
 
 import UIKit
 
-protocol StoreInformationTableViewCellDelegate: AnyObject {
-    func requestReload()
+protocol StoreDetailTableViewCellDelegate: AnyObject {
+    func reloadStoreDetailTableView()
 }
 
 class StoreInformationTableViewCell: UITableViewCell {
@@ -31,7 +31,7 @@ class StoreInformationTableViewCell: UITableViewCell {
     @IBOutlet weak var weekOperationTimeStack: UIStackView!
     @IBOutlet weak var weekOperationTimeToggle: UIButton!
     
-    weak var storeInformationDelegate: StoreInformationTableViewCellDelegate?
+    weak var storeInformationDelegate: StoreDetailTableViewCellDelegate?
     private var isOpen: Bool = true
     private var dateLabels: [UILabel] = []
     
@@ -46,7 +46,7 @@ class StoreInformationTableViewCell: UITableViewCell {
         for dateLabel in dateLabels {
             dateLabel.isHidden.toggle()
         }
-        storeInformationDelegate?.requestReload()
+        storeInformationDelegate?.reloadStoreDetailTableView()
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {

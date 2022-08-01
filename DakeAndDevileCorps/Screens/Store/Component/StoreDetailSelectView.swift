@@ -8,10 +8,32 @@
 import UIKit
 
 protocol StoreDetailSelectViewDelegate: AnyObject {
-    func showingReview(_ storeDetailSelectView: StoreDetailSelectView)
-    func showingProduct(_ storeDetailSelectView: StoreDetailSelectView)
-    func setUpNumberOfButtons(_ storeDetailSelectView: StoreDetailSelectView)
-    func presentWriteReviewView()
+    func didSelectedButton(_ storeDetailSelectView: StoreDetailSelectView, isReviewButton: Bool, itemInformationType: ItemInformationType)
+    func updateListCountOfButton(_ storeDetailSelectView: StoreDetailSelectView)
+    func didTappedWriteReviewButton()
+}
+
+enum ItemInformationType {
+    case productList
+    case reviewList
+    
+    var isHiddenProductButtonBottomBar: Bool {
+        switch self {
+        case .productList:
+            return false
+        case .reviewList:
+            return true
+        }
+    }
+    
+    var isHiddenReviewButtonBottomBar: Bool {
+        switch self {
+        case .productList:
+            return true
+        case .reviewList:
+            return false
+        }
+    }
 }
 
 final class StoreDetailSelectView: UIView {
@@ -19,7 +41,7 @@ final class StoreDetailSelectView: UIView {
     // MARK: - properties
     
     weak var delegate: StoreDetailSelectViewDelegate?
-    var isShowingReview: Bool = false
+    var iteminformationType: ItemInformationType = .productList
     var numberOfProducts: Int = 0 {
         didSet {
             productButton.setTitle("취급상품 \(numberOfProducts)", for: .normal)
@@ -34,7 +56,7 @@ final class StoreDetailSelectView: UIView {
     private let productButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitleColor( UIColor.black, for: .normal)
+        button.setTitleColor(UIColor.black, for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 17)
         
         return button
@@ -73,7 +95,7 @@ final class StoreDetailSelectView: UIView {
         button.tintColor = UIColor.zeroMint50
         button.setTitle("리뷰쓰기", for: .normal)
         button.setTitleColor(UIColor.zeroMint50, for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 17)
+        button.titleLabel?.font = .preferredFont(forTextStyle: .subheadline, compatibleWith: .init(legibilityWeight: .bold))
         
         return button
     }()
@@ -91,7 +113,7 @@ final class StoreDetailSelectView: UIView {
     }
     
     override func draw(_ rect: CGRect) {
-        delegate?.setUpNumberOfButtons(self)
+        delegate?.updateListCountOfButton(self)
         super.draw(rect)
     }
     
@@ -99,7 +121,6 @@ final class StoreDetailSelectView: UIView {
     
     private func render() {
         addSubview(productButton)
-        productButton.setTitle("취급상품 \(numberOfProducts)", for: .normal)
         NSLayoutConstraint.activate([
             productButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 24),
             productButton.centerYAnchor.constraint(equalTo: centerYAnchor)
@@ -113,7 +134,6 @@ final class StoreDetailSelectView: UIView {
         ])
         
         addSubview(reviewButton)
-        reviewButton.setTitle("상품리뷰 \(numberOfReviews)", for: .normal)
         NSLayoutConstraint.activate([
             reviewButton.leadingAnchor.constraint(equalTo: productButton.trailingAnchor, constant: 19),
             reviewButton.centerYAnchor.constraint(equalTo: centerYAnchor)
@@ -135,27 +155,40 @@ final class StoreDetailSelectView: UIView {
     
     private func setupButtonAction() {
         let productButtonAction = UIAction { _ in
-            self.delegate?.showingProduct(self)
+            self.iteminformationType = .productList
+            self.delegate?.didSelectedButton(self,
+                                             isReviewButton: false,
+                                             itemInformationType: .productList)
         }
-        productButton.addAction(productButtonAction, for: .touchUpInside)
         
         let reviewButtonAction = UIAction { _ in
-            self.delegate?.showingReview(self)
+            self.iteminformationType = .reviewList
+            self.delegate?.didSelectedButton(self,
+                                             isReviewButton: true,
+                                             itemInformationType: .reviewList)
         }
-        reviewButton.addAction(reviewButtonAction, for: .touchUpInside)
         
         let writeReviewButtonAction = UIAction { _ in
-            self.delegate?.presentWriteReviewView()
+            self.delegate?.didTappedWriteReviewButton()
         }
+        
+        productButton.addAction(productButtonAction, for: .touchUpInside)
+        reviewButton.addAction(reviewButtonAction, for: .touchUpInside)
         writeReviewButton.addAction(writeReviewButtonAction, for: .touchUpInside)
     }
     
     func applyShowingState() {
-        productButton.setTitleColor(isShowingReview ? UIColor.tertiaryLabel : UIColor.black, for: .normal)
-        reviewButton.setTitleColor(isShowingReview ? UIColor.black : UIColor.tertiaryLabel, for: .normal)
+        switch iteminformationType {
+        case .productList:
+            productButton.setTitleColor(.black, for: .normal)
+            reviewButton.setTitleColor(.tertiaryLabel, for: .normal)
+        case .reviewList:
+            productButton.setTitleColor(.tertiaryLabel, for: .normal)
+            reviewButton.setTitleColor(.black, for: .normal)
+        }
     }
 
     @objc func callPresentWrtieReviewView(_ sender: UITapGestureRecognizer) {
-        delegate?.presentWriteReviewView()
+        delegate?.didTappedWriteReviewButton()
     }
 }

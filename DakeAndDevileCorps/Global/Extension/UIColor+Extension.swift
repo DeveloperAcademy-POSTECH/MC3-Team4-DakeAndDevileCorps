@@ -10,11 +10,11 @@ import UIKit
 extension UIColor {
 
     static var zeroGreen50: UIColor {
-        return UIColor(hex: "#6EDBA0")
+        return UIColor(hex: "#47DC8C")
     }
     
     static var zeroGreen60: UIColor {
-        return UIColor(hex: "#53C989")
+        return UIColor(hex: "#2FCE78")
     }
     
     static var zeroMint20: UIColor {
@@ -22,11 +22,11 @@ extension UIColor {
     }
     
     static var zeroMint50: UIColor {
-        return UIColor(hex: "#01D2B8")
+        return UIColor(hex: "#00C9BD")
     }
     
     static var zeroSky50: UIColor {
-        return UIColor(hex: "#69D3F5")
+        return UIColor(hex: "#4CCFF9")
     }
     
     static var zeroRed: UIColor {

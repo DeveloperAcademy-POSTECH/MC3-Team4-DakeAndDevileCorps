@@ -9,6 +9,30 @@ import UIKit
 
 final class ReviewTextView: UIView {
     
+    private enum TextMode {
+        case beforeWriting
+        case write
+        case complete
+        
+        var placeholder: String? {
+            switch self {
+            case .beforeWriting:
+                return "리뷰를 남겨주세요"
+            default:
+                return nil
+            }
+        }
+        
+        var textColor: UIColor {
+            switch self {
+            case .beforeWriting:
+                return .tertiaryLabel
+            default:
+                return .black
+            }
+        }
+    }
+    
     // MARK: - properties
     
     private let borderView: UIView = {
@@ -23,20 +47,33 @@ final class ReviewTextView: UIView {
         label.textColor = .secondaryLabel
         label.font = .preferredFont(forTextStyle: .caption2,
                                     compatibleWith: .init(legibilityWeight: .bold))
-        label.text = "0/300"
         return label
     }()
-    private let reviewTextView: UITextView = {
+    public private(set) lazy var reviewTextView: UITextView = {
         let textView = UITextView()
         textView.font = .preferredFont(forTextStyle: .subheadline)
+        textView.delegate = self
+        textView.autocapitalizationType = .none
+        textView.autocorrectionType = .no
+        textView.spellCheckingType = .no
         return textView
     }()
-
+    private var textMode: TextMode? {
+        willSet {
+            guard let newValue = newValue,
+                  newValue != .complete else { return }
+            
+            applyTextViewConfiguration(with: newValue)
+        }
+    }
+    private let maxCount = 300
+    
     // MARK: - init
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         render()
+        configUI()
     }
     
     required init?(coder: NSCoder) {
@@ -63,4 +100,59 @@ final class ReviewTextView: UIView {
                                   padding: UIEdgeInsets(top: 16, left: 16, bottom: 12, right: 16))
     }
     
+    private func configUI() {
+        setCounter(count: 0)
+        textMode = .beforeWriting
+    }
+    
+    private func applyTextViewConfiguration(with state: TextMode) {
+        reviewTextView.text = state.placeholder
+        reviewTextView.textColor = state.textColor
+    }
+    
+    private func setCounter(count: Int) {
+        counterLabel.text = "\(count)/\(maxCount)"
+    }
+    
+    private func checkMaxLength(textView: UITextView, maxLength: Int) {
+        guard var textViewText = textView.text else { return }
+        let isOverMaxLength = textViewText.count > maxLength
+        
+        if isOverMaxLength {
+            textViewText.removeLast()
+            textView.text = textViewText + " "
+            rearrangeTextViewText(with: textView, text: textViewText)
+        }
+    }
+    
+    private func rearrangeTextViewText(with textView: UITextView, text: String) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
+            textView.text = text
+            self.setCounter(count: textView.text.count)
+        }
+    }
+    
+    func checkIsEmpty() -> Bool {
+        return reviewTextView.text.isEmpty || textMode == .beforeWriting
+    }
+}
+
+extension ReviewTextView: UITextViewDelegate {
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        let isBeforeWriting = textMode == .beforeWriting
+        if isBeforeWriting {
+            textMode = .write
+        }
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        let isEmpty = textView.text.isEmpty
+        textMode = isEmpty ? .beforeWriting : .complete
+    }
+    
+    func textViewDidChange(_ textView: UITextView) {
+        setCounter(count: textView.text?.count ?? 0)
+        checkMaxLength(textView: textView, maxLength: maxCount)
+        NotificationCenter.default.post(name: .activeReview, object: nil)
+    }
 }
