@@ -9,5 +9,5 @@ import Foundation
 
 enum ProductTableViewCellModel: Equatable {
     case product(productName: String)
-    case item(itemName: String, itemPrice: String)
+    case item(itemName: String)
 }
