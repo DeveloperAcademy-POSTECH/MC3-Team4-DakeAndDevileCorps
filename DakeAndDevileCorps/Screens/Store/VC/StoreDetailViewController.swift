@@ -251,7 +251,16 @@ extension StoreDetailViewController: StoreDetailSelectViewDelegate {
     }
     
     func didTappedWriteReviewButton() {
-        guard let viewController = storyboard?.instantiateViewController(withIdentifier: "WriteReviewNavigationController") as? UINavigationController else { return }
+        guard let viewController = storyboard?.instantiateViewController(withIdentifier: "WriteReviewNavigationController") as? UINavigationController,
+              let presentViewController = viewController.viewControllers.first as? WriteReviewViewController
+        else { return }
+        
+        presentViewController.sendComment = { [weak self] comment in
+            self?.commentList.append(comment)
+            self?.storeDetailTableView.reloadData()
+            self?.updateListCountOfButton(self?.selectHeader ?? StoreDetailSelectView())
+        }
+        
         present(viewController, animated: true, completion: nil)
     }
     

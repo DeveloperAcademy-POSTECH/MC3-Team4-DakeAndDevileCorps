@@ -13,6 +13,8 @@ final class WriteReviewViewController: BaseViewController {
     
     // MARK: - properties
     
+    var sendComment: ((Comment) -> ())?
+    
     private let imagePickerViewController = UIImagePickerController()
     private let photoLimitAlert = UIAlertController(title: "알림", message: "사진은 최대 3장까지 등록할 수 있어요.", preferredStyle: .alert)
     private let addPhotoAlert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
@@ -131,6 +133,26 @@ final class WriteReviewViewController: BaseViewController {
             self.presentationControllerDidAttemptToDismissAction()
         }
         cancelButton.addAction(cancelAction, for: .touchUpInside)
+        let confirmAction = UIAction { _ in
+            guard let comment = self.getComment() else { return }
+            self.sendComment?(comment)
+            self.dismiss(animated: true)
+        }
+        confirmButton.addAction(confirmAction, for: .touchUpInside)
+    }
+        
+    private func getComment() -> Comment? {
+        guard let itemText = reviewInputView.itemTextField.text,
+              let content = reviewInputView.reviewTextView.reviewTextView.text
+        else { return nil }
+        let category = reviewInputView.selectedCategory
+        
+        return Comment(item: itemText,
+                       content: content,
+                       category: category,
+                       nickname: "스누피",
+                       photo: [],
+                       date: Date.getCurrentDate(with: "YY-MM-dd"))
     }
     
     private func applyConfirmLabel(with isEnabled: Bool) {

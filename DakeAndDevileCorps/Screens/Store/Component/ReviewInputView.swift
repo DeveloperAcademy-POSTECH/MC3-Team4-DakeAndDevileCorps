@@ -45,11 +45,12 @@ final class ReviewInputView: UIView {
         textfield.clearButtonMode = .whileEditing
         return textfield
     }()
-    private let categoryView = CategoryView(entryPoint: .write)
+    let categoryView = CategoryView(entryPoint: .write)
     let reviewTextView = ReviewTextView()
     let reviewAddPhotoView = ReviewAddPhotoView()
     
     var isSelectedCollection: Bool = false
+    var selectedCategory: String = ""
     
     // MARK: - init
     
@@ -125,6 +126,7 @@ final class ReviewInputView: UIView {
 extension ReviewInputView: CategoryCollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         isSelectedCollection = true
+        selectedCategory = categoryView.categoryList[indexPath.item]
         NotificationCenter.default.post(name: .activeReview, object: nil)
     }
 }
