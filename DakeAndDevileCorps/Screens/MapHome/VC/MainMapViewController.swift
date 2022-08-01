@@ -213,6 +213,10 @@ extension MainMapViewController: CLLocationManagerDelegate {
 // MARK: - MapViewDelegate
 extension MainMapViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        if let _ = annotation as? MKUserLocation {
+            return MKUserLocationView()
+        }
+        
         guard let marker = mapView.dequeueReusableAnnotationView(withIdentifier: AnnotationView.className) as? AnnotationView else {
             return AnnotationView()
         }
