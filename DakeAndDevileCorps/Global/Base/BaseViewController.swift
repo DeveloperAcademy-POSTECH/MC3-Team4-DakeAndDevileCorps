@@ -17,13 +17,13 @@ class BaseViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        parseStoreData()
         render()
         configUI()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        parseStoreData()
     }
     
     func render() {
@@ -37,7 +37,7 @@ class BaseViewController: UIViewController {
     private func parseStoreData() {
         let storeModel = MockParser.load(type: StoreModel.self, fileName: "Store")
         if let data = storeModel?.data {
-            storeData = data
+            storeList = data
             
             dump(data)
         }

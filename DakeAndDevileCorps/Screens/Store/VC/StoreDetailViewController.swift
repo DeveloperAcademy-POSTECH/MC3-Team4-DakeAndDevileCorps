@@ -7,17 +7,19 @@
 
 import UIKit
 
-class StoreDetailViewController: UIViewController {
+class StoreDetailViewController: BaseViewController {
     
     @IBOutlet weak var storeName: UILabel!
     @IBOutlet weak var storeDetailTableView: UITableView!
     
     private var productList: [ProductTableViewCellModel] = []
-    private var operationList: [String] = []
     private let categoryList: [String] = ["주방세제", "세탁세제", "섬유유연제", "기타세제", "헤어", "스킨", "바디", "식품", "생활", "문구", "애견", "기타"]
+    private var store: Store?
+    var dataIndex: Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        store = storeList[dataIndex]
         configStoreDetailTableView()
         initStoreInformationData()
     }
@@ -27,7 +29,7 @@ class StoreDetailViewController: UIViewController {
         storeDetailTableView.delegate = self
         storeDetailTableView.separatorStyle = UITableViewCell.SeparatorStyle.none
         storeDetailTableView.rowHeight = UITableView.automaticDimension
-        storeName.text = "알맹상점"
+        storeName.text = store?.name
         storeName.font = UIFont.boldSystemFont(ofSize: 22)
         if #available(iOS 15.0, *) {
             storeDetailTableView.sectionHeaderTopPadding = 0
@@ -62,7 +64,6 @@ class StoreDetailViewController: UIViewController {
             .product(productName: "기타"),
             .item(itemName: "인블리스 세탁세제", itemPrice: "1g = 4원")
         ]
-        operationList = ["월 정기 휴일", "화 10:00 ~ 18:00", "수 10:00 ~ 18:00", "목 10:00 ~ 18:00", "금 10:00 ~ 18:00", "토 10:00 ~ 18:00", "일 정기 휴일"]
     }
     
     func scrollToSelectedCategory(indexPath: IndexPath) {
@@ -98,15 +99,12 @@ extension StoreDetailViewController: UITableViewDataSource {
             ) as? StoreInformationTableViewCell else { return UITableViewCell() }
             
             storeInformationCell.storeInformationDelegate = self
-            storeInformationCell.setUpperData(isOperation: true, todayOperationTime: "10:00 ~ 18:00", productCategories: "화장품, 청소용품, 화장품, 식품")
-            storeInformationCell.setBottomData(address: "서울 마포구 월드컵로25길 47 3층", phoneNumber: "010-2229-1027", operationTime: "10:00 - 18:00")
-            storeInformationCell.setUpperData(isOperation: true,
-                                              todayOperationTime: "10:00 ~ 18:00",
-                                              productCategories: "화장품, 청소용품, 화장품, 식품")
-            storeInformationCell.setBottomData(address: "서울 마포구 월드컵로25길 47 3층",
-                                               phoneNumber: "010-2229-1027",
-                                               operationTime: "10:00 - 18:00")
-            storeInformationCell.setOperationTime(operationList: operationList)
+            storeInformationCell.setUpperData(todayOperationTime: store?.getTodayOfficeHour(),
+                                              productCategories: store?.getStoreCategories())
+            storeInformationCell.setBottomData(address: store?.address,
+                                               phoneNumber: store?.telephone)
+            storeInformationCell.setOperationTime(operationList: store?.officeHour)
+            storeInformationCell.setOperationStatusLabel(with: store)
             
             return storeInformationCell
         case 1:
