@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import AVFoundation
+import Photos
 
 final class WriteReviewViewController: BaseViewController {
     
@@ -14,6 +16,8 @@ final class WriteReviewViewController: BaseViewController {
     private let imagePickerViewController = UIImagePickerController()
     private let photoLimitAlert = UIAlertController(title: "알림", message: "사진은 최대 3장까지 등록할 수 있어요.", preferredStyle: .alert)
     private let addPhotoAlert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+    private let authorizationOfCameraAlert = UIAlertController(title: "알림", message: "Zemap의 카메라  접근이 허용되어 있지 않습니다.", preferredStyle: .alert)
+    private let authorizationOfLibraryAlert = UIAlertController(title: "알림", message: "Zemap의 앨범  접근이 허용되어 있지 않습니다.", preferredStyle: .alert)
     
     private func initDelegate() {
         imagePickerViewController.delegate = self
@@ -37,16 +41,24 @@ final class WriteReviewViewController: BaseViewController {
     }
     
     private func setPhotoAlert() {
-        let choosePhotoFromAlbumAction = UIAlertAction(title: "앨범에서 선택", style: .default, handler: { [weak self] _ in self?.setImagePickerToPhotoLibrary()})
-        let takePhotoAction = UIAlertAction(title: "사진 촬영", style: .default, handler: { [weak self] _ in
-            self?.setImagePickerToCamera()
+        let choosePhotoFromAlbumAction = UIAlertAction(title: "앨범에서 선택", style: .default, handler: { [weak self] (action: UIAlertAction) in self?.checkAlbumPermission()})
+        let takePhotoAction = UIAlertAction(title: "사진 촬영", style: .default, handler: { [weak self] (action: UIAlertAction) in
+            self?.checkCameraPermission()
         })
         let cancelAction = UIAlertAction(title: "취소", style: .cancel)
         let confirmAction = UIAlertAction(title: "확인", style: .default, handler: nil)
+        let moveToSettingAction = UIAlertAction(title: "설정", style: .default, handler: { _ in
+            guard let settingURL = URL(string: UIApplication.openSettingsURLString) else { return }
+            UIApplication.shared.open(settingURL)
+        })
         photoLimitAlert.addAction(confirmAction)
         addPhotoAlert.addAction(choosePhotoFromAlbumAction)
         addPhotoAlert.addAction(takePhotoAction)
         addPhotoAlert.addAction(cancelAction)
+        authorizationOfCameraAlert.addAction(cancelAction)
+        authorizationOfCameraAlert.addAction(moveToSettingAction)
+        authorizationOfLibraryAlert.addAction(cancelAction)
+        authorizationOfLibraryAlert.addAction(moveToSettingAction)
     }
     
     private let cancelButton: UIButton = {
@@ -114,6 +126,38 @@ final class WriteReviewViewController: BaseViewController {
     
     private func makeBarButtonItem<T: UIView>(with view: T) -> UIBarButtonItem {
         return UIBarButtonItem(customView: view)
+    }
+    
+    private func checkCameraPermission() {
+        AVCaptureDevice.requestAccess(for: .video, completionHandler: { (granted: Bool) in
+            if granted {
+                DispatchQueue.main.async {
+                    self.setImagePickerToCamera()
+                }
+            } else {
+                DispatchQueue.main.async {
+                    self.present(self.authorizationOfCameraAlert, animated: true, completion: nil)
+                }
+            }
+        })
+    }
+    
+    private func checkAlbumPermission() {
+        PHPhotoLibrary.requestAuthorization({ [weak self] status in
+            guard let self = self else { return }
+            switch status {
+            case .authorized:
+                DispatchQueue.main.async {
+                    self.setImagePickerToPhotoLibrary()
+                }
+            case .denied:
+                DispatchQueue.main.async {
+                    self.present(self.authorizationOfLibraryAlert, animated: true, completion: nil)
+                }
+            default:
+                break
+            }
+        })
     }
     
     private func setupNotificationCenter() {
