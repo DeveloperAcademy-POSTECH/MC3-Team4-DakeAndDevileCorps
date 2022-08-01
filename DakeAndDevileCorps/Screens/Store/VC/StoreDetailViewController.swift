@@ -9,6 +9,7 @@ import UIKit
 
 class StoreDetailViewController: UIViewController {
     
+    // MARK: - properties
     private enum SectionType: Int, CaseIterable {
         case storeInformation = 0
         case itemInformation = 1
@@ -16,6 +17,7 @@ class StoreDetailViewController: UIViewController {
     
     @IBOutlet weak var storeName: UILabel!
     @IBOutlet weak var storeDetailTableView: UITableView!
+    @IBOutlet weak var closeStoreDetailButton: UIButton!
     
     private var productList: [ProductTableViewCellModel] = []
     private var operationList: [String] = []
@@ -24,6 +26,8 @@ class StoreDetailViewController: UIViewController {
     private var selectHeader = StoreDetailSelectView()
     private var categoryHeader = CategoryView(entryPoint: .detail)
     private var itemInformationType: ItemInformationType = .productList
+    
+    // MARK: - func
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -97,6 +101,8 @@ class StoreDetailViewController: UIViewController {
         storeDetailTableView.scrollToRow(at: indexPath, at: .top, animated: true)
     }
 }
+
+// MARK: - extensions
 
 extension StoreDetailViewController: UITableViewDataSource {
     
