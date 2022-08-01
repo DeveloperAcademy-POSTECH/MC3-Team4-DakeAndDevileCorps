@@ -27,14 +27,7 @@ class MainMapViewController: UIViewController {
     @IBOutlet weak var mapView: MKMapView!
     
     // MARK: - properties
-    var shops: [ShopInfo] = [
-        ShopInfo(coordinate: CLLocationCoordinate2D(latitude: 37.557761, longitude: 126.9052787),
-                 sellingProductsCategory: ["주방세제"],
-                 category: .zeroWasteShop),
-        ShopInfo(coordinate: CLLocationCoordinate2D(latitude: 37.5007395, longitude: 126.9338591),
-                 sellingProductsCategory: ["주방세제", "세탁세제"],
-                 category: .refillStation)
-    ]
+    var shops: [StoreAnnotation] = []
     
     // MARK: - lifecycle
     override func viewDidLoad() {
