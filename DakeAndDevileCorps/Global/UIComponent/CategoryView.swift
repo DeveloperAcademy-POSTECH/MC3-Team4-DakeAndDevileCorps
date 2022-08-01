@@ -81,6 +81,12 @@ final class CategoryView: UIView {
         :
         delegate?.collectionView?(collectionView, didDeselectItemAt: indexPath)
     }
+    
+    private func applySelectedMethod(collectionView: UICollectionView, indexPath: IndexPath) {
+        guard entryPoint != .map else { return }
+        
+        delegate?.collectionView(collectionView, didSelectItemAt: indexPath)
+    }
 }
 
 extension CategoryView: UICollectionViewDataSource {
@@ -105,6 +111,7 @@ extension CategoryView: UICollectionViewDelegate {
         
         cell.applySelectedState(isSelectedAccordingToEntryPoint)
         
+        applySelectedMethod(collectionView: collectionView, indexPath: indexPath)
         selectMapDelegateMethod(with: isSelectedForMap,
                                 collectionView: collectionView,
                                 indexPath: indexPath)

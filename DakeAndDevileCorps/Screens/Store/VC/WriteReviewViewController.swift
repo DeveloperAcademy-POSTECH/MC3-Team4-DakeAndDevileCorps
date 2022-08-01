@@ -16,10 +16,8 @@ final class WriteReviewViewController: BaseViewController {
     private let imagePickerViewController = UIImagePickerController()
     private let photoLimitAlert = UIAlertController(title: "알림", message: "사진은 최대 3장까지 등록할 수 있어요.", preferredStyle: .alert)
     private let addPhotoAlert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-    private let authorizationOfCameraAlert = UIAlertController(title: "알림", message: "Zemap이 카메라에 접근이 허용되어 있지 않습니다.", preferredStyle: .alert)
-    private let authorizationOfLibraryAlert = UIAlertController(title: "알림", message: "Zemap이 앨범에 접근이 허용되어 있지 않습니다.", preferredStyle: .alert)
-    
-    
+    private let authorizationOfCameraAlert = UIAlertController(title: "알림", message: "Zemap의 카메라  접근이 허용되어 있지 않습니다.", preferredStyle: .alert)
+    private let authorizationOfLibraryAlert = UIAlertController(title: "알림", message: "Zemap의 앨범  접근이 허용되어 있지 않습니다.", preferredStyle: .alert)
     
     private func initDelegate() {
         imagePickerViewController.delegate = self
@@ -75,7 +73,7 @@ final class WriteReviewViewController: BaseViewController {
     private let confirmButton: UIButton = {
         let button = UIButton()
         button.setTitle("완료", for: .normal)
-        button.setTitleColor(.black, for: .normal)
+        button.setTitleColor(.zeroMint50, for: .normal)
         button.setTitleColor(.tertiaryLabel, for: .disabled)
         button.titleLabel?.font = .preferredFont(forTextStyle: .headline)
         return button
@@ -88,9 +86,10 @@ final class WriteReviewViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        hidekeyboardWhenTappedAround()
         initDelegate()
         setPhotoAlert()
+        setupNotificationCenter()
+        hideKeyboardWhenTappedAround()
     }
     
     override func render() {
@@ -146,7 +145,7 @@ final class WriteReviewViewController: BaseViewController {
     }
     
     private func checkAlbumPermission() {
-        PHPhotoLibrary.requestAuthorization( { [weak self] status in
+        PHPhotoLibrary.requestAuthorization({ [weak self] status in
             guard let self = self else { return }
             switch status {
             case .authorized:
@@ -161,6 +160,17 @@ final class WriteReviewViewController: BaseViewController {
                 break
             }
         })
+    }
+    
+    private func setupNotificationCenter() {
+        NotificationCenter.default.addObserver(self, selector: #selector(didChangeButtonState), name: .activeReview, object: nil)
+    }
+    
+    // MARK: - selector
+    
+    @objc
+    private func didChangeButtonState() {
+        confirmButton.isEnabled = reviewInputView.isEssentialButtonFilled()
     }
 }
 

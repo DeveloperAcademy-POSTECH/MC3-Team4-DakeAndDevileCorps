@@ -7,8 +7,8 @@
 
 import UIKit
 
-protocol StoreInformationTableViewCellDelegate: AnyObject {
-    func requestReload(cell: StoreInformationTableViewCell)
+protocol StoreDetailTableViewCellDelegate: AnyObject {
+    func reloadStoreDetailTableView()
 }
 
 class StoreInformationTableViewCell: UITableViewCell {
@@ -31,7 +31,7 @@ class StoreInformationTableViewCell: UITableViewCell {
     @IBOutlet weak var weekOperationTimeStack: UIStackView!
     @IBOutlet weak var weekOperationTimeToggle: UIButton!
     
-    weak var storeInformationDelegate: StoreInformationTableViewCellDelegate?
+    weak var storeInformationDelegate: StoreDetailTableViewCellDelegate?
     private var isOpen: Bool = true
     private var dateLabels: [UILabel] = []
     
@@ -46,7 +46,7 @@ class StoreInformationTableViewCell: UITableViewCell {
         for dateLabel in dateLabels {
             dateLabel.isHidden.toggle()
         }
-        storeInformationDelegate?.requestReload(cell: self)
+        storeInformationDelegate?.reloadStoreDetailTableView()
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -65,28 +65,36 @@ class StoreInformationTableViewCell: UITableViewCell {
         ])
     }
     
-    func setUpperData(isOperation: Bool,
-                      todayOperationTime: String,
-                      productCategories: String) {
-        operationStatusLabel.text = isOperation ? "영업중" : "영업 종료"
-        operationStatusLabel.textColor = isOperation ? .systemGreen : .systemRed
-        self.todayOperationTimeLabel.text = todayOperationTime
-        self.productCategoriesLabel.text = productCategories
+    func setUpperData(todayOperationTime: String?,
+                      productCategories: String?) {
+        if let todayOperationTime = todayOperationTime,
+           let productCategories = productCategories {
+            self.todayOperationTimeLabel.text = todayOperationTime
+            self.productCategoriesLabel.text = productCategories
+        }
         self.productCategoriesLabel.textColor = .secondaryLabel
     }
     
-    func setBottomData(address: String,
-                       phoneNumber: String,
-                       operationTime: String) {
-        self.addressLabel.text = address
-        self.phoneNumberLabel.text = phoneNumber
-        self.operationTimeLabel.text = operationTime
+    func setBottomData(address: String?,
+                       phoneNumber: String?) {
+        if let address = address,
+           let phoneNumber = phoneNumber {
+            addressLabel.text = address
+            phoneNumberLabel.text = phoneNumber
+        }
     }
     
-    func setOperationTime(operationList: [String]) {
+    func setOperationTime(operationList: [String]?) {
         for (index, dateLabel) in dateLabels.enumerated() {
-            dateLabel.text = operationList[index]
+            dateLabel.text = operationList?[index]
             dateLabel.textColor = .secondaryLabel
         }
+    }
+    
+    func setOperationStatusLabel(with store: Store?) {
+        guard let store = store else { return }
+        operationStatusLabel.text = store.getOfficeHourState().title
+        operationStatusLabel.textColor = store.getOfficeHourState().titleColor
+        operationTimeLabel.text = store.getTodayOfficeHour()
     }
 }

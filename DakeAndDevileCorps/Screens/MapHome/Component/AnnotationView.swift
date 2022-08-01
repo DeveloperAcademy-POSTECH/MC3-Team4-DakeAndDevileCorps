@@ -10,7 +10,7 @@ import MapKit
 class AnnotationView: MKMarkerAnnotationView {
     
     override func draw(_ rect: CGRect) {        
-        guard let annotation = annotation as? ShopInfo else {
+        guard let annotation = annotation as? StoreAnnotation else {
             super.draw(rect)
             return
         }
