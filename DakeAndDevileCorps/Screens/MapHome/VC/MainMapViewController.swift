@@ -127,11 +127,28 @@ class MainMapViewController: UIViewController {
                     storeDetailModalView.removeFromSuperview()
                 }
                 preventTouchView.isHidden = false
+                
+                
+                let fullFrame = CustomModalView.ModalMode.full(screenViewFrame: self.view.frame).frame
+                storeDetailModalView.frame = CGRect(x: 0,
+                                                    y: storeDetailModalView.mode.frame.minY,
+                                                    width: storeDetailModalView.mode.frame.width,
+                                                    height: fullFrame.height)
+                
+                detailVC?.storeDetailTableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
             case .full:
                 preventTouchView.isHidden = true
+                let fullFrame = CustomModalView.ModalMode.full(screenViewFrame: self.view.frame).frame
+                storeDetailModalView.frame = CGRect(x: 0,
+                                                    y: storeDetailModalView.mode.frame.minY,
+                                                    width: storeDetailModalView.mode.frame.width,
+                                                    height: fullFrame.height)
+                storeDetailModalView.subviews.last?.frame = CGRect(x: 0,
+                                                    y: 0,
+                                                    width: storeDetailModalView.mode.frame.width,
+                                                    height: fullFrame.height)
             }
-            storeDetailModalView.frame = storeDetailModalView.mode.frame
-
+        
         default: break
         }
     }
