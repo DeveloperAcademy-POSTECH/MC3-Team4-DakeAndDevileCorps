@@ -8,7 +8,8 @@
 import UIKit
 
 protocol StoreDetailViewControllerDelegate: AnyObject {
-    func viewController(closeButton: UIButton)
+    func setupButtonAction(closeButton: UIButton)
+    func setupViewWillDisappear(closeButton: UIButton)
 }
 
 final class StoreDetailViewController: UIViewController {
@@ -37,8 +38,12 @@ final class StoreDetailViewController: UIViewController {
         configHeader()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        delegate?.setupViewWillDisappear(closeButton: closeStoreDetailButton)
+    }
+    
     @IBAction func closeStoreDetail(_ sender: Any) {
-        delegate?.viewController(closeButton: closeStoreDetailButton)
+        delegate?.setupButtonAction(closeButton: closeStoreDetailButton)
     }
     
     private func configStoreDetailTableView() {
