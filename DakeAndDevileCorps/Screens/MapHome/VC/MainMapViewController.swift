@@ -172,9 +172,9 @@ class MainMapViewController: UIViewController {
                                                     width: storeDetailModalView.mode.frame.width,
                                                     height: fullFrame.height)
                 storeDetailModalView.subviews.last?.frame = CGRect(x: 0,
-                                                    y: 0,
-                                                    width: storeDetailModalView.mode.frame.width,
-                                                    height: fullFrame.height)
+                                                                   y: 0,
+                                                                   width: storeDetailModalView.mode.frame.width,
+                                                                   height: fullFrame.height)
             }
         
         default: break
@@ -183,7 +183,7 @@ class MainMapViewController: UIViewController {
     
     @objc
     func touchUpCurrentLocationButton() {
-        mapView.showsUserLocation = true
+        mapView.showsUserLocation.toggle()
         mapView.setUserTrackingMode(.follow, animated: true)
     }
 }
