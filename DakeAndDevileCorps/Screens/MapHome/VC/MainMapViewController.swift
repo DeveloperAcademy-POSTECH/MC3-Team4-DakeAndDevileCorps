@@ -121,7 +121,6 @@ class MainMapViewController: UIViewController {
                 }
                 preventTouchView.isHidden = false
                 
-                
                 let fullFrame = CustomModalView.ModalMode.full(screenViewFrame: self.view.frame).frame
                 storeDetailModalView.frame = CGRect(x: 0,
                                                     y: storeDetailModalView.mode.frame.minY,
@@ -171,7 +170,7 @@ extension MainMapViewController: MKMapViewDelegate {
             preventTouchView.topAnchor.constraint(equalTo: detailVC.storeDetailTableView.topAnchor),
             preventTouchView.bottomAnchor.constraint(equalTo: detailVC.storeDetailTableView.bottomAnchor),
             preventTouchView.leadingAnchor.constraint(equalTo: detailVC.storeDetailTableView.leadingAnchor),
-            preventTouchView.trailingAnchor.constraint(equalTo: detailVC.storeDetailTableView.trailingAnchor),
+            preventTouchView.trailingAnchor.constraint(equalTo: detailVC.storeDetailTableView.trailingAnchor)
         ])
     }
     

@@ -63,6 +63,7 @@
                                                             <subviews>
                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mappin.and.ellipse" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="ArC-ml-TAl">
                                                                     <rect key="frame" x="0.0" y="-0.5" width="18" height="21.5"/>
+                                                                    <color key="tintColor" systemColor="secondaryLabelColor"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="18" id="6mf-dM-Aqt"/>
                                                                         <constraint firstAttribute="height" constant="21" id="yUC-hH-QQG"/>
@@ -84,6 +85,7 @@
                                                             <subviews>
                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="phone" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="X9T-Yw-rdH">
                                                                     <rect key="frame" x="0.0" y="0.5" width="19" height="19.5"/>
+                                                                    <color key="tintColor" systemColor="secondaryLabelColor"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="19" id="FLJ-VN-Udz"/>
                                                                         <constraint firstAttribute="height" constant="21" id="RbD-v4-DQb"/>
@@ -108,6 +110,7 @@
                                                                     <subviews>
                                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="clock" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="iUm-z1-kKV">
                                                                             <rect key="frame" x="0.0" y="0.5" width="19" height="20"/>
+                                                                            <color key="tintColor" systemColor="secondaryLabelColor"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="width" constant="19" id="deT-lw-e3X"/>
                                                                                 <constraint firstAttribute="height" constant="21" id="myO-D9-YKg"/>
@@ -384,6 +387,7 @@
                                         <connections>
                                             <outlet property="reviewContentLabel" destination="ZHD-qh-GDO" id="s7s-Ts-sl6"/>
                                             <outlet property="reviewImageView" destination="ksm-4g-iuQ" id="tMH-Ec-Ziv"/>
+                                            <outlet property="reviewStackTrailingConstraint" destination="c7T-LX-ng2" id="j1c-zp-ueq"/>
                                             <outlet property="reviewStackView" destination="u6V-oZ-OEi" id="BTs-BD-YEz"/>
                                             <outlet property="reviewSubStackView" destination="6vW-gl-lpg" id="kWQ-Ek-K9B"/>
                                             <outlet property="reviewTitleLabel" destination="rK5-G1-9RE" id="qUK-hS-9eD"/>
