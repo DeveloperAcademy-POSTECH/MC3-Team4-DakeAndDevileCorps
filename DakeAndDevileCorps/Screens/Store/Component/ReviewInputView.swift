@@ -32,7 +32,7 @@ final class ReviewInputView: UIView {
         label.font = .preferredFont(forTextStyle: .headline, compatibleWith: .init(legibilityWeight: .bold))
         return label
     }()
-    private let itemTextField: UITextField = {
+    let itemTextField: UITextField = {
         let textfield = UITextField()
         textfield.placeholder = "상품명을 입력해주세요"
         textfield.borderStyle = .none
@@ -46,10 +46,10 @@ final class ReviewInputView: UIView {
         return textfield
     }()
     private let categoryView = CategoryView(entryPoint: .write)
-    private let reviewTextView = ReviewTextView()
+    let reviewTextView = ReviewTextView()
     let reviewAddPhotoView = ReviewAddPhotoView()
     
-    private var isSelectedCollection: Bool = false
+    var isSelectedCollection: Bool = false
     
     // MARK: - init
     

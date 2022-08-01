@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y6W-OH-hqX">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21219" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y6W-OH-hqX">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21200"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hFF-RJ-RvP">
-                                <rect key="frame" x="24" y="77" width="366" height="28"/>
+                                <rect key="frame" x="24" y="81" width="366" height="28"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uMR-b0-EF0">
                                         <rect key="frame" x="0.0" y="0.0" width="339" height="28"/>
@@ -42,11 +42,11 @@
                                 </subviews>
                             </stackView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="ln9-co-2hu">
-                                <rect key="frame" x="0.0" y="109" width="414" height="753"/>
+                                <rect key="frame" x="0.0" y="113" width="414" height="749"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="StoreInformationTableViewCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="StoreInformationTableViewCell" rowHeight="202" id="U1M-eS-LhP" customClass="StoreInformationTableViewCell" customModule="DakeAndDevileCorps" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="44.5" width="414" height="202"/>
+                                        <rect key="frame" x="0.0" y="50" width="414" height="202"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="U1M-eS-LhP" id="4PD-jE-8HH">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="202"/>
@@ -268,7 +268,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="ProductTableViewCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ProductTableViewCell" rowHeight="92" id="2JO-9x-uZ8" customClass="ProductTableViewCell" customModule="DakeAndDevileCorps" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="246.5" width="414" height="92"/>
+                                        <rect key="frame" x="0.0" y="252" width="414" height="92"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="2JO-9x-uZ8" id="SDQ-Jq-lHp">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="92"/>
@@ -303,7 +303,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="ItemTableViewCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ItemTableViewCell" rowHeight="78" id="g6g-xO-54i" customClass="ItemTableViewCell" customModule="DakeAndDevileCorps" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="338.5" width="414" height="78"/>
+                                        <rect key="frame" x="0.0" y="344" width="414" height="78"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="g6g-xO-54i" id="7em-R7-fWX">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="78"/>
@@ -342,7 +342,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="ReviewTableViewCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ReviewTableViewCell" rowHeight="149" id="KE3-IL-FPv" customClass="ReviewTableViewCell" customModule="DakeAndDevileCorps" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="416.5" width="414" height="149"/>
+                                        <rect key="frame" x="0.0" y="422" width="414" height="149"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="KE3-IL-FPv" id="f2e-EF-oZt">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="149"/>
@@ -467,7 +467,7 @@
                 <navigationController storyboardIdentifier="WriteReviewNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="L0l-V7-YAj" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="awN-84-WMn">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <rect key="frame" x="0.0" y="48" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -481,13 +481,13 @@
         </scene>
     </scenes>
     <resources>
-        <image name="chevron.down" catalog="system" width="128" height="72"/>
-        <image name="clock" catalog="system" width="128" height="121"/>
-        <image name="mappin.and.ellipse" catalog="system" width="118" height="128"/>
+        <image name="chevron.down" catalog="system" width="128" height="70"/>
+        <image name="clock" catalog="system" width="128" height="123"/>
+        <image name="mappin.and.ellipse" catalog="system" width="117" height="128"/>
         <image name="phone" catalog="system" width="128" height="115"/>
-        <image name="xmark.circle.fill" catalog="system" width="128" height="121"/>
+        <image name="xmark.circle.fill" catalog="system" width="128" height="123"/>
         <systemColor name="labelColor">
-            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
