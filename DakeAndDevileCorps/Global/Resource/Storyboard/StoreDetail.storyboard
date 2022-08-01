@@ -313,7 +313,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LCT-kF-iBJ">
-                                                    <rect key="frame" x="24" y="12" width="41.5" height="20.5"/>
+                                                    <rect key="frame" x="24" y="12" width="41.5" height="37"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="20.5" id="RUN-rU-FZ1"/>
                                                     </constraints>
@@ -321,27 +321,15 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E7n-Rb-i9l">
-                                                    <rect key="frame" x="24" y="36.5" width="41.5" height="12.5"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="20.5" id="1dZ-ve-jnK"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="E7n-Rb-i9l" secondAttribute="bottom" constant="12" id="0NH-4n-XXd"/>
                                                 <constraint firstItem="LCT-kF-iBJ" firstAttribute="top" secondItem="7em-R7-fWX" secondAttribute="top" constant="12" id="CoY-5N-edj"/>
                                                 <constraint firstItem="LCT-kF-iBJ" firstAttribute="leading" secondItem="7em-R7-fWX" secondAttribute="leading" constant="24" id="Lxi-gb-h3H"/>
-                                                <constraint firstItem="E7n-Rb-i9l" firstAttribute="top" secondItem="LCT-kF-iBJ" secondAttribute="bottom" constant="4" id="RDl-hB-PbJ"/>
-                                                <constraint firstItem="E7n-Rb-i9l" firstAttribute="leading" secondItem="7em-R7-fWX" secondAttribute="leading" constant="24" id="Y9H-kl-UKN"/>
+                                                <constraint firstAttribute="bottom" secondItem="LCT-kF-iBJ" secondAttribute="bottom" constant="12" id="R3N-9k-EXt"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="itemNameLabel" destination="LCT-kF-iBJ" id="SVm-9m-dgX"/>
-                                            <outlet property="itemPriceLabel" destination="E7n-Rb-i9l" id="Rwv-rX-Wf1"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="ReviewTableViewCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ReviewTableViewCell" rowHeight="94" id="KE3-IL-FPv" customClass="ReviewTableViewCell" customModule="DakeAndDevileCorps" customModuleProvider="target">
