@@ -5,6 +5,7 @@
 //  Created by Seungyun Kim on 2022/07/19.
 //
 
+import CoreLocation
 import UIKit
 
 class ResultTableViewCell: UITableViewCell {
@@ -23,10 +24,17 @@ class ResultTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
-    func setupCell(title: String, address: String, distance: String) {
+    func setupCell(title: String, address: String, latitude: Double, longitude: Double) {
         storeTitle.text = title
         storeAddress.text = address
-        distanceToStore.text = distance
+        
+        guard let currentLatitude = Double(UserDefaultStorage.currentLatitude),
+              let currentLongitude = Double(UserDefaultStorage.currentLongitude)
+        else { return }
+        let coordinator = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+        let currentCoordinator = CLLocationCoordinate2D(latitude: currentLatitude, longitude: currentLongitude)
+        let distance = currentCoordinator.distance(from: coordinator) / 1000
+        distanceToStore.text = String(format: "%.01fkm", distance)
     }
 
 }
