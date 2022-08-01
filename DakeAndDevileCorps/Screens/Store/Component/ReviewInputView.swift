@@ -32,7 +32,7 @@ final class ReviewInputView: UIView {
         label.font = .preferredFont(forTextStyle: .headline, compatibleWith: .init(legibilityWeight: .bold))
         return label
     }()
-    private let itemTextField: UITextField = {
+    let itemTextField: UITextField = {
         let textfield = UITextField()
         textfield.placeholder = "상품명을 입력해주세요"
         textfield.borderStyle = .none
@@ -45,11 +45,12 @@ final class ReviewInputView: UIView {
         textfield.clearButtonMode = .whileEditing
         return textfield
     }()
-    private let categoryView = CategoryView(entryPoint: .write)
-    private let reviewTextView = ReviewTextView()
+    let categoryView = CategoryView(entryPoint: .write)
+    let reviewTextView = ReviewTextView()
     let reviewAddPhotoView = ReviewAddPhotoView()
     
-    private var isSelectedCollection: Bool = false
+    var isSelectedCollection: Bool = false
+    var selectedCategory: String = ""
     
     // MARK: - init
     
@@ -105,7 +106,7 @@ final class ReviewInputView: UIView {
                                       leading: self.leadingAnchor,
                                       bottom: self.bottomAnchor,
                                       trailing: self.trailingAnchor,
-                                      padding: UIEdgeInsets(top: 22, left: 24, bottom: 0, right: 12))
+                                      padding: UIEdgeInsets(top: 22, left: 24, bottom: 0, right: 15))
     }
     
     private func configUI() {
@@ -125,6 +126,7 @@ final class ReviewInputView: UIView {
 extension ReviewInputView: CategoryCollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         isSelectedCollection = true
+        selectedCategory = categoryView.categoryList[indexPath.item]
         NotificationCenter.default.post(name: .activeReview, object: nil)
     }
 }

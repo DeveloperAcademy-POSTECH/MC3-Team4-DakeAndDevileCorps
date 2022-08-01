@@ -23,7 +23,7 @@ class ProductTableViewCell: UITableViewCell {
     func setData(productName: String) {
         self.productNameLabel.text = productName
         self.productNameLabel.font = UIFont.boldSystemFont(ofSize: 17)
-        if productName == "주방세제" {
+        if productName == "세탁세제" {
             seperateLineView.isHidden = true
         }
     }

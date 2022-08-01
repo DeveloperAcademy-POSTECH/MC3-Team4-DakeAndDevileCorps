@@ -11,13 +11,17 @@ class BaseViewController: UIViewController {
     
     var storeList: [Store] = []
     
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        parseStoreData()
+    }
+    
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        parseStoreData()
         render()
         configUI()
     }

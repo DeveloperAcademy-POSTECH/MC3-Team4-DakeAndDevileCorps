@@ -158,7 +158,7 @@ extension SearchViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if isResultShowing {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: ResultTableViewCell.className, for: indexPath) as? ResultTableViewCell else { return UITableViewCell() }
-            cell.setupCell(title: filteredStoreList[indexPath.row].name, address: filteredStoreList[indexPath.row].address, distance: "22.0km")
+            cell.setupCell(title: filteredStoreList[indexPath.row].name, address: filteredStoreList[indexPath.row].address, latitude: filteredStoreList[indexPath.row].latitude, longitude: filteredStoreList[indexPath.row].longitude)
             return cell
         } else {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: RecentSearchTableViewCell.className, for: indexPath) as? RecentSearchTableViewCell else { return UITableViewCell() }

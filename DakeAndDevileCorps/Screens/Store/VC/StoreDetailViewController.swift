@@ -25,12 +25,13 @@ class StoreDetailViewController: BaseViewController {
     @IBOutlet weak var closeStoreDetailButton: UIButton!
     private var productList: [ProductTableViewCellModel] = []
     private let categoryList: [String] = ["주방세제", "세탁세제", "섬유유연제", "기타세제", "헤어", "스킨", "바디", "식품", "생활", "문구", "애견", "기타"]
-    private var reviewList: [ReviewModel] = []
+    private var commentList: [Comment] = []
     private var selectHeader = StoreDetailSelectView()
     private var categoryHeader = CategoryView(entryPoint: .detail)
     private var itemInformationType: ItemInformationType = .productList
     private var store: Store?
-    var dataIndex: Int = 0
+    var dataIndex: Int = 4
+    var numberOfCategory: Int = 0
     weak var delegate: StoreDetailViewControllerDelegate?
     
     // MARK: - func
@@ -70,37 +71,16 @@ class StoreDetailViewController: BaseViewController {
     }
     
     private func initStoreInformationData() {
-        productList = [
-            .product(productName: "주방세제"),
-            .item(itemName: "인블리스 세탁세제", itemPrice: "1g = 4원"),
-            .item(itemName: "인블리스 세탁세제", itemPrice: "1g = 4원"),
-            .item(itemName: "인블리스 세탁세제", itemPrice: "1g = 4원"),
-            .item(itemName: "인블리스 세탁세제", itemPrice: "1g = 4원"),
-            .product(productName: "세탁세제"),
-            .item(itemName: "인블리스 세탁세제", itemPrice: "1g = 4원"),
-            .product(productName: "섬유유연제"),
-            .item(itemName: "인블리스 세탁세제", itemPrice: "1g = 4원"),
-            .product(productName: "기타세제"),
-            .item(itemName: "인블리스 세탁세제", itemPrice: "1g = 4원"),
-            .product(productName: "헤어"),
-            .item(itemName: "인블리스 세탁세제", itemPrice: "1g = 4원"),
-            .product(productName: "스킨"),
-            .item(itemName: "인블리스 세탁세제", itemPrice: "1g = 4원"),
-            .product(productName: "바디"),
-            .item(itemName: "인블리스 세탁세제", itemPrice: "1g = 4원"),
-            .product(productName: "생활"),
-            .item(itemName: "인블리스 세탁세제", itemPrice: "1g = 4원"),
-            .product(productName: "문구"),
-            .item(itemName: "인블리스 세탁세제", itemPrice: "1g = 4원"),
-            .product(productName: "애견"),
-            .item(itemName: "인블리스 세탁세제", itemPrice: "1g = 4원"),
-            .product(productName: "기타"),
-            .item(itemName: "인블리스 세탁세제", itemPrice: "1g = 4원")
-        ]
+        let itemList = store?.items ?? []
         
-        reviewList.append(contentsOf: [
-            
-        ])
+        itemList.forEach({ item in
+            if itemList.first(where: { $0.category == item.category }) == item {
+                numberOfCategory += 1
+                productList.append(.product(productName: item.category))
+            }
+            productList.append(.item(itemName: item.name))
+        })
+        commentList = store?.comments ?? []
     }
     
     private func scrollToSelectedCategory(indexPath: IndexPath) {
@@ -126,7 +106,7 @@ extension StoreDetailViewController: UITableViewDataSource {
         case (.itemInformation, .productList):
             return productList.count
         case (.itemInformation, .reviewList):
-            return reviewList.isEmpty ? 1 : reviewList.count
+            return commentList.isEmpty ? 1 : commentList.count
         }
     }
     
@@ -148,6 +128,7 @@ extension StoreDetailViewController: UITableViewDataSource {
             withIdentifier: StoreInformationTableViewCell.className, for: indexPath
         ) as? StoreInformationTableViewCell else { return UITableViewCell() }
         
+        storeInformationCell.selectionStyle = .none
         storeInformationCell.storeInformationDelegate = self
         storeInformationCell.setUpperData(todayOperationTime: store?.getTodayOfficeHour(),
                                           productCategories: store?.getStoreCategories())
@@ -169,23 +150,27 @@ extension StoreDetailViewController: UITableViewDataSource {
         
         switch self.productList[indexPath.row] {
         case let .product(productName):
+            productCell.selectionStyle = .none
             productCell.setData(productName: productName)
             return productCell
-        case let .item(itemName, itemPrice):
-            itemCell.setData(itemName: itemName, itemPrice: itemPrice)
+        case let .item(itemName):
+            itemCell.selectionStyle = .none
+            itemCell.setData(itemName: itemName)
             return itemCell
         }
     }
     
     private func returnReviewCell(_ tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
-        if reviewList.isEmpty {
+        if commentList.isEmpty {
             guard let emptyReviewCell = tableView.dequeueReusableCell(withIdentifier: EmptyReviewTableViewCell.className) as? EmptyReviewTableViewCell else { return UITableViewCell() }
             emptyReviewCell.configureUI()
+            emptyReviewCell.selectionStyle = .none
             
             return emptyReviewCell
         } else {
             guard let reviewCell = tableView.dequeueReusableCell(withIdentifier: ReviewTableViewCell.className, for: indexPath) as? ReviewTableViewCell else { return UITableViewCell() }
-            reviewCell.configureUI(reviewModel: reviewList[indexPath.row])
+            reviewCell.selectionStyle = .none
+            reviewCell.configureUI(comment: commentList[indexPath.row])
             reviewCell.reviewDelegate = self
             
             return reviewCell
@@ -273,12 +258,21 @@ extension StoreDetailViewController: StoreDetailSelectViewDelegate {
     }
     
     func didTappedWriteReviewButton() {
-        guard let viewController = storyboard?.instantiateViewController(withIdentifier: "WriteReviewNavigationController") as? UINavigationController else { return }
+        guard let viewController = storyboard?.instantiateViewController(withIdentifier: "WriteReviewNavigationController") as? UINavigationController,
+              let presentViewController = viewController.viewControllers.first as? WriteReviewViewController
+        else { return }
+        
+        presentViewController.sendComment = { [weak self] comment in
+            self?.commentList.insert(comment, at: 0)
+            self?.storeDetailTableView.reloadData()
+            self?.updateListCountOfButton(self?.selectHeader ?? StoreDetailSelectView())
+        }
+        
         present(viewController, animated: true, completion: nil)
     }
     
     func updateListCountOfButton(_ storeDetailSelectView: StoreDetailSelectView) {
-        storeDetailSelectView.numberOfReviews = reviewList.count
-        storeDetailSelectView.numberOfProducts = productList.count - categoryList.count
+        storeDetailSelectView.numberOfReviews = commentList.count
+        storeDetailSelectView.numberOfProducts = productList.count - numberOfCategory
     }
 }
