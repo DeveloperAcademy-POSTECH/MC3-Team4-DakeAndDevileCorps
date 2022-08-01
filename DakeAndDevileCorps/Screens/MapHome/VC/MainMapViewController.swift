@@ -8,7 +8,7 @@
 import MapKit
 import UIKit
 
-class MainMapViewController: UIViewController {
+class MainMapViewController: BaseViewController {
     
     // MARK: - subViews
     private let searchBarView: SearchBarView = {
@@ -57,10 +57,20 @@ class MainMapViewController: UIViewController {
     }()
     
     // MARK: - properties
-    var shops: [StoreAnnotation] = []
+    lazy var shops: [StoreAnnotation] = {
+        var category = StoreAnnotation.Category.zeroWasteShop
+        return storeList.map { storeInfo in
+            category = (category == .zeroWasteShop) ? .refillStation : .zeroWasteShop
+            let annotation = StoreAnnotation(coordinate: CLLocationCoordinate2D(latitude: storeInfo.latitude,
+                                                                      longitude: storeInfo.longitude),
+                                   sellingProductsCategory: [], category: category, store: storeInfo)
+            annotation.title = storeInfo.name
+            return annotation
+        }
+    }()
     
     private var initialOffset: CGPoint = .zero
-    private var detailVC: StoreDetailViewController?
+    private var storeDetailViewController: StoreDetailViewController?
     
     var locationManager: CLLocationManager = CLLocationManager()
     var currentLocation: CLLocation?
@@ -122,6 +132,7 @@ class MainMapViewController: UIViewController {
         view.addSubview(currentLocationButton)
         let currentButtonBottomConstraint = currentLocationButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -38)
         currentButtonBottomConstraint.priority = .defaultLow
+        
         NSLayoutConstraint.activate([
             currentLocationButton.widthAnchor.constraint(equalToConstant: 42),
             currentLocationButton.heightAnchor.constraint(equalTo: currentLocationButton.widthAnchor),
@@ -129,6 +140,7 @@ class MainMapViewController: UIViewController {
             currentLocationButton.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -20),
             currentButtonBottomConstraint,
         ])
+        
     }
     
     private func drawAnnotationViews() {
@@ -153,6 +165,10 @@ class MainMapViewController: UIViewController {
             case .tip:
                 if storeDetailModalView.frame.origin.y > self.view.frame.height - 75 {
                     storeDetailModalView.removeFromSuperview()
+                    UIView.animate(withDuration: 0.2, animations: { [weak self] in
+                        self?.currentLocationButton.transform = .identity
+                    })
+
                 }
                 preventTouchView.isHidden = false
                 
@@ -162,7 +178,7 @@ class MainMapViewController: UIViewController {
                                                     width: storeDetailModalView.mode.frame.width,
                                                     height: fullFrame.height)
                 
-                detailVC?.storeDetailTableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
+                storeDetailViewController?.storeDetailTableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
             case .full:
                 preventTouchView.isHidden = true
                 let fullFrame = CustomModalView.ModalMode.full(screenViewFrame: self.view.frame).frame
@@ -212,6 +228,10 @@ extension MainMapViewController: CLLocationManagerDelegate {
 // MARK: - MapViewDelegate
 extension MainMapViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        if let _ = annotation as? MKUserLocation {
+            return MKUserLocationView()
+        }
+        
         guard let marker = mapView.dequeueReusableAnnotationView(withIdentifier: AnnotationView.className) as? AnnotationView else {
             return AnnotationView()
         }
@@ -221,24 +241,46 @@ extension MainMapViewController: MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         self.view.addSubview(storeDetailModalView)
+        UIView.animate(withDuration: 0.03, animations: { [weak self] in
+            self?.currentLocationButton.transform = CGAffineTransform(translationX: 0, y: -130)
+        })
         
-        detailVC = UIStoryboard(name: "StoreDetail", bundle: nil).instantiateViewController(withIdentifier: StoreDetailViewController.className) as? StoreDetailViewController
-        detailVC?.delegate = self
-        guard let detailVC = detailVC else { return }
-        storeDetailModalView.addSubview(detailVC.view)
-        detailVC.view.layer.cornerRadius = 20
-        detailVC.view.frame = CGRect(x: 0, y: 0, width: storeDetailModalView.frame.width, height: self.view.frame.height)
-        detailVC.view.addSubview(preventTouchView)
+        storeDetailViewController = UIStoryboard(name: "StoreDetail", bundle: nil).instantiateViewController(withIdentifier: StoreDetailViewController.className) as? StoreDetailViewController
+        storeDetailViewController?.delegate = self
+        
+        guard let annotation = view.annotation as? StoreAnnotation else { return }
+        
+        var index = 0
+        
+        for store in storeList {
+            if store.longitude == annotation.store.longitude
+                && store.latitude == annotation.store.latitude
+                && store.name == annotation.store.name {
+                break
+            } else {
+                index += 1
+            }
+        }
+        
+        storeDetailViewController?.dataIndex = index
+        guard let storeDetailViewController = storeDetailViewController else { return }
+        storeDetailModalView.addSubview(storeDetailViewController.view)
+        storeDetailViewController.view.layer.cornerRadius = 20
+        storeDetailViewController.view.frame = CGRect(x: 0, y: 0, width: storeDetailModalView.frame.width, height: self.view.frame.height)
+        storeDetailViewController.view.addSubview(preventTouchView)
         NSLayoutConstraint.activate([
-            preventTouchView.topAnchor.constraint(equalTo: detailVC.storeDetailTableView.topAnchor),
-            preventTouchView.bottomAnchor.constraint(equalTo: detailVC.storeDetailTableView.bottomAnchor),
-            preventTouchView.leadingAnchor.constraint(equalTo: detailVC.storeDetailTableView.leadingAnchor),
-            preventTouchView.trailingAnchor.constraint(equalTo: detailVC.storeDetailTableView.trailingAnchor)
+            preventTouchView.topAnchor.constraint(equalTo: storeDetailViewController.storeDetailTableView.topAnchor),
+            preventTouchView.bottomAnchor.constraint(equalTo: storeDetailViewController.storeDetailTableView.bottomAnchor),
+            preventTouchView.leadingAnchor.constraint(equalTo: storeDetailViewController.storeDetailTableView.leadingAnchor),
+            preventTouchView.trailingAnchor.constraint(equalTo: storeDetailViewController.storeDetailTableView.trailingAnchor),
         ])
     }
     
     func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
         self.storeDetailModalView.removeFromSuperview()
+        UIView.animate(withDuration: 0.2, animations: { [weak self] in
+            self?.currentLocationButton.transform = .identity
+        })
         storeDetailModalView.subviews.forEach { subview in
             subview.removeFromSuperview()
         }
@@ -264,10 +306,15 @@ extension MainMapViewController: CategoryCollectionViewDelegate {
         let categoryName = categoryView.categoryList[indexPath.row]
 
         shops.forEach { shop in
-            if shop.sellingProductsCategory.contains(categoryName) {
+            var itemCategories: Set<String> = []
+            shop.store.items.forEach { item in
+                itemCategories.insert(item.category)
+            }
+            if itemCategories.contains(categoryName) {
                 mapView.addAnnotation(shop)
             }
         }
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
@@ -281,10 +328,14 @@ extension MainMapViewController: CategoryCollectionViewDelegate {
 extension MainMapViewController: StoreDetailViewControllerDelegate {
     func setupButtonAction(closeButton: UIButton) {
         self.storeDetailModalView.subviews.last?.removeFromSuperview()
-        self.detailVC = nil
+        self.storeDetailViewController = nil
         self.storeDetailModalView.mode = .tip(screenViewFrame: self.view.frame)
         self.storeDetailModalView.frame = self.storeDetailModalView.mode.frame
         self.storeDetailModalView.removeFromSuperview()
+        UIView.animate(withDuration: 0.2, animations: { [weak self] in
+            self?.currentLocationButton.transform = .identity
+        })
+
     }
     
     func setupViewWillDisappear(closeButton: UIButton) {
