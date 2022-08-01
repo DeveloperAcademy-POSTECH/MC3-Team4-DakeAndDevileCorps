@@ -19,6 +19,7 @@ class ReviewTableViewCell: UITableViewCell {
     
     @IBOutlet weak var reviewStackView: UIStackView!
     @IBOutlet weak var reviewSubStackView: UIStackView!
+    @IBOutlet weak var reviewStackTrailingConstraint: NSLayoutConstraint!
     
     private var comment: Comment?
     weak var reviewDelegate: ReviewTableViewCellDelegate?
@@ -86,20 +87,25 @@ class ReviewTableViewCell: UITableViewCell {
         reviewContentLabel.font = UIFont.systemFont(ofSize: 15)
         reviewContentLabel.numberOfLines = 0
         reviewContentLabel.lineBreakMode = .byWordWrapping
+        reviewContentLabel.addLabelSpacing(kernValue: 0, lineSpacing: 4)
         
         categoryLabel.text = comment.category
         nicknameLabel.text = comment.nickname
-        reviewDateLabel.text = comment.date
-        
+        reviewDateLabel.text = returnAdjustedDate(date: comment.date)
         reviewImageView.image = UIImage(systemName: comment.photo.first ?? "")
         reviewImageView.layer.cornerRadius = 6
         
         if comment.photo.isEmpty {
             numberOfReviewImageLabel.isHidden = true
+            reviewStackTrailingConstraint.constant = -72
         } else {
             numberOfReviewImageLabel.text = String(comment.photo.count)
         }
         reviewImageButton.setBackgroundImage(UIImage(systemName: comment.photo.first ?? ""), for: .normal)
+    }
+    
+    private func returnAdjustedDate(date: String) -> String {
+        return date.replacingOccurrences(of: "-", with: ".")
     }
     
     private func setupButtonAction() {
