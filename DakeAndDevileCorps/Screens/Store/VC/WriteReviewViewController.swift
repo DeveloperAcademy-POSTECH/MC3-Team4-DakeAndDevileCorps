@@ -19,8 +19,6 @@ final class WriteReviewViewController: BaseViewController {
     private let authorizationOfCameraAlert = UIAlertController(title: "알림", message: "Zemap의 카메라  접근이 허용되어 있지 않습니다.", preferredStyle: .alert)
     private let authorizationOfLibraryAlert = UIAlertController(title: "알림", message: "Zemap의 앨범  접근이 허용되어 있지 않습니다.", preferredStyle: .alert)
     
-    
-    
     private func initDelegate() {
         imagePickerViewController.delegate = self
         imagePickerViewController.allowsEditing = true
@@ -145,7 +143,7 @@ final class WriteReviewViewController: BaseViewController {
     }
     
     private func checkAlbumPermission() {
-        PHPhotoLibrary.requestAuthorization( { [weak self] status in
+        PHPhotoLibrary.requestAuthorization({ [weak self] status in
             guard let self = self else { return }
             switch status {
             case .authorized:
