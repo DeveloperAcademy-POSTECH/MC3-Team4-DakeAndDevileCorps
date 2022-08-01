@@ -32,8 +32,10 @@
 		7937A02628859BFF0016D1A8 /* StoreDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7937A02528859BFF0016D1A8 /* StoreDetail.storyboard */; };
 		7976990C28859E1100DB53F8 /* ImageLiteral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7976990B28859E1100DB53F8 /* ImageLiteral.swift */; };
 		797CAC542886CFCB0041C3F7 /* RecentSearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797CAC532886CFCB0041C3F7 /* RecentSearchTableViewCell.swift */; };
+		79AD0E0A2893B68F00A9A1E0 /* ReviewAddPhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79AD0E092893B68F00A9A1E0 /* ReviewAddPhotoView.swift */; };
 		79D7BA682886EBE100F65ECD /* StoreModelTestN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D7BA672886EBE100F65ECD /* StoreModelTestN.swift */; };
 		79E2DCA82886E3C800355E30 /* ResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E2DCA72886E3C800355E30 /* ResultTableViewCell.swift */; };
+		79ECCE02289474D10095E412 /* AddReviewPhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79ECCE01289474D10095E412 /* AddReviewPhotoCollectionViewCell.swift */; };
 		B5366B872893732900637CDC /* MockParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5366B862893732900637CDC /* MockParser.swift */; };
 		B542BE782893B57300F2BC82 /* Keywords.xcdatamodeld in Resources */ = {isa = PBXBuildFile; fileRef = 79379FEC288588EC0016D1A8 /* Keywords.xcdatamodeld */; };
 		B542BE7A2893C64F00F2BC82 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B542BE792893C64F00F2BC82 /* UIViewController+Extension.swift */; };
@@ -95,8 +97,10 @@
 		7937A02528859BFF0016D1A8 /* StoreDetail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = StoreDetail.storyboard; sourceTree = "<group>"; };
 		7976990B28859E1100DB53F8 /* ImageLiteral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLiteral.swift; sourceTree = "<group>"; };
 		797CAC532886CFCB0041C3F7 /* RecentSearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentSearchTableViewCell.swift; sourceTree = "<group>"; };
+		79AD0E092893B68F00A9A1E0 /* ReviewAddPhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewAddPhotoView.swift; sourceTree = "<group>"; };
 		79D7BA672886EBE100F65ECD /* StoreModelTestN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreModelTestN.swift; sourceTree = "<group>"; };
 		79E2DCA72886E3C800355E30 /* ResultTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultTableViewCell.swift; sourceTree = "<group>"; };
+		79ECCE01289474D10095E412 /* AddReviewPhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddReviewPhotoCollectionViewCell.swift; sourceTree = "<group>"; };
 		B5366B862893732900637CDC /* MockParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockParser.swift; sourceTree = "<group>"; };
 		B542BE792893C64F00F2BC82 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		B542BE7B289418EC00F2BC82 /* NSNotification+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSNotification+Extension.swift"; sourceTree = "<group>"; };
@@ -152,6 +156,7 @@
 				4AB368E42886D95E0075E03A /* StoreInformationTableViewCell.swift */,
 				4AB368E62886DBD20075E03A /* ItemTableViewCell.swift */,
 				4AB368EB2886F4870075E03A /* ProductTableViewCell.swift */,
+				79ECCE01289474D10095E412 /* AddReviewPhotoCollectionViewCell.swift */,
 				4AC55879289115EC006EF4DE /* ReviewTableViewCell.swift */,
 			);
 			path = Cell;
@@ -364,6 +369,7 @@
 			children = (
 				B5B05D5628912BD30013E65F /* ReviewInputView.swift */,
 				B5B05D5E289167A70013E65F /* ReviewTextView.swift */,
+				79AD0E092893B68F00A9A1E0 /* ReviewAddPhotoView.swift */,
 				4A3B35A1289387BC0081D5CF /* StoreDetailSelectView.swift */,
 				4A3B35A3289587490081D5CF /* PaddingLabel.swift */,
 			);
@@ -534,6 +540,7 @@
 				0B6589CA28917EFC00B9A091 /* ShopInfo.swift in Sources */,
 				0B6589CD2892A8E000B9A091 /* AnnotationView.swift in Sources */,
 				B5B05D4E288F73FD0013E65F /* UIView+Constraint.swift in Sources */,
+				79AD0E0A2893B68F00A9A1E0 /* ReviewAddPhotoView.swift in Sources */,
 				4A6535D828910D53006B6971 /* ProductTableViewCellModel.swift in Sources */,
 				7937A01E28859B490016D1A8 /* SearchViewController.swift in Sources */,
 				4AB368E72886DBD20075E03A /* ItemTableViewCell.swift in Sources */,
@@ -549,6 +556,7 @@
 				7976990C28859E1100DB53F8 /* ImageLiteral.swift in Sources */,
 				4AC5587A289115EC006EF4DE /* ReviewTableViewCell.swift in Sources */,
 				B5F1F24E288834A40021B026 /* CategoryView.swift in Sources */,
+				79ECCE02289474D10095E412 /* AddReviewPhotoCollectionViewCell.swift in Sources */,
 				B5F1F25328883EC40021B026 /* NSObject+Extension.swift in Sources */,
 				4A3B35A4289587490081D5CF /* PaddingLabel.swift in Sources */,
 				7937A02228859B990016D1A8 /* StoreDetailViewController.swift in Sources */,
@@ -716,7 +724,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 6XPJ277622;
+				DEVELOPMENT_TEAM = JP5BCXZWJP;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DakeAndDevileCorps/Global/Supports/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -747,7 +755,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 6XPJ277622;
+				DEVELOPMENT_TEAM = JP5BCXZWJP;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DakeAndDevileCorps/Global/Supports/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
