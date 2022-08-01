@@ -117,9 +117,3 @@ extension ReviewPhotoViewController: UICollectionViewDelegate {
         applyScrollIndexLabel(with: currentPage)
     }
 }
-
-extension ReviewPhotoViewController: StoreDetailViewControllerDelegate {
-    func presentReviewPhotoView(reviewImageNames: [String]) {
-        photoNames = reviewImageNames
-    }
-}

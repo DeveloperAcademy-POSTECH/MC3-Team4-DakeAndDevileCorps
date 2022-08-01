@@ -7,10 +7,6 @@
 
 import UIKit
 
-protocol StoreDetailViewControllerDelegate: AnyObject {
-    func presentReviewPhotoView(reviewImageNames: [String])
-}
-
 class StoreDetailViewController: UIViewController {
     
     @IBOutlet weak var storeName: UILabel!
@@ -23,8 +19,6 @@ class StoreDetailViewController: UIViewController {
     private var isShowingReview: Bool = false
     private var selectHeader = StoreDetailSelectView()
     private var categoryHeader = CategoryView(entryPoint: .detail)
-    
-    weak var delegate: StoreDetailViewControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
