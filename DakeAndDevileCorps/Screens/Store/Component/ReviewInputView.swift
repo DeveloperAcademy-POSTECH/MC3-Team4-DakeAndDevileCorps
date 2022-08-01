@@ -47,6 +47,7 @@ final class ReviewInputView: UIView {
     }()
     private let categoryView = CategoryView(entryPoint: .write)
     private let reviewTextView = ReviewTextView()
+    let reviewAddPhotoView = ReviewAddPhotoView()
     
     private var isSelectedCollection: Bool = false
     
@@ -99,6 +100,12 @@ final class ReviewInputView: UIView {
                                   leading: self.leadingAnchor,
                                   trailing: self.trailingAnchor,
                                   padding: UIEdgeInsets(top: 10, left: 24, bottom: 0, right: 24))
+        addSubview(reviewAddPhotoView)
+        reviewAddPhotoView.constraint(top: reviewTextView.bottomAnchor,
+                                      leading: self.leadingAnchor,
+                                      bottom: self.bottomAnchor,
+                                      trailing: self.trailingAnchor,
+                                      padding: UIEdgeInsets(top: 22, left: 24, bottom: 0, right: 12))
     }
     
     private func configUI() {
