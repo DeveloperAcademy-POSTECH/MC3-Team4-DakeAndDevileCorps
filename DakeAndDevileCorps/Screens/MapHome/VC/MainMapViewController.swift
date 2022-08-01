@@ -121,7 +121,6 @@ class MainMapViewController: BaseViewController {
             searchBarView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -16)
         ])
         
-    
         view.addSubview(categoryView)
         NSLayoutConstraint.activate([
             categoryView.topAnchor.constraint(equalTo: searchBarView.bottomAnchor),
@@ -143,7 +142,7 @@ class MainMapViewController: BaseViewController {
         ])
         
     }
-        
+    
     private func drawAnnotationViews() {
         mapView.addAnnotations(shops)
     }

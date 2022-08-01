@@ -136,9 +136,8 @@ class ResultMapViewController: BaseViewController {
     func updateMapForCoordinate(coordinate: CLLocationCoordinate2D) {
         let camera = MKMapCamera(lookingAtCenter: coordinate, fromDistance: 2000, pitch: 0, heading: 0)
         mapView.setCamera(camera, animated: false)
-        var center = coordinate;
-        mapView.setCenter(center, animated: true);
-        print("Moved!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+        var center = coordinate
+        mapView.setCenter(center, animated: true)
     }
 
     @objc
@@ -161,7 +160,6 @@ class ResultMapViewController: BaseViewController {
                     storeDetailModalView.removeFromSuperview()
                 }
                 preventTouchView.isHidden = false
-                
                 
                 let fullFrame = CustomModalView.ModalMode.full(screenViewFrame: self.view.frame).frame
                 storeDetailModalView.frame = CGRect(x: 0,
@@ -229,7 +227,7 @@ extension ResultMapViewController: MKMapViewDelegate {
             preventTouchView.topAnchor.constraint(equalTo: detailVC.storeDetailTableView.topAnchor),
             preventTouchView.bottomAnchor.constraint(equalTo: detailVC.storeDetailTableView.bottomAnchor),
             preventTouchView.leadingAnchor.constraint(equalTo: detailVC.storeDetailTableView.leadingAnchor),
-            preventTouchView.trailingAnchor.constraint(equalTo: detailVC.storeDetailTableView.trailingAnchor),
+            preventTouchView.trailingAnchor.constraint(equalTo: detailVC.storeDetailTableView.trailingAnchor)
         ])
     }
     
