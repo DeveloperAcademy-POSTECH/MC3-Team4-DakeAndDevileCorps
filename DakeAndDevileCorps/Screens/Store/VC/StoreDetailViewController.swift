@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import SwiftUI
 
 protocol StoreDetailViewControllerDelegate: AnyObject {
     func setupButtonAction(closeButton: UIButton)
