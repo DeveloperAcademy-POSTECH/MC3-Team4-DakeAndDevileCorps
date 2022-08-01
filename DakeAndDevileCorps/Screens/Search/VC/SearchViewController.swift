@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import MapKit
 
 class SearchViewController: BaseViewController {
     
@@ -16,15 +17,15 @@ class SearchViewController: BaseViewController {
     @IBOutlet weak var nothingView: UIStackView!
     @IBOutlet weak var nothingMessage: UILabel!
     
-    private let searchBarView: SearchBarView = {
+    let searchBarView: SearchBarView = {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.entryPoint = .search
         return $0
     }(SearchBarView())
     
     private var filteredStoreList: [Store] = []
-    private var isResultShowing: Bool = false
     private let keywordCoreData = KeywordManager.shared
+    var isResultShowing: Bool = false
     
     private enum SearchType {
         case recentSearch
@@ -181,6 +182,21 @@ extension SearchViewController: UITableViewDelegate {
             let index = recentItemList.count - indexPath.row - 1
             searchBarView.text = recentItemList[index].term
             didReturnKeyInput()
+        } else {
+            guard let viewController = UIStoryboard(name: "MapHome", bundle: nil).instantiateViewController(withIdentifier: "ResultMapViewController") as? ResultMapViewController else { return }
+            viewController.searchBarView.text = searchBarView.text
+            let index = indexPath.row
+            let storeAnnotation = StoreAnnotation(coordinate: CLLocationCoordinate2D(
+                latitude: filteredStoreList[index].latitude,
+                longitude: filteredStoreList[index].longitude),
+                                                        sellingProductsCategory: [filteredStoreList[index].getStoreCategories()], category: .zeroWasteShop, store: filteredStoreList[index])
+            viewController.shops.append(storeAnnotation)
+            dump(viewController.shops)
+            viewController.modalPresentationStyle = .fullScreen
+            present(viewController, animated: false) {
+                viewController.mapView(viewController.mapView, didSelect: MKAnnotationView(annotation: storeAnnotation, reuseIdentifier: AnnotationView.className))
+                dump(viewController.shops)
+            }
         }
     }
 }
@@ -201,5 +217,12 @@ extension SearchViewController: SearchBarDelegate {
         setTableResult(searchtype: searchType)
         saveRecentKeyword()
         searchTableView.reloadData()
+    }
+    
+    @objc func touchUpInsideLeftButton() {
+        let presentingVC = presentingViewController as? MainMapViewController
+        presentingVC?.searchBarView.entryPoint = .map
+        presentingVC?.searchBarView.text = ""
+        dismiss(animated: false)
     }
 }

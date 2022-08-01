@@ -11,14 +11,14 @@ import UIKit
 class MainMapViewController: BaseViewController {
     
     // MARK: - subViews
-    private let searchBarView: SearchBarView = {
+    let searchBarView: SearchBarView = {
         let searchBarView = SearchBarView()
         searchBarView.translatesAutoresizingMaskIntoConstraints = false
         searchBarView.entryPoint = .map
         return searchBarView
     }()
     
-    private let categoryView: CategoryView = {
+    let categoryView: CategoryView = {
         let categoryView = CategoryView(entryPoint: .map)
         categoryView.translatesAutoresizingMaskIntoConstraints = false
         return categoryView
@@ -298,8 +298,16 @@ extension MainMapViewController: SearchBarDelegate {
         
         let nextViewController = UIStoryboard(name: "Search", bundle: nil).instantiateViewController(withIdentifier: SearchViewController.className)
         nextViewController.modalPresentationStyle = .fullScreen
-        nextViewController.modalTransitionStyle = .crossDissolve
-        present(nextViewController, animated: true)
+        present(nextViewController, animated: false)
+    }
+    
+    @objc func touchUpInsideLeftButton() {
+        guard let nextViewController = UIStoryboard(name: "Search", bundle: nil).instantiateViewController(withIdentifier: SearchViewController.className) as? SearchViewController else { return }
+        nextViewController.isResultShowing = true
+        nextViewController.searchBarView.text = searchBarView.text
+        nextViewController.didReturnKeyInput()
+        nextViewController.modalPresentationStyle = .fullScreen
+        present(nextViewController, animated: false)
     }
 }
 

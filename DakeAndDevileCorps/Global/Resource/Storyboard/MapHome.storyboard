@@ -38,6 +38,36 @@
             </objects>
             <point key="canvasLocation" x="96" y="92"/>
         </scene>
+        <!--ResultMapViewController-->
+        <scene sceneID="sMC-fv-tLl">
+            <objects>
+                <viewController storyboardIdentifier="ResultMapViewController" title="ResultMapViewController" id="KML-dQ-vwp" customClass="ResultMapViewController" customModule="DakeAndDevileCorps" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" restorationIdentifier="ResultMapViewController" id="hok-TG-xWS">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Seq-S4-3Fg">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                            </mapView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="8tT-Ri-Z4a"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="Seq-S4-3Fg" secondAttribute="trailing" id="8f4-hf-81u"/>
+                            <constraint firstAttribute="bottom" secondItem="Seq-S4-3Fg" secondAttribute="bottom" id="W41-Tb-zE8"/>
+                            <constraint firstItem="Seq-S4-3Fg" firstAttribute="leading" secondItem="8tT-Ri-Z4a" secondAttribute="leading" id="X8r-zM-PbF"/>
+                            <constraint firstItem="Seq-S4-3Fg" firstAttribute="top" secondItem="hok-TG-xWS" secondAttribute="top" id="zTS-30-ltZ"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="2sO-Sx-ct5"/>
+                    <connections>
+                        <outlet property="mapView" destination="Seq-S4-3Fg" id="7J0-lq-XKl"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hCF-o5-0Ze" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3276.811594202899" y="91.741071428571431"/>
+        </scene>
     </scenes>
     <resources>
         <systemColor name="systemBackgroundColor">
