@@ -18,6 +18,13 @@ class MainMapViewController: UIViewController {
         return searchBarView
     }()
     
+    var searchBarBackgroundView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .white
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
     let categoryView: CategoryView = {
         let categoryView = CategoryView(entryPoint: .map)
         categoryView.translatesAutoresizingMaskIntoConstraints = false
@@ -79,6 +86,16 @@ class MainMapViewController: UIViewController {
 
     private func configureLayout() {
         let safeArea = view.safeAreaLayoutGuide
+        
+        view.addSubview(searchBarBackgroundView)
+        NSLayoutConstraint.activate([
+            searchBarBackgroundView.topAnchor.constraint(equalTo: view.topAnchor),
+            searchBarBackgroundView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
+            searchBarBackgroundView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor),
+            searchBarBackgroundView.heightAnchor.constraint(equalToConstant: 120)
+        ])
+        
+        searchBarBackgroundView.isHidden = true
         
         view.addSubview(searchBarView)
         NSLayoutConstraint.activate([

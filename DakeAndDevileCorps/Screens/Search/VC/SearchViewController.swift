@@ -186,6 +186,7 @@ extension SearchViewController: UITableViewDelegate {
             presentingVC?.searchBarView.text = searchBarView.text
             presentingVC?.searchBarView.entryPoint = .search
             presentingVC?.categoryView.isHidden = true
+            presentingVC?.searchBarBackgroundView.isHidden = false
             dismiss(animated: false)
         }
     }
@@ -213,6 +214,8 @@ extension SearchViewController: SearchBarDelegate {
         let presentingVC = presentingViewController as? MainMapViewController
         presentingVC?.searchBarView.entryPoint = .map
         presentingVC?.categoryView.isHidden = false
+        presentingVC?.searchBarBackgroundView.isHidden = true
+        presentingVC?.searchBarView.text = ""
         dismiss(animated: false)
     }
 }
