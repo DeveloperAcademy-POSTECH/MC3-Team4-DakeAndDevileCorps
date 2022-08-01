@@ -73,7 +73,7 @@ final class WriteReviewViewController: BaseViewController {
     private let confirmButton: UIButton = {
         let button = UIButton()
         button.setTitle("완료", for: .normal)
-        button.setTitleColor(.black, for: .normal)
+        button.setTitleColor(.zeroMint50, for: .normal)
         button.setTitleColor(.tertiaryLabel, for: .disabled)
         button.titleLabel?.font = .preferredFont(forTextStyle: .headline)
         return button
@@ -86,9 +86,10 @@ final class WriteReviewViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        hidekeyboardWhenTappedAround()
         initDelegate()
         setPhotoAlert()
+        setupNotificationCenter()
+        hideKeyboardWhenTappedAround()
     }
     
     override func render() {
@@ -159,6 +160,16 @@ final class WriteReviewViewController: BaseViewController {
                 break
             }
         })
+
+    private func setupNotificationCenter() {
+        NotificationCenter.default.addObserver(self, selector: #selector(didChangeButtonState), name: .activeReview, object: nil)
+    }
+    
+    // MARK: - selector
+    
+    @objc
+    private func didChangeButtonState() {
+        confirmButton.isEnabled = reviewInputView.isEssentialButtonFilled()
     }
 }
 

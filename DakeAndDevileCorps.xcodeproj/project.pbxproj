@@ -10,10 +10,14 @@
 		0B6589CA28917EFC00B9A091 /* ShopInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6589C928917EFC00B9A091 /* ShopInfo.swift */; };
 		0B6589CD2892A8E000B9A091 /* AnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6589CC2892A8E000B9A091 /* AnnotationView.swift */; };
 		0B6BA51F28884A8500E30B37 /* SearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6BA51E28884A8500E30B37 /* SearchBarView.swift */; };
+		4A3B359D28911F210081D5CF /* ReviewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A3B359C28911F210081D5CF /* ReviewModel.swift */; };
+		4A3B35A2289387BC0081D5CF /* StoreDetailSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A3B35A1289387BC0081D5CF /* StoreDetailSelectView.swift */; };
+		4A3B35A4289587490081D5CF /* PaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A3B35A3289587490081D5CF /* PaddingLabel.swift */; };
 		4A6535D828910D53006B6971 /* ProductTableViewCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A6535D728910D53006B6971 /* ProductTableViewCellModel.swift */; };
 		4AB368E52886D95E0075E03A /* StoreInformationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB368E42886D95E0075E03A /* StoreInformationTableViewCell.swift */; };
 		4AB368E72886DBD20075E03A /* ItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB368E62886DBD20075E03A /* ItemTableViewCell.swift */; };
 		4AB368EC2886F4870075E03A /* ProductTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB368EB2886F4870075E03A /* ProductTableViewCell.swift */; };
+		4AC5587A289115EC006EF4DE /* ReviewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC55879289115EC006EF4DE /* ReviewTableViewCell.swift */; };
 		79379FE4288588EC0016D1A8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79379FE3288588EC0016D1A8 /* AppDelegate.swift */; };
 		79379FE6288588EC0016D1A8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79379FE5288588EC0016D1A8 /* SceneDelegate.swift */; };
 		79379FE8288588EC0016D1A8 /* MainMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79379FE7288588EC0016D1A8 /* MainMapViewController.swift */; };
@@ -36,6 +40,7 @@
 		B542BE782893B57300F2BC82 /* Keywords.xcdatamodeld in Resources */ = {isa = PBXBuildFile; fileRef = 79379FEC288588EC0016D1A8 /* Keywords.xcdatamodeld */; };
 		B542BE7A2893C64F00F2BC82 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B542BE792893C64F00F2BC82 /* UIViewController+Extension.swift */; };
 		B5A479C5289501B700062604 /* Store.json in Resources */ = {isa = PBXBuildFile; fileRef = B5A479C4289501B700062604 /* Store.json */; };
+		B542BE7C289418EC00F2BC82 /* NSNotification+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B542BE7B289418EC00F2BC82 /* NSNotification+Extension.swift */; };
 		B5B05D4E288F73FD0013E65F /* UIView+Constraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B05D4D288F73FD0013E65F /* UIView+Constraint.swift */; };
 		B5B05D50288F81510013E65F /* ReviewPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B05D4F288F81510013E65F /* ReviewPhotoViewController.swift */; };
 		B5B05D522890ABA10013E65F /* ReviewPhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B05D512890ABA10013E65F /* ReviewPhotoCollectionViewCell.swift */; };
@@ -67,10 +72,14 @@
 		0B6589C928917EFC00B9A091 /* ShopInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopInfo.swift; sourceTree = "<group>"; };
 		0B6589CC2892A8E000B9A091 /* AnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnotationView.swift; sourceTree = "<group>"; };
 		0B6BA51E28884A8500E30B37 /* SearchBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarView.swift; sourceTree = "<group>"; };
+		4A3B359C28911F210081D5CF /* ReviewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewModel.swift; sourceTree = "<group>"; };
+		4A3B35A1289387BC0081D5CF /* StoreDetailSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreDetailSelectView.swift; sourceTree = "<group>"; };
+		4A3B35A3289587490081D5CF /* PaddingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingLabel.swift; sourceTree = "<group>"; };
 		4A6535D728910D53006B6971 /* ProductTableViewCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductTableViewCellModel.swift; sourceTree = "<group>"; };
 		4AB368E42886D95E0075E03A /* StoreInformationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreInformationTableViewCell.swift; sourceTree = "<group>"; };
 		4AB368E62886DBD20075E03A /* ItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemTableViewCell.swift; sourceTree = "<group>"; };
 		4AB368EB2886F4870075E03A /* ProductTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductTableViewCell.swift; sourceTree = "<group>"; };
+		4AC55879289115EC006EF4DE /* ReviewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewTableViewCell.swift; sourceTree = "<group>"; };
 		79379FE0288588EC0016D1A8 /* DakeAndDevileCorps.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DakeAndDevileCorps.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		79379FE3288588EC0016D1A8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		79379FE5288588EC0016D1A8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -95,6 +104,7 @@
 		B5366B862893732900637CDC /* MockParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockParser.swift; sourceTree = "<group>"; };
 		B542BE792893C64F00F2BC82 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		B5A479C4289501B700062604 /* Store.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Store.json; sourceTree = "<group>"; };
+		B542BE7B289418EC00F2BC82 /* NSNotification+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSNotification+Extension.swift"; sourceTree = "<group>"; };
 		B5B05D4D288F73FD0013E65F /* UIView+Constraint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Constraint.swift"; sourceTree = "<group>"; };
 		B5B05D4F288F81510013E65F /* ReviewPhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewPhotoViewController.swift; sourceTree = "<group>"; };
 		B5B05D512890ABA10013E65F /* ReviewPhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewPhotoCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -147,6 +157,7 @@
 				4AB368E62886DBD20075E03A /* ItemTableViewCell.swift */,
 				4AB368EB2886F4870075E03A /* ProductTableViewCell.swift */,
 				79ECCE01289474D10095E412 /* AddReviewPhotoCollectionViewCell.swift */,
+				4AC55879289115EC006EF4DE /* ReviewTableViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -157,6 +168,7 @@
 				4A6535D728910D53006B6971 /* ProductTableViewCellModel.swift */,
 				0B6589C928917EFC00B9A091 /* ShopInfo.swift */,
 				79D7BA672886EBE100F65ECD /* StoreModelTestN.swift */,
+				4A3B359C28911F210081D5CF /* ReviewModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -236,6 +248,7 @@
 				B5F1F24A2888313F0021B026 /* UIView+Extension.swift */,
 				B5F1F25228883EC40021B026 /* NSObject+Extension.swift */,
 				B542BE792893C64F00F2BC82 /* UIViewController+Extension.swift */,
+				B542BE7B289418EC00F2BC82 /* NSNotification+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -357,6 +370,8 @@
 				B5B05D5628912BD30013E65F /* ReviewInputView.swift */,
 				B5B05D5E289167A70013E65F /* ReviewTextView.swift */,
 				79AD0E092893B68F00A9A1E0 /* ReviewAddPhotoView.swift */,
+				4A3B35A1289387BC0081D5CF /* StoreDetailSelectView.swift */,
+				4A3B35A3289587490081D5CF /* PaddingLabel.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -539,16 +554,21 @@
 				79D7BA682886EBE100F65ECD /* StoreModelTestN.swift in Sources */,
 				B5F1F25128883EA80021B026 /* CategoryCollectionViewCell.swift in Sources */,
 				7976990C28859E1100DB53F8 /* ImageLiteral.swift in Sources */,
+				4AC5587A289115EC006EF4DE /* ReviewTableViewCell.swift in Sources */,
 				B5F1F24E288834A40021B026 /* CategoryView.swift in Sources */,
 				79ECCE02289474D10095E412 /* AddReviewPhotoCollectionViewCell.swift in Sources */,
 				B5F1F25328883EC40021B026 /* NSObject+Extension.swift in Sources */,
+				4A3B35A4289587490081D5CF /* PaddingLabel.swift in Sources */,
 				7937A02228859B990016D1A8 /* StoreDetailViewController.swift in Sources */,
 				797CAC542886CFCB0041C3F7 /* RecentSearchTableViewCell.swift in Sources */,
 				4AB368E52886D95E0075E03A /* StoreInformationTableViewCell.swift in Sources */,
+				B542BE7C289418EC00F2BC82 /* NSNotification+Extension.swift in Sources */,
 				7937A01A28859A830016D1A8 /* BaseViewController.swift in Sources */,
 				B5B05D5728912BD30013E65F /* ReviewInputView.swift in Sources */,
+				4A3B35A2289387BC0081D5CF /* StoreDetailSelectView.swift in Sources */,
 				B5F1F24B2888313F0021B026 /* UIView+Extension.swift in Sources */,
 				7937A016288597A60016D1A8 /* UIColor+Extension.swift in Sources */,
+				4A3B359D28911F210081D5CF /* ReviewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -712,7 +732,6 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = MapHome;
-				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -746,7 +765,6 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = MapHome;
-				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
