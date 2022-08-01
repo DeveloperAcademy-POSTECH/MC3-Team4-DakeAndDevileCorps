@@ -138,7 +138,7 @@ class MainMapViewController: BaseViewController {
             currentLocationButton.heightAnchor.constraint(equalTo: currentLocationButton.widthAnchor),
             
             currentLocationButton.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -20),
-            currentButtonBottomConstraint,
+            currentButtonBottomConstraint
         ])
         
     }
@@ -274,7 +274,7 @@ extension MainMapViewController: MKMapViewDelegate {
             preventTouchView.topAnchor.constraint(equalTo: storeDetailViewController.storeDetailTableView.topAnchor),
             preventTouchView.bottomAnchor.constraint(equalTo: storeDetailViewController.storeDetailTableView.bottomAnchor),
             preventTouchView.leadingAnchor.constraint(equalTo: storeDetailViewController.storeDetailTableView.leadingAnchor),
-            preventTouchView.trailingAnchor.constraint(equalTo: storeDetailViewController.storeDetailTableView.trailingAnchor),
+            preventTouchView.trailingAnchor.constraint(equalTo: storeDetailViewController.storeDetailTableView.trailingAnchor)
         ])
         
         storeDetailViewController.closeStoreDetailButton.isHidden = true
