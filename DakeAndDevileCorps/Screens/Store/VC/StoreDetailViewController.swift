@@ -7,7 +7,11 @@
 
 import UIKit
 
-class StoreDetailViewController: UIViewController {
+protocol StoreDetailViewControllerDelegate: AnyObject {
+    func viewController(closeButton: UIButton)
+}
+
+final class StoreDetailViewController: UIViewController {
     
     private enum SectionType: Int, CaseIterable {
         case storeInformation = 0
@@ -16,7 +20,7 @@ class StoreDetailViewController: UIViewController {
     
     @IBOutlet weak var storeName: UILabel!
     @IBOutlet weak var storeDetailTableView: UITableView!
-    
+    @IBOutlet weak var closeStoreDetailButton: UIButton!
     private var productList: [ProductTableViewCellModel] = []
     private var operationList: [String] = []
     private let categoryList: [String] = ["주방세제", "세탁세제", "섬유유연제", "기타세제", "헤어", "스킨", "바디", "식품", "생활", "문구", "애견", "기타"]
@@ -24,12 +28,17 @@ class StoreDetailViewController: UIViewController {
     private var selectHeader = StoreDetailSelectView()
     private var categoryHeader = CategoryView(entryPoint: .detail)
     private var itemInformationType: ItemInformationType = .productList
+    weak var delegate: StoreDetailViewControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configStoreDetailTableView()
         initStoreInformationData()
         configHeader()
+    }
+    
+    @IBAction func closeStoreDetail(_ sender: Any) {
+        delegate?.viewController(closeButton: closeStoreDetailButton)
     }
     
     private func configStoreDetailTableView() {

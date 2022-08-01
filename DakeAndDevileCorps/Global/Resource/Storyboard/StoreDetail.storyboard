@@ -38,6 +38,9 @@
                                         <buttonConfiguration key="configuration" style="plain">
                                             <backgroundConfiguration key="background" image="xmark.circle.fill" catalog="system" imageContentMode="scaleAspectFit"/>
                                         </buttonConfiguration>
+                                        <connections>
+                                            <action selector="closeStoreDetail:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="QAO-Qf-E9t"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -447,6 +450,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="closeStoreDetailButton" destination="G9w-5R-WDJ" id="eaF-Fj-lmo"/>
                         <outlet property="storeDetailTableView" destination="ln9-co-2hu" id="9oE-dL-Zfw"/>
                         <outlet property="storeName" destination="uMR-b0-EF0" id="ecz-mF-nAj"/>
                     </connections>
