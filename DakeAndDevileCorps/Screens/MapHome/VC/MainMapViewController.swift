@@ -70,7 +70,7 @@ class MainMapViewController: BaseViewController {
     }()
     
     private var initialOffset: CGPoint = .zero
-    private var detailViewController: StoreDetailViewController?
+    private var storeDetailViewController: StoreDetailViewController?
     
     var locationManager: CLLocationManager = CLLocationManager()
     var currentLocation: CLLocation?
@@ -179,7 +179,7 @@ class MainMapViewController: BaseViewController {
                                                     width: storeDetailModalView.mode.frame.width,
                                                     height: fullFrame.height)
                 
-                detailViewController?.storeDetailTableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
+                storeDetailViewController?.storeDetailTableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
             case .full:
                 preventTouchView.isHidden = true
                 let fullFrame = CustomModalView.ModalMode.full(screenViewFrame: self.view.frame).frame
@@ -246,8 +246,8 @@ extension MainMapViewController: MKMapViewDelegate {
             self?.currentLocationButton.transform = CGAffineTransform(translationX: 0, y: -130)
         })
         
-        detailViewController = UIStoryboard(name: "StoreDetail", bundle: nil).instantiateViewController(withIdentifier: StoreDetailViewController.className) as? StoreDetailViewController
-        detailViewController?.delegate = self
+        storeDetailViewController = UIStoryboard(name: "StoreDetail", bundle: nil).instantiateViewController(withIdentifier: StoreDetailViewController.className) as? StoreDetailViewController
+        storeDetailViewController?.delegate = self
         
         guard let annotation = view.annotation as? StoreAnnotation else { return }
         
@@ -263,17 +263,17 @@ extension MainMapViewController: MKMapViewDelegate {
             }
         }
         
-        detailViewController?.dataIndex = index
-        guard let detailViewController = detailViewController else { return }
-        storeDetailModalView.addSubview(detailViewController.view)
-        detailViewController.view.layer.cornerRadius = 20
-        detailViewController.view.frame = CGRect(x: 0, y: 0, width: storeDetailModalView.frame.width, height: self.view.frame.height)
-        detailViewController.view.addSubview(preventTouchView)
+        storeDetailViewController?.dataIndex = index
+        guard let storeDetailViewController = storeDetailViewController else { return }
+        storeDetailModalView.addSubview(storeDetailViewController.view)
+        storeDetailViewController.view.layer.cornerRadius = 20
+        storeDetailViewController.view.frame = CGRect(x: 0, y: 0, width: storeDetailModalView.frame.width, height: self.view.frame.height)
+        storeDetailViewController.view.addSubview(preventTouchView)
         NSLayoutConstraint.activate([
-            preventTouchView.topAnchor.constraint(equalTo: detailViewController.storeDetailTableView.topAnchor),
-            preventTouchView.bottomAnchor.constraint(equalTo: detailViewController.storeDetailTableView.bottomAnchor),
-            preventTouchView.leadingAnchor.constraint(equalTo: detailViewController.storeDetailTableView.leadingAnchor),
-            preventTouchView.trailingAnchor.constraint(equalTo: detailViewController.storeDetailTableView.trailingAnchor),
+            preventTouchView.topAnchor.constraint(equalTo: storeDetailViewController.storeDetailTableView.topAnchor),
+            preventTouchView.bottomAnchor.constraint(equalTo: storeDetailViewController.storeDetailTableView.bottomAnchor),
+            preventTouchView.leadingAnchor.constraint(equalTo: storeDetailViewController.storeDetailTableView.leadingAnchor),
+            preventTouchView.trailingAnchor.constraint(equalTo: storeDetailViewController.storeDetailTableView.trailingAnchor),
         ])
     }
     
@@ -329,7 +329,7 @@ extension MainMapViewController: CategoryCollectionViewDelegate {
 extension MainMapViewController: StoreDetailViewControllerDelegate {
     func setupButtonAction(closeButton: UIButton) {
         self.storeDetailModalView.subviews.last?.removeFromSuperview()
-        self.detailViewController = nil
+        self.storeDetailViewController = nil
         self.storeDetailModalView.mode = .tip(screenViewFrame: self.view.frame)
         self.storeDetailModalView.frame = self.storeDetailModalView.mode.frame
         self.storeDetailModalView.removeFromSuperview()
