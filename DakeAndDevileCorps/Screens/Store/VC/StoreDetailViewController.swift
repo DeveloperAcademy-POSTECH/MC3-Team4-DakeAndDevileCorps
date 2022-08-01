@@ -229,7 +229,6 @@ extension StoreDetailViewController: UITableViewDelegate {
 extension StoreDetailViewController: StoreDetailTableViewCellDelegate {
     func reloadStoreDetailTableView() {
         storeDetailTableView.reloadData()
-        print("리로드 완료")
     }
 }
 
