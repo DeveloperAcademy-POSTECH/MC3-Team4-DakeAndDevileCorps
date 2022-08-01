@@ -179,6 +179,8 @@ class MainMapViewController: BaseViewController {
                                                     height: fullFrame.height)
                 
                 storeDetailViewController?.storeDetailTableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
+                
+                storeDetailViewController?.closeStoreDetailButton.isHidden = true
             case .full:
                 preventTouchView.isHidden = true
                 let fullFrame = CustomModalView.ModalMode.full(screenViewFrame: self.view.frame).frame
@@ -190,6 +192,7 @@ class MainMapViewController: BaseViewController {
                                                                    y: 0,
                                                                    width: storeDetailModalView.mode.frame.width,
                                                                    height: fullFrame.height)
+                storeDetailViewController?.closeStoreDetailButton.isHidden = false
             }
         
         default: break
@@ -247,7 +250,6 @@ extension MainMapViewController: MKMapViewDelegate {
         
         storeDetailViewController = UIStoryboard(name: "StoreDetail", bundle: nil).instantiateViewController(withIdentifier: StoreDetailViewController.className) as? StoreDetailViewController
         storeDetailViewController?.delegate = self
-        
         guard let annotation = view.annotation as? StoreAnnotation else { return }
         
         var index = 0
@@ -274,6 +276,8 @@ extension MainMapViewController: MKMapViewDelegate {
             preventTouchView.leadingAnchor.constraint(equalTo: storeDetailViewController.storeDetailTableView.leadingAnchor),
             preventTouchView.trailingAnchor.constraint(equalTo: storeDetailViewController.storeDetailTableView.trailingAnchor),
         ])
+        
+        storeDetailViewController.closeStoreDetailButton.isHidden = true
     }
     
     func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
@@ -327,15 +331,10 @@ extension MainMapViewController: CategoryCollectionViewDelegate {
 // MARK: - StoreDetailViewControllerDelegate
 extension MainMapViewController: StoreDetailViewControllerDelegate {
     func setupButtonAction(closeButton: UIButton) {
-        self.storeDetailModalView.subviews.last?.removeFromSuperview()
-        self.storeDetailViewController = nil
         self.storeDetailModalView.mode = .tip(screenViewFrame: self.view.frame)
         self.storeDetailModalView.frame = self.storeDetailModalView.mode.frame
-        self.storeDetailModalView.removeFromSuperview()
-        UIView.animate(withDuration: 0.2, animations: { [weak self] in
-            self?.currentLocationButton.transform = .identity
-        })
-
+        storeDetailViewController?.closeStoreDetailButton.isHidden = true
+        storeDetailViewController?.storeDetailTableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
     }
     
     func setupViewWillDisappear(closeButton: UIButton) {
