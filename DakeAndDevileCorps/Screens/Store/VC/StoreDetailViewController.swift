@@ -30,7 +30,8 @@ class StoreDetailViewController: BaseViewController {
     private var categoryHeader = CategoryView(entryPoint: .detail)
     private var itemInformationType: ItemInformationType = .productList
     private var store: Store?
-    var dataIndex: Int = 0
+    var dataIndex: Int = 4
+    var numberOfCategory: Int = 0
     weak var delegate: StoreDetailViewControllerDelegate?
     
     // MARK: - func
@@ -74,6 +75,7 @@ class StoreDetailViewController: BaseViewController {
         
         itemList.forEach({ item in
             if itemList.first(where: { $0.category == item.category }) == item {
+                numberOfCategory += 1
                 productList.append(.product(productName: item.category))
             }
             productList.append(.item(itemName: item.name))
@@ -126,6 +128,7 @@ extension StoreDetailViewController: UITableViewDataSource {
             withIdentifier: StoreInformationTableViewCell.className, for: indexPath
         ) as? StoreInformationTableViewCell else { return UITableViewCell() }
         
+        storeInformationCell.selectionStyle = .none
         storeInformationCell.storeInformationDelegate = self
         storeInformationCell.setUpperData(todayOperationTime: store?.getTodayOfficeHour(),
                                           productCategories: store?.getStoreCategories())
@@ -147,9 +150,11 @@ extension StoreDetailViewController: UITableViewDataSource {
         
         switch self.productList[indexPath.row] {
         case let .product(productName):
+            productCell.selectionStyle = .none
             productCell.setData(productName: productName)
             return productCell
         case let .item(itemName):
+            itemCell.selectionStyle = .none
             itemCell.setData(itemName: itemName)
             return itemCell
         }
@@ -159,10 +164,12 @@ extension StoreDetailViewController: UITableViewDataSource {
         if commentList.isEmpty {
             guard let emptyReviewCell = tableView.dequeueReusableCell(withIdentifier: EmptyReviewTableViewCell.className) as? EmptyReviewTableViewCell else { return UITableViewCell() }
             emptyReviewCell.configureUI()
+            emptyReviewCell.selectionStyle = .none
             
             return emptyReviewCell
         } else {
             guard let reviewCell = tableView.dequeueReusableCell(withIdentifier: ReviewTableViewCell.className, for: indexPath) as? ReviewTableViewCell else { return UITableViewCell() }
+            reviewCell.selectionStyle = .none
             reviewCell.configureUI(comment: commentList[indexPath.row])
             reviewCell.reviewDelegate = self
             
@@ -266,6 +273,6 @@ extension StoreDetailViewController: StoreDetailSelectViewDelegate {
     
     func updateListCountOfButton(_ storeDetailSelectView: StoreDetailSelectView) {
         storeDetailSelectView.numberOfReviews = commentList.count
-        storeDetailSelectView.numberOfProducts = productList.count - categoryList.count
+        storeDetailSelectView.numberOfProducts = productList.count - numberOfCategory
     }
 }
