@@ -75,8 +75,6 @@ final class CategoryCollectionViewCell: UICollectionViewCell {
     
     func setItemLabel(with itemText: String) {
         itemLabel.text = itemText
-        itemLabel.sizeToFit()
-        layoutIfNeeded()
     }
     
     func setEntryPointView(entryPoint: CategoryEntryPoint) {
