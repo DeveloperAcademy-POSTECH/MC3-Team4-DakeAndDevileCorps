@@ -33,12 +33,7 @@ class MainMapViewController: UIViewController {
     
     lazy var dismissResultButton: UIButton = {
         let button = UIButton(type: .custom, primaryAction: UIAction(handler: { _ in
-            self.isSearched = false
-            self.categoryView.isHidden = false
-            self.searchBarBackgroundView.isHidden = true
-            self.dismissResultButton.isHidden = true
-            self.searchBarView.text = ""
-            self.viewDidLoad()
+            self.touchUpToDismissResult()
         }))
         button.setImage(UIImage(systemName: "xmark"), for: .normal)
         button.frame.size = CGSize(width: 20, height: 20)
@@ -141,6 +136,15 @@ class MainMapViewController: UIViewController {
             categoryView.heightAnchor.constraint(equalToConstant: 60)
         ])
     }
+    
+    private func touchUpToDismissResult() {
+        isSearched = false
+        viewDidLoad()
+        categoryView.isHidden = false
+        searchBarBackgroundView.isHidden = true
+        dismissResultButton.isHidden = true
+        searchBarView.text = ""
+    } 
         
     private func drawAnnotationViews() {
         mapView.addAnnotations(shops)
