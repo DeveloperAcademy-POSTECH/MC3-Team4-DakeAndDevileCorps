@@ -14,7 +14,7 @@ class ResultMapViewController: BaseViewController {
     let searchBarView: SearchBarView = {
         let searchBarView = SearchBarView()
         searchBarView.translatesAutoresizingMaskIntoConstraints = false
-        searchBarView.entryPoint = .searched
+        searchBarView.entryPoint = .search
         return searchBarView
     }()
     
