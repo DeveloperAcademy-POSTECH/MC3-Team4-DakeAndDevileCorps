@@ -49,7 +49,7 @@ final class ReviewTextView: UIView {
                                     compatibleWith: .init(legibilityWeight: .bold))
         return label
     }()
-    private lazy var reviewTextView: UITextView = {
+    public private(set) lazy var reviewTextView: UITextView = {
         let textView = UITextView()
         textView.font = .preferredFont(forTextStyle: .subheadline)
         textView.delegate = self
@@ -131,6 +131,10 @@ final class ReviewTextView: UIView {
             self.setCounter(count: textView.text.count)
         }
     }
+    
+    func checkIsEmpty() -> Bool {
+        return reviewTextView.text.isEmpty || textMode == .beforeWriting
+    }
 }
 
 extension ReviewTextView: UITextViewDelegate {
@@ -149,5 +153,6 @@ extension ReviewTextView: UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView) {
         setCounter(count: textView.text?.count ?? 0)
         checkMaxLength(textView: textView, maxLength: maxCount)
+        NotificationCenter.default.post(name: .activeReview, object: nil)
     }
 }
