@@ -161,6 +161,7 @@ extension MainMapViewController: MKMapViewDelegate {
         self.view.addSubview(storeDetailModalView)
         
         detailVC = UIStoryboard(name: "StoreDetail", bundle: nil).instantiateViewController(withIdentifier: StoreDetailViewController.className) as? StoreDetailViewController
+        detailVC?.delegate = self
         guard let detailVC = detailVC else { return }
         storeDetailModalView.addSubview(detailVC.view)
         detailVC.view.layer.cornerRadius = 20
@@ -212,4 +213,20 @@ extension MainMapViewController: CategoryCollectionViewDelegate {
         drawAnnotationViews()
     }
     
+}
+
+// MARK: - StoreDetailViewControllerDelegate
+extension MainMapViewController: StoreDetailViewControllerDelegate {
+    func setupButtonAction(closeButton: UIButton) {
+        self.storeDetailModalView.subviews.last?.removeFromSuperview()
+        self.detailVC = nil
+        self.storeDetailModalView.mode = .tip(screenViewFrame: self.view.frame)
+        self.storeDetailModalView.frame = self.storeDetailModalView.mode.frame
+        self.storeDetailModalView.removeFromSuperview()
+    }
+    
+    func setupViewWillDisappear(closeButton: UIButton) {
+        
+    }
+
 }
