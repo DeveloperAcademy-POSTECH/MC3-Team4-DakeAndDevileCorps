@@ -8,7 +8,7 @@
 import UIKit
 import MapKit
 
-class ResultMapViewController: UIViewController {
+class ResultMapViewController: BaseViewController {
         
     // MARK: - subViews
     let searchBarView: SearchBarView = {
@@ -133,6 +133,14 @@ class ResultMapViewController: UIViewController {
         mapView.addAnnotations(shops)
     }
     
+    func updateMapForCoordinate(coordinate: CLLocationCoordinate2D) {
+        let camera = MKMapCamera(lookingAtCenter: coordinate, fromDistance: 2000, pitch: 0, heading: 0)
+        mapView.setCamera(camera, animated: false)
+        var center = coordinate;
+        mapView.setCenter(center, animated: true);
+        print("Moved!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+    }
+
     @objc
     func didPan(_ recognizer: UIPanGestureRecognizer) {
         let touchPoint = recognizer.location(in: view)
@@ -195,7 +203,24 @@ extension ResultMapViewController: MKMapViewDelegate {
         
         detailVC = UIStoryboard(name: "StoreDetail", bundle: nil).instantiateViewController(withIdentifier: StoreDetailViewController.className) as? StoreDetailViewController
         detailVC?.delegate = self
+        
+        guard let annotation = view.annotation as? StoreAnnotation else { return }
+        var index = 0
+        
+        for store in storeList {
+            if store.longitude == annotation.store.longitude
+                && store.latitude == annotation.store.latitude
+                && store.name == annotation.store.name {
+                break
+            } else {
+                index += 1
+            }
+        }
+        
+        detailVC?.dataIndex = index
+        
         guard let detailVC = detailVC else { return }
+        updateMapForCoordinate(coordinate: view.annotation?.coordinate ?? CLLocationCoordinate2D(latitude: 37.541, longitude: 126.986))
         storeDetailModalView.addSubview(detailVC.view)
         detailVC.view.layer.cornerRadius = 20
         detailVC.view.frame = CGRect(x: 0, y: 0, width: storeDetailModalView.frame.width, height: self.view.frame.height)

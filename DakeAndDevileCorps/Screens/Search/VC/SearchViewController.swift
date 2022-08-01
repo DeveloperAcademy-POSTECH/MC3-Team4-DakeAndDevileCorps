@@ -185,14 +185,17 @@ extension SearchViewController: UITableViewDelegate {
         } else {
             guard let viewController = UIStoryboard(name: "MapHome", bundle: nil).instantiateViewController(withIdentifier: "ResultMapViewController") as? ResultMapViewController else { return }
             viewController.searchBarView.text = searchBarView.text
+            let index = indexPath.row
             let storeAnnotation = StoreAnnotation(coordinate: CLLocationCoordinate2D(
-                latitude: filteredStoreList[indexPath.row].latitude,
-                longitude: filteredStoreList[indexPath.row].longitude),
-                                                        sellingProductsCategory: [filteredStoreList[indexPath.row].getStoreCategories()], category: .zeroWasteShop, store: filteredStoreList[indexPath.row])
+                latitude: filteredStoreList[index].latitude,
+                longitude: filteredStoreList[index].longitude),
+                                                        sellingProductsCategory: [filteredStoreList[index].getStoreCategories()], category: .zeroWasteShop, store: filteredStoreList[index])
             viewController.shops.append(storeAnnotation)
+            dump(viewController.shops)
             viewController.modalPresentationStyle = .fullScreen
             present(viewController, animated: false) {
                 viewController.mapView(viewController.mapView, didSelect: MKAnnotationView(annotation: storeAnnotation, reuseIdentifier: AnnotationView.className))
+                dump(viewController.shops)
             }
         }
     }
