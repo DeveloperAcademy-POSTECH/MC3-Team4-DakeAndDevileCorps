@@ -115,7 +115,6 @@ extension StoreDetailViewController: UITableViewDataSource {
         }
     }
     
-    // swiftlint:disable cyclomatic_complexity
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let sectionType = SectionType(rawValue: indexPath.section) else { return UITableViewCell() }
         
@@ -154,21 +153,24 @@ extension StoreDetailViewController: UITableViewDataSource {
             }
             
         case (.itemInformation, .reviewList):
-            if reviewList.isEmpty {
-                guard let emptyReviewCell = tableView.dequeueReusableCell(withIdentifier: EmptyReviewTableViewCell.className) as? EmptyReviewTableViewCell else { return UITableViewCell() }
-                emptyReviewCell.configureUI()
-                
-                return emptyReviewCell
-            } else {
-                guard let reviewCell = tableView.dequeueReusableCell(withIdentifier: ReviewTableViewCell.className, for: indexPath) as? ReviewTableViewCell else { return UITableViewCell() }
-                reviewCell.configureUI(reviewModel: reviewList[indexPath.row])
-                reviewCell.reviewDelegate = self
-                
-                return reviewCell
-            }
+            return returnReviewCell(tableView, indexPath: indexPath)
         }
     }
-    // swiftlint:enable cyclomatic_complexity
+    
+    func returnReviewCell(_ tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
+        if reviewList.isEmpty {
+            guard let emptyReviewCell = tableView.dequeueReusableCell(withIdentifier: EmptyReviewTableViewCell.className) as? EmptyReviewTableViewCell else { return UITableViewCell() }
+            emptyReviewCell.configureUI()
+            
+            return emptyReviewCell
+        } else {
+            guard let reviewCell = tableView.dequeueReusableCell(withIdentifier: ReviewTableViewCell.className, for: indexPath) as? ReviewTableViewCell else { return UITableViewCell() }
+            reviewCell.configureUI(reviewModel: reviewList[indexPath.row])
+            reviewCell.reviewDelegate = self
+            
+            return reviewCell
+        }
+    }
 }
 
 extension StoreDetailViewController: UITableViewDelegate {
