@@ -157,7 +157,7 @@ extension SearchViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if isResultShowing {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: ResultTableViewCell.className, for: indexPath) as? ResultTableViewCell else { return UITableViewCell() }
-            cell.setupCell(title: filteredStoreList[indexPath.row].name, address: filteredStoreList[indexPath.row].address, distance: "22")
+            cell.setupCell(title: filteredStoreList[indexPath.row].name, address: filteredStoreList[indexPath.row].address, distance: "22.0km")
             return cell
         } else {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: RecentSearchTableViewCell.className, for: indexPath) as? RecentSearchTableViewCell else { return UITableViewCell() }
@@ -197,8 +197,8 @@ extension SearchViewController: SearchBarDelegate {
         searchType = .result(titleString: searchBarView.text)
         isResultShowing = true
         view.endEditing(true)
-        setTableResult(searchtype: searchType)
         textFieldDidChangeSelection()
+        setTableResult(searchtype: searchType)
         saveRecentKeyword()
         searchTableView.reloadData()
     }

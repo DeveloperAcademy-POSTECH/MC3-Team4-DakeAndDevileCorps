@@ -40,7 +40,7 @@
                                 </subviews>
                             </stackView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="7OW-E5-zZL">
-                                <rect key="frame" x="0.0" y="160" width="414" height="702"/>
+                                <rect key="frame" x="0.0" y="160" width="414" height="736"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="ResultTableViewCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ResultTableViewCell" id="24S-V1-snj" customClass="ResultTableViewCell" customModule="DakeAndDevileCorps" customModuleProvider="target">
@@ -67,7 +67,7 @@
                                                     </subviews>
                                                 </stackView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n88-1W-7H1">
-                                                    <rect key="frame" x="170" y="42" width="220" height="18.5"/>
+                                                    <rect key="frame" x="90" y="42" width="300" height="18.5"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                     <color key="textColor" systemColor="tertiaryLabelColor"/>
                                                     <nil key="highlightedColor"/>
@@ -80,7 +80,7 @@
                                                 <constraint firstItem="n88-1W-7H1" firstAttribute="top" secondItem="qNg-eY-8WY" secondAttribute="top" constant="42" id="KfW-A1-fGf"/>
                                                 <constraint firstAttribute="bottom" secondItem="G0o-rf-dm4" secondAttribute="bottom" constant="16" id="ZdS-Uq-wJ0"/>
                                                 <constraint firstAttribute="bottom" secondItem="n88-1W-7H1" secondAttribute="bottom" constant="16" id="fPE-bz-zeq"/>
-                                                <constraint firstItem="n88-1W-7H1" firstAttribute="leading" secondItem="G0o-rf-dm4" secondAttribute="trailing" priority="750" constant="100" id="wG1-Qt-TIG"/>
+                                                <constraint firstItem="n88-1W-7H1" firstAttribute="leading" secondItem="G0o-rf-dm4" secondAttribute="trailing" priority="750" constant="20" id="wG1-Qt-TIG"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -163,7 +163,7 @@
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="7OW-E5-zZL" secondAttribute="trailing" id="eUp-po-QWE"/>
                             <constraint firstItem="awt-pR-krr" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="76" id="i1M-1r-PeZ"/>
                             <constraint firstItem="7OW-E5-zZL" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="jlt-j3-IH4"/>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="7OW-E5-zZL" secondAttribute="bottom" id="o93-R3-ckq"/>
+                            <constraint firstAttribute="bottom" secondItem="7OW-E5-zZL" secondAttribute="bottom" id="o93-R3-ckq"/>
                         </constraints>
                     </view>
                     <connections>
