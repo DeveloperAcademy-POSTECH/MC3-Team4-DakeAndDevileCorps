@@ -82,7 +82,7 @@ class StoreDetailViewController: UIViewController {
         operationList = ["월 정기 휴일", "화 10:00 ~ 18:00", "수 10:00 ~ 18:00", "목 10:00 ~ 18:00", "금 10:00 ~ 18:00", "토 10:00 ~ 18:00", "일 정기 휴일"]
         
         reviewList.append(contentsOf: [
-           
+            
         ])
     }
     
@@ -108,7 +108,7 @@ extension StoreDetailViewController: UITableViewDataSource {
             return productList.count
         case (.itemInformation, .reviewList):
             if reviewList.isEmpty {
-                 return 1
+                return 1
             } else {
                 return reviewList.count
             }
@@ -120,44 +120,50 @@ extension StoreDetailViewController: UITableViewDataSource {
         
         switch (sectionType, itemInformationType) {
         case (.storeInformation, _):
-            guard let storeInformationCell = tableView.dequeueReusableCell(
-                withIdentifier: StoreInformationTableViewCell.className, for: indexPath
-            ) as? StoreInformationTableViewCell else { return UITableViewCell() }
-            
-            storeInformationCell.storeInformationDelegate = self
-            storeInformationCell.setUpperData(isOperation: true,
-                                              todayOperationTime: "10:00 ~ 18:00",
-                                              productCategories: "화장품, 청소용품, 화장품, 식품")
-            storeInformationCell.setBottomData(address: "서울 마포구 월드컵로25길 47 3층",
-                                               phoneNumber: "010-2229-1027",
-                                               operationTime: "10:00 - 18:00")
-            storeInformationCell.setOperationTime(operationList: operationList)
-            
-            return storeInformationCell
-            
+            return returnStoreInformationCell(tableView, indexPath: indexPath)
         case (.itemInformation, .productList):
-            guard let productCell = tableView.dequeueReusableCell(
-                withIdentifier: ProductTableViewCell.className, for: indexPath
-            ) as? ProductTableViewCell,
-                  let itemCell = tableView.dequeueReusableCell(
-                    withIdentifier: ItemTableViewCell.className, for: indexPath
-                  ) as? ItemTableViewCell else { return UITableViewCell() }
-            
-            switch self.productList[indexPath.row] {
-            case let .product(productName):
-                productCell.setData(productName: productName)
-                return productCell
-            case let .item(itemName, itemPrice):
-                itemCell.setData(itemName: itemName, itemPrice: itemPrice)
-                return itemCell
-            }
-            
+            return returnProductCell(tableView, indexPath: indexPath)
         case (.itemInformation, .reviewList):
             return returnReviewCell(tableView, indexPath: indexPath)
         }
     }
     
-    func returnReviewCell(_ tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
+    private func returnStoreInformationCell(_ tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
+        guard let storeInformationCell = tableView.dequeueReusableCell(
+            withIdentifier: StoreInformationTableViewCell.className, for: indexPath
+        ) as? StoreInformationTableViewCell else { return UITableViewCell() }
+        
+        storeInformationCell.storeInformationDelegate = self
+        storeInformationCell.setUpperData(isOperation: true,
+                                          todayOperationTime: "10:00 ~ 18:00",
+                                          productCategories: "화장품, 청소용품, 화장품, 식품")
+        storeInformationCell.setBottomData(address: "서울 마포구 월드컵로25길 47 3층",
+                                           phoneNumber: "010-2229-1027",
+                                           operationTime: "10:00 - 18:00")
+        storeInformationCell.setOperationTime(operationList: operationList)
+        
+        return storeInformationCell
+    }
+    
+    private func returnProductCell(_ tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
+        guard let productCell = tableView.dequeueReusableCell(
+            withIdentifier: ProductTableViewCell.className, for: indexPath
+        ) as? ProductTableViewCell,
+              let itemCell = tableView.dequeueReusableCell(
+                withIdentifier: ItemTableViewCell.className, for: indexPath
+              ) as? ItemTableViewCell else { return UITableViewCell() }
+        
+        switch self.productList[indexPath.row] {
+        case let .product(productName):
+            productCell.setData(productName: productName)
+            return productCell
+        case let .item(itemName, itemPrice):
+            itemCell.setData(itemName: itemName, itemPrice: itemPrice)
+            return itemCell
+        }
+    }
+    
+    private func returnReviewCell(_ tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
         if reviewList.isEmpty {
             guard let emptyReviewCell = tableView.dequeueReusableCell(withIdentifier: EmptyReviewTableViewCell.className) as? EmptyReviewTableViewCell else { return UITableViewCell() }
             emptyReviewCell.configureUI()
@@ -183,7 +189,7 @@ extension StoreDetailViewController: UITableViewDelegate {
         guard let sectionType = SectionType(rawValue: section) else { return UIView() }
         
         let stackView: UIStackView = {
-           let stackView = UIStackView()
+            let stackView = UIStackView()
             stackView.axis = .vertical
             
             return stackView
@@ -194,7 +200,7 @@ extension StoreDetailViewController: UITableViewDelegate {
         switch (sectionType, itemInformationType) {
         case (.itemInformation, .productList):
             stackView.addArrangedSubview(categoryHeader)
-
+            
             NSLayoutConstraint.activate([
                 selectHeader.heightAnchor.constraint(equalToConstant: 60),
                 categoryHeader.heightAnchor.constraint(equalToConstant: 60)
@@ -236,7 +242,7 @@ extension StoreDetailViewController: CategoryCollectionViewDelegate {
 extension StoreDetailViewController: StoreDetailSelectViewDelegate {
     func didSelectedButton(_ storeDetailSelectView: StoreDetailSelectView, isReviewButton: Bool, itemInformationType: ItemInformationType) {
         self.itemInformationType = itemInformationType
-       
+        
         storeDetailSelectView.iteminformationType = itemInformationType
         storeDetailSelectView.applyShowingState()
         storeDetailSelectView.productButtonBottomBar.isHidden = itemInformationType.isHiddenProductButtonBottomBar
@@ -254,4 +260,3 @@ extension StoreDetailViewController: StoreDetailSelectViewDelegate {
         storeDetailSelectView.numberOfProducts = productList.count - categoryList.count
     }
 }
- 
