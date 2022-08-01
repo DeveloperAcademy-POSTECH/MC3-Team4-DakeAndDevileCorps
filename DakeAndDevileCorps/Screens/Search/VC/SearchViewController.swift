@@ -182,14 +182,10 @@ extension SearchViewController: UITableViewDelegate {
             searchBarView.text = recentItemList[index].term
             didReturnKeyInput()
         } else {
-            let presentingVC = presentingViewController as? MainMapViewController
-            presentingVC?.searchBarView.text = searchBarView.text
-            presentingVC?.isSearched = true
-            presentingVC?.viewDidLoad()
-            presentingVC?.categoryView.isHidden = true
-            presentingVC?.searchBarBackgroundView.isHidden = false
-            presentingVC?.dismissResultButton.isHidden = false
-            dismiss(animated: false)
+            guard let viewController = UIStoryboard(name: "MapHome", bundle: nil).instantiateViewController(withIdentifier: "ResultMapViewController") as? ResultMapViewController else { return }
+            viewController.searchBarView.text = searchBarView.text
+            viewController.modalPresentationStyle = .fullScreen
+            present(viewController, animated: false)
         }
     }
 }
@@ -215,10 +211,7 @@ extension SearchViewController: SearchBarDelegate {
     @objc func touchUpInsideLeftButton() {
         let presentingVC = presentingViewController as? MainMapViewController
         presentingVC?.searchBarView.entryPoint = .map
-        presentingVC?.categoryView.isHidden = false
-        presentingVC?.searchBarBackgroundView.isHidden = true
         presentingVC?.searchBarView.text = ""
-        presentingVC?.isSearched = false
         dismiss(animated: false)
     }
 }

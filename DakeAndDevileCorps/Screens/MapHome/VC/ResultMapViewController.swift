@@ -1,27 +1,46 @@
 //
-//  ViewController.swift
+//  ResultMapViewController.swift
 //  DakeAndDevileCorps
 //
-//  Created by Seungyun Kim on 2022/07/18.
+//  Created by Seungyun Kim on 2022/08/01.
 //
 
-import MapKit
 import UIKit
+import MapKit
 
-class MainMapViewController: UIViewController {
-    
+class ResultMapViewController: UIViewController {
+        
     // MARK: - subViews
     let searchBarView: SearchBarView = {
         let searchBarView = SearchBarView()
         searchBarView.translatesAutoresizingMaskIntoConstraints = false
-        searchBarView.entryPoint = .map
+        searchBarView.entryPoint = .searched
         return searchBarView
+    }()
+    
+    var searchBarBackgroundView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .white
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
     }()
     
     let categoryView: CategoryView = {
         let categoryView = CategoryView(entryPoint: .map)
         categoryView.translatesAutoresizingMaskIntoConstraints = false
         return categoryView
+    }()
+    
+    lazy var dismissResultButton: UIButton = {
+        let button = UIButton(type: .custom, primaryAction: UIAction(handler: { _ in
+            self.touchUpToDismissResult()
+        }))
+        button.setImage(UIImage(systemName: "xmark"), for: .normal)
+        button.frame.size = CGSize(width: 20, height: 20)
+        button.tintColor = .black
+        button.contentEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
     }()
     
     @IBOutlet weak var mapView: MKMapView!
@@ -58,9 +77,12 @@ class MainMapViewController: UIViewController {
         setMapView()
         setSearchBarView()
         setCategoryView()
-        configureLayout()
         
         drawAnnotationViews()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        configureLayout()
     }
     
     // MARK: - func
@@ -80,21 +102,31 @@ class MainMapViewController: UIViewController {
     private func configureLayout() {
         let safeArea = view.safeAreaLayoutGuide
         
+        view.addSubview(searchBarBackgroundView)
+        NSLayoutConstraint.activate([
+            searchBarBackgroundView.topAnchor.constraint(equalTo: view.topAnchor),
+            searchBarBackgroundView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
+            searchBarBackgroundView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor),
+            searchBarBackgroundView.heightAnchor.constraint(equalToConstant: 120)
+        ])
+        
         view.addSubview(searchBarView)
         NSLayoutConstraint.activate([
             searchBarView.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: 8),
             searchBarView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 16),
-            searchBarView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -16)
+            searchBarView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -60)
         ])
         
-    
-        view.addSubview(categoryView)
+        view.addSubview(dismissResultButton)
         NSLayoutConstraint.activate([
-            categoryView.topAnchor.constraint(equalTo: searchBarView.bottomAnchor),
-            categoryView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
-            categoryView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor),
-            categoryView.heightAnchor.constraint(equalToConstant: 60)
+            dismissResultButton.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: 12),
+            dismissResultButton.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -14)
         ])
+    }
+    
+    private func touchUpToDismissResult() {
+        searchBarView.text = ""
+        self.presentingViewController?.presentingViewController?.dismiss(animated: false)
     }
         
     private func drawAnnotationViews() {
@@ -149,7 +181,7 @@ class MainMapViewController: UIViewController {
 }
 
 // MARK: - MapViewDelegate
-extension MainMapViewController: MKMapViewDelegate {
+extension ResultMapViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         guard let marker = mapView.dequeueReusableAnnotationView(withIdentifier: AnnotationView.className) as? AnnotationView else {
             return AnnotationView()
@@ -185,7 +217,7 @@ extension MainMapViewController: MKMapViewDelegate {
 }
 
 // MARK: - SearchBarDelegate
-extension MainMapViewController: SearchBarDelegate {
+extension ResultMapViewController: SearchBarDelegate {
     @objc func didBeginEditing() {
         view.endEditing(true)
         
@@ -195,17 +227,12 @@ extension MainMapViewController: SearchBarDelegate {
     }
     
     @objc func touchUpInsideLeftButton() {
-        guard let nextViewController = UIStoryboard(name: "Search", bundle: nil).instantiateViewController(withIdentifier: SearchViewController.className) as? SearchViewController else { return }
-        nextViewController.isResultShowing = true
-        nextViewController.searchBarView.text = searchBarView.text
-        nextViewController.didReturnKeyInput()
-        nextViewController.modalPresentationStyle = .fullScreen
-        present(nextViewController, animated: false)
+        dismiss(animated: false)
     }
 }
 
 // MARK: - CategoryCollectionViewDelegate
-extension MainMapViewController: CategoryCollectionViewDelegate {
+extension ResultMapViewController: CategoryCollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         mapView.removeAnnotations(mapView.annotations)
         let categoryName = categoryView.categoryList[indexPath.row]
@@ -225,7 +252,7 @@ extension MainMapViewController: CategoryCollectionViewDelegate {
 }
 
 // MARK: - StoreDetailViewControllerDelegate
-extension MainMapViewController: StoreDetailViewControllerDelegate {
+extension ResultMapViewController: StoreDetailViewControllerDelegate {
     func setupButtonAction(closeButton: UIButton) {
         self.storeDetailModalView.subviews.last?.removeFromSuperview()
         self.detailVC = nil

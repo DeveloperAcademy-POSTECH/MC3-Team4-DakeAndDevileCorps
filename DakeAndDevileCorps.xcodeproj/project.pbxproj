@@ -31,6 +31,7 @@
 		7937A02228859B990016D1A8 /* StoreDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7937A02128859B990016D1A8 /* StoreDetailViewController.swift */; };
 		7937A02428859BF20016D1A8 /* Search.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7937A02328859BF20016D1A8 /* Search.storyboard */; };
 		7937A02628859BFF0016D1A8 /* StoreDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7937A02528859BFF0016D1A8 /* StoreDetail.storyboard */; };
+		794CD1122898039200492BC8 /* ResultMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794CD1112898039200492BC8 /* ResultMapViewController.swift */; };
 		7976990C28859E1100DB53F8 /* ImageLiteral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7976990B28859E1100DB53F8 /* ImageLiteral.swift */; };
 		797CAC542886CFCB0041C3F7 /* RecentSearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797CAC532886CFCB0041C3F7 /* RecentSearchTableViewCell.swift */; };
 		79AD0E0A2893B68F00A9A1E0 /* ReviewAddPhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79AD0E092893B68F00A9A1E0 /* ReviewAddPhotoView.swift */; };
@@ -103,6 +104,7 @@
 		7937A02128859B990016D1A8 /* StoreDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreDetailViewController.swift; sourceTree = "<group>"; };
 		7937A02328859BF20016D1A8 /* Search.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Search.storyboard; sourceTree = "<group>"; };
 		7937A02528859BFF0016D1A8 /* StoreDetail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = StoreDetail.storyboard; sourceTree = "<group>"; };
+		794CD1112898039200492BC8 /* ResultMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultMapViewController.swift; sourceTree = "<group>"; };
 		7976990B28859E1100DB53F8 /* ImageLiteral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLiteral.swift; sourceTree = "<group>"; };
 		797CAC532886CFCB0041C3F7 /* RecentSearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentSearchTableViewCell.swift; sourceTree = "<group>"; };
 		79AD0E092893B68F00A9A1E0 /* ReviewAddPhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewAddPhotoView.swift; sourceTree = "<group>"; };
@@ -325,6 +327,7 @@
 			isa = PBXGroup;
 			children = (
 				79379FE7288588EC0016D1A8 /* MainMapViewController.swift */,
+				794CD1112898039200492BC8 /* ResultMapViewController.swift */,
 			);
 			path = VC;
 			sourceTree = "<group>";
@@ -584,6 +587,7 @@
 				79ECCE02289474D10095E412 /* AddReviewPhotoCollectionViewCell.swift in Sources */,
 				B5F1F25328883EC40021B026 /* NSObject+Extension.swift in Sources */,
 				4A3B35A4289587490081D5CF /* PaddingLabel.swift in Sources */,
+				794CD1122898039200492BC8 /* ResultMapViewController.swift in Sources */,
 				7937A02228859B990016D1A8 /* StoreDetailViewController.swift in Sources */,
 				797CAC542886CFCB0041C3F7 /* RecentSearchTableViewCell.swift in Sources */,
 				4AB368E52886D95E0075E03A /* StoreInformationTableViewCell.swift in Sources */,
