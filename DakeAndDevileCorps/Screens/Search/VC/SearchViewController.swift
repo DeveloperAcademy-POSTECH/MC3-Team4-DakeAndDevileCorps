@@ -218,6 +218,7 @@ extension SearchViewController: SearchBarDelegate {
         presentingVC?.categoryView.isHidden = false
         presentingVC?.searchBarBackgroundView.isHidden = true
         presentingVC?.searchBarView.text = ""
+        presentingVC?.isSearched = false
         dismiss(animated: false)
     }
 }
