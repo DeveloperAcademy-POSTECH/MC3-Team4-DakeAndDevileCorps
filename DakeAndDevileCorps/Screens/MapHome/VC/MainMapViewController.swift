@@ -31,6 +31,18 @@ class MainMapViewController: UIViewController {
         return categoryView
     }()
     
+    let dismissResultButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(systemName: "xmark"), for: .normal)
+        button.frame.size = CGSize(width: 20, height: 20)
+        button.tintColor = .black
+        button.contentEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
+    var isSearched: Bool = false
+    
     @IBOutlet weak var mapView: MKMapView!
     
     lazy var storeDetailModalView: CustomModalView = {
@@ -101,8 +113,18 @@ class MainMapViewController: UIViewController {
         NSLayoutConstraint.activate([
             searchBarView.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: 8),
             searchBarView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 16),
-            searchBarView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -16)
+            searchBarView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: isSearched ? -60 : -16)
         ])
+        
+    
+        view.addSubview(dismissResultButton)
+        NSLayoutConstraint.activate([
+            dismissResultButton.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: 12),
+            dismissResultButton.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -14)
+        ])
+        
+        dismissResultButton.isHidden = true
+        
         
         view.addSubview(categoryView)
         NSLayoutConstraint.activate([

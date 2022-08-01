@@ -184,9 +184,11 @@ extension SearchViewController: UITableViewDelegate {
         } else {
             let presentingVC = presentingViewController as? MainMapViewController
             presentingVC?.searchBarView.text = searchBarView.text
-            presentingVC?.searchBarView.entryPoint = .search
+            presentingVC?.isSearched = true
+            presentingVC?.viewDidLoad()
             presentingVC?.categoryView.isHidden = true
             presentingVC?.searchBarBackgroundView.isHidden = false
+            presentingVC?.dismissResultButton.isHidden = false
             dismiss(animated: false)
         }
     }
