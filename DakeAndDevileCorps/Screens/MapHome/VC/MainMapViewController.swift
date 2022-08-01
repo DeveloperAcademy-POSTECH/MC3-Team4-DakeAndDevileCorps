@@ -199,8 +199,9 @@ extension MainMapViewController: CLLocationManagerDelegate {
         let currentLocation = locations[locations.count-1]
         let currentLatitude = currentLocation.coordinate.latitude
         let currentLongitude = currentLocation.coordinate.longitude
-                
-//        UserDefaults.standard.set(currentLocation, forKey: "currentLocation")
+         
+        UserDefaultHandler.setCurrentLatitude(currentLatitude: String(currentLatitude))
+        UserDefaultHandler.setCurrentLongitude(currentLongitude: String(currentLongitude))
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
