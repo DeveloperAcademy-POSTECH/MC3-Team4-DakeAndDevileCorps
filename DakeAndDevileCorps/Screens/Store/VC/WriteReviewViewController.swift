@@ -160,7 +160,8 @@ final class WriteReviewViewController: BaseViewController {
                 break
             }
         })
-
+    }
+    
     private func setupNotificationCenter() {
         NotificationCenter.default.addObserver(self, selector: #selector(didChangeButtonState), name: .activeReview, object: nil)
     }
