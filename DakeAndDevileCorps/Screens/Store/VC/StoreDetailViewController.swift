@@ -126,6 +126,7 @@ extension StoreDetailViewController: UITableViewDataSource {
             withIdentifier: StoreInformationTableViewCell.className, for: indexPath
         ) as? StoreInformationTableViewCell else { return UITableViewCell() }
         
+        storeInformationCell.selectionStyle = .none
         storeInformationCell.storeInformationDelegate = self
         storeInformationCell.setUpperData(todayOperationTime: store?.getTodayOfficeHour(),
                                           productCategories: store?.getStoreCategories())
@@ -147,9 +148,11 @@ extension StoreDetailViewController: UITableViewDataSource {
         
         switch self.productList[indexPath.row] {
         case let .product(productName):
+            productCell.selectionStyle = .none
             productCell.setData(productName: productName)
             return productCell
         case let .item(itemName):
+            itemCell.selectionStyle = .none
             itemCell.setData(itemName: itemName)
             return itemCell
         }
@@ -159,10 +162,12 @@ extension StoreDetailViewController: UITableViewDataSource {
         if commentList.isEmpty {
             guard let emptyReviewCell = tableView.dequeueReusableCell(withIdentifier: EmptyReviewTableViewCell.className) as? EmptyReviewTableViewCell else { return UITableViewCell() }
             emptyReviewCell.configureUI()
+            emptyReviewCell.selectionStyle = .none
             
             return emptyReviewCell
         } else {
             guard let reviewCell = tableView.dequeueReusableCell(withIdentifier: ReviewTableViewCell.className, for: indexPath) as? ReviewTableViewCell else { return UITableViewCell() }
+            reviewCell.selectionStyle = .none
             reviewCell.configureUI(comment: commentList[indexPath.row])
             reviewCell.reviewDelegate = self
             
