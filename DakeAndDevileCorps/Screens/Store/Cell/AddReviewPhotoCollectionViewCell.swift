@@ -21,7 +21,8 @@ final class AddReviewPhotoCollectionViewCell: UICollectionViewCell {
     
     let deletePhotoButton: UIButton = {
        let button = UIButton()
-        button.setImage(UIImage(systemName: "xmark.circle.fill"), for: .normal)
+        button.setImage(UIImage(named: "deleteButton"), for: .normal)
+        button.frame.size = CGSize(width: 20, height: 20)
         button.tintColor = .black
         button.contentEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         return button
