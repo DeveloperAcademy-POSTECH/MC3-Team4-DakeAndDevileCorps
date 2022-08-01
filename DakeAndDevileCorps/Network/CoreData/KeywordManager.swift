@@ -49,9 +49,21 @@ final class KeywordManager {
         }
     }
     
+    func deleteLast<T: NSManagedObject>(request: NSFetchRequest<T>) {
+        do {
+            if let recentTerms = try context?.fetch(request) {
+                if recentTerms.count == 0 { return }
+                context?.delete(recentTerms[0])
+                try context?.save()
+            }
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
+    
     @discardableResult
     func delete<T: NSManagedObject>(at keyword: String, request: NSFetchRequest<T>) -> Bool {
-        request.predicate = NSPredicate(format: "keyword = %@", NSString(string: keyword))
+        request.predicate = NSPredicate(format: "term = %@", NSString(string: keyword))
 
         do {
             if let recentTerms = try context?.fetch(request) {

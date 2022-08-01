@@ -373,10 +373,14 @@
                                                 </stackView>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ksm-4g-iuQ">
                                                     <rect key="frame" x="318" y="18" width="72" height="72"/>
+                                                    <gestureRecognizers/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="72" id="jXe-b7-u9k"/>
                                                         <constraint firstAttribute="width" constant="72" id="r92-pp-FiX"/>
                                                     </constraints>
+                                                    <connections>
+                                                        <outletCollection property="gestureRecognizers" destination="QCS-Fs-Nqe" appends="YES" id="q7u-ap-aVb"/>
+                                                    </connections>
                                                 </imageView>
                                             </subviews>
                                             <constraints>
@@ -388,12 +392,15 @@
                                                 <constraint firstItem="ksm-4g-iuQ" firstAttribute="top" secondItem="f2e-EF-oZt" secondAttribute="top" constant="18" id="xkb-NY-sXd"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <gestureRecognizers/>
                                         <connections>
                                             <outlet property="reviewContentLabel" destination="ZHD-qh-GDO" id="s7s-Ts-sl6"/>
                                             <outlet property="reviewImageView" destination="ksm-4g-iuQ" id="tMH-Ec-Ziv"/>
                                             <outlet property="reviewStackView" destination="u6V-oZ-OEi" id="BTs-BD-YEz"/>
                                             <outlet property="reviewSubStackView" destination="6vW-gl-lpg" id="kWQ-Ek-K9B"/>
                                             <outlet property="reviewTitleLabel" destination="rK5-G1-9RE" id="qUK-hS-9eD"/>
+                                            <outletCollection property="gestureRecognizers" destination="QCS-Fs-Nqe" appends="YES" id="4B5-Ii-glw"/>
+                                            <outletCollection property="gestureRecognizers" destination="QCS-Fs-Nqe" appends="YES" id="9y7-gw-Q2T"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="EmptyReviewTableViewCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="EmptyReviewTableViewCell" rowHeight="352" id="e5h-Co-Mvn" customClass="EmptyReviewTableViewCell" customModule="DakeAndDevileCorps" customModuleProvider="target">
@@ -456,13 +463,18 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="QCS-Fs-Nqe">
+                    <connections>
+                        <action selector="presentReviewPhotoView:" destination="Y6W-OH-hqX" id="0AC-Iu-d20"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="50.724637681159422" y="105.80357142857143"/>
         </scene>
         <!--Review Photo View Controller-->
         <scene sceneID="TfM-yE-bJo">
             <objects>
-                <viewController id="cKe-15-ao9" customClass="ReviewPhotoViewController" customModule="DakeAndDevileCorps" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ReviewPhotoViewController" id="cKe-15-ao9" customClass="ReviewPhotoViewController" customModule="DakeAndDevileCorps" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="W4L-QQ-qzA">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

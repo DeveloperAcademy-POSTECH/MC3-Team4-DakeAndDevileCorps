@@ -22,9 +22,9 @@ class SearchViewController: UIViewController {
         return $0
     }(SearchBarView())
     
-    private var recentSearchedItemList: [String] = []
     private var resultList: [StoreModel] = []
     private var isResultShowing: Bool = false
+    private let keywordCoreData = KeywordManager.shared
     
     private enum SearchType {
         case recentSearch
@@ -50,6 +50,7 @@ class SearchViewController: UIViewController {
     }
     
     private var searchType: SearchType = .recentSearch
+    private let maxCount = 10
     
     private func setTableResult(searchtype: SearchType) {
         setResultTitle(searchType: searchtype)
@@ -70,7 +71,8 @@ class SearchViewController: UIViewController {
         var hasResult: Bool
         switch searchType {
         case .recentSearch:
-            hasResult = !recentSearchedItemList.isEmpty
+            let recentItemList = keywordCoreData.loadFromCoreData(request: Keywords.fetchRequest())
+            hasResult = !recentItemList.isEmpty
         case .result:
             hasResult = !resultList.isEmpty
         }
@@ -82,7 +84,6 @@ class SearchViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         initDelegate()
-        initData()
         setTableResult(searchtype: searchType)
         configureLayout()
     }
@@ -91,18 +92,6 @@ class SearchViewController: UIViewController {
         searchTableView.dataSource = self
         searchTableView.delegate = self
         searchBarView.delegate = self
-    }
-    
-    private func initData() {
-        recentSearchedItemList.append(contentsOf: [
-            "샴푸", "리필스테이션", "세탁세제", "샴푸", "리필스테이션", "세탁세제", "샴푸", "리필스테이션", "세탁세제", "샴푸", "리필스테이션", "세탁세제"
-        ])
-        resultList.append(contentsOf: [
-            StoreModel(storeName: "알맹 상점", storeAddress: "서울 마포구 월드컵로25길 47 3층", distanceToStore: "1.7km"),
-            StoreModel(storeName: "더 피커", storeAddress: "서울 마포구 월드컵로25길 47 3층", distanceToStore: "16.2km"),
-            StoreModel(storeName: "알맹 상점", storeAddress: "서울 마포구 월드컵로25길 47 3층", distanceToStore: "1.7km"),
-            StoreModel(storeName: "더 피커", storeAddress: "서울 마포구 월드컵로25길 47 3층", distanceToStore: "16.2km")
-        ])
     }
     
     private func configureLayout() {
@@ -116,8 +105,31 @@ class SearchViewController: UIViewController {
         ])
     }
     
+    private func saveRecentKeyword() {
+        let keyword = searchBarView.text
+        let recentItemList = keywordCoreData.loadFromCoreData(request: Keywords.fetchRequest())
+        
+        checkKeywordItemList(recentItemList, with: keyword)
+        keywordCoreData.saveRecentSearch(keyword: keyword)
+    }
+    
+    private func checkKeywordItemList(_ list: [Keywords], with keyword: String) {
+        let hasKeyword = list.map({ $0.term }).contains(keyword)
+        if hasKeyword {
+            keywordCoreData.delete(at: keyword, request: Keywords.fetchRequest())
+        }
+        
+        let recentItemList = keywordCoreData.loadFromCoreData(request: Keywords.fetchRequest())
+        let overMaxCount = recentItemList.count >= maxCount
+        if overMaxCount {
+            keywordCoreData.deleteLast(request: Keywords.fetchRequest())
+        }
+    }
+    
     @IBAction func touchUpToDeleteAllSearchedData(_ sender: Any) {
-        print("delete all!!")
+        keywordCoreData.deleteAll(request: Keywords.fetchRequest())
+        setNothingView(searchType: .recentSearch)
+        searchTableView.reloadData()
     }
 }
 
@@ -126,18 +138,26 @@ extension SearchViewController: UITableViewDataSource {
         if isResultShowing {
             return resultList.count
         } else {
-            return recentSearchedItemList.count > 10 ? 10 : recentSearchedItemList.count
+            let recentItemList = keywordCoreData.loadFromCoreData(request: Keywords.fetchRequest())
+            return recentItemList.count
         }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if isResultShowing {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: ResultTableViewCell.className, for: indexPath) as? ResultTableViewCell else { return UITableViewCell() }
-            cell.setupCell(title: resultList[indexPath.row].storeName, address: resultList[indexPath.row].storeAddress, distance: resultList[indexPath.row].distanceToStore)
+//            cell.setupCell(title: resultList[indexPath.row].storeName, address: resultList[indexPath.row].storeAddress, distance: resultList[indexPath.row].distanceToStore)
             return cell
         } else {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: RecentSearchTableViewCell.className, for: indexPath) as? RecentSearchTableViewCell else { return UITableViewCell() }
-            cell.setupCell(title: recentSearchedItemList[indexPath.row])
+            let recentItemList: [Keywords] = keywordCoreData.loadFromCoreData(request: Keywords.fetchRequest()).reversed()
+            cell.setupCell(title: recentItemList[indexPath.row].term)
+            cell.didSelectedDeleteButton = { [weak self] in
+                let selectedItem = recentItemList[indexPath.row].term
+                self?.keywordCoreData.delete(at: selectedItem, request: Keywords.fetchRequest())
+                self?.setNothingView(searchType: .recentSearch)
+                self?.searchTableView.reloadData()
+            }
             return cell
         }
     }
@@ -146,7 +166,9 @@ extension SearchViewController: UITableViewDataSource {
 extension SearchViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if !isResultShowing {
-            searchBarView.text = recentSearchedItemList[indexPath.row]
+            let recentItemList = keywordCoreData.loadFromCoreData(request: Keywords.fetchRequest())
+            let index = recentItemList.count - indexPath.row - 1
+            searchBarView.text = recentItemList[index].term
             didReturnKeyInput()
         }
     }
@@ -165,6 +187,7 @@ extension SearchViewController: SearchBarDelegate {
         isResultShowing = true
         view.endEditing(true)
         setTableResult(searchtype: searchType)
+        saveRecentKeyword()
         searchTableView.reloadData()
     }
 }

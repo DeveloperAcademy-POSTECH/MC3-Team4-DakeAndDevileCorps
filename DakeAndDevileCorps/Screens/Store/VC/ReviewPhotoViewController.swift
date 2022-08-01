@@ -16,6 +16,8 @@ final class ReviewPhotoViewController: BaseViewController {
 
     // MARK: - properties
     
+    private let reviewTalbeViewCell = ReviewTableViewCell()
+    
     private let xmarkButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(systemName: "xmark"), for: .normal)
@@ -41,13 +43,12 @@ final class ReviewPhotoViewController: BaseViewController {
         collectionView.isPagingEnabled = true
         return collectionView
     }()
-    var dummyPhotos: [UIImage?] = [UIImage(systemName: "moon.fill"),
-                                   UIImage(systemName: "sun.min"),
-                                   UIImage(systemName: "sun.max")]
+    var photoNames: [String] = []
     
     override func configUI() {
         view.backgroundColor = .black
         setupCollectionView()
+        setupButtonAction()
         applyScrollIndexLabel()
     }
     
@@ -80,18 +81,29 @@ final class ReviewPhotoViewController: BaseViewController {
     }
     
     private func applyScrollIndexLabel(with index: Int = 1) {
-        scrollIndexLabel.text = "\(index)/\(dummyPhotos.count)"
+        scrollIndexLabel.text = "\(index)/\(photoNames.count)"
+    }
+    
+    private func setupButtonAction() {
+        let xmarkButtonAction = UIAction { _ in
+            self.dismiss(animated: true)
+        }
+        xmarkButton.addAction(xmarkButtonAction, for: .touchUpInside)
+    }
+    
+    func setData(reviewImageNames: [String]) {
+        photoNames = reviewImageNames
     }
 }
 
 extension ReviewPhotoViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return dummyPhotos.count
+        return photoNames.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ReviewPhotoCollectionViewCell.className, for: indexPath) as? ReviewPhotoCollectionViewCell else { return UICollectionViewCell() }
-        if let photo = dummyPhotos[indexPath.item] {
+        if let photo = UIImage(systemName: photoNames[indexPath.item]) {
             cell.setupPhotoImageView(to: photo)
         }
         return cell

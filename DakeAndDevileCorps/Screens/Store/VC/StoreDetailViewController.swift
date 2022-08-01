@@ -12,8 +12,9 @@ protocol StoreDetailViewControllerDelegate: AnyObject {
     func setupViewWillDisappear(closeButton: UIButton)
 }
 
-final class StoreDetailViewController: UIViewController {
+class StoreDetailViewController: BaseViewController {
     
+    // MARK: - properties
     private enum SectionType: Int, CaseIterable {
         case storeInformation = 0
         case itemInformation = 1
@@ -23,16 +24,20 @@ final class StoreDetailViewController: UIViewController {
     @IBOutlet weak var storeDetailTableView: UITableView!
     @IBOutlet weak var closeStoreDetailButton: UIButton!
     private var productList: [ProductTableViewCellModel] = []
-    private var operationList: [String] = []
     private let categoryList: [String] = ["주방세제", "세탁세제", "섬유유연제", "기타세제", "헤어", "스킨", "바디", "식품", "생활", "문구", "애견", "기타"]
     private var reviewList: [ReviewModel] = []
     private var selectHeader = StoreDetailSelectView()
     private var categoryHeader = CategoryView(entryPoint: .detail)
     private var itemInformationType: ItemInformationType = .productList
+    private var store: Store?
+    var dataIndex: Int = 0
     weak var delegate: StoreDetailViewControllerDelegate?
+    
+    // MARK: - func
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        store = storeList[dataIndex]
         configStoreDetailTableView()
         initStoreInformationData()
         configHeader()
@@ -50,7 +55,7 @@ final class StoreDetailViewController: UIViewController {
         storeDetailTableView.dataSource = self
         storeDetailTableView.delegate = self
         storeDetailTableView.separatorStyle = UITableViewCell.SeparatorStyle.none
-        storeName.text = "알맹상점"
+        storeName.text = store?.name
         storeName.font = UIFont.boldSystemFont(ofSize: 22)
         if #available(iOS 15.0, *) {
             storeDetailTableView.sectionHeaderTopPadding = 0
@@ -93,8 +98,6 @@ final class StoreDetailViewController: UIViewController {
             .item(itemName: "인블리스 세탁세제", itemPrice: "1g = 4원")
         ]
         
-        operationList = ["월 정기 휴일", "화 10:00 ~ 18:00", "수 10:00 ~ 18:00", "목 10:00 ~ 18:00", "금 10:00 ~ 18:00", "토 10:00 ~ 18:00", "일 정기 휴일"]
-        
         reviewList.append(contentsOf: [
             
         ])
@@ -106,6 +109,8 @@ final class StoreDetailViewController: UIViewController {
         storeDetailTableView.scrollToRow(at: indexPath, at: .top, animated: true)
     }
 }
+
+// MARK: - extensions
 
 extension StoreDetailViewController: UITableViewDataSource {
     
@@ -148,13 +153,12 @@ extension StoreDetailViewController: UITableViewDataSource {
         ) as? StoreInformationTableViewCell else { return UITableViewCell() }
         
         storeInformationCell.storeInformationDelegate = self
-        storeInformationCell.setUpperData(isOperation: true,
-                                          todayOperationTime: "10:00 ~ 18:00",
-                                          productCategories: "화장품, 청소용품, 화장품, 식품")
-        storeInformationCell.setBottomData(address: "서울 마포구 월드컵로25길 47 3층",
-                                           phoneNumber: "010-2229-1027",
-                                           operationTime: "10:00 - 18:00")
-        storeInformationCell.setOperationTime(operationList: operationList)
+        storeInformationCell.setUpperData(todayOperationTime: store?.getTodayOfficeHour(),
+                                          productCategories: store?.getStoreCategories())
+        storeInformationCell.setBottomData(address: store?.address,
+                                           phoneNumber: store?.telephone)
+        storeInformationCell.setOperationTime(operationList: store?.officeHour)
+        storeInformationCell.setOperationStatusLabel(with: store)
         
         return storeInformationCell
     }
@@ -194,7 +198,6 @@ extension StoreDetailViewController: UITableViewDataSource {
 }
 
 extension StoreDetailViewController: UITableViewDelegate {
-    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
     }
@@ -249,6 +252,16 @@ extension StoreDetailViewController: StoreDetailTableViewCellDelegate {
 extension StoreDetailViewController: CategoryCollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         scrollToSelectedCategory(indexPath: indexPath)
+    }
+}
+
+extension StoreDetailViewController: ReviewTableViewCellDelegate {
+    func presentReviewPhotoView(reviewImageNames: [String]) {
+        guard let viewController = storyboard?.instantiateViewController(withIdentifier: ReviewPhotoViewController.className) as? ReviewPhotoViewController else { return }
+        viewController.setData(reviewImageNames: reviewImageNames)
+        viewController.modalPresentationStyle = .fullScreen
+        present(viewController, animated: true, completion: nil)
+        
     }
 }
 
