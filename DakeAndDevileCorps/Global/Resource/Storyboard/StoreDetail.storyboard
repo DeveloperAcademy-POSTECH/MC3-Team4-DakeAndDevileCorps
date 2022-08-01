@@ -49,7 +49,7 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="StoreInformationTableViewCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="StoreInformationTableViewCell" rowHeight="112" id="U1M-eS-LhP" customClass="StoreInformationTableViewCell" customModule="DakeAndDevileCorps" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="50" width="414" height="112"/>
+                                        <rect key="frame" x="0.0" y="44.5" width="414" height="112"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="U1M-eS-LhP" id="4PD-jE-8HH">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="112"/>
@@ -271,7 +271,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="ProductTableViewCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ProductTableViewCell" rowHeight="49" id="2JO-9x-uZ8" customClass="ProductTableViewCell" customModule="DakeAndDevileCorps" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="162" width="414" height="49"/>
+                                        <rect key="frame" x="0.0" y="156.5" width="414" height="49"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="2JO-9x-uZ8" id="SDQ-Jq-lHp">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
@@ -306,7 +306,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="ItemTableViewCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ItemTableViewCell" rowHeight="61" id="g6g-xO-54i" customClass="ItemTableViewCell" customModule="DakeAndDevileCorps" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="211" width="414" height="61"/>
+                                        <rect key="frame" x="0.0" y="205.5" width="414" height="61"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="g6g-xO-54i" id="7em-R7-fWX">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="61"/>
@@ -333,7 +333,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="ReviewTableViewCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ReviewTableViewCell" rowHeight="94" id="KE3-IL-FPv" customClass="ReviewTableViewCell" customModule="DakeAndDevileCorps" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="272" width="414" height="94"/>
+                                        <rect key="frame" x="0.0" y="266.5" width="414" height="94"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="KE3-IL-FPv" id="f2e-EF-oZt">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="94"/>
@@ -510,10 +510,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="chevron.down" catalog="system" width="128" height="70"/>
-        <image name="clock" catalog="system" width="128" height="123"/>
-        <image name="exclamationmark.circle" catalog="system" width="128" height="123"/>
-        <image name="mappin.and.ellipse" catalog="system" width="117" height="128"/>
+        <image name="chevron.down" catalog="system" width="128" height="72"/>
+        <image name="clock" catalog="system" width="128" height="121"/>
+        <image name="exclamationmark.circle" catalog="system" width="128" height="121"/>
+        <image name="mappin.and.ellipse" catalog="system" width="118" height="128"/>
         <image name="phone" catalog="system" width="128" height="115"/>
         <image name="xmark.circle.fill" catalog="system" width="128" height="123"/>
         <systemColor name="labelColor">
