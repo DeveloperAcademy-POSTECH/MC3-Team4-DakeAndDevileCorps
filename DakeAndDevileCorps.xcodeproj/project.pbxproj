@@ -8,11 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		0B6589CD2892A8E000B9A091 /* AnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6589CC2892A8E000B9A091 /* AnnotationView.swift */; };
+		0B658A5428979C2900B9A091 /* CustomModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B658A5328979C2900B9A091 /* CustomModalView.swift */; };
 		0B6BA51F28884A8500E30B37 /* SearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6BA51E28884A8500E30B37 /* SearchBarView.swift */; };
 		4A3B359D28911F210081D5CF /* ReviewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A3B359C28911F210081D5CF /* ReviewModel.swift */; };
 		4A3B35A2289387BC0081D5CF /* StoreDetailSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A3B35A1289387BC0081D5CF /* StoreDetailSelectView.swift */; };
 		4A3B35A4289587490081D5CF /* PaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A3B35A3289587490081D5CF /* PaddingLabel.swift */; };
 		4A6535D828910D53006B6971 /* ProductTableViewCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A6535D728910D53006B6971 /* ProductTableViewCellModel.swift */; };
+		4AB2CE652896AF9B00771298 /* EmptyReviewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB2CE642896AF9B00771298 /* EmptyReviewTableViewCell.swift */; };
 		4AB368E52886D95E0075E03A /* StoreInformationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB368E42886D95E0075E03A /* StoreInformationTableViewCell.swift */; };
 		4AB368E72886DBD20075E03A /* ItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB368E62886DBD20075E03A /* ItemTableViewCell.swift */; };
 		4AB368EC2886F4870075E03A /* ProductTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB368EB2886F4870075E03A /* ProductTableViewCell.swift */; };
@@ -75,11 +77,13 @@
 
 /* Begin PBXFileReference section */
 		0B6589CC2892A8E000B9A091 /* AnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnotationView.swift; sourceTree = "<group>"; };
+		0B658A5328979C2900B9A091 /* CustomModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomModalView.swift; sourceTree = "<group>"; };
 		0B6BA51E28884A8500E30B37 /* SearchBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarView.swift; sourceTree = "<group>"; };
 		4A3B359C28911F210081D5CF /* ReviewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewModel.swift; sourceTree = "<group>"; };
 		4A3B35A1289387BC0081D5CF /* StoreDetailSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreDetailSelectView.swift; sourceTree = "<group>"; };
 		4A3B35A3289587490081D5CF /* PaddingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingLabel.swift; sourceTree = "<group>"; };
 		4A6535D728910D53006B6971 /* ProductTableViewCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductTableViewCellModel.swift; sourceTree = "<group>"; };
+		4AB2CE642896AF9B00771298 /* EmptyReviewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyReviewTableViewCell.swift; sourceTree = "<group>"; };
 		4AB368E42886D95E0075E03A /* StoreInformationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreInformationTableViewCell.swift; sourceTree = "<group>"; };
 		4AB368E62886DBD20075E03A /* ItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemTableViewCell.swift; sourceTree = "<group>"; };
 		4AB368EB2886F4870075E03A /* ProductTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductTableViewCell.swift; sourceTree = "<group>"; };
@@ -168,6 +172,7 @@
 				4AB368EB2886F4870075E03A /* ProductTableViewCell.swift */,
 				79ECCE01289474D10095E412 /* AddReviewPhotoCollectionViewCell.swift */,
 				4AC55879289115EC006EF4DE /* ReviewTableViewCell.swift */,
+				4AB2CE642896AF9B00771298 /* EmptyReviewTableViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -397,6 +402,7 @@
 				B5F1F24F28883E9A0021B026 /* Cell */,
 				B5F1F24D288834A40021B026 /* CategoryView.swift */,
 				0B6BA51E28884A8500E30B37 /* SearchBarView.swift */,
+				0B658A5328979C2900B9A091 /* CustomModalView.swift */,
 			);
 			path = UIComponent;
 			sourceTree = "<group>";
@@ -546,6 +552,7 @@
 				79E2DCA82886E3C800355E30 /* ResultTableViewCell.swift in Sources */,
 				B5B05D5F289167A70013E65F /* ReviewTextView.swift in Sources */,
 				B5B05D522890ABA10013E65F /* ReviewPhotoCollectionViewCell.swift in Sources */,
+				4AB2CE652896AF9B00771298 /* EmptyReviewTableViewCell.swift in Sources */,
 				B5B05D50288F81510013E65F /* ReviewPhotoViewController.swift in Sources */,
 				0B6BA51F28884A8500E30B37 /* SearchBarView.swift in Sources */,
 				B5366B872893732900637CDC /* MockParser.swift in Sources */,
@@ -587,6 +594,7 @@
 				4A3B35A2289387BC0081D5CF /* StoreDetailSelectView.swift in Sources */,
 				B52E6D9F289799BC0076B6C3 /* Store.swift in Sources */,
 				B5F1F24B2888313F0021B026 /* UIView+Extension.swift in Sources */,
+				0B658A5428979C2900B9A091 /* CustomModalView.swift in Sources */,
 				7937A016288597A60016D1A8 /* UIColor+Extension.swift in Sources */,
 				4A3B359D28911F210081D5CF /* ReviewModel.swift in Sources */,
 			);
