@@ -9,12 +9,15 @@ import UIKit
 
 class BaseViewController: UIViewController {
     
+    var storeList: [Store] = []
+    
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        parseStoreData()
         render()
         configUI()
     }
@@ -29,5 +32,14 @@ class BaseViewController: UIViewController {
     
     func configUI() {
         // View Configuration
+    }
+    
+    private func parseStoreData() {
+        let storeModel = MockParser.load(type: StoreModel.self, fileName: "Store")
+        if let data = storeModel?.data {
+            storeList = data
+            
+            dump(data)
+        }
     }
 }

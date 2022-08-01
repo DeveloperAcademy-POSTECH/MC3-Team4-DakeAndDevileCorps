@@ -156,12 +156,12 @@ class SearchBarView: UIView {
         // MARK: textField layout
         let textFieldLeadingToLeftImage: NSLayoutConstraint = {
             let constraint = textField.leadingAnchor.constraint(equalTo: symbolImageView.trailingAnchor, constant: 11)
-            constraint.priority = .defaultLow
+            constraint.priority = .defaultHigh
             return constraint
         }()
         let textFieldLeadingToLeftButton: NSLayoutConstraint = {
             let constraint = textField.leadingAnchor.constraint(equalTo: backButton.trailingAnchor, constant: 11)
-            constraint.priority = .defaultLow
+            constraint.priority = .defaultHigh
             return constraint
         }()
         let textFieldTrailingToRightButton: NSLayoutConstraint = {
@@ -171,7 +171,7 @@ class SearchBarView: UIView {
         }()
         let textFieldTrailingToContainer: NSLayoutConstraint = {
             let constraint = textField.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -8)
-            constraint.priority = .defaultLow
+            constraint.priority = .defaultHigh
             return constraint
         }()
         NSLayoutConstraint.activate([
@@ -222,6 +222,9 @@ class SearchBarView: UIView {
     // MARK: - set TextField
     private func setTextField() {
         textField.delegate = self
+        textField.autocapitalizationType = .none
+        textField.autocorrectionType = .no
+        textField.clearButtonMode = .whileEditing
     }
     
     // MARK: - leftButton setting

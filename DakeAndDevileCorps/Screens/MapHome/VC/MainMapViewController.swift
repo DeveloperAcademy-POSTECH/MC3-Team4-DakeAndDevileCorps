@@ -26,15 +26,30 @@ class MainMapViewController: UIViewController {
     
     @IBOutlet weak var mapView: MKMapView!
     
+    lazy var storeDetailModalView: CustomModalView = {
+        let view = CustomModalView(mode: .tip(screenViewFrame: self.view.frame))
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.layer.cornerRadius = 20
+        view.addGestureRecognizer(panGesture)
+        return view
+    }()
+    
+    private lazy var panGesture: UIPanGestureRecognizer = {
+        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(didPan))
+        return panGesture
+    }()
+    
+    private lazy var preventTouchView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
     // MARK: - properties
-    var shops: [ShopInfo] = [
-        ShopInfo(coordinate: CLLocationCoordinate2D(latitude: 37.557761, longitude: 126.9052787),
-                 sellingProductsCategory: ["주방세제"],
-                 category: .zeroWasteShop),
-        ShopInfo(coordinate: CLLocationCoordinate2D(latitude: 37.5007395, longitude: 126.9338591),
-                 sellingProductsCategory: ["주방세제", "세탁세제"],
-                 category: .refillStation)
-    ]
+    var shops: [StoreAnnotation] = []
+    
+    private var initialOffset: CGPoint = .zero
+    private var detailVC: StoreDetailViewController?
     
     // MARK: - lifecycle
     override func viewDidLoad() {
@@ -84,6 +99,52 @@ class MainMapViewController: UIViewController {
     private func drawAnnotationViews() {
         mapView.addAnnotations(shops)
     }
+    
+    @objc
+    func didPan(_ recognizer: UIPanGestureRecognizer) {
+        let touchPoint = recognizer.location(in: view)
+        switch recognizer.state {
+        case .began:
+            initialOffset = CGPoint(x: storeDetailModalView.frame.origin.x, y: touchPoint.y - storeDetailModalView.frame.origin.y)
+        case .changed:
+            storeDetailModalView.frame.origin = CGPoint(x: storeDetailModalView.frame.origin.x, y: touchPoint.y - initialOffset.y)
+            if storeDetailModalView.frame.origin.y > self.view.frame.height / 2 {
+                storeDetailModalView.mode = .tip(screenViewFrame: self.view.frame)
+            } else {
+                storeDetailModalView.mode = .full(screenViewFrame: self.view.frame)
+            }
+        case .ended, .cancelled:
+            switch storeDetailModalView.mode {
+            case .tip:
+                if storeDetailModalView.frame.origin.y > self.view.frame.height - 75 {
+                    storeDetailModalView.removeFromSuperview()
+                }
+                preventTouchView.isHidden = false
+                
+                
+                let fullFrame = CustomModalView.ModalMode.full(screenViewFrame: self.view.frame).frame
+                storeDetailModalView.frame = CGRect(x: 0,
+                                                    y: storeDetailModalView.mode.frame.minY,
+                                                    width: storeDetailModalView.mode.frame.width,
+                                                    height: fullFrame.height)
+                
+                detailVC?.storeDetailTableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
+            case .full:
+                preventTouchView.isHidden = true
+                let fullFrame = CustomModalView.ModalMode.full(screenViewFrame: self.view.frame).frame
+                storeDetailModalView.frame = CGRect(x: 0,
+                                                    y: storeDetailModalView.mode.frame.minY,
+                                                    width: storeDetailModalView.mode.frame.width,
+                                                    height: fullFrame.height)
+                storeDetailModalView.subviews.last?.frame = CGRect(x: 0,
+                                                    y: 0,
+                                                    width: storeDetailModalView.mode.frame.width,
+                                                    height: fullFrame.height)
+            }
+        
+        default: break
+        }
+    }
 }
 
 // MARK: - MapViewDelegate
@@ -94,6 +155,31 @@ extension MainMapViewController: MKMapViewDelegate {
         }
         
         return marker
+    }
+    
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        self.view.addSubview(storeDetailModalView)
+        
+        detailVC = UIStoryboard(name: "StoreDetail", bundle: nil).instantiateViewController(withIdentifier: StoreDetailViewController.className) as? StoreDetailViewController
+        detailVC?.delegate = self
+        guard let detailVC = detailVC else { return }
+        storeDetailModalView.addSubview(detailVC.view)
+        detailVC.view.layer.cornerRadius = 20
+        detailVC.view.frame = CGRect(x: 0, y: 0, width: storeDetailModalView.frame.width, height: self.view.frame.height)
+        detailVC.view.addSubview(preventTouchView)
+        NSLayoutConstraint.activate([
+            preventTouchView.topAnchor.constraint(equalTo: detailVC.storeDetailTableView.topAnchor),
+            preventTouchView.bottomAnchor.constraint(equalTo: detailVC.storeDetailTableView.bottomAnchor),
+            preventTouchView.leadingAnchor.constraint(equalTo: detailVC.storeDetailTableView.leadingAnchor),
+            preventTouchView.trailingAnchor.constraint(equalTo: detailVC.storeDetailTableView.trailingAnchor),
+        ])
+    }
+    
+    func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
+        self.storeDetailModalView.removeFromSuperview()
+        storeDetailModalView.subviews.forEach { subview in
+            subview.removeFromSuperview()
+        }
     }
 }
 
@@ -126,4 +212,20 @@ extension MainMapViewController: CategoryCollectionViewDelegate {
         drawAnnotationViews()
     }
     
+}
+
+// MARK: - StoreDetailViewControllerDelegate
+extension MainMapViewController: StoreDetailViewControllerDelegate {
+    func setupButtonAction(closeButton: UIButton) {
+        self.storeDetailModalView.subviews.last?.removeFromSuperview()
+        self.detailVC = nil
+        self.storeDetailModalView.mode = .tip(screenViewFrame: self.view.frame)
+        self.storeDetailModalView.frame = self.storeDetailModalView.mode.frame
+        self.storeDetailModalView.removeFromSuperview()
+    }
+    
+    func setupViewWillDisappear(closeButton: UIButton) {
+        
+    }
+
 }
