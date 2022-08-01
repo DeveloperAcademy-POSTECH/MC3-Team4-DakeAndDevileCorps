@@ -230,6 +230,7 @@ extension StoreDetailViewController: ReviewTableViewCellDelegate {
     func presentReviewPhotoView(reviewImageNames: [String]) {
         guard let viewController = storyboard?.instantiateViewController(withIdentifier: ReviewPhotoViewController.className) as? ReviewPhotoViewController else { return }
         viewController.setData(reviewImageNames: reviewImageNames)
+        viewController.modalPresentationStyle = .fullScreen
         present(viewController, animated: true, completion: nil)
         
     }
