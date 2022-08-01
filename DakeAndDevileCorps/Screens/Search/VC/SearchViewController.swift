@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SearchViewController: UIViewController {
+class SearchViewController: BaseViewController {
     
     @IBOutlet weak var searchTableView: UITableView!
     @IBOutlet weak var deleteAllButton: UIButton!
@@ -22,7 +22,7 @@ class SearchViewController: UIViewController {
         return $0
     }(SearchBarView())
     
-    private var resultList: [StoreModel] = []
+    private var filteredStoreList: [Store] = []
     private var isResultShowing: Bool = false
     private let keywordCoreData = KeywordManager.shared
     
@@ -74,7 +74,7 @@ class SearchViewController: UIViewController {
             let recentItemList = keywordCoreData.loadFromCoreData(request: Keywords.fetchRequest())
             hasResult = !recentItemList.isEmpty
         case .result:
-            hasResult = !resultList.isEmpty
+            hasResult = !filteredStoreList.isEmpty
         }
         
         nothingView.isHidden = hasResult
@@ -126,6 +126,17 @@ class SearchViewController: UIViewController {
         }
     }
     
+    private func textFieldDidChangeSelection() {
+        let keyword = searchBarView.text.removingWhitespaces()
+        
+        filteredStoreList = storeList.filter({ data -> Bool in
+            let storeNameFilter = data.name.removingWhitespaces().lowercased().contains(keyword.lowercased())
+            let itemNameFilter = data.items.map({ $0.name }).contains(where: { $0.removingWhitespaces().contains(keyword.lowercased()) })
+            let categoryFilter = data.items.map({ $0.category }).contains(where: { $0.removingWhitespaces().contains(keyword.lowercased()) })
+            return storeNameFilter || itemNameFilter || categoryFilter
+        })
+    }
+    
     @IBAction func touchUpToDeleteAllSearchedData(_ sender: Any) {
         keywordCoreData.deleteAll(request: Keywords.fetchRequest())
         setNothingView(searchType: .recentSearch)
@@ -136,7 +147,7 @@ class SearchViewController: UIViewController {
 extension SearchViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if isResultShowing {
-            return resultList.count
+            return filteredStoreList.count
         } else {
             let recentItemList = keywordCoreData.loadFromCoreData(request: Keywords.fetchRequest())
             return recentItemList.count
@@ -146,7 +157,7 @@ extension SearchViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if isResultShowing {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: ResultTableViewCell.className, for: indexPath) as? ResultTableViewCell else { return UITableViewCell() }
-//            cell.setupCell(title: resultList[indexPath.row].storeName, address: resultList[indexPath.row].storeAddress, distance: resultList[indexPath.row].distanceToStore)
+            cell.setupCell(title: filteredStoreList[indexPath.row].name, address: filteredStoreList[indexPath.row].address, distance: "22.0km")
             return cell
         } else {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: RecentSearchTableViewCell.className, for: indexPath) as? RecentSearchTableViewCell else { return UITableViewCell() }
@@ -186,6 +197,7 @@ extension SearchViewController: SearchBarDelegate {
         searchType = .result(titleString: searchBarView.text)
         isResultShowing = true
         view.endEditing(true)
+        textFieldDidChangeSelection()
         setTableResult(searchtype: searchType)
         saveRecentKeyword()
         searchTableView.reloadData()

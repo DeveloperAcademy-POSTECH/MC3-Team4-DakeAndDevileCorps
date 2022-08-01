@@ -45,11 +45,11 @@
                                 </subviews>
                             </stackView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="ln9-co-2hu">
-                                <rect key="frame" x="0.0" y="113" width="414" height="749"/>
+                                <rect key="frame" x="0.0" y="113" width="414" height="783"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="StoreInformationTableViewCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="StoreInformationTableViewCell" rowHeight="112" id="U1M-eS-LhP" customClass="StoreInformationTableViewCell" customModule="DakeAndDevileCorps" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="44.5" width="414" height="112"/>
+                                        <rect key="frame" x="0.0" y="50" width="414" height="112"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="U1M-eS-LhP" id="4PD-jE-8HH">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="112"/>
@@ -271,7 +271,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="ProductTableViewCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ProductTableViewCell" rowHeight="49" id="2JO-9x-uZ8" customClass="ProductTableViewCell" customModule="DakeAndDevileCorps" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="156.5" width="414" height="49"/>
+                                        <rect key="frame" x="0.0" y="162" width="414" height="49"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="2JO-9x-uZ8" id="SDQ-Jq-lHp">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
@@ -306,14 +306,14 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="ItemTableViewCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ItemTableViewCell" rowHeight="61" id="g6g-xO-54i" customClass="ItemTableViewCell" customModule="DakeAndDevileCorps" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="205.5" width="414" height="61"/>
+                                        <rect key="frame" x="0.0" y="211" width="414" height="61"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="g6g-xO-54i" id="7em-R7-fWX">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="61"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LCT-kF-iBJ">
-                                                    <rect key="frame" x="24" y="12" width="41.5" height="20.5"/>
+                                                    <rect key="frame" x="24" y="12" width="41.5" height="37"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="20.5" id="RUN-rU-FZ1"/>
                                                     </constraints>
@@ -321,31 +321,19 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E7n-Rb-i9l">
-                                                    <rect key="frame" x="24" y="36.5" width="41.5" height="12.5"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="20.5" id="1dZ-ve-jnK"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="E7n-Rb-i9l" secondAttribute="bottom" constant="12" id="0NH-4n-XXd"/>
                                                 <constraint firstItem="LCT-kF-iBJ" firstAttribute="top" secondItem="7em-R7-fWX" secondAttribute="top" constant="12" id="CoY-5N-edj"/>
                                                 <constraint firstItem="LCT-kF-iBJ" firstAttribute="leading" secondItem="7em-R7-fWX" secondAttribute="leading" constant="24" id="Lxi-gb-h3H"/>
-                                                <constraint firstItem="E7n-Rb-i9l" firstAttribute="top" secondItem="LCT-kF-iBJ" secondAttribute="bottom" constant="4" id="RDl-hB-PbJ"/>
-                                                <constraint firstItem="E7n-Rb-i9l" firstAttribute="leading" secondItem="7em-R7-fWX" secondAttribute="leading" constant="24" id="Y9H-kl-UKN"/>
+                                                <constraint firstAttribute="bottom" secondItem="LCT-kF-iBJ" secondAttribute="bottom" constant="12" id="R3N-9k-EXt"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="itemNameLabel" destination="LCT-kF-iBJ" id="SVm-9m-dgX"/>
-                                            <outlet property="itemPriceLabel" destination="E7n-Rb-i9l" id="Rwv-rX-Wf1"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="ReviewTableViewCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ReviewTableViewCell" rowHeight="94" id="KE3-IL-FPv" customClass="ReviewTableViewCell" customModule="DakeAndDevileCorps" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="266.5" width="414" height="94"/>
+                                        <rect key="frame" x="0.0" y="272" width="414" height="94"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="KE3-IL-FPv" id="f2e-EF-oZt">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="94"/>
@@ -404,7 +392,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="EmptyReviewTableViewCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="EmptyReviewTableViewCell" rowHeight="352" id="e5h-Co-Mvn" customClass="EmptyReviewTableViewCell" customModule="DakeAndDevileCorps" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="360.5" width="414" height="352"/>
+                                        <rect key="frame" x="0.0" y="366" width="414" height="352"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="e5h-Co-Mvn" id="oMC-B1-Q4Y">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="352"/>
@@ -447,7 +435,7 @@
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="ln9-co-2hu" secondAttribute="bottom" id="3mV-21-cdR"/>
+                            <constraint firstAttribute="bottom" secondItem="ln9-co-2hu" secondAttribute="bottom" id="3mV-21-cdR"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="ln9-co-2hu" secondAttribute="trailing" id="5UU-YW-ijX"/>
                             <constraint firstItem="ln9-co-2hu" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="GCF-WH-zsj"/>
                             <constraint firstItem="hFF-RJ-RvP" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="24" id="OCV-Yc-bSt"/>
@@ -522,10 +510,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="chevron.down" catalog="system" width="128" height="72"/>
-        <image name="clock" catalog="system" width="128" height="121"/>
-        <image name="exclamationmark.circle" catalog="system" width="128" height="121"/>
-        <image name="mappin.and.ellipse" catalog="system" width="118" height="128"/>
+        <image name="chevron.down" catalog="system" width="128" height="70"/>
+        <image name="clock" catalog="system" width="128" height="123"/>
+        <image name="exclamationmark.circle" catalog="system" width="128" height="123"/>
+        <image name="mappin.and.ellipse" catalog="system" width="117" height="128"/>
         <image name="phone" catalog="system" width="128" height="115"/>
         <image name="xmark.circle.fill" catalog="system" width="128" height="123"/>
         <systemColor name="labelColor">
