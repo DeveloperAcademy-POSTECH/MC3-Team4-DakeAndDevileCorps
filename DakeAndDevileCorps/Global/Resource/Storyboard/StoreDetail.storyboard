@@ -45,7 +45,7 @@
                                 </subviews>
                             </stackView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="ln9-co-2hu">
-                                <rect key="frame" x="0.0" y="113" width="414" height="749"/>
+                                <rect key="frame" x="0.0" y="113" width="414" height="783"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="StoreInformationTableViewCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="StoreInformationTableViewCell" rowHeight="112" id="U1M-eS-LhP" customClass="StoreInformationTableViewCell" customModule="DakeAndDevileCorps" customModuleProvider="target">
@@ -396,7 +396,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="EmptyReviewTableViewCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="EmptyReviewTableViewCell" rowHeight="352" id="e5h-Co-Mvn" customClass="EmptyReviewTableViewCell" customModule="DakeAndDevileCorps" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="360.5" width="414" height="352"/>
+                                        <rect key="frame" x="0.0" y="366" width="414" height="352"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="e5h-Co-Mvn" id="oMC-B1-Q4Y">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="352"/>
@@ -439,7 +439,7 @@
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="ln9-co-2hu" secondAttribute="bottom" id="3mV-21-cdR"/>
+                            <constraint firstAttribute="bottom" secondItem="ln9-co-2hu" secondAttribute="bottom" id="3mV-21-cdR"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="ln9-co-2hu" secondAttribute="trailing" id="5UU-YW-ijX"/>
                             <constraint firstItem="ln9-co-2hu" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="GCF-WH-zsj"/>
                             <constraint firstItem="hFF-RJ-RvP" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="24" id="OCV-Yc-bSt"/>
