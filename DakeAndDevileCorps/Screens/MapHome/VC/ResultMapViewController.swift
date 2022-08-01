@@ -186,7 +186,7 @@ extension ResultMapViewController: MKMapViewDelegate {
         guard let marker = mapView.dequeueReusableAnnotationView(withIdentifier: AnnotationView.className) as? AnnotationView else {
             return AnnotationView()
         }
-        
+        marker.isSelected = true
         return marker
     }
     

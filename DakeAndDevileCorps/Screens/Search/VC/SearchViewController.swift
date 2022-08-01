@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import MapKit
 
 class SearchViewController: BaseViewController {
     
@@ -184,8 +185,15 @@ extension SearchViewController: UITableViewDelegate {
         } else {
             guard let viewController = UIStoryboard(name: "MapHome", bundle: nil).instantiateViewController(withIdentifier: "ResultMapViewController") as? ResultMapViewController else { return }
             viewController.searchBarView.text = searchBarView.text
+            let storeAnnotation = StoreAnnotation(coordinate: CLLocationCoordinate2D(
+                latitude: filteredStoreList[indexPath.row].latitude,
+                longitude: filteredStoreList[indexPath.row].longitude),
+                                                        sellingProductsCategory: [filteredStoreList[indexPath.row].getStoreCategories()], category: .zeroWasteShop, store: filteredStoreList[indexPath.row])
+            viewController.shops.append(storeAnnotation)
             viewController.modalPresentationStyle = .fullScreen
-            present(viewController, animated: false)
+            present(viewController, animated: false) {
+                viewController.mapView(viewController.mapView, didSelect: MKAnnotationView(annotation: storeAnnotation, reuseIdentifier: AnnotationView.className))
+            }
         }
     }
 }
