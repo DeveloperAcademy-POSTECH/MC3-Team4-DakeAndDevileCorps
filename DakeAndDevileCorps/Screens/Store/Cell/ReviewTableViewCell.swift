@@ -20,7 +20,7 @@ class ReviewTableViewCell: UITableViewCell {
     @IBOutlet weak var reviewStackView: UIStackView!
     @IBOutlet weak var reviewSubStackView: UIStackView!
     
-    private var reviewModel: ReviewModel?
+    private var comment: Comment?
     weak var reviewDelegate: ReviewTableViewCellDelegate?
     
     private let numberOfReviewImageLabel: PaddingLabel = {
@@ -77,34 +77,34 @@ class ReviewTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
-    func configureUI(reviewModel: ReviewModel) {
-        self.reviewModel = reviewModel
-        reviewTitleLabel.text = reviewModel.title
+    func configureUI(comment: Comment) {
+        self.comment = comment
+        reviewTitleLabel.text = comment.item
         reviewTitleLabel.font = UIFont.boldSystemFont(ofSize: 15)
         
-        reviewContentLabel.text = reviewModel.content
+        reviewContentLabel.text = comment.content
         reviewContentLabel.font = UIFont.systemFont(ofSize: 15)
         reviewContentLabel.numberOfLines = 0
         reviewContentLabel.lineBreakMode = .byWordWrapping
         
-        categoryLabel.text = reviewModel.category
-        nicknameLabel.text = reviewModel.nickname
-        reviewDateLabel.text = reviewModel.date
+        categoryLabel.text = comment.category
+        nicknameLabel.text = comment.nickname
+        reviewDateLabel.text = comment.date
         
-        reviewImageView.image = UIImage(systemName: reviewModel.photos.first ?? "")
+        reviewImageView.image = UIImage(systemName: comment.photo.first ?? "")
         reviewImageView.layer.cornerRadius = 6
         
-        if reviewModel.photos.isEmpty {
+        if comment.photo.isEmpty {
             numberOfReviewImageLabel.isHidden = true
         } else {
-            numberOfReviewImageLabel.text = String(reviewModel.photos.count)
+            numberOfReviewImageLabel.text = String(comment.photo.count)
         }
-        reviewImageButton.setBackgroundImage(UIImage(systemName: reviewModel.photos.first ?? ""), for: .normal)
+        reviewImageButton.setBackgroundImage(UIImage(systemName: comment.photo.first ?? ""), for: .normal)
     }
     
     private func setupButtonAction() {
         let reviewImageButtonAction = UIAction { _ in
-            self.reviewDelegate?.presentReviewPhotoView(reviewImageNames: self.reviewModel?.photos ?? [])
+            self.reviewDelegate?.presentReviewPhotoView(reviewImageNames: self.comment?.photo ?? [])
         }
         reviewImageButton.addAction(reviewImageButtonAction, for: .touchUpInside)
     }
