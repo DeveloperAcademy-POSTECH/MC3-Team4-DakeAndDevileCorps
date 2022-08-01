@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol ReviewTableViewCellDelegate: AnyObject {
+    func presentReviewPhotoView(reviewImageNames: [String])
+}
+
 class ReviewTableViewCell: UITableViewCell {
     
     @IBOutlet weak var reviewTitleLabel: UILabel!
@@ -15,7 +19,9 @@ class ReviewTableViewCell: UITableViewCell {
     
     @IBOutlet weak var reviewStackView: UIStackView!
     @IBOutlet weak var reviewSubStackView: UIStackView!
-    weak var reviewDelegate: StoreDetailTableViewCellDelegate?
+    
+    private var reviewModel: ReviewModel?
+    weak var reviewDelegate: ReviewTableViewCellDelegate?
     
     private let numberOfReviewImageLabel: PaddingLabel = {
         let numberOfReviewImageLabel = PaddingLabel(padding: UIEdgeInsets(top: 2, left: 6, bottom: 2, right: 6))
@@ -54,9 +60,17 @@ class ReviewTableViewCell: UITableViewCell {
         return reviewDateLabel
     }()
     
+    private let reviewImageButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        
+        return button
+    }()
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         setupLayout()
+        setupButtonAction()
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -64,6 +78,7 @@ class ReviewTableViewCell: UITableViewCell {
     }
     
     func configureUI(reviewModel: ReviewModel) {
+        self.reviewModel = reviewModel
         reviewTitleLabel.text = reviewModel.title
         reviewTitleLabel.font = UIFont.boldSystemFont(ofSize: 15)
         
@@ -84,11 +99,14 @@ class ReviewTableViewCell: UITableViewCell {
         } else {
             numberOfReviewImageLabel.text = String(reviewModel.photos.count)
         }
-//        guard reviewModel.photos.isEmpty == false else {
-//            numberOfReviewImageLabel.isHidden = true
-//            return
-//        }
-//        numberOfReviewImageLabel.text = String(reviewModel.photos.count)
+        reviewImageButton.setBackgroundImage(UIImage(systemName: reviewModel.photos.first ?? ""), for: .normal)
+    }
+    
+    private func setupButtonAction() {
+        let reviewImageButtonAction = UIAction { _ in
+            self.reviewDelegate?.presentReviewPhotoView(reviewImageNames: self.reviewModel?.photos ?? [])
+        }
+        reviewImageButton.addAction(reviewImageButtonAction, for: .touchUpInside)
     }
     
     private func setupLayout() {
@@ -96,6 +114,15 @@ class ReviewTableViewCell: UITableViewCell {
         reviewSubStackView.addArrangedSubview(reviewDateLabel)
         reviewStackView.addArrangedSubview(categoryLabel)
         reviewStackView.addArrangedSubview(reviewSubStackView)
+        
+        addSubview(reviewImageButton)
+        NSLayoutConstraint.activate([
+            reviewImageButton.topAnchor.constraint(equalTo: topAnchor, constant: 18),
+            reviewImageButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -24),
+            reviewImageButton.widthAnchor.constraint(equalToConstant: 72),
+            reviewImageButton.heightAnchor.constraint(equalToConstant: 72)
+        ])
+        
         addSubview(numberOfReviewImageLabel)
         NSLayoutConstraint.activate([
             numberOfReviewImageLabel.topAnchor.constraint(equalTo: topAnchor, constant: 72),

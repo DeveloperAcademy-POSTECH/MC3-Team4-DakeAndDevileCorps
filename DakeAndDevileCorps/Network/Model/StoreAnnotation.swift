@@ -1,13 +1,13 @@
 //
-//  ShopInfo.swift
+//  StoreAnnotation.swift
 //  DakeAndDevileCorps
 //
-//  Created by Kim Sujin on 2022/07/27.
+//  Created by SHIN YOON AH on 2022/08/01.
 //
 
 import MapKit
 
-class ShopInfo: NSObject, MKAnnotation {
+class StoreAnnotation: NSObject, MKAnnotation {
     enum Category {
         case zeroWasteShop
         case refillStation
@@ -29,20 +29,15 @@ class ShopInfo: NSObject, MKAnnotation {
         }
     }
     
-    let title: String?
-    let subtitle: String?
-    
     let coordinate: CLLocationCoordinate2D
-    
     let sellingProductsCategory: [String]
     let category: Category
+    let store: Store
     
-    init(title: String? = nil, subtitle: String? = nil, coordinate: CLLocationCoordinate2D, sellingProductsCategory: [String], category: Category) {
-        self.title = title
-        self.subtitle = subtitle
+    init(title: String? = nil, subtitle: String? = nil, coordinate: CLLocationCoordinate2D, sellingProductsCategory: [String], category: Category, store: Store) {
         self.coordinate = coordinate
         self.sellingProductsCategory = sellingProductsCategory
         self.category = category
-        
+        self.store = store
     }
 }
