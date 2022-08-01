@@ -256,7 +256,7 @@ extension StoreDetailViewController: StoreDetailSelectViewDelegate {
         else { return }
         
         presentViewController.sendComment = { [weak self] comment in
-            self?.commentList.append(comment)
+            self?.commentList.insert(comment, at: 0)
             self?.storeDetailTableView.reloadData()
             self?.updateListCountOfButton(self?.selectHeader ?? StoreDetailSelectView())
         }
