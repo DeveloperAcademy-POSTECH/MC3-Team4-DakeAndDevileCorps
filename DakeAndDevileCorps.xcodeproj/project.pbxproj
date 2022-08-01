@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0B6589CD2892A8E000B9A091 /* AnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6589CC2892A8E000B9A091 /* AnnotationView.swift */; };
+		0B658A5428979C2900B9A091 /* CustomModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B658A5328979C2900B9A091 /* CustomModalView.swift */; };
 		0B6BA51F28884A8500E30B37 /* SearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6BA51E28884A8500E30B37 /* SearchBarView.swift */; };
 		4A3B359D28911F210081D5CF /* ReviewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A3B359C28911F210081D5CF /* ReviewModel.swift */; };
 		4A3B35A2289387BC0081D5CF /* StoreDetailSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A3B35A1289387BC0081D5CF /* StoreDetailSelectView.swift */; };
@@ -75,6 +76,7 @@
 
 /* Begin PBXFileReference section */
 		0B6589CC2892A8E000B9A091 /* AnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnotationView.swift; sourceTree = "<group>"; };
+		0B658A5328979C2900B9A091 /* CustomModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomModalView.swift; sourceTree = "<group>"; };
 		0B6BA51E28884A8500E30B37 /* SearchBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarView.swift; sourceTree = "<group>"; };
 		4A3B359C28911F210081D5CF /* ReviewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewModel.swift; sourceTree = "<group>"; };
 		4A3B35A1289387BC0081D5CF /* StoreDetailSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreDetailSelectView.swift; sourceTree = "<group>"; };
@@ -397,6 +399,7 @@
 				B5F1F24F28883E9A0021B026 /* Cell */,
 				B5F1F24D288834A40021B026 /* CategoryView.swift */,
 				0B6BA51E28884A8500E30B37 /* SearchBarView.swift */,
+				0B658A5328979C2900B9A091 /* CustomModalView.swift */,
 			);
 			path = UIComponent;
 			sourceTree = "<group>";
@@ -587,6 +590,7 @@
 				4A3B35A2289387BC0081D5CF /* StoreDetailSelectView.swift in Sources */,
 				B52E6D9F289799BC0076B6C3 /* Store.swift in Sources */,
 				B5F1F24B2888313F0021B026 /* UIView+Extension.swift in Sources */,
+				0B658A5428979C2900B9A091 /* CustomModalView.swift in Sources */,
 				7937A016288597A60016D1A8 /* UIColor+Extension.swift in Sources */,
 				4A3B359D28911F210081D5CF /* ReviewModel.swift in Sources */,
 			);
