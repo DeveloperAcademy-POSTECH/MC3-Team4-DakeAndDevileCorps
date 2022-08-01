@@ -8,12 +8,22 @@
 import Foundation
 
 enum DataKeys: String, CaseIterable {
-    case nickname = "nickname"
+    case nickname
+    case currentLatitude
+    case currentLongitude
 }
 
 struct UserDefaultStorage {
     static var nickname: String {
         return UserData<String>.getValue(forKey: .nickname) ?? ""
+    }
+    
+    static var currentLatitude: String {
+        return UserData<String>.getValue(forKey: .currentLatitude) ?? ""
+    }
+    
+    static var currentLongitude: String {
+        return UserData<String>.getValue(forKey: .currentLongitude) ?? ""
     }
 }
 

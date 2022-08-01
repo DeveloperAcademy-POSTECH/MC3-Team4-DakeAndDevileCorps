@@ -45,16 +45,31 @@ class MainMapViewController: UIViewController {
         return view
     }()
     
+    private lazy var currentLocationButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.backgroundColor = .white
+        button.setImage(UIImage(systemName: "location"), for: .normal)
+        button.layer.cornerRadius = 10
+        button.tintColor = .black
+        button.addTarget(self, action: #selector(touchUpCurrentLocationButton), for: .touchUpInside)
+        return button
+    }()
+    
     // MARK: - properties
     var shops: [StoreAnnotation] = []
     
     private var initialOffset: CGPoint = .zero
     private var detailVC: StoreDetailViewController?
     
+    var locationManager: CLLocationManager = CLLocationManager()
+    var currentLocation: CLLocation?
+    
     // MARK: - lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setLocationManager()
         setMapView()
         setSearchBarView()
         setCategoryView()
@@ -64,9 +79,18 @@ class MainMapViewController: UIViewController {
     }
     
     // MARK: - func
+    private func setLocationManager() {
+        locationManager.delegate = self
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.startUpdatingLocation()
+    }
+    
     private func setMapView() {
         mapView.delegate = self
         mapView.register(AnnotationView.self, forAnnotationViewWithReuseIdentifier: AnnotationView.className)
+        mapView.showsUserLocation = true
+        mapView.setUserTrackingMode(.follow, animated: true)
     }
     
     private func setSearchBarView() {
@@ -93,6 +117,17 @@ class MainMapViewController: UIViewController {
             categoryView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
             categoryView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor),
             categoryView.heightAnchor.constraint(equalToConstant: 60)
+        ])
+        
+        view.addSubview(currentLocationButton)
+        let currentButtonBottomConstraint = currentLocationButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -38)
+        currentButtonBottomConstraint.priority = .defaultLow
+        NSLayoutConstraint.activate([
+            currentLocationButton.widthAnchor.constraint(equalToConstant: 42),
+            currentLocationButton.heightAnchor.constraint(equalTo: currentLocationButton.widthAnchor),
+            
+            currentLocationButton.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -20),
+            currentButtonBottomConstraint,
         ])
     }
     
@@ -136,14 +171,42 @@ class MainMapViewController: UIViewController {
                                                     width: storeDetailModalView.mode.frame.width,
                                                     height: fullFrame.height)
                 storeDetailModalView.subviews.last?.frame = CGRect(x: 0,
-                                                    y: 0,
-                                                    width: storeDetailModalView.mode.frame.width,
-                                                    height: fullFrame.height)
+                                                                   y: 0,
+                                                                   width: storeDetailModalView.mode.frame.width,
+                                                                   height: fullFrame.height)
             }
         
         default: break
         }
     }
+    
+    @objc
+    func touchUpCurrentLocationButton() {
+        mapView.showsUserLocation.toggle()
+        mapView.setUserTrackingMode(.follow, animated: true)
+    }
+}
+
+// MARK: - CLLocationManagerDelegate
+extension MainMapViewController: CLLocationManagerDelegate {
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        locationManager = manager
+        if locationManager.authorizationStatus == .authorizedWhenInUse {
+            currentLocation = locationManager.location
+        }
+        let currentLocation = locations[locations.count-1]
+        let currentLatitude = currentLocation.coordinate.latitude
+        let currentLongitude = currentLocation.coordinate.longitude
+         
+        UserDefaultHandler.setCurrentLatitude(currentLatitude: String(currentLatitude))
+        UserDefaultHandler.setCurrentLongitude(currentLongitude: String(currentLongitude))
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        
+    }
+    
 }
 
 // MARK: - MapViewDelegate
