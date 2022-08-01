@@ -63,6 +63,8 @@ final class WriteReviewViewController: BaseViewController {
         authorizationOfLibraryAlert.addAction(moveToSettingAction)
     }
     
+    
+    
     private let cancelButton: UIButton = {
         let button = UIButton()
         button.setTitle("취소", for: .normal)
