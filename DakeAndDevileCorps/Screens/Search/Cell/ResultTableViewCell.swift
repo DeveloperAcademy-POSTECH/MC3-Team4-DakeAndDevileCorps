@@ -31,8 +31,8 @@ class ResultTableViewCell: UITableViewCell {
         guard let currentLatitude = Double(UserDefaultStorage.currentLatitude),
               let currentLongitude = Double(UserDefaultStorage.currentLongitude)
         else { return }
-        let currentCoordinator = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
-        let coordinator = CLLocationCoordinate2D(latitude: currentLatitude, longitude: currentLongitude)
+        let coordinator = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+        let currentCoordinator = CLLocationCoordinate2D(latitude: currentLatitude, longitude: currentLongitude)
         let distance = currentCoordinator.distance(from: coordinator) / 1000
         distanceToStore.text = String(format: "%.01fkm", distance)
     }
