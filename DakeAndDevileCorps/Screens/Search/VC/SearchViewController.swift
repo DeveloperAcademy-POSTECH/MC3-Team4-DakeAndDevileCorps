@@ -16,15 +16,15 @@ class SearchViewController: BaseViewController {
     @IBOutlet weak var nothingView: UIStackView!
     @IBOutlet weak var nothingMessage: UILabel!
     
-    private let searchBarView: SearchBarView = {
+    let searchBarView: SearchBarView = {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.entryPoint = .search
         return $0
     }(SearchBarView())
     
     private var filteredStoreList: [Store] = []
-    private var isResultShowing: Bool = false
     private let keywordCoreData = KeywordManager.shared
+    var isResultShowing: Bool = false
     
     private enum SearchType {
         case recentSearch
@@ -182,6 +182,10 @@ extension SearchViewController: UITableViewDelegate {
             searchBarView.text = recentItemList[index].term
             didReturnKeyInput()
         } else {
+            let presentingVC = presentingViewController as? MainMapViewController
+            presentingVC?.searchBarView.text = searchBarView.text
+            presentingVC?.searchBarView.entryPoint = .search
+            presentingVC?.categoryView.isHidden = true
             dismiss(animated: false)
         }
     }
@@ -206,6 +210,9 @@ extension SearchViewController: SearchBarDelegate {
     }
     
     @objc func touchUpInsideLeftButton() {
+        let presentingVC = presentingViewController as? MainMapViewController
+        presentingVC?.searchBarView.entryPoint = .map
+        presentingVC?.categoryView.isHidden = false
         dismiss(animated: false)
     }
 }
