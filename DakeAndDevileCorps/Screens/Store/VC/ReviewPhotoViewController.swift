@@ -103,7 +103,7 @@ extension ReviewPhotoViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ReviewPhotoCollectionViewCell.className, for: indexPath) as? ReviewPhotoCollectionViewCell else { return UICollectionViewCell() }
-        if let photo = UIImage(systemName: photoNames[indexPath.item]) {
+        if let photo = UIImage(named: photoNames[indexPath.item]) {
             cell.setupPhotoImageView(to: photo)
         }
         return cell

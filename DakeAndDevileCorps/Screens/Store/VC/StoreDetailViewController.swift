@@ -130,8 +130,14 @@ extension StoreDetailViewController: UITableViewDataSource {
         
         storeInformationCell.selectionStyle = .none
         storeInformationCell.storeInformationDelegate = self
-        storeInformationCell.setUpperData(todayOperationTime: store?.getTodayOfficeHour(),
-                                          productCategories: store?.getStoreCategories())
+        if store?.getTodayOfficeHour() == "정기휴무" {
+            storeInformationCell.setUpperData(todayOperationTime: "",
+                                              productCategories: store?.getStoreCategories())
+            storeInformationCell.setBetweenDot()
+        } else {
+            storeInformationCell.setUpperData(todayOperationTime: store?.getTodayOfficeHour(),
+                                              productCategories: store?.getStoreCategories())
+        }
         storeInformationCell.setBottomData(address: store?.address,
                                            phoneNumber: store?.telephone)
         storeInformationCell.setOperationTime(operationList: store?.officeHour)

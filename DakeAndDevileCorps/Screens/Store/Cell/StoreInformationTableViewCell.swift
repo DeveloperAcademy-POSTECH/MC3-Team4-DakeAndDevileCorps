@@ -15,6 +15,7 @@ class StoreInformationTableViewCell: UITableViewCell {
     
     @IBOutlet weak var operationStatusLabel: UILabel!
     @IBOutlet weak var todayOperationTimeLabel: UILabel!
+    @IBOutlet weak var betweenDot: UILabel!
     @IBOutlet weak var productCategoriesLabel: UILabel!
     @IBOutlet weak var addressLabel: UILabel!
     @IBOutlet weak var phoneNumberLabel: UILabel!
@@ -96,5 +97,9 @@ class StoreInformationTableViewCell: UITableViewCell {
         operationStatusLabel.text = store.getOfficeHourState().title
         operationStatusLabel.textColor = store.getOfficeHourState().titleColor
         operationTimeLabel.text = store.getTodayOfficeHour()
+    }
+    
+    func setBetweenDot() {
+        betweenDot.isHidden = true
     }
 }

@@ -29,9 +29,8 @@ class ReviewTableViewCell: UITableViewCell {
         numberOfReviewImageLabel.translatesAutoresizingMaskIntoConstraints = false
         numberOfReviewImageLabel.font = UIFont.systemFont(ofSize: 11)
         numberOfReviewImageLabel.textColor = .white
-        numberOfReviewImageLabel.backgroundColor = .gray
+        numberOfReviewImageLabel.backgroundColor = .black.withAlphaComponent(0.5)
         numberOfReviewImageLabel.layer.masksToBounds = true
-        numberOfReviewImageLabel.layer.opacity = 0.5
         
         return numberOfReviewImageLabel
     }()
@@ -101,7 +100,7 @@ class ReviewTableViewCell: UITableViewCell {
         } else {
             numberOfReviewImageLabel.text = String(comment.photo.count)
         }
-        reviewImageButton.setBackgroundImage(UIImage(systemName: comment.photo.first ?? ""), for: .normal)
+        reviewImageButton.setBackgroundImage(UIImage(named: comment.photo.first ?? ""), for: .normal)
     }
     
     private func returnAdjustedDate(date: String) -> String {
