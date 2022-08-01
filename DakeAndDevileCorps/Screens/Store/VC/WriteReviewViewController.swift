@@ -18,6 +18,52 @@ final class WriteReviewViewController: BaseViewController {
     private let addPhotoAlert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
     private let authorizationOfCameraAlert = UIAlertController(title: "알림", message: "Zemap의 카메라  접근이 허용되어 있지 않습니다.", preferredStyle: .alert)
     private let authorizationOfLibraryAlert = UIAlertController(title: "알림", message: "Zemap의 앨범  접근이 허용되어 있지 않습니다.", preferredStyle: .alert)
+    private let cancelButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("취소", for: .normal)
+        button.setTitleColor(.black, for: .normal)
+        button.titleLabel?.font = .preferredFont(forTextStyle: .headline)
+        return button
+    }()
+    private let confirmButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("완료", for: .normal)
+        button.setTitleColor(.zeroMint50, for: .normal)
+        button.setTitleColor(.tertiaryLabel, for: .disabled)
+        button.titleLabel?.font = .preferredFont(forTextStyle: .headline)
+        return button
+    }()
+    private let reviewInputView = ReviewInputView()
+    
+    var storeName: String = "알맹상점"
+    
+    // MARK: - life cycle
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        initDelegate()
+        setPhotoAlert()
+        setupNotificationCenter()
+        hideKeyboardWhenTappedAround()
+    }
+    
+    override func render() {
+        view.addSubview(reviewInputView)
+        reviewInputView.constraint(top: view.safeAreaLayoutGuide.topAnchor,
+                                   leading: view.leadingAnchor,
+                                   bottom: view.bottomAnchor,
+                                   trailing: view.trailingAnchor,
+                                   padding: .zero)
+    }
+
+    override func configUI() {
+        setupNavigationBar()
+        applyConfirmLabel(with: false)
+        setupPresentationController()
+        setupButtonAction()
+    }
+    
+    // MARK: - func
     
     private func initDelegate() {
         imagePickerViewController.delegate = self
@@ -61,50 +107,10 @@ final class WriteReviewViewController: BaseViewController {
         authorizationOfLibraryAlert.addAction(moveToSettingAction)
     }
     
-    private let cancelButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("취소", for: .normal)
-        button.setTitleColor(.black, for: .normal)
-        button.titleLabel?.font = .preferredFont(forTextStyle: .headline)
-        return button
-    }()
-    private let confirmButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("완료", for: .normal)
-        button.setTitleColor(.zeroMint50, for: .normal)
-        button.setTitleColor(.tertiaryLabel, for: .disabled)
-        button.titleLabel?.font = .preferredFont(forTextStyle: .headline)
-        return button
-    }()
-    private let reviewInputView = ReviewInputView()
-    
-    var storeName: String = "알맹상점"
-    
-    // MARK: - life cycle
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        initDelegate()
-        setPhotoAlert()
-        setupNotificationCenter()
-        hideKeyboardWhenTappedAround()
+    private func setupPresentationController() {
+        navigationController?.presentationController?.delegate = self
+        isModalInPresentation = true
     }
-    
-    override func render() {
-        view.addSubview(reviewInputView)
-        reviewInputView.constraint(top: view.safeAreaLayoutGuide.topAnchor,
-                                   leading: view.leadingAnchor,
-                                   bottom: view.bottomAnchor,
-                                   trailing: view.trailingAnchor,
-                                   padding: .zero)
-    }
-
-    override func configUI() {
-        setupNavigationBar()
-        applyConfirmLabel(with: false)
-    }
-    
-    // MARK: - func
     
     private func setupNavigationBar() {
         let cancelButton = makeBarButtonItem(with: cancelButton)
@@ -118,6 +124,13 @@ final class WriteReviewViewController: BaseViewController {
         
         appearance.titleTextAttributes = [.font: font]
         title = storeName
+    }
+    
+    private func setupButtonAction() {
+        let cancelAction = UIAction { _ in
+            self.presentationControllerDidAttemptToDismissAction()
+        }
+        cancelButton.addAction(cancelAction, for: .touchUpInside)
     }
     
     private func applyConfirmLabel(with isEnabled: Bool) {
@@ -162,6 +175,32 @@ final class WriteReviewViewController: BaseViewController {
     
     private func setupNotificationCenter() {
         NotificationCenter.default.addObserver(self, selector: #selector(didChangeButtonState), name: .activeReview, object: nil)
+    }
+    
+    private func presentationControllerDidAttemptToDismissAction() {
+        guard let isEmptyItemText = reviewInputView.itemTextField.text?.isEmpty else { return }
+        let hasCategory = reviewInputView.isSelectedCollection
+        let hasItemText = !isEmptyItemText
+        let hasContentText = reviewInputView.reviewTextView.textMode != .beforeWriting
+        let hasImage = !reviewInputView.reviewAddPhotoView.photoList.isEmpty
+        let hasSomething = hasItemText || hasContentText || hasImage || hasCategory
+        
+        guard hasSomething else {
+            dismiss(animated: true, completion: nil)
+            return
+        }
+        
+        presentActionSheet()
+    }
+    
+    private func presentActionSheet() {
+        let dismissAction: ((UIAlertAction) -> ()) = { [weak self] _ in
+            self?.resignFirstResponder()
+            self?.dismiss(animated: true, completion: nil)
+        }
+        makeActionSheet(actionTitles: ["변경 사항 폐기", "취소"],
+                        actionStyle: [.destructive, .cancel],
+                        actions: [dismissAction, nil])
     }
     
     // MARK: - selector
@@ -218,5 +257,12 @@ extension WriteReviewViewController: UICollectionViewDataSource {
             cell.deletePhotoButton.tag = indexPath.row
             cell.deletePhotoButton.addTarget(self, action: #selector(touchUpInsideToDeletePhoto(sender:)), for: .touchUpInside)
             return cell
+    }
+}
+
+// MARK: - UIAdaptivePresentationControllerDelegate
+extension WriteReviewViewController: UIAdaptivePresentationControllerDelegate {
+    func presentationControllerDidAttemptToDismiss(_ presentationController: UIPresentationController) {
+        presentationControllerDidAttemptToDismissAction()
     }
 }
