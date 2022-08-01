@@ -56,8 +56,8 @@ class MainMapViewController: UIViewController {
         return button
     }()
     
-    // MARK: - properties
-    var shops: [StoreAnnotation] = []
+    // MARK: - propertiesg
+    lazy var shops: [StoreAnnotation] = []
     
     private var initialOffset: CGPoint = .zero
     private var detailVC: StoreDetailViewController?
@@ -122,6 +122,7 @@ class MainMapViewController: UIViewController {
         view.addSubview(currentLocationButton)
         let currentButtonBottomConstraint = currentLocationButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -38)
         currentButtonBottomConstraint.priority = .defaultLow
+        
         NSLayoutConstraint.activate([
             currentLocationButton.widthAnchor.constraint(equalToConstant: 42),
             currentLocationButton.heightAnchor.constraint(equalTo: currentLocationButton.widthAnchor),
@@ -129,6 +130,7 @@ class MainMapViewController: UIViewController {
             currentLocationButton.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -20),
             currentButtonBottomConstraint,
         ])
+        
     }
     
     private func drawAnnotationViews() {
@@ -153,6 +155,10 @@ class MainMapViewController: UIViewController {
             case .tip:
                 if storeDetailModalView.frame.origin.y > self.view.frame.height - 75 {
                     storeDetailModalView.removeFromSuperview()
+                    UIView.animate(withDuration: 0.2, animations: { [weak self] in
+                        self?.currentLocationButton.transform = .identity
+                    })
+
                 }
                 preventTouchView.isHidden = false
                 
@@ -226,6 +232,9 @@ extension MainMapViewController: MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         self.view.addSubview(storeDetailModalView)
+        UIView.animate(withDuration: 0.03, animations: { [weak self] in
+            self?.currentLocationButton.transform = CGAffineTransform(translationX: 0, y: -130)
+        })
         
         detailVC = UIStoryboard(name: "StoreDetail", bundle: nil).instantiateViewController(withIdentifier: StoreDetailViewController.className) as? StoreDetailViewController
         detailVC?.delegate = self
@@ -244,6 +253,9 @@ extension MainMapViewController: MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
         self.storeDetailModalView.removeFromSuperview()
+        UIView.animate(withDuration: 0.2, animations: { [weak self] in
+            self?.currentLocationButton.transform = .identity
+        })
         storeDetailModalView.subviews.forEach { subview in
             subview.removeFromSuperview()
         }
@@ -290,6 +302,10 @@ extension MainMapViewController: StoreDetailViewControllerDelegate {
         self.storeDetailModalView.mode = .tip(screenViewFrame: self.view.frame)
         self.storeDetailModalView.frame = self.storeDetailModalView.mode.frame
         self.storeDetailModalView.removeFromSuperview()
+        UIView.animate(withDuration: 0.2, animations: { [weak self] in
+            self?.currentLocationButton.transform = .identity
+        })
+
     }
     
     func setupViewWillDisappear(closeButton: UIButton) {
