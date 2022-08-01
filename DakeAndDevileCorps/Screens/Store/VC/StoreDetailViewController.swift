@@ -163,7 +163,6 @@ extension StoreDetailViewController: UITableViewDataSource {
 }
 
 extension StoreDetailViewController: UITableViewDelegate {
-    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
     }
@@ -251,4 +250,3 @@ extension StoreDetailViewController: StoreDetailSelectViewDelegate {
         storeDetailSelectView.numberOfProducts = productList.count - categoryList.count
     }
 }
- 

@@ -10,6 +10,7 @@ import UIKit
 protocol ReviewTableViewCellDelegate: AnyObject {
     func presentReviewPhotoView(reviewImageNames: [String])
 }
+
 class ReviewTableViewCell: UITableViewCell {
     
     @IBOutlet weak var reviewTitleLabel: UILabel!
@@ -18,6 +19,9 @@ class ReviewTableViewCell: UITableViewCell {
     
     @IBOutlet weak var reviewStackView: UIStackView!
     @IBOutlet weak var reviewSubStackView: UIStackView!
+    
+    private var reviewModel: ReviewModel?
+    weak var reviewDelegate: ReviewTableViewCellDelegate?
     
     private let numberOfReviewImageLabel: PaddingLabel = {
         let numberOfReviewImageLabel = PaddingLabel(padding: UIEdgeInsets(top: 2, left: 6, bottom: 2, right: 6))
@@ -62,9 +66,6 @@ class ReviewTableViewCell: UITableViewCell {
         
         return button
     }()
-    
-    private var reviewModel: ReviewModel?
-    weak var reviewDelegate: ReviewTableViewCellDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
