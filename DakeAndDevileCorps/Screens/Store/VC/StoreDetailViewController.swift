@@ -7,6 +7,11 @@
 
 import UIKit
 
+protocol StoreDetailViewControllerDelegate: AnyObject {
+    func setupButtonAction(closeButton: UIButton)
+    func setupViewWillDisappear(closeButton: UIButton)
+}
+
 class StoreDetailViewController: BaseViewController {
     
     // MARK: - properties
@@ -18,15 +23,15 @@ class StoreDetailViewController: BaseViewController {
     @IBOutlet weak var storeName: UILabel!
     @IBOutlet weak var storeDetailTableView: UITableView!
     @IBOutlet weak var closeStoreDetailButton: UIButton!
-    
     private var productList: [ProductTableViewCellModel] = []
     private let categoryList: [String] = ["주방세제", "세탁세제", "섬유유연제", "기타세제", "헤어", "스킨", "바디", "식품", "생활", "문구", "애견", "기타"]
-    private var reviewList: [ReviewModel] = []
+    private var commentList: [Comment] = []
     private var selectHeader = StoreDetailSelectView()
     private var categoryHeader = CategoryView(entryPoint: .detail)
     private var itemInformationType: ItemInformationType = .productList
     private var store: Store?
     var dataIndex: Int = 0
+    weak var delegate: StoreDetailViewControllerDelegate?
     
     // MARK: - func
     
@@ -36,6 +41,14 @@ class StoreDetailViewController: BaseViewController {
         configStoreDetailTableView()
         initStoreInformationData()
         configHeader()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        delegate?.setupViewWillDisappear(closeButton: closeStoreDetailButton)
+    }
+    
+    @IBAction func closeStoreDetail(_ sender: Any) {
+        delegate?.setupButtonAction(closeButton: closeStoreDetailButton)
     }
     
     private func configStoreDetailTableView() {
@@ -57,42 +70,15 @@ class StoreDetailViewController: BaseViewController {
     }
     
     private func initStoreInformationData() {
-        productList = [
-            .product(productName: "주방세제"),
-            .item(itemName: "인블리스 세탁세제", itemPrice: "1g = 4원"),
-            .item(itemName: "인블리스 세탁세제", itemPrice: "1g = 4원"),
-            .item(itemName: "인블리스 세탁세제", itemPrice: "1g = 4원"),
-            .item(itemName: "인블리스 세탁세제", itemPrice: "1g = 4원"),
-            .product(productName: "세탁세제"),
-            .item(itemName: "인블리스 세탁세제", itemPrice: "1g = 4원"),
-            .product(productName: "섬유유연제"),
-            .item(itemName: "인블리스 세탁세제", itemPrice: "1g = 4원"),
-            .product(productName: "기타세제"),
-            .item(itemName: "인블리스 세탁세제", itemPrice: "1g = 4원"),
-            .product(productName: "헤어"),
-            .item(itemName: "인블리스 세탁세제", itemPrice: "1g = 4원"),
-            .product(productName: "스킨"),
-            .item(itemName: "인블리스 세탁세제", itemPrice: "1g = 4원"),
-            .product(productName: "바디"),
-            .item(itemName: "인블리스 세탁세제", itemPrice: "1g = 4원"),
-            .product(productName: "생활"),
-            .item(itemName: "인블리스 세탁세제", itemPrice: "1g = 4원"),
-            .product(productName: "문구"),
-            .item(itemName: "인블리스 세탁세제", itemPrice: "1g = 4원"),
-            .product(productName: "애견"),
-            .item(itemName: "인블리스 세탁세제", itemPrice: "1g = 4원"),
-            .product(productName: "기타"),
-            .item(itemName: "인블리스 세탁세제", itemPrice: "1g = 4원")
-        ]
+        let itemList = store?.items ?? []
         
-        reviewList.append(contentsOf: [
-            ReviewModel(title: "인블리스 세탁세제", content: "좋습니다. 벌써 3번 리필했어요!", category: "세탁세제", nickname: "냥냥이", date: "21.7.18", photos: ["star.fill", "moon.fill", "sun.max.fill"]),
-            ReviewModel(title: "에코라운드 중성 주방세제", content: "최고네용~ 캬캬캬 한 번 더 리필할 듯 싶습니다. 향이 짱 좋고 세척력도 넘넘 좋아요! 추천추천합니다ㅎㅎ", category: "주방세제", nickname: "뇸뇸", date: "21.7.18", photos: ["moon.fill", "star.fill"]),
-            ReviewModel(title: "에코티끄 섬유유연제", content: "흠... 이 향 뭐지? 향이 짱 좋고 산뜻합니다! 친구들한테 추천하구 다녀영~ 최고오오오오오오오", category: "섬유유연제", nickname: "감자도리", date: "21.7.18", photos: []),
-            ReviewModel(title: "인블리스 세탁세제", content: "좋습니다. 벌써 3번 리필했어요!", category: "세탁세제", nickname: "냥냥이", date: "21.7.18", photos: ["star.fill", "moon.fill", "sun.max.fill"]),
-            ReviewModel(title: "에코라운드 중성 주방세제", content: "최고네용~ 캬캬캬 한 번 더 리필할 듯 싶습니다. 향이 짱 좋고 세척력도 넘넘 좋아요! 추천추천합니다ㅎㅎ", category: "주방세제", nickname: "뇸뇸", date: "21.7.18", photos: ["moon.fill", "star.fill"]),
-            ReviewModel(title: "에코티끄 섬유유연제", content: "흠... 이 향 뭐지? 향이 짱 좋고 산뜻합니다! 친구들한테 추천하구 다녀영~ 최고오오오오오오오", category: "섬유유연제", nickname: "감자도리", date: "21.7.18", photos: [])
-        ])
+        itemList.forEach({ item in
+            if itemList.first(where: { $0.category == item.category }) == item {
+                productList.append(.product(productName: item.category))
+            }
+            productList.append(.item(itemName: item.name))
+        })
+        commentList = store?.comments ?? []
     }
     
     private func scrollToSelectedCategory(indexPath: IndexPath) {
@@ -118,7 +104,7 @@ extension StoreDetailViewController: UITableViewDataSource {
         case (.itemInformation, .productList):
             return productList.count
         case (.itemInformation, .reviewList):
-            return reviewList.count
+            return commentList.isEmpty ? 1 : commentList.count
         }
     }
     
@@ -127,41 +113,59 @@ extension StoreDetailViewController: UITableViewDataSource {
         
         switch (sectionType, itemInformationType) {
         case (.storeInformation, _):
-            guard let storeInformationCell = tableView.dequeueReusableCell(
-                withIdentifier: StoreInformationTableViewCell.className, for: indexPath
-            ) as? StoreInformationTableViewCell else { return UITableViewCell() }
-            
-            storeInformationCell.storeInformationDelegate = self
-            storeInformationCell.setUpperData(todayOperationTime: store?.getTodayOfficeHour(),
-                                              productCategories: store?.getStoreCategories())
-            storeInformationCell.setBottomData(address: store?.address,
-                                               phoneNumber: store?.telephone)
-            storeInformationCell.setOperationTime(operationList: store?.officeHour)
-            storeInformationCell.setOperationStatusLabel(with: store)
-            
-            return storeInformationCell
-            
+            return returnStoreInformationCell(tableView, indexPath: indexPath)
         case (.itemInformation, .productList):
-            guard let productCell = tableView.dequeueReusableCell(
-                withIdentifier: ProductTableViewCell.className, for: indexPath
-            ) as? ProductTableViewCell,
-                  let itemCell = tableView.dequeueReusableCell(
-                    withIdentifier: ItemTableViewCell.className, for: indexPath
-                  ) as? ItemTableViewCell else { return UITableViewCell() }
-            
-            switch self.productList[indexPath.row] {
-            case let .product(productName):
-                productCell.setData(productName: productName)
-                return productCell
-            case let .item(itemName, itemPrice):
-                itemCell.setData(itemName: itemName, itemPrice: itemPrice)
-                return itemCell
-            }
-            
+            return returnProductCell(tableView, indexPath: indexPath)
         case (.itemInformation, .reviewList):
+            return returnReviewCell(tableView, indexPath: indexPath)
+        }
+    }
+    
+    private func returnStoreInformationCell(_ tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
+        guard let storeInformationCell = tableView.dequeueReusableCell(
+            withIdentifier: StoreInformationTableViewCell.className, for: indexPath
+        ) as? StoreInformationTableViewCell else { return UITableViewCell() }
+        
+        storeInformationCell.storeInformationDelegate = self
+        storeInformationCell.setUpperData(todayOperationTime: store?.getTodayOfficeHour(),
+                                          productCategories: store?.getStoreCategories())
+        storeInformationCell.setBottomData(address: store?.address,
+                                           phoneNumber: store?.telephone)
+        storeInformationCell.setOperationTime(operationList: store?.officeHour)
+        storeInformationCell.setOperationStatusLabel(with: store)
+        
+        return storeInformationCell
+    }
+    
+    private func returnProductCell(_ tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
+        guard let productCell = tableView.dequeueReusableCell(
+            withIdentifier: ProductTableViewCell.className, for: indexPath
+        ) as? ProductTableViewCell,
+              let itemCell = tableView.dequeueReusableCell(
+                withIdentifier: ItemTableViewCell.className, for: indexPath
+              ) as? ItemTableViewCell else { return UITableViewCell() }
+        
+        switch self.productList[indexPath.row] {
+        case let .product(productName):
+            productCell.setData(productName: productName)
+            return productCell
+        case let .item(itemName):
+            itemCell.setData(itemName: itemName)
+            return itemCell
+        }
+    }
+    
+    private func returnReviewCell(_ tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
+        if commentList.isEmpty {
+            guard let emptyReviewCell = tableView.dequeueReusableCell(withIdentifier: EmptyReviewTableViewCell.className) as? EmptyReviewTableViewCell else { return UITableViewCell() }
+            emptyReviewCell.configureUI()
+            
+            return emptyReviewCell
+        } else {
             guard let reviewCell = tableView.dequeueReusableCell(withIdentifier: ReviewTableViewCell.className, for: indexPath) as? ReviewTableViewCell else { return UITableViewCell() }
-            reviewCell.configureUI(reviewModel: reviewList[indexPath.row])
+            reviewCell.configureUI(comment: commentList[indexPath.row])
             reviewCell.reviewDelegate = self
+            
             return reviewCell
         }
     }
@@ -176,7 +180,7 @@ extension StoreDetailViewController: UITableViewDelegate {
         guard let sectionType = SectionType(rawValue: section) else { return UIView() }
         
         let stackView: UIStackView = {
-           let stackView = UIStackView()
+            let stackView = UIStackView()
             stackView.axis = .vertical
             
             return stackView
@@ -187,7 +191,7 @@ extension StoreDetailViewController: UITableViewDelegate {
         switch (sectionType, itemInformationType) {
         case (.itemInformation, .productList):
             stackView.addArrangedSubview(categoryHeader)
-
+            
             NSLayoutConstraint.activate([
                 selectHeader.heightAnchor.constraint(equalToConstant: 60),
                 categoryHeader.heightAnchor.constraint(equalToConstant: 60)
@@ -238,7 +242,7 @@ extension StoreDetailViewController: ReviewTableViewCellDelegate {
 extension StoreDetailViewController: StoreDetailSelectViewDelegate {
     func didSelectedButton(_ storeDetailSelectView: StoreDetailSelectView, isReviewButton: Bool, itemInformationType: ItemInformationType) {
         self.itemInformationType = itemInformationType
-       
+        
         storeDetailSelectView.iteminformationType = itemInformationType
         storeDetailSelectView.applyShowingState()
         storeDetailSelectView.productButtonBottomBar.isHidden = itemInformationType.isHiddenProductButtonBottomBar
@@ -252,7 +256,7 @@ extension StoreDetailViewController: StoreDetailSelectViewDelegate {
     }
     
     func updateListCountOfButton(_ storeDetailSelectView: StoreDetailSelectView) {
-        storeDetailSelectView.numberOfReviews = reviewList.count
+        storeDetailSelectView.numberOfReviews = commentList.count
         storeDetailSelectView.numberOfProducts = productList.count - categoryList.count
     }
 }
