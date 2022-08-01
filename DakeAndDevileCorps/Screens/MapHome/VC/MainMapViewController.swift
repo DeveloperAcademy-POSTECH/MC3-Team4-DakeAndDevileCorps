@@ -56,14 +56,16 @@ class MainMapViewController: BaseViewController {
         return button
     }()
     
-    // MARK: - propertiesg
+    // MARK: - properties
     lazy var shops: [StoreAnnotation] = {
         var category = StoreAnnotation.Category.zeroWasteShop
         return storeList.map { storeInfo in
             category = (category == .zeroWasteShop) ? .refillStation : .zeroWasteShop
-            return StoreAnnotation(coordinate: CLLocationCoordinate2D(latitude: storeInfo.latitude,
+            let annotation = StoreAnnotation(coordinate: CLLocationCoordinate2D(latitude: storeInfo.latitude,
                                                                       longitude: storeInfo.longitude),
                                    sellingProductsCategory: [], category: category, store: storeInfo)
+            annotation.title = storeInfo.name
+            return annotation
         }
     }()
     

@@ -34,6 +34,8 @@ class StoreAnnotation: NSObject, MKAnnotation {
     let category: Category
     let store: Store
     
+    var title: String?
+    
     init(title: String? = nil, subtitle: String? = nil, coordinate: CLLocationCoordinate2D, sellingProductsCategory: [String], category: Category, store: Store) {
         self.coordinate = coordinate
         self.sellingProductsCategory = sellingProductsCategory
