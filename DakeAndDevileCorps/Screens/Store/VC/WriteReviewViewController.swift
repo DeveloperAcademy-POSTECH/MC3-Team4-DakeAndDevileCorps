@@ -16,8 +16,8 @@ final class WriteReviewViewController: BaseViewController {
     private let imagePickerViewController = UIImagePickerController()
     private let photoLimitAlert = UIAlertController(title: "알림", message: "사진은 최대 3장까지 등록할 수 있어요.", preferredStyle: .alert)
     private let addPhotoAlert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-    private let authorizationOfCameraAlert = UIAlertController(title: "알림", message: "Zemap이 카메라에 접근이 허용되어 있지 않습니다.", preferredStyle: .alert)
-    private let authorizationOfLibraryAlert = UIAlertController(title: "알림", message: "Zemap이 앨범에 접근이 허용되어 있지 않습니다.", preferredStyle: .alert)
+    private let authorizationOfCameraAlert = UIAlertController(title: "알림", message: "Zemap의 카메라  접근이 허용되어 있지 않습니다.", preferredStyle: .alert)
+    private let authorizationOfLibraryAlert = UIAlertController(title: "알림", message: "Zemap의 앨범  접근이 허용되어 있지 않습니다.", preferredStyle: .alert)
     
     
     
