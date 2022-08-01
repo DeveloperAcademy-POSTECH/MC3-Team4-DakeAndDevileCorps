@@ -34,6 +34,7 @@
 		797CAC542886CFCB0041C3F7 /* RecentSearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797CAC532886CFCB0041C3F7 /* RecentSearchTableViewCell.swift */; };
 		79AD0E0A2893B68F00A9A1E0 /* ReviewAddPhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79AD0E092893B68F00A9A1E0 /* ReviewAddPhotoView.swift */; };
 		79E2DCA82886E3C800355E30 /* ResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E2DCA72886E3C800355E30 /* ResultTableViewCell.swift */; };
+		79ECCE02289474D10095E412 /* AddReviewPhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79ECCE01289474D10095E412 /* AddReviewPhotoCollectionViewCell.swift */; };
 		B52E6D9D2897995C0076B6C3 /* StoreAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52E6D9C2897995C0076B6C3 /* StoreAnnotation.swift */; };
 		B52E6D9F289799BC0076B6C3 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52E6D9E289799BC0076B6C3 /* Store.swift */; };
 		B52E6DA128979AAA0076B6C3 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52E6DA028979AAA0076B6C3 /* Comment.swift */; };
@@ -41,7 +42,6 @@
 		B52E6DA528979F7E0076B6C3 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52E6DA428979F7E0076B6C3 /* Date+Extension.swift */; };
 		B52E6DA728979F8E0076B6C3 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52E6DA628979F8E0076B6C3 /* String+Extension.swift */; };
 		B5366B872893732900637CDC /* MockParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5366B862893732900637CDC /* MockParser.swift */; };
-		79ECCE02289474D10095E412 /* AddReviewPhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79ECCE01289474D10095E412 /* AddReviewPhotoCollectionViewCell.swift */; };
 		B542BE782893B57300F2BC82 /* Keywords.xcdatamodeld in Resources */ = {isa = PBXBuildFile; fileRef = 79379FEC288588EC0016D1A8 /* Keywords.xcdatamodeld */; };
 		B542BE7A2893C64F00F2BC82 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B542BE792893C64F00F2BC82 /* UIViewController+Extension.swift */; };
 		B542BE7C289418EC00F2BC82 /* NSNotification+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B542BE7B289418EC00F2BC82 /* NSNotification+Extension.swift */; };
@@ -751,7 +751,7 @@
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = StoreDetail;
+				INFOPLIST_KEY_UIMainStoryboardFile = MapHome;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -784,7 +784,7 @@
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = StoreDetail;
+				INFOPLIST_KEY_UIMainStoryboardFile = MapHome;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";

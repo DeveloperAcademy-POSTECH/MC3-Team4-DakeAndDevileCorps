@@ -126,11 +126,7 @@ extension StoreDetailViewController: UITableViewDataSource {
         case (.itemInformation, .productList):
             return productList.count
         case (.itemInformation, .reviewList):
-            if reviewList.isEmpty {
-                return 1
-            } else {
-                return reviewList.count
-            }
+            return reviewList.isEmpty ? 1 : reviewList.count
         }
     }
     
