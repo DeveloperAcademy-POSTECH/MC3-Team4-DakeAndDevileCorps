@@ -172,7 +172,6 @@ class MainMapViewController: BaseViewController {
                 }
                 preventTouchView.isHidden = false
                 
-                
                 let fullFrame = CustomModalView.ModalMode.full(screenViewFrame: self.view.frame).frame
                 storeDetailModalView.frame = CGRect(x: 0,
                                                     y: storeDetailModalView.mode.frame.minY,

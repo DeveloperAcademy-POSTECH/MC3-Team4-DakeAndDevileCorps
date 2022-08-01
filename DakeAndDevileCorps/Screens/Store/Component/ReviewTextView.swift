@@ -9,7 +9,7 @@ import UIKit
 
 final class ReviewTextView: UIView {
     
-    private enum TextMode {
+    enum TextMode {
         case beforeWriting
         case write
         case complete
@@ -58,7 +58,7 @@ final class ReviewTextView: UIView {
         textView.spellCheckingType = .no
         return textView
     }()
-    private var textMode: TextMode? {
+    public private(set) var textMode: TextMode? {
         willSet {
             guard let newValue = newValue,
                   newValue != .complete else { return }

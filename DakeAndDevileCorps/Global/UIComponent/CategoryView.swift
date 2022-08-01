@@ -24,7 +24,7 @@ final class CategoryView: UIView {
     
     private enum Size {
         static let cellHeight: CGFloat = 36
-        static let estimatedtWidth: CGFloat = 10.0
+        static let cellContentInset: CGFloat = 28
     }
     
     private let categoryCollectionView: UICollectionView = {
@@ -32,7 +32,6 @@ final class CategoryView: UIView {
         layout.scrollDirection = .horizontal
         layout.minimumInteritemSpacing = 10
         layout.sectionInset = UIEdgeInsets(top: 12, left: 20, bottom: 12, right: 20)
-        layout.estimatedItemSize = CGSize(width: Size.estimatedtWidth, height: Size.cellHeight)
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.backgroundColor = .clear
@@ -42,7 +41,7 @@ final class CategoryView: UIView {
     
     weak var delegate: CategoryCollectionViewDelegate?
     private var entryPoint: CategoryEntryPoint
-    public private(set) var categoryList: [String] = ["주방세제", "세탁세제", "섬유유연제", "기타세제", "헤어", "스킨", "바디", "식품", "생활", "문구", "애견", "기타"]
+    public private(set) var categoryList: [String] = ["세탁세제", "주방세제", "섬유유연제", "기타세제", "헤어", "스킨", "바디", "식품", "생활", "문구", "애견", "기타"]
     
     // MARK: - init
     
@@ -99,6 +98,15 @@ extension CategoryView: UICollectionViewDataSource {
         cell.setItemLabel(with: categoryList[indexPath.item])
         cell.setEntryPointView(entryPoint: entryPoint)
         return cell
+    }
+}
+
+extension CategoryView: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let width = categoryList[indexPath.item].size(withAttributes: [
+            .font : UIFont.preferredFont(forTextStyle: .subheadline)
+        ]).width + Size.cellContentInset
+        return CGSize(width: width, height: Size.cellHeight)
     }
 }
 
