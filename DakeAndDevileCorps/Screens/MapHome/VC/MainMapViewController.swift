@@ -70,7 +70,7 @@ class MainMapViewController: BaseViewController {
     }()
     
     private var initialOffset: CGPoint = .zero
-    private var detailVC: StoreDetailViewController?
+    private var detailViewController: StoreDetailViewController?
     
     var locationManager: CLLocationManager = CLLocationManager()
     var currentLocation: CLLocation?
@@ -179,7 +179,7 @@ class MainMapViewController: BaseViewController {
                                                     width: storeDetailModalView.mode.frame.width,
                                                     height: fullFrame.height)
                 
-                detailVC?.storeDetailTableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
+                detailViewController?.storeDetailTableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
             case .full:
                 preventTouchView.isHidden = true
                 let fullFrame = CustomModalView.ModalMode.full(screenViewFrame: self.view.frame).frame
@@ -246,8 +246,8 @@ extension MainMapViewController: MKMapViewDelegate {
             self?.currentLocationButton.transform = CGAffineTransform(translationX: 0, y: -130)
         })
         
-        detailVC = UIStoryboard(name: "StoreDetail", bundle: nil).instantiateViewController(withIdentifier: StoreDetailViewController.className) as? StoreDetailViewController
-        detailVC?.delegate = self
+        detailViewController = UIStoryboard(name: "StoreDetail", bundle: nil).instantiateViewController(withIdentifier: StoreDetailViewController.className) as? StoreDetailViewController
+        detailViewController?.delegate = self
         
         guard let annotation = view.annotation as? StoreAnnotation else { return }
         
@@ -263,17 +263,17 @@ extension MainMapViewController: MKMapViewDelegate {
             }
         }
         
-        detailVC?.dataIndex = index
-        guard let detailVC = detailVC else { return }
-        storeDetailModalView.addSubview(detailVC.view)
-        detailVC.view.layer.cornerRadius = 20
-        detailVC.view.frame = CGRect(x: 0, y: 0, width: storeDetailModalView.frame.width, height: self.view.frame.height)
-        detailVC.view.addSubview(preventTouchView)
+        detailViewController?.dataIndex = index
+        guard let detailViewController = detailViewController else { return }
+        storeDetailModalView.addSubview(detailViewController.view)
+        detailViewController.view.layer.cornerRadius = 20
+        detailViewController.view.frame = CGRect(x: 0, y: 0, width: storeDetailModalView.frame.width, height: self.view.frame.height)
+        detailViewController.view.addSubview(preventTouchView)
         NSLayoutConstraint.activate([
-            preventTouchView.topAnchor.constraint(equalTo: detailVC.storeDetailTableView.topAnchor),
-            preventTouchView.bottomAnchor.constraint(equalTo: detailVC.storeDetailTableView.bottomAnchor),
-            preventTouchView.leadingAnchor.constraint(equalTo: detailVC.storeDetailTableView.leadingAnchor),
-            preventTouchView.trailingAnchor.constraint(equalTo: detailVC.storeDetailTableView.trailingAnchor),
+            preventTouchView.topAnchor.constraint(equalTo: detailViewController.storeDetailTableView.topAnchor),
+            preventTouchView.bottomAnchor.constraint(equalTo: detailViewController.storeDetailTableView.bottomAnchor),
+            preventTouchView.leadingAnchor.constraint(equalTo: detailViewController.storeDetailTableView.leadingAnchor),
+            preventTouchView.trailingAnchor.constraint(equalTo: detailViewController.storeDetailTableView.trailingAnchor),
         ])
     }
     
@@ -307,11 +307,11 @@ extension MainMapViewController: CategoryCollectionViewDelegate {
         let categoryName = categoryView.categoryList[indexPath.row]
 
         shops.forEach { shop in
-            var itemsCategorys: Set<String> = []
+            var itemCategories: Set<String> = []
             shop.store.items.forEach { item in
-                itemsCategorys.insert(item.category)
+                itemCategories.insert(item.category)
             }
-            if itemsCategorys.contains(categoryName) {
+            if itemCategories.contains(categoryName) {
                 mapView.addAnnotation(shop)
             }
         }
@@ -329,7 +329,7 @@ extension MainMapViewController: CategoryCollectionViewDelegate {
 extension MainMapViewController: StoreDetailViewControllerDelegate {
     func setupButtonAction(closeButton: UIButton) {
         self.storeDetailModalView.subviews.last?.removeFromSuperview()
-        self.detailVC = nil
+        self.detailViewController = nil
         self.storeDetailModalView.mode = .tip(screenViewFrame: self.view.frame)
         self.storeDetailModalView.frame = self.storeDetailModalView.mode.frame
         self.storeDetailModalView.removeFromSuperview()
