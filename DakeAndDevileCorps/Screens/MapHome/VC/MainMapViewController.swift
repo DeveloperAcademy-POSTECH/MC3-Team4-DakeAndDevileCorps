@@ -8,7 +8,7 @@
 import MapKit
 import UIKit
 
-class MainMapViewController: UIViewController {
+class MainMapViewController: BaseViewController {
     
     // MARK: - subViews
     private let searchBarView: SearchBarView = {
@@ -57,7 +57,13 @@ class MainMapViewController: UIViewController {
     }()
     
     // MARK: - propertiesg
-    lazy var shops: [StoreAnnotation] = []
+    lazy var shops: [StoreAnnotation] = {
+        return storeList.map { storeInfo in
+            return StoreAnnotation(coordinate: CLLocationCoordinate2D(latitude: storeInfo.latitude,
+                                                                      longitude: storeInfo.longitude),
+                                   sellingProductsCategory: [], category: .zeroWasteShop, store: storeInfo)
+        }
+    }()
     
     private var initialOffset: CGPoint = .zero
     private var detailVC: StoreDetailViewController?
@@ -238,6 +244,22 @@ extension MainMapViewController: MKMapViewDelegate {
         
         detailVC = UIStoryboard(name: "StoreDetail", bundle: nil).instantiateViewController(withIdentifier: StoreDetailViewController.className) as? StoreDetailViewController
         detailVC?.delegate = self
+        
+        guard let annotation = view.annotation as? StoreAnnotation else { return }
+        
+        var index = 0
+        
+        for store in storeList {
+            if store.longitude == annotation.store.longitude
+                && store.latitude == annotation.store.latitude
+                && store.name == annotation.store.name {
+                break
+            } else {
+                index += 1
+            }
+        }
+        
+        detailVC?.dataIndex = index
         guard let detailVC = detailVC else { return }
         storeDetailModalView.addSubview(detailVC.view)
         detailVC.view.layer.cornerRadius = 20
@@ -281,10 +303,15 @@ extension MainMapViewController: CategoryCollectionViewDelegate {
         let categoryName = categoryView.categoryList[indexPath.row]
 
         shops.forEach { shop in
-            if shop.sellingProductsCategory.contains(categoryName) {
+            var itemsCategorys: Set<String> = []
+            shop.store.items.forEach { item in
+                itemsCategorys.insert(item.category)
+            }
+            if itemsCategorys.contains(categoryName) {
                 mapView.addAnnotation(shop)
             }
         }
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
