@@ -9,6 +9,7 @@ import UIKit
 
 class StoreDetailViewController: UIViewController {
     
+    // MARK: - properties
     private enum SectionType: Int, CaseIterable {
         case storeInformation = 0
         case itemInformation = 1
@@ -16,6 +17,7 @@ class StoreDetailViewController: UIViewController {
     
     @IBOutlet weak var storeName: UILabel!
     @IBOutlet weak var storeDetailTableView: UITableView!
+    @IBOutlet weak var closeStoreDetailButton: UIButton!
     
     private var productList: [ProductTableViewCellModel] = []
     private var operationList: [String] = []
@@ -24,6 +26,8 @@ class StoreDetailViewController: UIViewController {
     private var selectHeader = StoreDetailSelectView()
     private var categoryHeader = CategoryView(entryPoint: .detail)
     private var itemInformationType: ItemInformationType = .productList
+    
+    // MARK: - func
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -98,6 +102,8 @@ class StoreDetailViewController: UIViewController {
     }
 }
 
+// MARK: - extensions
+
 extension StoreDetailViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -163,7 +169,6 @@ extension StoreDetailViewController: UITableViewDataSource {
 }
 
 extension StoreDetailViewController: UITableViewDelegate {
-    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
     }
@@ -221,6 +226,16 @@ extension StoreDetailViewController: CategoryCollectionViewDelegate {
     }
 }
 
+extension StoreDetailViewController: ReviewTableViewCellDelegate {
+    func presentReviewPhotoView(reviewImageNames: [String]) {
+        guard let viewController = storyboard?.instantiateViewController(withIdentifier: ReviewPhotoViewController.className) as? ReviewPhotoViewController else { return }
+        viewController.setData(reviewImageNames: reviewImageNames)
+        viewController.modalPresentationStyle = .fullScreen
+        present(viewController, animated: true, completion: nil)
+        
+    }
+}
+
 extension StoreDetailViewController: StoreDetailSelectViewDelegate {
     func didSelectedButton(_ storeDetailSelectView: StoreDetailSelectView, isReviewButton: Bool, itemInformationType: ItemInformationType) {
         self.itemInformationType = itemInformationType
@@ -242,4 +257,3 @@ extension StoreDetailViewController: StoreDetailSelectViewDelegate {
         storeDetailSelectView.numberOfProducts = productList.count - categoryList.count
     }
 }
- 

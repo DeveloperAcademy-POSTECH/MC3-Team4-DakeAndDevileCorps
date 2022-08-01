@@ -37,8 +37,8 @@ final class WriteReviewViewController: BaseViewController {
     }
     
     private func setPhotoAlert() {
-        let choosePhotoFromAlbumAction = UIAlertAction(title: "앨범에서 선택", style: .default, handler: { [weak self] (action: UIAlertAction) in self?.setImagePickerToPhotoLibrary()})
-        let takePhotoAction = UIAlertAction(title: "사진 촬영", style: .default, handler: { [weak self] (action: UIAlertAction) in
+        let choosePhotoFromAlbumAction = UIAlertAction(title: "앨범에서 선택", style: .default, handler: { [weak self] _ in self?.setImagePickerToPhotoLibrary()})
+        let takePhotoAction = UIAlertAction(title: "사진 촬영", style: .default, handler: { [weak self] _ in
             self?.setImagePickerToCamera()
         })
         let cancelAction = UIAlertAction(title: "취소", style: .cancel)
