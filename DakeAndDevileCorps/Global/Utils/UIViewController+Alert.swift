@@ -31,13 +31,18 @@ extension UIViewController {
         let generator = UIImpactFeedbackGenerator(style: .medium)
         generator.impactOccurred()
         
-        let alertViewController = UIAlertController(title: title, message: message,
+        let alertViewController = UIAlertController(title: title,
+                                                    message: message,
                                                     preferredStyle: .alert)
         
-        let cancelAction = UIAlertAction(title: cancelTitle, style: .default, handler: cancelAction)
+        let cancelAction = UIAlertAction(title: cancelTitle,
+                                         style: .default,
+                                         handler: cancelAction)
         alertViewController.addAction(cancelAction)
         
-        let okAction = UIAlertAction(title: okTitle, style: .destructive, handler: okAction)
+        let okAction = UIAlertAction(title: okTitle,
+                                     style: .destructive,
+                                     handler: okAction)
         alertViewController.addAction(okAction)
         
         self.present(alertViewController, animated: true, completion: completion)
@@ -48,10 +53,14 @@ extension UIViewController {
                          actionTitles:[String?],
                          actionStyle:[UIAlertAction.Style],
                          actions:[((UIAlertAction) -> Void)?]) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
+        let alert = UIAlertController(title: title,
+                                      message: message,
+                                      preferredStyle: .actionSheet)
         
         for (index, title) in actionTitles.enumerated() {
-            let action = UIAlertAction(title: title, style: actionStyle[index], handler: actions[index])
+            let action = UIAlertAction(title: title,
+                                       style: actionStyle[index],
+                                       handler: actions[index])
             alert.addAction(action)
         }
         
