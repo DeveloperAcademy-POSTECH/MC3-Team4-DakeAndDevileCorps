@@ -349,12 +349,14 @@ extension ResultMapViewController: CategoryCollectionViewDelegate {
 // MARK: - StoreDetailViewControllerDelegate
 extension ResultMapViewController: StoreDetailViewControllerDelegate {
     func setupButtonAction(closeButton: UIButton) {
-        self.storeDetailModalView.subviews.last?.removeFromSuperview()
-        self.detailVC = nil
+//        self.storeDetailModalView.subviews.last?.removeFromSuperview()
+//        self.detailVC = nil
         self.storeDetailModalView.mode = .tip(screenViewFrame: self.view.frame)
         self.storeDetailModalView.frame = self.storeDetailModalView.mode.frame
-        self.storeDetailModalView.removeFromSuperview()
+//        self.storeDetailModalView.removeFromSuperview()
         self.detailVC?.closeStoreDetailButton.isHidden = true
+        self.detailVC?.storeDetailTableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
+        self.preventTouchView.isHidden = false
     }
     
     func setupViewWillDisappear(closeButton: UIButton) {

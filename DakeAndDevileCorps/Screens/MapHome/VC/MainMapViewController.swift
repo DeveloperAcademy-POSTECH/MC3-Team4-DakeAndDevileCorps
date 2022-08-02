@@ -400,6 +400,7 @@ extension MainMapViewController: StoreDetailViewControllerDelegate {
         self.storeDetailModalView.frame = self.storeDetailModalView.mode.frame
         storeDetailViewController?.closeStoreDetailButton.isHidden = true
         storeDetailViewController?.storeDetailTableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
+        self.preventTouchView.isHidden = false
     }
     
     func setupViewWillDisappear(closeButton: UIButton) {
