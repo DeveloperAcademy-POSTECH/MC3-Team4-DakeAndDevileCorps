@@ -35,6 +35,11 @@ final class WriteReviewViewController: BaseViewController {
         button.titleLabel?.font = .preferredFont(forTextStyle: .headline)
         return button
     }()
+    private let titleLabel: UILabel = {
+        let label = UILabel()
+        label.font = .preferredFont(forTextStyle: .headline)
+        return label
+    }()
     private let reviewInputView = ReviewInputView()
     
     var storeName: String = "알맹상점"
@@ -50,8 +55,23 @@ final class WriteReviewViewController: BaseViewController {
     }
     
     override func render() {
+        view.addSubview(cancelButton)
+        cancelButton.constraint(top: view.topAnchor,
+                                leading: view.leadingAnchor,
+                                padding: UIEdgeInsets(top: 25, left: 24, bottom: 0, right: 0))
+        
+        view.addSubview(confirmButton)
+        confirmButton.constraint(top: view.topAnchor,
+                                 trailing: view.trailingAnchor,
+                                 padding: UIEdgeInsets(top: 25, left: 0, bottom: 0, right: 24))
+        
+        view.addSubview(titleLabel)
+        titleLabel.constraint(top: view.topAnchor,
+                              centerX: view.centerXAnchor,
+                              padding: UIEdgeInsets(top: 30, left: 0, bottom: 0, right: 0))
+        
         view.addSubview(reviewInputView)
-        reviewInputView.constraint(top: view.safeAreaLayoutGuide.topAnchor,
+        reviewInputView.constraint(top: titleLabel.bottomAnchor,
                                    leading: view.leadingAnchor,
                                    bottom: view.bottomAnchor,
                                    trailing: view.trailingAnchor,
@@ -59,7 +79,7 @@ final class WriteReviewViewController: BaseViewController {
     }
 
     override func configUI() {
-        setupNavigationBar()
+        setupCustomNavigationBar()
         applyConfirmLabel(with: false)
         setupPresentationController()
         setupButtonAction()
@@ -114,18 +134,9 @@ final class WriteReviewViewController: BaseViewController {
         isModalInPresentation = true
     }
     
-    private func setupNavigationBar() {
-        let cancelButton = makeBarButtonItem(with: cancelButton)
-        let confirmButton = makeBarButtonItem(with: confirmButton)
-        
-        navigationItem.leftBarButtonItem = cancelButton
-        navigationItem.rightBarButtonItem = confirmButton
-        
-        let appearance = UINavigationBarAppearance()
-        let font = UIFont.preferredFont(forTextStyle: .headline)
-        
-        appearance.titleTextAttributes = [.font: font]
-        title = storeName
+    private func setupCustomNavigationBar() {
+        navigationController?.isNavigationBarHidden = true
+        titleLabel.text = storeName
     }
     
     private func setupButtonAction() {
