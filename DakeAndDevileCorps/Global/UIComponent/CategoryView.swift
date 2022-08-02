@@ -86,6 +86,10 @@ final class CategoryView: UIView {
         
         delegate?.collectionView(collectionView, didSelectItemAt: indexPath)
     }
+    
+    func changeCategoryList(with list: [String]) {
+        categoryList = list
+    }
 }
 
 extension CategoryView: UICollectionViewDataSource {
