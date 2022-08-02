@@ -251,6 +251,11 @@ extension ResultMapViewController: MKMapViewDelegate {
             return AnnotationView()
         }
         marker.isSelected = true
+        
+        guard let annotation = annotation as? StoreAnnotation else {
+            return marker
+        }
+        annotation.title = annotation.store.name
         return marker
     }
     
@@ -294,6 +299,8 @@ extension ResultMapViewController: MKMapViewDelegate {
                                  padding: UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0))
         indicatorView.constraint(indicatorView.heightAnchor, constant: 5)
         indicatorView.constraint(indicatorView.widthAnchor, constant: 50)
+        
+        detailVC.closeStoreDetailButton.isHidden = true
     }
     
     func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
@@ -342,11 +349,12 @@ extension ResultMapViewController: CategoryCollectionViewDelegate {
 // MARK: - StoreDetailViewControllerDelegate
 extension ResultMapViewController: StoreDetailViewControllerDelegate {
     func setupButtonAction(closeButton: UIButton) {
-        self.storeDetailModalView.subviews.last?.removeFromSuperview()
-        self.detailVC = nil
+
         self.storeDetailModalView.mode = .tip(screenViewFrame: self.view.frame)
         self.storeDetailModalView.frame = self.storeDetailModalView.mode.frame
-        self.storeDetailModalView.removeFromSuperview()
+        self.detailVC?.closeStoreDetailButton.isHidden = true
+        self.detailVC?.storeDetailTableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
+        self.preventTouchView.isHidden = false
     }
     
     func setupViewWillDisappear(closeButton: UIButton) {
