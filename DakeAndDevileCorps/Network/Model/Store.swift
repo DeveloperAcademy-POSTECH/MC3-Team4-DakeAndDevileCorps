@@ -16,6 +16,7 @@ struct Store: Codable {
     let name: String
     let latitude, longitude: Double
     let address, telephone: String
+    let category: String
     let officeHour: [String]
     let items: [Item]
     let comments: [Comment]
@@ -27,6 +28,7 @@ struct Store: Codable {
         case latitude
         case longitude
         case address, telephone
+        case category
         case comments
     }
 }
