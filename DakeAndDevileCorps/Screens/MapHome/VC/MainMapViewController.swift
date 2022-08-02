@@ -56,6 +56,13 @@ class MainMapViewController: BaseViewController {
         return button
     }()
     
+    private var indicatorView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .systemGray5
+        view.layer.cornerRadius = 2
+        return view
+    }()
+    
     // MARK: - properties
     lazy var shops: [StoreAnnotation] = {
         var category = StoreAnnotation.Category.zeroWasteShop
@@ -276,6 +283,12 @@ extension MainMapViewController: MKMapViewDelegate {
             preventTouchView.leadingAnchor.constraint(equalTo: storeDetailViewController.storeDetailTableView.leadingAnchor),
             preventTouchView.trailingAnchor.constraint(equalTo: storeDetailViewController.storeDetailTableView.trailingAnchor)
         ])
+        storeDetailViewController.view.addSubview(indicatorView)
+        indicatorView.constraint(top: storeDetailViewController.view.topAnchor,
+                                 centerX: storeDetailViewController.view.centerXAnchor,
+                                 padding: UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0))
+        indicatorView.constraint(indicatorView.heightAnchor, constant: 5)
+        indicatorView.constraint(indicatorView.widthAnchor, constant: 50)
         
         storeDetailViewController.closeStoreDetailButton.isHidden = true
     }

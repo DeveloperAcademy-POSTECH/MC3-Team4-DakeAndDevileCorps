@@ -56,13 +56,13 @@ extension Store {
         var titleColor: UIColor {
             switch self {
             case .open:
-                return .green
+                return .zeroGreen60
             case .close:
-                return .red
+                return .zeroRed
             case .holiday:
-                return .black
+                return .zeroRed
             case .none:
-                return .gray
+                return .secondaryLabel
             }
         }
     }

@@ -70,8 +70,8 @@ class StoreInformationTableViewCell: UITableViewCell {
                       productCategories: String?) {
         if let todayOperationTime = todayOperationTime,
            let productCategories = productCategories {
-            self.todayOperationTimeLabel.text = todayOperationTime
-            self.productCategoriesLabel.text = productCategories
+            todayOperationTimeLabel.text = todayOperationTime
+            productCategoriesLabel.text = productCategories
         }
         self.productCategoriesLabel.textColor = .secondaryLabel
     }
@@ -96,6 +96,7 @@ class StoreInformationTableViewCell: UITableViewCell {
         guard let store = store else { return }
         operationStatusLabel.text = store.getOfficeHourState().title
         operationStatusLabel.textColor = store.getOfficeHourState().titleColor
+        operationStatusLabel.font = .preferredFont(forTextStyle: .callout, compatibleWith: .init(legibilityWeight: .bold))
         operationTimeLabel.text = store.getTodayOfficeHour()
     }
     

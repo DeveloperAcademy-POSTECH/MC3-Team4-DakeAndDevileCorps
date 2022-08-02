@@ -43,6 +43,13 @@ class ResultMapViewController: BaseViewController {
         return button
     }()
     
+    private var indicatorView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .systemGray5
+        view.layer.cornerRadius = 2
+        return view
+    }()
+    
     @IBOutlet weak var mapView: MKMapView!
     
     lazy var storeDetailModalView: CustomModalView = {
@@ -198,6 +205,7 @@ extension ResultMapViewController: MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         self.view.addSubview(storeDetailModalView)
+        storeDetailModalView.makeShadow(color: .lightGray, opacity: 0.5, offset: CGSize(width: 0, height: 3), radius: 15)
         
         detailVC = UIStoryboard(name: "StoreDetail", bundle: nil).instantiateViewController(withIdentifier: StoreDetailViewController.className) as? StoreDetailViewController
         detailVC?.delegate = self
@@ -229,6 +237,12 @@ extension ResultMapViewController: MKMapViewDelegate {
             preventTouchView.leadingAnchor.constraint(equalTo: detailVC.storeDetailTableView.leadingAnchor),
             preventTouchView.trailingAnchor.constraint(equalTo: detailVC.storeDetailTableView.trailingAnchor)
         ])
+        detailVC.view.addSubview(indicatorView)
+        indicatorView.constraint(top: detailVC.view.topAnchor,
+                                 centerX: detailVC.view.centerXAnchor,
+                                 padding: UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0))
+        indicatorView.constraint(indicatorView.heightAnchor, constant: 5)
+        indicatorView.constraint(indicatorView.widthAnchor, constant: 50)
     }
     
     func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
