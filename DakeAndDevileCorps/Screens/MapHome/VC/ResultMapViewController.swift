@@ -251,6 +251,11 @@ extension ResultMapViewController: MKMapViewDelegate {
             return AnnotationView()
         }
         marker.isSelected = true
+        
+        guard let annotation = annotation as? StoreAnnotation else {
+            return marker
+        }
+        annotation.title = annotation.store.name
         return marker
     }
     
