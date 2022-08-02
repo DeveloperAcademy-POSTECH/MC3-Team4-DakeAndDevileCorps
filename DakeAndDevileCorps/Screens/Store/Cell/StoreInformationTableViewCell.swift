@@ -86,8 +86,10 @@ class StoreInformationTableViewCell: UITableViewCell {
     }
     
     func setOperationTime(operationList: [String]?) {
+        let dateList: [String] = ["월", "화", "수", "목", "금", "토", "일"]
         for (index, dateLabel) in dateLabels.enumerated() {
-            dateLabel.text = operationList?[index]
+            guard let operationHour = operationList?[index] else { return }
+            dateLabel.text = "\(dateList[index]) \(operationHour)"
             dateLabel.textColor = .secondaryLabel
         }
     }
