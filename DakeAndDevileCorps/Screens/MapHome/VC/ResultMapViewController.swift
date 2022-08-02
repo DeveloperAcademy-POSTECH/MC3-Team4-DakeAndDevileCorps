@@ -299,6 +299,8 @@ extension ResultMapViewController: MKMapViewDelegate {
                                  padding: UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0))
         indicatorView.constraint(indicatorView.heightAnchor, constant: 5)
         indicatorView.constraint(indicatorView.widthAnchor, constant: 50)
+        
+        detailVC.closeStoreDetailButton.isHidden = true
     }
     
     func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
@@ -352,6 +354,7 @@ extension ResultMapViewController: StoreDetailViewControllerDelegate {
         self.storeDetailModalView.mode = .tip(screenViewFrame: self.view.frame)
         self.storeDetailModalView.frame = self.storeDetailModalView.mode.frame
         self.storeDetailModalView.removeFromSuperview()
+        self.detailVC?.closeStoreDetailButton.isHidden = true
     }
     
     func setupViewWillDisappear(closeButton: UIButton) {
