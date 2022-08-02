@@ -24,7 +24,7 @@ class StoreDetailViewController: BaseViewController {
     @IBOutlet weak var storeDetailTableView: UITableView!
     @IBOutlet weak var closeStoreDetailButton: UIButton!
     private var productList: [ProductTableViewCellModel] = []
-    private let categoryList: [String] = ["주방세제", "세탁세제", "섬유유연제", "기타세제", "헤어", "스킨", "바디", "식품", "생활", "문구", "애견", "기타"]
+    private var filteredCategoryList: [String] = []
     private var commentList: [Comment] = []
     private var selectHeader = StoreDetailSelectView()
     private var categoryHeader = CategoryView(entryPoint: .detail)
@@ -77,14 +77,16 @@ class StoreDetailViewController: BaseViewController {
             if itemList.first(where: { $0.category == item.category }) == item {
                 numberOfCategory += 1
                 productList.append(.product(productName: item.category))
+                filteredCategoryList.append(item.category)
             }
             productList.append(.item(itemName: item.name))
         })
         commentList = store?.comments ?? []
+        categoryHeader.changeCategoryList(with: filteredCategoryList)
     }
     
     private func scrollToSelectedCategory(indexPath: IndexPath) {
-        guard let rowIndex = productList.firstIndex(of: .product(productName: categoryList[indexPath.row])) else { return }
+        guard let rowIndex = productList.firstIndex(of: .product(productName: filteredCategoryList[indexPath.row])) else { return }
         let indexPath = IndexPath(row: rowIndex, section: 1)
         storeDetailTableView.scrollToRow(at: indexPath, at: .top, animated: true)
     }

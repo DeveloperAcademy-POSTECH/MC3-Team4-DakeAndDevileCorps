@@ -20,6 +20,10 @@ class ProductTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
+    override func prepareForReuse() {
+        seperateLineView.isHidden = false
+    }
+    
     func setData(productName: String) {
         self.productNameLabel.text = productName
         self.productNameLabel.font = UIFont.boldSystemFont(ofSize: 17)

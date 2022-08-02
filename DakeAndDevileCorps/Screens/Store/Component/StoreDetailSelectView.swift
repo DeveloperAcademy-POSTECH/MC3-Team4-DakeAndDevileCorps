@@ -57,7 +57,7 @@ final class StoreDetailSelectView: UIView {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitleColor(UIColor.black, for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 17)
+        button.titleLabel?.font = .preferredFont(forTextStyle: .headline, compatibleWith: .init(legibilityWeight: .bold))
         
         return button
     }()
@@ -66,7 +66,7 @@ final class StoreDetailSelectView: UIView {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitleColor(UIColor.tertiaryLabel, for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 17)
+        button.titleLabel?.font = .preferredFont(forTextStyle: .headline, compatibleWith: .init(legibilityWeight: .bold))
         
         return button
     }()

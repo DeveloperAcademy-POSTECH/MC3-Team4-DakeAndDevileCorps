@@ -56,6 +56,13 @@ class MainMapViewController: BaseViewController {
         return button
     }()
     
+    private var indicatorView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .systemGray5
+        view.layer.cornerRadius = 2
+        return view
+    }()
+    
     // MARK: - properties
     lazy var shops: [StoreAnnotation] = {
         var category = StoreAnnotation.Category.zeroWasteShop
@@ -155,11 +162,6 @@ class MainMapViewController: BaseViewController {
             initialOffset = CGPoint(x: storeDetailModalView.frame.origin.x, y: touchPoint.y - storeDetailModalView.frame.origin.y)
         case .changed:
             storeDetailModalView.frame.origin = CGPoint(x: storeDetailModalView.frame.origin.x, y: touchPoint.y - initialOffset.y)
-            if storeDetailModalView.frame.origin.y > self.view.frame.height / 2 {
-                storeDetailModalView.mode = .tip(screenViewFrame: self.view.frame)
-            } else {
-                storeDetailModalView.mode = .full(screenViewFrame: self.view.frame)
-            }
         case .ended, .cancelled:
             switch storeDetailModalView.mode {
             case .tip:
@@ -170,31 +172,80 @@ class MainMapViewController: BaseViewController {
                     })
 
                 }
-                preventTouchView.isHidden = false
                 
-                let fullFrame = CustomModalView.ModalMode.full(screenViewFrame: self.view.frame).frame
-                storeDetailModalView.frame = CGRect(x: 0,
-                                                    y: storeDetailModalView.mode.frame.minY,
-                                                    width: storeDetailModalView.mode.frame.width,
-                                                    height: fullFrame.height)
-                
-                storeDetailViewController?.storeDetailTableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
-                
-                storeDetailViewController?.closeStoreDetailButton.isHidden = true
+                if storeDetailModalView.frame.origin.y > self.view.frame.height - 200 {
+                    storeDetailModalView.mode = .tip(screenViewFrame: self.view.frame)
+                    preventTouchView.isHidden = false
+
+                } else {
+                    storeDetailModalView.mode = .full(screenViewFrame: self.view.frame)
+                    preventTouchView.isHidden = true
+                }
+                switch storeDetailModalView.mode {
+                case .tip:
+                    let fullFrame = CustomModalView.ModalMode.full(screenViewFrame: self.view.frame).frame
+                    storeDetailModalView.frame = CGRect(x: 0,
+                                                        y: storeDetailModalView.mode.frame.minY,
+                                                        width: storeDetailModalView.mode.frame.width,
+                                                        height: fullFrame.height)
+                    
+                    storeDetailViewController?.storeDetailTableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
+                    
+                    storeDetailViewController?.closeStoreDetailButton.isHidden = true
+                case .full:
+                    let fullFrame = CustomModalView.ModalMode.full(screenViewFrame: self.view.frame).frame
+                    storeDetailModalView.frame = CGRect(x: 0,
+                                                        y: storeDetailModalView.mode.frame.minY,
+                                                        width: storeDetailModalView.mode.frame.width,
+                                                        height: fullFrame.height)
+                    storeDetailModalView.subviews.last?.frame = CGRect(x: 0,
+                                                                       y: 0,
+                                                                       width: storeDetailModalView.mode.frame.width,
+                                                                       height: fullFrame.height)
+                    storeDetailViewController?.closeStoreDetailButton.isHidden = false
+                }
             case .full:
-                preventTouchView.isHidden = true
-                let fullFrame = CustomModalView.ModalMode.full(screenViewFrame: self.view.frame).frame
-                storeDetailModalView.frame = CGRect(x: 0,
-                                                    y: storeDetailModalView.mode.frame.minY,
-                                                    width: storeDetailModalView.mode.frame.width,
-                                                    height: fullFrame.height)
-                storeDetailModalView.subviews.last?.frame = CGRect(x: 0,
-                                                                   y: 0,
-                                                                   width: storeDetailModalView.mode.frame.width,
-                                                                   height: fullFrame.height)
-                storeDetailViewController?.closeStoreDetailButton.isHidden = false
+                if storeDetailModalView.frame.origin.y > self.view.frame.height - 75 {
+                    storeDetailModalView.removeFromSuperview()
+                    UIView.animate(withDuration: 0.2, animations: { [weak self] in
+                        self?.currentLocationButton.transform = .identity
+                    })
+
+                }
+                
+                if storeDetailModalView.frame.origin.y > 200 {
+                    storeDetailModalView.mode = .tip(screenViewFrame: self.view.frame)
+                    preventTouchView.isHidden = false
+
+                } else {
+                    storeDetailModalView.mode = .full(screenViewFrame: self.view.frame)
+                    preventTouchView.isHidden = true
+                }
+                
+                switch storeDetailModalView.mode {
+                case .tip:
+                    let fullFrame = CustomModalView.ModalMode.full(screenViewFrame: self.view.frame).frame
+                    storeDetailModalView.frame = CGRect(x: 0,
+                                                        y: storeDetailModalView.mode.frame.minY,
+                                                        width: storeDetailModalView.mode.frame.width,
+                                                        height: fullFrame.height)
+                    
+                    storeDetailViewController?.storeDetailTableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
+                    
+                    storeDetailViewController?.closeStoreDetailButton.isHidden = true
+                case .full:
+                    let fullFrame = CustomModalView.ModalMode.full(screenViewFrame: self.view.frame).frame
+                    storeDetailModalView.frame = CGRect(x: 0,
+                                                        y: storeDetailModalView.mode.frame.minY,
+                                                        width: storeDetailModalView.mode.frame.width,
+                                                        height: fullFrame.height)
+                    storeDetailModalView.subviews.last?.frame = CGRect(x: 0,
+                                                                       y: 0,
+                                                                       width: storeDetailModalView.mode.frame.width,
+                                                                       height: fullFrame.height)
+                    storeDetailViewController?.closeStoreDetailButton.isHidden = false
+                }
             }
-        
         default: break
         }
     }
@@ -276,6 +327,12 @@ extension MainMapViewController: MKMapViewDelegate {
             preventTouchView.leadingAnchor.constraint(equalTo: storeDetailViewController.storeDetailTableView.leadingAnchor),
             preventTouchView.trailingAnchor.constraint(equalTo: storeDetailViewController.storeDetailTableView.trailingAnchor)
         ])
+        storeDetailViewController.view.addSubview(indicatorView)
+        indicatorView.constraint(top: storeDetailViewController.view.topAnchor,
+                                 centerX: storeDetailViewController.view.centerXAnchor,
+                                 padding: UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0))
+        indicatorView.constraint(indicatorView.heightAnchor, constant: 5)
+        indicatorView.constraint(indicatorView.widthAnchor, constant: 50)
         
         storeDetailViewController.closeStoreDetailButton.isHidden = true
     }
