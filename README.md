@@ -20,7 +20,7 @@
 
 | Map | Store Detail | Search |
 |:---:|:---:|:---:|
-|<img width="300" alt="스크린샷 2021-11-19 오후 3 52 02" src="https://user-images.githubusercontent.com/55099365/182751745-f98eed14-7ebd-43ff-ac1b-20f6a544c45c.gif">|<img width="300" alt="스크린샷 2021-11-19 오후 3 52 02" src="https://user-images.githubusercontent.com/55099365/182752005-5afcba70-4604-4e24-be31-8d25eae77ec4.gif">|<img width="300" alt="스크린샷 2021-11-19 오후 3 52 02" src="https://user-images.githubusercontent.com/55099365/182752498-6d6193e3-6e28-4636-99cd-8af94922455c.gif">|
+|<img width="230" alt="스크린샷 2021-11-19 오후 3 52 02" src="https://user-images.githubusercontent.com/55099365/182751745-f98eed14-7ebd-43ff-ac1b-20f6a544c45c.gif">|<img width="230" alt="스크린샷 2021-11-19 오후 3 52 02" src="https://user-images.githubusercontent.com/55099365/182752005-5afcba70-4604-4e24-be31-8d25eae77ec4.gif">|<img width="230" alt="스크린샷 2021-11-19 오후 3 52 02" src="https://user-images.githubusercontent.com/55099365/182752498-6d6193e3-6e28-4636-99cd-8af94922455c.gif">|
 
 <br/>
 
