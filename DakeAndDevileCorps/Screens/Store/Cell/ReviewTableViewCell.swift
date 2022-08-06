@@ -15,7 +15,6 @@ class ReviewTableViewCell: UITableViewCell {
     
     @IBOutlet weak var reviewTitleLabel: UILabel!
     @IBOutlet weak var reviewContentLabel: UILabel!
-    @IBOutlet weak var reviewImageView: UIImageView!
     
     @IBOutlet weak var reviewStackView: UIStackView!
     @IBOutlet weak var reviewSubStackView: UIStackView!
@@ -91,12 +90,11 @@ class ReviewTableViewCell: UITableViewCell {
         categoryLabel.text = comment.category
         nicknameLabel.text = comment.nickname
         reviewDateLabel.text = returnAdjustedDate(date: comment.date)
-        reviewImageView.image = UIImage(systemName: comment.photo.first ?? "")
-        reviewImageView.layer.cornerRadius = 6
         
         if comment.photo.isEmpty {
             numberOfReviewImageLabel.isHidden = true
-            reviewStackTrailingConstraint.constant = -72
+            reviewImageButton.isHidden = true
+            reviewStackTrailingConstraint.constant = 24
         } else {
             numberOfReviewImageLabel.text = String(comment.photo.count)
         }
@@ -112,6 +110,7 @@ class ReviewTableViewCell: UITableViewCell {
             self.reviewDelegate?.presentReviewPhotoView(reviewImageNames: self.comment?.photo ?? [])
         }
         reviewImageButton.addAction(reviewImageButtonAction, for: .touchUpInside)
+        
     }
     
     private func setupLayout() {
