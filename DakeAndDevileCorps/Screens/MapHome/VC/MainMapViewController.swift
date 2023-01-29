@@ -24,7 +24,11 @@ class MainMapViewController: BaseViewController {
         return categoryView
     }()
     
-    @IBOutlet weak var mapView: MKMapView!
+    let mapView: MKMapView = {
+        let mapView = MKMapView(frame: .zero)
+        mapView.translatesAutoresizingMaskIntoConstraints = false
+        return mapView
+    }()
     
     lazy var storeDetailModalView: CustomModalView = {
         let view = CustomModalView(mode: .tip(screenViewFrame: self.view.frame))
@@ -120,6 +124,14 @@ class MainMapViewController: BaseViewController {
 
     private func configureLayout() {
         let safeArea = view.safeAreaLayoutGuide
+        
+        view.addSubview(mapView)
+        NSLayoutConstraint.activate([
+            mapView.topAnchor.constraint(equalTo: view.topAnchor),
+            mapView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            mapView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
+            mapView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor),
+        ])
         
         view.addSubview(searchBarView)
         NSLayoutConstraint.activate([
