@@ -72,9 +72,15 @@ class MainMapViewController: BaseViewController {
         var category = StoreAnnotation.Category.zeroWasteShop
         return storeList.map { storeInfo in
             category = (category == .zeroWasteShop) ? .refillStation : .zeroWasteShop
-            let annotation = StoreAnnotation(coordinate: CLLocationCoordinate2D(latitude: storeInfo.latitude,
-                                                                      longitude: storeInfo.longitude),
-                                   sellingProductsCategory: [], category: category, store: storeInfo)
+            let annotation = StoreAnnotation(
+                coordinate: CLLocationCoordinate2D(
+                    latitude: storeInfo.latitude,
+                    longitude: storeInfo.longitude
+                ),
+                sellingProductsCategory: [],
+                category: category,
+                store: storeInfo
+            )
             annotation.title = storeInfo.name
             return annotation
         }
