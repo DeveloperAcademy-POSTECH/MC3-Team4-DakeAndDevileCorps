@@ -17,6 +17,48 @@ extension UIView {
         anchor.constraint(equalToConstant: constant).isActive = true
     }
     
+    func constraint(to layoutGuide: UILayoutGuide, insets: UIEdgeInsets = .zero, direction: UIRectEdge = .all) {
+        self.translatesAutoresizingMaskIntoConstraints = false
+        
+        let top = NSLayoutConstraint(item: self,
+                                     attribute: .top,
+                                     relatedBy: .equal,
+                                     toItem: layoutGuide,
+                                     attribute: .top,
+                                     multiplier: 1,
+                                     constant: insets.top)
+        
+        let bottom = NSLayoutConstraint(item: self,
+                                        attribute: .bottom,
+                                        relatedBy: .equal,
+                                        toItem: layoutGuide,
+                                        attribute: .bottom,
+                                        multiplier: 1,
+                                        constant: insets.bottom)
+        
+        let leading = NSLayoutConstraint(item: self,
+                                         attribute: .leading,
+                                         relatedBy: .equal,
+                                         toItem: layoutGuide,
+                                         attribute: .leading,
+                                         multiplier: 1,
+                                         constant: insets.left)
+        
+        let trailing = NSLayoutConstraint(item: self,
+                                          attribute: .trailing,
+                                          relatedBy: .equal,
+                                          toItem: layoutGuide,
+                                          attribute: .trailing,
+                                          multiplier: 1,
+                                          constant: insets.right)
+        
+        if direction.contains(.top) { top.isActive = true }
+        if direction.contains(.bottom) { bottom.isActive = true }
+        if direction.contains(.left) { leading.isActive = true }
+        if direction.contains(.right) { trailing.isActive = true }
+        
+    }
+    
     func constraint(to view: UIView, insets: UIEdgeInsets = .zero) {
         self.translatesAutoresizingMaskIntoConstraints = false
         
