@@ -56,10 +56,9 @@ extension UIView {
         if direction.contains(.bottom) { bottom.isActive = true }
         if direction.contains(.left) { leading.isActive = true }
         if direction.contains(.right) { trailing.isActive = true }
-        
     }
     
-    func constraint(to view: UIView, insets: UIEdgeInsets = .zero) {
+    func constraint(to view: UIView, insets: UIEdgeInsets = .zero, direction: UIRectEdge = .all) {
         self.translatesAutoresizingMaskIntoConstraints = false
         
         let top = NSLayoutConstraint(item: self,
@@ -93,9 +92,11 @@ extension UIView {
                                           attribute: .trailing,
                                           multiplier: 1,
                                           constant: insets.right)
-        NSLayoutConstraint.activate([
-            top, bottom, leading, trailing
-        ])
+        
+        if direction.contains(.top) { top.isActive = true }
+        if direction.contains(.bottom) { bottom.isActive = true }
+        if direction.contains(.left) { leading.isActive = true }
+        if direction.contains(.right) { trailing.isActive = true }
     }
     
     @discardableResult
