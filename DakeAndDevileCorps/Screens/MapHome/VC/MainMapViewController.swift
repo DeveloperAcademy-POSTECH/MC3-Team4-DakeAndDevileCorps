@@ -191,11 +191,13 @@ class MainMapViewController: BaseViewController {
                 x: storeDetailModalView.frame.origin.x,
                 y: touchPoint.y - storeDetailModalView.frame.origin.y
             )
+            
         case .changed:
             storeDetailModalView.frame.origin = CGPoint(
                 x: storeDetailModalView.frame.origin.x,
                 y: touchPoint.y - initialOffset.y
             )
+            
         case .ended, .cancelled:
             switch storeDetailModalView.mode {
             case .tip:
@@ -210,11 +212,9 @@ class MainMapViewController: BaseViewController {
                 }
                 
                 if storeDetailModalView.frame.origin.y > self.view.frame.height - 200 {
-                    storeDetailModalView.mode = .tip(screenViewFrame: self.view.frame)
-                    preventTouchView.isHidden = false
+                    setModeOfStoreDetailModalView(to: .tip(screenViewFrame: self.view.frame))
                 } else {
-                    storeDetailModalView.mode = .full(screenViewFrame: self.view.frame)
-                    preventTouchView.isHidden = true
+                    setModeOfStoreDetailModalView(to: .full(screenViewFrame: self.view.frame))
                 }
                 switch storeDetailModalView.mode {
                 case .tip:
@@ -258,12 +258,9 @@ class MainMapViewController: BaseViewController {
                 }
                 
                 if storeDetailModalView.frame.origin.y > 200 {
-                    storeDetailModalView.mode = .tip(screenViewFrame: self.view.frame)
-                    preventTouchView.isHidden = false
-
+                    setModeOfStoreDetailModalView(to: .tip(screenViewFrame: self.view.frame))
                 } else {
-                    storeDetailModalView.mode = .full(screenViewFrame: self.view.frame)
-                    preventTouchView.isHidden = true
+                    setModeOfStoreDetailModalView(to: .full(screenViewFrame: self.view.frame))
                 }
                 
                 switch storeDetailModalView.mode {
@@ -297,6 +294,17 @@ class MainMapViewController: BaseViewController {
                 }
             }
         default: break
+        }
+    }
+    
+    private func setModeOfStoreDetailModalView(to mode: CustomModalView.ModalMode) {
+        switch mode {
+        case .tip:
+            storeDetailModalView.mode = .tip(screenViewFrame: self.view.frame)
+            preventTouchView.isHidden = false
+        case .full:
+            storeDetailModalView.mode = .full(screenViewFrame: self.view.frame)
+            preventTouchView.isHidden = true
         }
     }
     
