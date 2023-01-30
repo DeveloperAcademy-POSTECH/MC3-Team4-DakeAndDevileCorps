@@ -13,20 +13,17 @@ class MainMapViewController: BaseViewController {
     // MARK: - subViews
     let searchBarView: SearchBarView = {
         let searchBarView = SearchBarView()
-        searchBarView.translatesAutoresizingMaskIntoConstraints = false
         searchBarView.entryPoint = .map
         return searchBarView
     }()
     
     let categoryView: CategoryView = {
         let categoryView = CategoryView(entryPoint: .map)
-        categoryView.translatesAutoresizingMaskIntoConstraints = false
         return categoryView
     }()
     
     let mapView: MKMapView = {
         let mapView = MKMapView(frame: .zero)
-        mapView.translatesAutoresizingMaskIntoConstraints = false
         return mapView
     }()
     
@@ -45,13 +42,11 @@ class MainMapViewController: BaseViewController {
     
     private lazy var preventTouchView: UIView = {
         let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
     private lazy var currentLocationButton: UIButton = {
         let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
         button.backgroundColor = .white
         button.setImage(UIImage(systemName: "location"), for: .normal)
         button.layer.cornerRadius = 10
@@ -133,41 +128,35 @@ class MainMapViewController: BaseViewController {
         
         view.addSubview(mapView)
         mapView.constraint(
-            top: view.topAnchor,
-            leading: safeArea.leadingAnchor,
-            bottom: view.bottomAnchor,
-            trailing: safeArea.trailingAnchor
+            top: (view.topAnchor, 0),
+            leading: (safeArea.leadingAnchor, 0),
+            bottom: (view.bottomAnchor, 0),
+            trailing: (safeArea.trailingAnchor, 0)
         )
         
         view.addSubview(searchBarView)
         searchBarView.constraint(
-            to: safeArea,
-            insets: UIEdgeInsets(
-                top: 8,
-                left: 16,
-                bottom: 0,
-                right: -16
-            ),
-            direction: [.top, .left, .right]
+            top: (safeArea.topAnchor, 8),
+            leading: (safeArea.leadingAnchor, 16),
+            trailing: (safeArea.trailingAnchor, -16)
         )
-        
+
         view.addSubview(categoryView)
         categoryView.constraint(
-            top: searchBarView.bottomAnchor,
-            leading: safeArea.leadingAnchor,
-            trailing: safeArea.trailingAnchor
+            top: (searchBarView.bottomAnchor, 0),
+            leading: (safeArea.leadingAnchor, 0),
+            trailing: (safeArea.trailingAnchor, 0),
+            height: (nil, 60)
         )
-        categoryView.constraint(categoryView.heightAnchor, constant: 60)
         
         view.addSubview(currentLocationButton)
         let currentLocationButtonConstraints = currentLocationButton.constraint(
-            bottom: view.bottomAnchor,
-            trailing: safeArea.trailingAnchor,
-            padding: UIEdgeInsets(top: 0, left: 0, bottom: 38, right: 20)
+            bottom: (view.bottomAnchor, -38),
+            trailing: (safeArea.trailingAnchor, -20),
+            width: (nil, 42),
+            height: (currentLocationButton.widthAnchor, 0)
         )
-        currentLocationButton.constraint(currentLocationButton.widthAnchor, constant: 42)
         currentLocationButtonConstraints[.bottom]?.priority = .defaultLow
-        currentLocationButton.heightAnchor.constraint(equalTo: currentLocationButton.widthAnchor).isActive = true
     }
     
     private func drawAnnotationViews() {
@@ -345,11 +334,12 @@ extension MainMapViewController: MKMapViewDelegate {
         preventTouchView.constraint(to: storeDetailViewController.storeDetailTableView)
         
         storeDetailViewController.view.addSubview(indicatorView)
-        indicatorView.constraint(top: storeDetailViewController.view.topAnchor,
-                                 centerX: storeDetailViewController.view.centerXAnchor,
-                                 padding: UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0))
-        indicatorView.constraint(indicatorView.heightAnchor, constant: 5)
-        indicatorView.constraint(indicatorView.widthAnchor, constant: 50)
+        indicatorView.constraint(
+            top: (storeDetailViewController.view.topAnchor, 10),
+            centerX: (storeDetailViewController.view.centerXAnchor, 0),
+            width: (nil, 50),
+            height: (nil, 5)
+        )
         
         storeDetailViewController.closeStoreDetailButton.isHidden = true
     }
