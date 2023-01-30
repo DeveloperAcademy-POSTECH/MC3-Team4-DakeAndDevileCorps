@@ -124,6 +124,13 @@ class MainMapViewController: BaseViewController {
     }
 
     private func configureLayout() {
+        configureMapViewLayout()
+        configureSearchBarViewLayout()
+        configureCategoryViewLayout()
+        configureCurrentLocationButtonLayout()
+    }
+    
+    private func configureMapViewLayout() {
         let safeArea = view.safeAreaLayoutGuide
         
         view.addSubview(mapView)
@@ -133,6 +140,10 @@ class MainMapViewController: BaseViewController {
             bottom: (view.bottomAnchor, 0),
             trailing: (safeArea.trailingAnchor, 0)
         )
+    }
+    
+    private func configureSearchBarViewLayout() {
+        let safeArea = view.safeAreaLayoutGuide
         
         view.addSubview(searchBarView)
         searchBarView.constraint(
@@ -140,7 +151,11 @@ class MainMapViewController: BaseViewController {
             leading: (safeArea.leadingAnchor, 16),
             trailing: (safeArea.trailingAnchor, -16)
         )
-
+    }
+    
+    private func configureCategoryViewLayout() {
+        let safeArea = view.safeAreaLayoutGuide
+        
         view.addSubview(categoryView)
         categoryView.constraint(
             top: (searchBarView.bottomAnchor, 0),
@@ -148,6 +163,10 @@ class MainMapViewController: BaseViewController {
             trailing: (safeArea.trailingAnchor, 0),
             height: (nil, 60)
         )
+    }
+    
+    private func configureCurrentLocationButtonLayout() {
+        let safeArea = view.safeAreaLayoutGuide
         
         view.addSubview(currentLocationButton)
         let currentLocationButtonConstraints = currentLocationButton.constraint(
