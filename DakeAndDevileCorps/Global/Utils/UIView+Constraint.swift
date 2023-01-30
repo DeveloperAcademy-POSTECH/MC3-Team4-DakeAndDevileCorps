@@ -28,54 +28,54 @@ extension UIView {
         var constraints: [ConstraintType: NSLayoutConstraint] = [:]
 
         if let top = top {
-            let constant = top.1
             let targetAnchor = top.0
+            let constant = top.1
             constraints[.top] = self.topAnchor.constraint(equalTo: targetAnchor, constant: constant)
         }
         
         if let leading = leading {
-            let constant = leading.1
             let targetAnchor = leading.0
+            let constant = leading.1
             constraints[.leading] = self.leadingAnchor.constraint(equalTo: targetAnchor, constant: constant)
         }
         
         if let bottom = bottom {
-            let constant = bottom.1
             let targetAnchor = bottom.0
+            let constant = bottom.1
             constraints[.bottom] = self.bottomAnchor.constraint(equalTo: targetAnchor, constant: constant)
         }
         
         if let trailing = trailing {
-            let constant = trailing.1
             let targetAnchor = trailing.0
+            let constant = trailing.1
             constraints[.trailing] = self.trailingAnchor.constraint(equalTo: targetAnchor, constant: constant)
         }
         
         if let centerX = centerX {
-            let constant = centerX.1
             let targetAnchor = centerX.0
+            let constant = centerX.1
             constraints[.centerX] = self.centerXAnchor.constraint(equalTo: targetAnchor, constant: constant)
         }
         
         if let centerY = centerY {
-            let constant = centerY.1
             let targetAnchor = centerY.0
+            let constant = centerY.1
             constraints[.centerY] = self.centerYAnchor.constraint(equalTo: targetAnchor, constant: constant)
         }
         
         if let width = width {
-            if let target = width.0 {
+            if let targetAnchor = width.0 {
                 let constant = width.1 ?? 0
-                constraints[.width] = self.widthAnchor.constraint(equalTo: target, constant: constant)
+                constraints[.width] = self.widthAnchor.constraint(equalTo: targetAnchor, constant: constant)
             } else if let constant = width.1 {
                 constraints[.width] = self.widthAnchor.constraint(equalToConstant: constant)
             }
         }
         
         if let height = height {
-            if let target = height.0 {
+            if let targetAnchor = height.0 {
                 let constant = height.1 ?? 0
-                constraints[.height] = self.heightAnchor.constraint(equalTo: target, constant: constant)
+                constraints[.height] = self.heightAnchor.constraint(equalTo: targetAnchor, constant: constant)
             } else if let constant = height.1 {
                 constraints[.height] = self.heightAnchor.constraint(equalToConstant: constant)
             }
