@@ -132,40 +132,42 @@ class MainMapViewController: BaseViewController {
         let safeArea = view.safeAreaLayoutGuide
         
         view.addSubview(mapView)
-        NSLayoutConstraint.activate([
-            mapView.topAnchor.constraint(equalTo: view.topAnchor),
-            mapView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            mapView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
-            mapView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor),
-        ])
+        mapView.constraint(
+            top: view.topAnchor,
+            leading: safeArea.leadingAnchor,
+            bottom: view.bottomAnchor,
+            trailing: safeArea.trailingAnchor
+        )
         
         view.addSubview(searchBarView)
-        NSLayoutConstraint.activate([
-            searchBarView.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: 8),
-            searchBarView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 16),
-            searchBarView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -16)
-        ])
+        searchBarView.constraint(
+            to: safeArea,
+            insets: UIEdgeInsets(
+                top: 8,
+                left: 16,
+                bottom: 0,
+                right: -16
+            ),
+            direction: [.top, .left, .right]
+        )
         
         view.addSubview(categoryView)
-        NSLayoutConstraint.activate([
-            categoryView.topAnchor.constraint(equalTo: searchBarView.bottomAnchor),
-            categoryView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
-            categoryView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor),
-            categoryView.heightAnchor.constraint(equalToConstant: 60)
-        ])
+        categoryView.constraint(
+            top: searchBarView.bottomAnchor,
+            leading: safeArea.leadingAnchor,
+            trailing: safeArea.trailingAnchor
+        )
+        categoryView.constraint(categoryView.heightAnchor, constant: 60)
         
         view.addSubview(currentLocationButton)
-        let currentButtonBottomConstraint = currentLocationButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -38)
-        currentButtonBottomConstraint.priority = .defaultLow
-        
-        NSLayoutConstraint.activate([
-            currentLocationButton.widthAnchor.constraint(equalToConstant: 42),
-            currentLocationButton.heightAnchor.constraint(equalTo: currentLocationButton.widthAnchor),
-            
-            currentLocationButton.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -20),
-            currentButtonBottomConstraint
-        ])
-        
+        let currentLocationButtonConstraints = currentLocationButton.constraint(
+            bottom: view.bottomAnchor,
+            trailing: safeArea.trailingAnchor,
+            padding: UIEdgeInsets(top: 0, left: 0, bottom: 38, right: 20)
+        )
+        currentLocationButton.constraint(currentLocationButton.widthAnchor, constant: 42)
+        currentLocationButtonConstraints[.bottom]?.priority = .defaultLow
+        currentLocationButton.heightAnchor.constraint(equalTo: currentLocationButton.widthAnchor).isActive = true
     }
     
     private func drawAnnotationViews() {
@@ -338,13 +340,10 @@ extension MainMapViewController: MKMapViewDelegate {
         storeDetailModalView.addSubview(storeDetailViewController.view)
         storeDetailViewController.view.layer.cornerRadius = 20
         storeDetailViewController.view.frame = CGRect(x: 0, y: 0, width: storeDetailModalView.frame.width, height: self.view.frame.height)
+        
         storeDetailViewController.view.addSubview(preventTouchView)
-        NSLayoutConstraint.activate([
-            preventTouchView.topAnchor.constraint(equalTo: storeDetailViewController.storeDetailTableView.topAnchor),
-            preventTouchView.bottomAnchor.constraint(equalTo: storeDetailViewController.storeDetailTableView.bottomAnchor),
-            preventTouchView.leadingAnchor.constraint(equalTo: storeDetailViewController.storeDetailTableView.leadingAnchor),
-            preventTouchView.trailingAnchor.constraint(equalTo: storeDetailViewController.storeDetailTableView.trailingAnchor)
-        ])
+        preventTouchView.constraint(to: storeDetailViewController.storeDetailTableView)
+        
         storeDetailViewController.view.addSubview(indicatorView)
         indicatorView.constraint(top: storeDetailViewController.view.topAnchor,
                                  centerX: storeDetailViewController.view.centerXAnchor,
