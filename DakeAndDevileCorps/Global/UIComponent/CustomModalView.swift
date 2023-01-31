@@ -24,7 +24,7 @@ class CustomModalView: UIView {
             case .full:
                 return CGRect(
                     x: 0,
-                    y: 50,s
+                    y: 50,
                     width: screenViewFrame.width,
                     height: screenViewFrame.height - 50
                 )
