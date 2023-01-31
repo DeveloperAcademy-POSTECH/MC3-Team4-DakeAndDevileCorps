@@ -388,13 +388,26 @@ extension MainMapViewController: SearchBarDelegate {
     @objc func didBeginEditing() {
         view.endEditing(true)
         
-        let nextViewController = UIStoryboard(name: "Search", bundle: nil).instantiateViewController(withIdentifier: SearchViewController.className)
+        let nextViewController = UIStoryboard(
+            name: "Search",
+            bundle: nil
+        ).instantiateViewController(
+            withIdentifier: SearchViewController.className
+        )
         nextViewController.modalPresentationStyle = .fullScreen
         present(nextViewController, animated: false)
     }
     
     @objc func touchUpInsideLeftButton() {
-        guard let nextViewController = UIStoryboard(name: "Search", bundle: nil).instantiateViewController(withIdentifier: SearchViewController.className) as? SearchViewController else { return }
+        guard let nextViewController = UIStoryboard(
+            name: "Search",
+            bundle: nil
+        ).instantiateViewController(
+            withIdentifier: SearchViewController.className
+        ) as? SearchViewController else {
+            return
+        }
+        
         nextViewController.isResultShowing = true
         nextViewController.searchBarView.text = searchBarView.text
         nextViewController.didReturnKeyInput()
