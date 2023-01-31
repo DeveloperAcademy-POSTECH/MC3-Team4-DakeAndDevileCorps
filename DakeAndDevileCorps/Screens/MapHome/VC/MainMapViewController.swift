@@ -229,7 +229,6 @@ extension MainMapViewController {
 extension MainMapViewController {
     private func checkModalInRemoveZone() -> Bool {
         let minHeight: CGFloat = 75
-        
         return storeDetailModalView.frame.origin.y > self.view.frame.height - minHeight
     }
     
@@ -280,13 +279,17 @@ extension MainMapViewController {
 
         switch storeDetailModalView.mode {
         case .tip:
-            storeDetailViewController?.storeDetailTableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
+            storeDetailViewController?.storeDetailTableView.scrollToRow(
+                at: IndexPath(row: 0, section: 0),
+                at: .top,
+                animated: false
+            )
             storeDetailViewController?.closeStoreDetailButton.isHidden = true
         case .full:
             storeDetailModalView.subviews.last?.frame = CGRect(
                 x: 0,
                 y: 0,
-                width: storeDetailModalView.mode.generateFrame(screenViewFrame: storeDetailModalView.superScreenViewFrame).width,
+                width: storeDetailModalView.frame.width,
                 height: fullFrame.height
             )
             storeDetailViewController?.closeStoreDetailButton.isHidden = false
