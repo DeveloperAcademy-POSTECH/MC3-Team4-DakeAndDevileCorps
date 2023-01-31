@@ -266,23 +266,13 @@ extension MainMapViewController {
             activatePreventTouch(willActivate: false)
         }
         
-        setModalFrame()
+        storeDetailModalView.setFrame()
         setModalSubViews()
     }
     
     private func activatePreventTouch(willActivate: Bool) {
         let isHidden = !willActivate
         preventTouchView.isHidden = isHidden
-    }
-    
-    private func setModalFrame() {
-        let fullFrame = CustomModalView.ModalMode.full.generateFrame(screenViewFrame: self.view.frame)
-        storeDetailModalView.frame = CGRect(
-            x: 0,
-            y: storeDetailModalView.mode.generateFrame(screenViewFrame: storeDetailModalView.superScreenViewFrame).minY,
-            width: storeDetailModalView.mode.generateFrame(screenViewFrame: storeDetailModalView.superScreenViewFrame).width,
-            height: fullFrame.height
-        )
     }
     
     private func setModalSubViews() {
@@ -442,7 +432,7 @@ extension MainMapViewController: CategoryCollectionViewDelegate {
 extension MainMapViewController: StoreDetailViewControllerDelegate {
     func setupButtonAction(closeButton: UIButton) {
         self.storeDetailModalView.mode = .tip
-        self.storeDetailModalView.frame = self.storeDetailModalView.mode.generateFrame(screenViewFrame: storeDetailModalView.superScreenViewFrame)
+        self.storeDetailModalView.setFrame()
         storeDetailViewController?.closeStoreDetailButton.isHidden = true
         storeDetailViewController?.storeDetailTableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
         self.preventTouchView.isHidden = false

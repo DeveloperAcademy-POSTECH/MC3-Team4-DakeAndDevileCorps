@@ -19,7 +19,7 @@ class CustomModalView: UIView {
                     x: 0,
                     y: screenViewFrame.height - 150,
                     width: screenViewFrame.width,
-                    height: 150
+                    height: screenViewFrame.height - 50
                 )
             case .full:
                 return CGRect(
@@ -48,4 +48,11 @@ class CustomModalView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func setFrame(targetFrame: CGRect? = nil) {
+        if let targetFrame = targetFrame {
+            self.frame = targetFrame
+        } else {
+            self.frame = self.mode.generateFrame(screenViewFrame: self.superScreenViewFrame)
+        }
+    }
 }
