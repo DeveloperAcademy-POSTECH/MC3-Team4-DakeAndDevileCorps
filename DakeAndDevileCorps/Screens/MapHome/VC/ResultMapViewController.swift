@@ -267,19 +267,15 @@ extension ResultMapViewController: MKMapViewDelegate {
         detailVC?.delegate = self
         
         guard let annotation = view.annotation as? StoreAnnotation else { return }
-        var index = 0
         
         for store in storeList {
             if store.longitude == annotation.store.longitude
                 && store.latitude == annotation.store.latitude
                 && store.name == annotation.store.name {
+                detailVC?.store = store
                 break
-            } else {
-                index += 1
             }
         }
-        
-        detailVC?.dataIndex = index
         
         guard let detailVC = detailVC else { return }
         updateMapForCoordinate(coordinate: view.annotation?.coordinate ?? CLLocationCoordinate2D(latitude: 37.541, longitude: 126.986))

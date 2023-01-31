@@ -12,8 +12,7 @@ protocol StoreDetailViewControllerDelegate: AnyObject {
     func setupViewWillDisappear(closeButton: UIButton)
 }
 
-// TODO: - storeList 사용 때문에 BaseMapViewController 상속 -> 개선 필요
-class StoreDetailViewController: BaseMapViewController {
+class StoreDetailViewController: BaseViewController {
     
     // MARK: - properties
     private enum SectionType: Int, CaseIterable {
@@ -30,8 +29,7 @@ class StoreDetailViewController: BaseMapViewController {
     private var selectHeader = StoreDetailSelectView()
     private var categoryHeader = CategoryView(entryPoint: .detail)
     private var itemInformationType: ItemInformationType = .productList
-    private var store: Store?
-    var dataIndex: Int = 4
+    var store: Store?
     var numberOfCategory: Int = 0
     weak var delegate: StoreDetailViewControllerDelegate?
     
@@ -39,7 +37,6 @@ class StoreDetailViewController: BaseMapViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        store = storeList[dataIndex]
         configStoreDetailTableView()
         initStoreInformationData()
         configHeader()

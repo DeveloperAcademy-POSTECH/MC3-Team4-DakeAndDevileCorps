@@ -34,6 +34,7 @@ class MainMapViewController: BaseMapViewController {
         )
         view.translatesAutoresizingMaskIntoConstraints = false
         view.layer.cornerRadius = 20
+        view.clipsToBounds = true
         view.addGestureRecognizer(panGesture)
         return view
     }()
@@ -326,32 +327,48 @@ extension MainMapViewController: MKMapViewDelegate {
     }
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        guard let annotation = view.annotation as? StoreAnnotation else {
+            return
+        }
         self.view.addSubview(storeDetailModalView)
-        UIView.animate(withDuration: 0.03, animations: { [weak self] in
-            self?.currentLocationButton.transform = CGAffineTransform(translationX: 0, y: -130)
-        })
+        moveCurrentLocationButton(hasModal: true)
+        setStoreDetailViewController(storeInfo: annotation.store)
+    }
+    
+    func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
+        self.storeDetailModalView.removeFromSuperview()
+        moveCurrentLocationButton(hasModal: false)
+    }
+    
+    private func moveCurrentLocationButton(hasModal: Bool) {
+        if hasModal {
+            UIView.animate(withDuration: 0.03, animations: { [weak self] in
+                self?.currentLocationButton.transform = CGAffineTransform(translationX: 0, y: -130)
+            })
+        } else {
+            UIView.animate(withDuration: 0.2, animations: { [weak self] in
+                self?.currentLocationButton.transform = .identity
+            })
+        }
+    }
+    
+    private func setStoreDetailViewController(storeInfo: Store) {
+        self.storeDetailViewController = UIStoryboard(
+            name: "StoreDetail",
+            bundle: nil
+        ).instantiateViewController(
+            withIdentifier: StoreDetailViewController.className
+        ) as? StoreDetailViewController
         
-        storeDetailViewController = UIStoryboard(name: "StoreDetail", bundle: nil).instantiateViewController(withIdentifier: StoreDetailViewController.className) as? StoreDetailViewController
-        storeDetailViewController?.delegate = self
-        guard let annotation = view.annotation as? StoreAnnotation else { return }
-        
-        var index = 0
-        
-        for store in storeList {
-            if store.longitude == annotation.store.longitude
-                && store.latitude == annotation.store.latitude
-                && store.name == annotation.store.name {
-                break
-            } else {
-                index += 1
-            }
+        guard let storeDetailViewController = self.storeDetailViewController else {
+            return
         }
         
-        storeDetailViewController?.dataIndex = index
-        guard let storeDetailViewController = storeDetailViewController else { return }
+        storeDetailViewController.delegate = self
+        storeDetailViewController.store = storeInfo
+        
         storeDetailModalView.addSubview(storeDetailViewController.view)
-        storeDetailViewController.view.layer.cornerRadius = 20
-        storeDetailViewController.view.frame = CGRect(x: 0, y: 0, width: storeDetailModalView.frame.width, height: self.view.frame.height)
+        storeDetailViewController.closeStoreDetailButton.isHidden = true
         
         storeDetailViewController.view.addSubview(preventTouchView)
         preventTouchView.constraint(to: storeDetailViewController.storeDetailTableView)
@@ -363,18 +380,6 @@ extension MainMapViewController: MKMapViewDelegate {
             width: (nil, 50),
             height: (nil, 5)
         )
-        
-        storeDetailViewController.closeStoreDetailButton.isHidden = true
-    }
-    
-    func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
-        self.storeDetailModalView.removeFromSuperview()
-        UIView.animate(withDuration: 0.2, animations: { [weak self] in
-            self?.currentLocationButton.transform = .identity
-        })
-        storeDetailModalView.subviews.forEach { subview in
-            subview.removeFromSuperview()
-        }
     }
 }
 
