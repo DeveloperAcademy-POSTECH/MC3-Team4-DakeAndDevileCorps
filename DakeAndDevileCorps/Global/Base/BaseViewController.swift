@@ -9,6 +9,10 @@ import UIKit
 
 class BaseViewController: UIViewController {
     
+    var safeArea: UILayoutGuide {
+        return self.view.safeAreaLayoutGuide
+    }
+    
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
