@@ -8,7 +8,8 @@
 import UIKit
 import MapKit
 
-class SearchViewController: BaseViewController {
+// TODO: - storeList 사용 때문에 BaseMapViewController 상속 -> 개선 필요
+class SearchViewController: BaseMapViewController {
     
     @IBOutlet weak var searchTableView: UITableView!
     @IBOutlet weak var deleteAllButton: UIButton!

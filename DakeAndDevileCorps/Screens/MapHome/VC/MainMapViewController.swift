@@ -8,7 +8,7 @@
 import MapKit
 import UIKit
 
-class MainMapViewController: BaseViewController {
+class MainMapViewController: BaseMapViewController {
     
     // MARK: - subViews
     let searchBarView: SearchBarView = {

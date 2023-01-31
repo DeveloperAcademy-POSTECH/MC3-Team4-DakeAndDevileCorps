@@ -12,7 +12,8 @@ protocol StoreDetailViewControllerDelegate: AnyObject {
     func setupViewWillDisappear(closeButton: UIButton)
 }
 
-class StoreDetailViewController: BaseViewController {
+// TODO: - storeList 사용 때문에 BaseMapViewController 상속 -> 개선 필요
+class StoreDetailViewController: BaseMapViewController {
     
     // MARK: - properties
     private enum SectionType: Int, CaseIterable {

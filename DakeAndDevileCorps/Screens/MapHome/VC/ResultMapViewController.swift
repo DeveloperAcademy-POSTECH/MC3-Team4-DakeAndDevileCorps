@@ -8,7 +8,7 @@
 import UIKit
 import MapKit
 
-class ResultMapViewController: BaseViewController {
+class ResultMapViewController: BaseMapViewController {
         
     // MARK: - subViews
     let searchBarView: SearchBarView = {
@@ -143,7 +143,7 @@ class ResultMapViewController: BaseViewController {
     func updateMapForCoordinate(coordinate: CLLocationCoordinate2D) {
         let camera = MKMapCamera(lookingAtCenter: coordinate, fromDistance: 2000, pitch: 0, heading: 0)
         mapView.setCamera(camera, animated: false)
-        var center = coordinate
+        let center = coordinate
         mapView.setCenter(center, animated: true)
     }
 
