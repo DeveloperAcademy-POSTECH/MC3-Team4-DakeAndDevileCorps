@@ -40,7 +40,10 @@ class CustomModalView: UIView {
         self.superScreenViewFrame = superScreenViewFrame ?? .zero
         self.mode = mode ?? ModalMode.tip
         
-        super.init(frame: self.mode.generateFrame(screenViewFrame: self.superScreenViewFrame)
+        super.init(
+            frame: self.mode.generateFrame(
+                screenViewFrame: self.superScreenViewFrame
+            )
         )
     }
 
