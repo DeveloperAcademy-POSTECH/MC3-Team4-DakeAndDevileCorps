@@ -308,7 +308,7 @@
 		7937A00B28858B950016D1A8 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
-				7937A00D28858B9F0016D1A8 /* MapHome */,
+				7937A00D28858B9F0016D1A8 /* MainMap */,
 				7937A00C28858B9A0016D1A8 /* Search */,
 				7937A01F28859B710016D1A8 /* Store */,
 			);
@@ -324,13 +324,13 @@
 			path = Search;
 			sourceTree = "<group>";
 		};
-		7937A00D28858B9F0016D1A8 /* MapHome */ = {
+		7937A00D28858B9F0016D1A8 /* MainMap */ = {
 			isa = PBXGroup;
 			children = (
 				0B6589CB2892A8B100B9A091 /* Component */,
 				7937A00F28858BAB0016D1A8 /* VC */,
 			);
-			path = MapHome;
+			path = MainMap;
 			sourceTree = "<group>";
 		};
 		7937A00F28858BAB0016D1A8 /* VC */ = {
